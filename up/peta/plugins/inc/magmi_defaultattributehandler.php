@@ -290,6 +290,10 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
                 case "tax/class_source_product":
                     $ovalue = $this->getTaxClassId($ivalue);
                     break;
+// if udropship_vendor, get vendor id from udropship_vendor table
+                case "Unirgy_Dropship_Model_Vendor_Source":
+                $ovalue = $this->getUdropshipVendorId($ivalue);
+                break;
                 // otherwise, standard option behavior
                 // get option id for value, create it if does not already exist
                 // do not insert if empty
@@ -397,4 +401,25 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
 
         return $ovalue;
     }
+  /**
+      * returns udropship vendor_id for a given vendor_name
+      *
+      * @param $ivalue : vendor_name or vendor_id
+      *
+     */
+     private function getUdropshipVendorId($ivalue)
+     {
+         // allow for ids in udropship_vendor column
+         if (is_numeric($ivalue)) {
+             $uvendorid = $ivalue;
+         } else {
+            $t = $this->tablename('udropship_vendor');
+             $uvendorid = $this->selectone("SELECT vendor_id FROM $t WHERE vendor_name=?", array($ivalue), "vendor_id");
+         }
+         // bugfix for udropship_vendor, if not found set it to empty
+        if (!isset($uvendorid)) {
+             $uvendorid = '';
+         }
+         return $uvendorid;
+     }
 }
