@@ -1,0 +1,117 @@
+<?php 
+$jsonFilename = $this->getData('pdpdesign');
+$fileContent = Mage::helper('pdp')->getPDPJsonContent($jsonFilename);
+$sidesData = json_decode($fileContent, true);
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "pdp/images/";
+?>
+<html>
+	<head>
+		<title><?php echo 'Customize Design'; ?></title>
+		<link type="text/css" rel="stylesheet" href="<?php echo $this->getJsUrl('pdp/x3/bootstrap/css/bootstrap.min.css') ?>" />
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->getJsUrl('pdp/pace/dataurl.css') ?>" />
+        <style>
+            body {
+                background: #ccc;
+            }
+            .container {
+                background: #fff;
+            }
+            .header-title {
+                color: #006699;
+                font-weight: bold;
+            }
+            .pdploading {
+                background: rgba(0, 0, 0, 0) url("<?php echo $this->getJsUrl("pdp/pdc/images/overlay.png") ?>") repeat scroll 0 0;
+                height: 100%;
+                left: 0;
+                opacity: 0.8;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 999999;
+            }
+            .pdploading span::after {
+                background: rgb(128, 210, 153) none repeat scroll 0 0;
+                border-radius: 100% 0;
+                bottom: 0;
+                color: rgb(255, 255, 255);
+                content: "Please wait...";
+                font-size: 12px;
+                height: 15px;
+                left: 0;
+                line-height: 15px;
+                position: absolute;
+                text-indent: 0;
+                width: 100%;
+                z-index: 1;
+            }
+            .pdploading span {
+                background: rgb(51, 153, 204) url("<?php echo $this->getJsUrl("pdp/pdc/images/loading.gif") ?>") no-repeat scroll center 18px;
+                border-radius: 100% 0;
+                display: block;
+                font-size: 20px;
+                height: 70px;
+                line-height: 30px;
+                margin: 20% auto;
+                position: relative;
+                text-align: center;
+                text-indent: -9999px;
+                width: 140px;
+                z-index: 9999;
+            }
+        </style>
+	</head>
+	<body>
+		<?php echo $this->getLayout()->createBlock("core/template")->setTemplate("pdp/x3/design/load_fonts.phtml")->toHtml();?>
+		<input type="hidden" value="<?php echo htmlentities($fileContent)?>" id="final_design_json"/>
+        <input type="hidden" value="<?php echo $jsonFilename ?>" id="json_filename"/>
+		<input type="hidden" value="<?php echo Mage::helper('pdp')->getPdpBaseUrl(); ?>" id="base_url"/>
+        <input type="hidden" id="pdp_media_url" name="pdp_media_url" value="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'pdp/images/'; ?>" />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <h3 class="header-title"><?php echo $this->__("Review Your Design") ?></h3>
+                </div>
+            </div>
+        </div>
+		<div class="container">
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul id="canvas_list" class="nav nav-tabs" role="tablist">
+                    <?php $counter = 0; ?>
+                    <?php foreach($sidesData as $side) : ?>
+                        <?php $tabId = "side_" . $side['id']; ?>
+                        <li role="presentation" <?php echo ($counter == 0) ? 'class="active"' : ''; ?>><a href="#<?php echo $tabId ?>" aria-controls="<?php echo $tabId ?>" role="tab" data-toggle="tab"><?php echo $side['label'] ?></a></li>
+                        <?php $counter++ ?>
+                    <?php endforeach; ?>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <?php $counter = 0; ?>
+                    <?php foreach($sidesData as $side) : ?>
+                        <?php 
+                        $tabId = "side_" . $side['id']; 
+                        ?>
+                        <div role="tabpanel" class="tab-pane <?php echo ($counter == 0) ? 'active' : ''; ?>" id="<?php echo $tabId ?>">
+                            <div class="row">
+                                <div class="col-md-12 canvas-wrapper" style="overflow: auto;">
+                                    <canvas style="border: 1px solid #006699; margin: 10px 0px;" id="canvas_<?php echo $tabId ?>" width="<?php echo $side['canvaswidth'] ?>px" height="<?php echo $side['canvasheight'] ?>px" pdc-data='final-canvas'></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <?php $counter++ ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/jquery/jquery-1.10.2.min.js') ?>"></script>
+        <script src="<?php echo $this->getJsUrl('pdp/x3/bootstrap/js/bootstrap.min.js') ?>"></script>
+        <script src="<?php echo $this->getJsUrl('pdp/pace/pace.min.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/fabricjs/fabric.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/pdc/js/productsdesignercanvas-1.0.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/curvedtext/js/curvedtext.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/curvedtext/js/pdc.text.action.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/pdc/js/final_design.js') ?>"></script>
+        <div style="display: none;" class="pdploading"><span><?php echo $this->__("Please wait...") ?></span></div>
+	</body>
+</html>

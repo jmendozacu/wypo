@@ -1,0 +1,68 @@
+#pdc_instagram_list_img img {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  float: left;
+  margin: 1%;
+  padding: 1%;
+  width: 23%;
+}
+#pdc_instagram_list_img {
+  float: left;
+  margin: 0 0 10px;
+  width: 100%;
+}
+#pdc_ins_action {
+  float: left;
+  margin: 0 0 10px;
+  width: 100%;
+}
+#pdc_ins_action li {
+  background: #f2f2f2 none repeat scroll 0 0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  text-align: center;
+  width: 50%;
+}
+#pdc_ins_myphotos {
+  float: left;
+  width: 100%;
+}
+.pdc_instagram {
+  background: #fff none repeat scroll 0 0;
+  min-height: 200px;
+  position: relative;
+  width: 250px;
+  z-index: 99;
+}
+.no-display {
+    display: none;
+}
+.upload_photo_btn {
+  background: #517fa4 none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  line-height: 30px;
+  margin: 0 0 10px;
+}
+.pdp_ins_next {
+  background: #517fa4 none repeat scroll 0 0;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: inline;
+  float: right;
+  line-height: 30px;
+  margin: 0 10px 0 0;
+  padding: 0 10px;
+  text-align: center;
+}
+
+
+

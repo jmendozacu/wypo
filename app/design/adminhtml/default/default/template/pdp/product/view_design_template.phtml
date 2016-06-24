@@ -1,0 +1,85 @@
+<?php
+$params = Mage::app()->getRequest()->getParams(); 
+$productId = $params['productid'];
+//$productColors = Mage::getModel('pdp/color')->getColors();
+$productTemplates = Mage::getModel('pdp/admintemplate')->getProductTemplates($productId);
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "pdp/images/thumbnail/";
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('boxes.css') ?>" />
+<link type="text/css" rel="stylesheet" href="<?php echo $this->getJsUrl('pdp/backend/css/printarea.css') ?>" />
+<script type="text/javascript" src="<?php echo $this->getJsUrl('prototype/prototype.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('prototype/validation.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('scriptaculous/effects.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('varien/form.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/jquery/jquery-1.10.2.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/backend/js/pdpdesign.js') ?>"></script>
+<style>
+    .images-container .side-images label:after { clear: both; content: "."; display: block; font-size: 0; line-height: 0;  overflow: hidden;}
+</style>
+<div class="pdp_message"><?php echo $this->getMessagesBlock()->toHtml(); ?></div>
+<input type="hidden" id="delete_product_color_url" value="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/deleteproducttemplate") ?>" />
+<form id="view_design_template_form" method="POST"
+	action="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/updatedesigntemplate/"); ?>"
+	enctype="multipart/form-data">
+	<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+	<input type="hidden" id="current_product_id" name="product_id" value="<?php echo $productId ?>" />
+	<div class='form-buttons'>
+		<?php $createNewTemplate = Mage::helper("pdp")->getPdpBaseUrl() . "pdp/view/designtool/product-id/". $productId ."/area/backend/key/46783db73cb9894e0ed77647840ef5b5/template-id/0/"; ?>
+		<button class="scalable add add-new-design-template" rel="<?php echo $createNewTemplate ?>" type="button" title="Create New Template">
+			<span><span><span><?php echo $this->__('Create New Template') ?></span></span></span>
+		</button>
+        <?php if($productTemplates->count()) : ?>
+		<button class="scalable save" type="submit" title="Save Changes">
+			<span><span><span><?php echo $this->__('Save Changes') ?></span></span></span>
+		</button>
+		<button class="scalable delete"
+			onclick="location.reload(); return false;" title="Reset">
+			<span><span><span><?php echo $this->__('Reset') ?></span></span></span>
+		</button>
+        <?php endif; ?>
+	</div>
+    <?php 
+    if (!$productTemplates->count()) {
+        echo '<div style="text-align:center;">' . $this->__("There is no template found. Please create new template for this product.") . '</div>';
+        return false;
+    }
+    ?>
+	<table class="table color-image-table">
+		<tr>
+            <th><?php echo $this->__("Template Preview") ?></th>
+			<th><?php echo $this->__("Template Name") ?></th>
+			<th><?php echo $this->__("Position") ?></th>
+			<th><?php echo $this->__("Status") ?></th>
+			<th><?php echo $this->__("Is Default") ?></th>
+			<th><?php echo $this->__("Action") ?></th>
+		</tr>
+        <?php foreach($productTemplates as $template) : ?>
+        <tr>
+            <td><img src="<?php echo $mediaUrl . $template->getTemplateThumbnail() ?>" alt="Template Thumbnail" width="200px"/></td>
+            <td>
+                <input type="hidden" name="design-template[<?php echo $template->getId() ?>][id]" value="<?php echo $template->getId() ?>" />
+                <input type="text" name="design-template[<?php echo $template->getId() ?>][template_name]" value="<?php echo $template->getTemplateName() ?>" />
+            </td>
+            <td><input type="text" name="design-template[<?php echo $template->getId() ?>][template_position]" value="<?php echo $template->getTemplatePosition() ?>"/></td>
+            <td>
+                <select name="design-template[<?php echo $template->getId()?>][status]">
+					<option <?php echo ($template->getStatus() == 1) ? "selected" : ""; ?> value='1'><?php echo $this->__('Enable') ?> </option>
+					<option <?php echo ($template->getStatus() == 2) ? "selected" : ""; ?> value='2'><?php echo $this->__('Disable') ?> </option>
+				</select>
+            </td>
+            <td>
+                <input type="checkbox" class="is-default-checkbox" <?php echo ($template->getIsDefault() == 1) ? 'checked="checked"' : ''; ?> name="design-template[<?php echo $template->getId() ?>][is_default]" />
+            </td>
+            <td>
+                <?php $editTemplateUrl = Mage::helper("pdp")->getPdpBaseUrl() . "pdp/view/designtool/product-id/" . $productId . "/area/backend/template-id/". $template->getId() ."/key/46783db73cb9894e0ed77647840ef5b5"; ?>
+                <?php $deleteTemplateUrl = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/deleteTemplate", array("productid" => $productId, "template-id" => $template->getId())) ?>
+                <a id="edit-template_<?php echo $template->getId() ?>" href="<?php echo $editTemplateUrl ?>"><?php echo $this->__("Edit") ?></a> |
+                <a id="delete-template_<?php echo $template->getId() ?>" href="javascript:void(0)" rel="<?php echo $deleteTemplateUrl ?>" class="del-design-template"><?php echo $this->__("Delete") ?></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+	</table>
+</form>
+<script type="text/javascript">
+	var addSideColorForm = new VarienForm('view_design_template_form', true);
+</script>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>
+        <adminhtml>
+        <menu>
+            <pdp module="pdp">
+                <title>Products Designer</title>
+                <sort_order>31</sort_order>
+                <children>
+                    <!--
+                    <shapes module="pdp">
+                        <title>Shapes Library</title>
+                        <sort_order>33</sort_order>
+                      
+						<children>
+							<add_shape_cate module="pdp">
+								<title>Shapes Categories</title>
+								<sort_order>10</sort_order>
+								<action>adminhtml/pdpadmin_shapecate/index</action>
+							</add_shape_cate>
+							<manageshapes module="pdp">
+								<title>Manage Shapes</title>
+								<sort_order>30</sort_order>
+								<action>adminhtml/pdpadmin_shape/index</action>
+							</manageshapes>
+						</children>
+                    </shapes>-->
+                </children>
+            </pdp>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+						<pdp module="pdp">
+							<title>PDP</title>
+							<sort_order>71</sort_order>
+							<children>
+                                <!--<shapes module="pdp">
+                                    <title>Shapes Library</title>
+                                    <sort_order>33</sort_order>
+
+                                    <children>
+                                        <add_shape_cate module="pdp">
+                                            <title>Shapes Categories</title>
+                                            <sort_order>10</sort_order>
+                                            <action>adminhtml/pdpadmin_shapecate/index</action>
+                                        </add_shape_cate>
+                                        <manageshapes module="pdp">
+                                            <title>Manage Shapes</title>
+                                            <sort_order>30</sort_order>
+                                            <action>adminhtml/pdpadmin_pdp/shape</action>
+                                        </manageshapes>
+                                    </children>
+                                </shapes>-->
+							</children>
+						</pdp>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

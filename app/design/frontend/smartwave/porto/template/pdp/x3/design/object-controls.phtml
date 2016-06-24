@@ -1,0 +1,109 @@
+<?php
+$helper = Mage::helper('pdp');
+$fonts = $helper->getFonts();
+$jsUrl = $this->getX3JsUrl();
+$colors = Mage::getModel('pdp/color')->getColors();
+$includeColors = $this->getProductIncludeColors();
+$includeFonts = $this->getProductIncludeFonts();
+$productConfig = $this->getProductConfig();
+?>
+<div class="pdc-edit-tool"  id="pdc_toolbar_options">
+    <div id="pdc_text_edit">
+        <textarea type="text" pdc-data="text" id="text_edit_form" style="margin-left: 0px; margin-right: 0px; width: 300px;"></textarea>
+    </div> 
+    <div class="pdc-item-tool pdc-fonts-family pdc_edit_text_only">		
+		<select class="pdc-style-family" style="font-family:">
+			<option style="font-family:Arial;" value="<?php echo $this->__("Arial") ?>"><?php echo $this->__("Arial") ?></option>
+			<?php foreach ( $fonts as $font) : ?>
+				<?php 
+				if(is_array($includeFonts)) {
+					if(!in_array($font->getFontId(), $includeFonts)) continue;  
+				} 
+				?>
+				<?php $displayText = $font->getDisplayText() ? $font->getDisplayText() : $font->getName() ?>
+                <option style="font-family:<?php echo $font->getName() ?>;" value="<?php echo $displayText ?>"><?php echo $displayText ?></option>
+			<?php endforeach; ?>
+		</select>
+		<h3 class="fake-select"><i class="fa fa-sort"></i></h3>
+
+	</div>
+	<div class="pdc-item-tool pdc-fonts-size pdc_edit_text_only">
+		<!--h3 class="chose oj-show"><span>40</span><i class="fa fa-sort"></i></h3-->
+		<select class="pdc-style">
+			<option>12</option>
+			<option>14</option>
+			<option>16</option>
+			<option>18</option>
+			<option>21</option>
+			<option>24</option>
+			<option>28</option>
+			<option>32</option>
+			<option>36</option>
+			<option>42</option>
+			<option>48</option>
+			<option>56</option>
+			<option>64</option>
+			<option>72</option>
+			<option>80</option>
+			<option>88</option>
+			<option>96</option>
+			<option>104</option>
+			<option>120</option>
+			<option>144</option>
+		</select>
+		<h3 class="fake-select"><i class="fa fa-sort"></i></h3>
+	</div>
+	<div class="pdc-item-tool pdc-colors">
+		<a class="oj-show"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>pdp/x3/images/color_picker.png" alt="" height="20px" /></a>
+        <ul class="pdc-color-list">
+            <?php $i = 0; foreach($colors as $color)  :?>
+            <?php 
+            if(is_array($includeColors)) {
+                if(!in_array($color->getColorId(), $includeColors)) continue;  
+            } 
+            ?>
+            <li><a style="background-color:#<?php echo $color->getColor_code(); ?>; color:#<?php echo $color->getColor_code(); ?>" title="<?php echo $color->getColor_name(); ?>"><!--span class="pdc-brightness-1"></span--></a></li>
+        <?php $i++; endforeach;  ?>
+            <?php if(isset($productConfig['enable_colorpicker_plugin']) && $productConfig['enable_colorpicker_plugin'] == "1") : ?>
+            <li>
+                <div pdc-data="color" id="pdc_color_picker">
+                    <div class="result">+</div>
+                </div>
+            </li>
+            <?php endif; ?>
+        </ul>
+	</div>
+    <div class="pdc-item-tool pdc-flipx pdc_edit_img_only">
+        <a class="oj-show"><i class="fa fa-exchange"></i></a>
+    </div>
+    <div class="pdc-item-tool pdc-flipy pdc_edit_img_only">
+        <a class="oj-show"><i class="fa fa-exchange exchange_y"></i></a>
+    </div>
+	<div class="pdc-item-tool pdc-del-tool">
+		<a class="oj-show"><i class="fa fa-trash"></i></a>
+	</div>
+	<div class="pdc-item-tool pdc-more-tool">
+		<a class="oj-show">							
+			<i class="fa fa-caret-down"></i>
+		</a>
+		<ul class="pdc-list-tool">
+			<li class="text-bold pdc_edit_text_only"><a>Negritas</a></li>
+			<li class="text-italic pdc_edit_text_only"><a>Italica</a></li>
+			<li class="text-underline pdc_edit_text_only"><a>Subrayado</a></li>
+			<li class="text-left text-align on pdc_edit_text_only"><a>Izq. -</a></li>
+			<li class="text-center text-align pdc_edit_text_only"><a>- Centro -</a></li>
+			<li class="text-right text-align pdc_edit_text_only"><a>- Der.</a></li>
+			<!--li class="dividerAbove text-spacing"><a>Text spacing</a></li-->
+			<li class="dividerAbove pdc-element-copy pdc-element-style"><a><i class="fa fa-files-o"></i>Duplicar</a></li>
+			<li class="pdc-element-transparency pdc-element-style"><a title="Transparency"><i class="fa fa-adjust"></i>Transparente</a></li>
+			<li class="pdc-element-forward pdc-element-style"><a><i class="fa fa-forward"></i>Mover Adelante</a></li>
+			<li class="pdc-element-backward pdc-element-style"><a><i class="fa fa-backward"></i>Mover Atrás</a></li>
+		</ul>
+        <div class="nodisplay pdc-transparency-slider">
+            <label><?php echo $this->__('Transparency') ?></label>
+            <span class="op_left">0</span>
+            <input type="range" min="0" max="100" value="100" />
+            <span class="op_right">100</span>
+        </div>
+	</div>
+</div>

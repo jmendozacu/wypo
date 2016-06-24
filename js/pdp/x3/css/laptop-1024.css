@@ -1,0 +1,41 @@
+/* Screen size from 1024px to 1260 px */
+.pdc-area-left .pdc-tabs > .tab-content {width: 70%;}
+#productDesign ul.nav > li a span {word-wrap: normal;}
+.pdc-background-color-list li a, #pdc_background_color_picker {height: 15px;margin: 2px;width: 15px;}
+#toggle-app-button > img {  margin-top: 5px;  width: 15px;}
+.pdc-area-left .pdc-tabs > .tab-content > .tab-pane > h3 {  padding: 0 0 0 10px;}
+.pdc-show-content .items-list li {
+  height: 42px;
+  margin: 3px 3px 3px 1px;
+  width: 42px;
+}
+#qrcode ul.nav li a i {
+  padding: 1px;
+}
+#qrCode ul.nav > li a {
+  margin-right: 2px;
+  padding: 3px 0;
+}
+.dropzone .dz-preview .dz-image {
+  height: 70px;
+  width: 70px;
+}
+#pdc_block_layer {
+  width: 100%;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  padding: 1px;
+}
+#productDesign ul.nav > li a i, #upload ul.nav > li a i, #apps ul.nav > li a i {
+  font-size: 15px;
+  padding: 5px;
+}
+#productDesign ul.nav > li, #productDesign ul.nav > li, #upload ul.nav > li, #apps ul.nav > li {
+  width: 24.5%;
+}
+#productDesign ul.nav > li a span {
+  word-wrap: normal;
+}
+.pdc-design-view {
+  text-align: left;
+}

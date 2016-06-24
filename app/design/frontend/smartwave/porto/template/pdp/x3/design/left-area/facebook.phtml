@@ -1,0 +1,61 @@
+<?php if(Mage::getStoreConfig('pdp/customer_action/is_facebook')){ ?>
+<?php $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/'; ?>
+<script type="text/javascript">
+var facebook_app_id = '<?php echo Mage::getStoreConfig('pdp/customer_action/facebook_api') ?>';
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : facebook_app_id,
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<?php if (!$this->isAdminUser()) { ?>
+    <script type="text/javascript" src="<?php echo $js_pdp;?>facebook/facebook_connect.js"></script>
+<?php } ?>
+<link type="text/css" href="<?php echo $js_pdp;?>facebook/css/fb.css" rel="stylesheet" />
+<!--div class="gallery-contents">
+    <a class="gallery-trigger"><img src="<?php echo $this->getX3JsUrl() ?>icon/facebook.png" alt="" />
+    <span class="title"><?php echo $this->__("Facebook") ?></span></a>
+</div-->
+<input type="hidden" id="pdc_fb_api" value="<?php echo Mage::getStoreConfig('pdp/customer_action/facebook_api') ?>" />
+<input type="hidden" id="pdc_fb_key" value="<?php echo Mage::getStoreConfig('pdp/customer_action/facebook_key') ?>" />
+<div class="pdc-show-content">
+    <div class="pdc_fb_fact">
+        <div class="pdc-show-content-detail">
+            <p><?php echo $this->__("Login to select photos from your Facebook account.") ?></p>
+            <button id="pdc_fb_login" type="button" class="pdc-btn face-btn"><span><?php echo $this->__("Get Facebook photos") ?></span></button>
+        </div>
+    </div>
+    <div class="content_facebook nodisplay" pdc-clipart-tab="content_facebook">
+    	  <div id="fb-root"></div>
+    	  <div id="user-info" class="no-display">
+            <label><?php echo $this->__('You logged as: ') ?><span pdc-fb-info="avatar"></span><span pdc-fb-info="name"></span></label>
+          </div>
+    	  <div id="photos_album" class="no-display">
+                <select pdc-block="fb_albums">
+                    <option value="0"><?php echo $this->__('Select photo album') ?></option>
+                </select>
+                <div pdc-fb-info="list_img"></div>
+          </div>
+    	  <button id="magebay_fb_button" scope="user_photos"  class="upload_photo_btn fb_photo_btn " type="button">
+              <i class="pdc-facebook-square"></i>
+              <span class="not_login">
+                <?php echo $this->__('Get Facebook photos');?>
+              </span><span class="login no-display"><?php echo $this->__('Logout Facebook');?></span>
+          </button>
+    </div>
+</div>
+<?php } else { ?>
+<div class="facebook-note">
+    <span><?php echo $this->__("To use facebook photo. Please enable facebook app in:") ?></span>
+    <strong><?php echo $this->__("Products Designer -> PDC Configruaration -> Customer Actions Setting -> Allow Get Facebook Photo") ?></strong>
+</div>
+<?php } ?>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <adminhtml>
+        <menu>
+            <pdp module="pdp">
+                <title>Products Designer</title>
+                <sort_order>31</sort_order>
+                <children>
+                    <!--
+                    <text module="pdp">
+                        <title>Quote Library</title>
+                        <sort_order>37</sort_order>
+                        <action>adminhtml/pdpadmin_text/index</action>
+                    </text>
+                    -->
+                    <setting module="pdp">
+                        <title>PDC Configuration</title>
+                        <sort_order>40</sort_order>
+                        <action>adminhtml/system_config/edit/section/pdp</action>
+                    </setting>
+                </children>
+            </pdp>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+						<pdp module="pdp">
+							<title>PDP</title>
+							<sort_order>71</sort_order>
+							<children>
+								<!--
+                                <text module="pdp">
+									<title>Quote Library</title>
+									<sort_order>37</sort_order>
+									<action>adminhtml/pdpadmin_text/index</action>
+								</text>-->
+							</children>
+						</pdp>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

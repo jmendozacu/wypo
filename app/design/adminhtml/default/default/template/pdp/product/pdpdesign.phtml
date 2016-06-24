@@ -1,0 +1,656 @@
+<?php
+if (Mage::getStoreConfig('pdp/setting/enable') == 0) {	
+	echo "<h3>PDP module is disabled. Please enable PDP to use it's features!</h3>";
+}
+$baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK);
+$productId = Mage::app()->getRequest()->getParam('id');
+$currentProduct = Mage::registry('current_product');
+//Check if has duplicate request
+Mage::getModel("pdp/pdp")->checkDuplicateRequest($currentProduct);
+$productStatus = Mage::getModel('pdp/productstatus')->getProductStatus($productId);
+//$isHidePricePanel = Mage::helper("pdp")->isShowPricePanel($productId);
+$request = Mage::app()->getRequest()->getParams();
+$pdpTabActive = false;
+if(isset($request['tab'])) {
+    if ($request['tab'] == "product_info_tabs_pdpdesign") {
+        $pdpTabActive = true;
+    }
+}
+$sideTableUrl = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/getsidetable");
+$enablePdpDesign = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/updateStatus");
+$updateProductConfigUrl = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/updateProductConfig");
+$addNewSide = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/addNewSide") . "productid/" . $productId;
+$saveSelectedImage = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_pdp/saveSelectedImage", array('productid' => $productId));
+$saveSelectedColor = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_color/saveSelectedColor", array('productid' => $productId));
+$saveSelectedFont = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_fonts/saveSelectedFont", array('productid' => $productId));
+$productConfigs = Mage::helper("pdp")->getProductConfig($productId);
+//Zend_Debug::dump($productConfigs);
+?>
+<input type="hidden" id="current_product_id" value="<?php echo $productId ?>" />
+<input type="hidden" id="base_url" value="<?php echo Mage::helper("pdp")->getPdpBaseUrl(); ?>" />
+<input type="hidden" id="request_url" value="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/setuparea") ?>" />
+<input type="hidden" id="add_design_color_url" value="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/adddesigncolor") ?>" />
+<input type="hidden" id="view_design_color_url" value="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/viewdesigncolor") ?>" />
+<input type="hidden" id="view_design_template_url" value="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/viewdesigntemplate") ?>" />
+<input type="hidden" id="preview_design_color_url" value="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/previewdesigncolor") ?>" />
+<style>
+    .pdc-product-config {border-collapse: collapse;}
+    .pdc-product-config td, .pdc-product-config th {
+        padding: 10px;
+        vertical-align: middle;
+    }
+    .pdc-product-config select {width: 100%;}
+    .pdc-save-option {
+        background: #3487d1 none repeat scroll 0 0;
+        border: 1px solid #555;
+    }
+    .pdc-save-option:hover {
+        background: #3487d1 none repeat scroll 0 0;
+    }
+    #pdc_info_tabs li {padding-right: 4px;}
+    /**Style radio button**/
+    #product_info_tabs_pdpdesign_content input[type=radio] {
+        display:none;
+    }
+
+    #product_info_tabs_pdpdesign_content input[type=radio] + label {
+        display:inline-block;
+        margin:-2px;
+        padding: 4px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: #333;
+        text-align: center;
+        text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: #f5f5f5;
+        background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+        background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+        background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+        background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+        background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+        background-repeat: repeat-x;
+        border: 1px solid #ccc;
+        border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+        border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+        border-bottom-color: #b3b3b3;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+        -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    #product_info_tabs_pdpdesign_content input[type=radio]:checked + label {
+        background-image: none;
+        outline: 0;
+        -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+        -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+        background-color:#ccc;
+    }
+</style>
+<div class="">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Step 1: Enable Customization Tool") ?></h4>
+        </div>
+        <div class="fieldset fieldset-wide">
+            <?php 
+            $_isEnabled = 2;
+            if(isset($productConfigs['status']) && $productConfigs['status'] == "1") {
+                $_isEnabled = 1;
+            }
+            ?>
+            <input type="radio" id="enable_pdp_design_1" name="enable_pdp_design" value="1" <?php echo ($_isEnabled == "1") ? "checked" : ''; ?>>
+               <label for="enable_pdp_design_1"><?php echo $this->__("Enabled") ?></label>
+            <input type="radio" id="enable_pdp_design_2" name="enable_pdp_design"value="2" <?php echo ($_isEnabled == "2") ? "checked" : ''; ?>>
+               <label for="enable_pdp_design_2"><?php echo $this->__("Disabled") ?></label>
+            <form id="pdc-product-config-form" method="POST" action="<?php echo $updateProductConfigUrl ?>">
+                <?php $formKey = Mage::getSingleton('core/session')->getFormKey(); ?>
+                <input type="hidden" name="form_key" value="<?php echo $formKey; ?>" />
+            </form>
+        </div>
+    </div>
+    <div class="entry-edit pdc-options" style="display: none;">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Step 2: Setting design area") ?></h4>
+            <div class="right">
+                <button style="" onclick="" class="scalable add" type="button" title="Add Product Side" id="add_new_side">
+                    <span><span><span><?php echo $this->__("Add Product Side") ?></span></span></span>
+                </button>
+            </div>
+        </div>
+        <div id="group_pdp_sample" class="fieldset fieldset-wide">
+            <div class="hor-scroll">
+                <div class="side-table-container"></div>
+            </div>
+        </div>
+    </div>
+    <div class="entry-edit pdc-options" style="display: none;">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Step 3: Make this product special") ?></h4>
+        </div>
+        <div class="fieldset fieldset-wide">
+            <div class="product-option-set" style="display: none;">
+                <table class="pdc-product-config">
+                    <tr>
+                        <th colspan="2"><?php echo $this->__("To speed up setting processing next time. You can create new option set based on this product config!") ?></th>
+                    </tr>
+                    <tr>
+                        <td><?php echo $this->__("Load Setting From Option Set") ?></td>
+                        <td>
+                            <select>
+                                <option><?php echo $this->__("Option Set 1") ?></option>
+                                <option><?php echo $this->__("Option Set 2") ?></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><?php echo $this->__("Create New Option Set") ?></td>
+                        <td>
+                            <input type="text" name="option-set-name" value="" placeholder="<?php echo $this->__("Enter Option Set Name") ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><?php echo $this->__("Save for later use") ?></td>
+                        <td>
+                            <button type="button" id="create_new_option_set"><?php echo $this->__("Save Option Set") ?></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <ul class="tabs-horiz" id="pdc_info_tabs">
+                <li>
+                    <a class="tab-item-link active" title="General Information" id="pdc_general_tab" href="#">
+                        <span><?php echo $this->__("General Options") ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tab-item-link" title="Select Product Image Categories" rel="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_pdp/selectimage", array('productid' => $productId)); ?>" id="pdc_image_tab" href="#">
+                        <span><?php echo $this->__("Select Product Image Categories") ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tab-item-link" title="Select Product Colors" rel="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_color/selectcolor", array('productid' => $productId)); ?>" id="pdc_color_tab" href="#">
+                        <span><?php echo $this->__("Select Product Colors") ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tab-item-link" title="Select Product Fonts" id="pdc_font_tab" rel="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_fonts/selectfont", array('productid' => $productId)); ?>" href="#">
+                        <span><?php echo $this->__("Select Product Fonts") ?></span>
+                    </a>
+                </li>
+            </ul>
+            <div rel="pdc_general_tab" class="general-options-container pdc-tab-content loaded" style="width: 100%; overflow: hidden;">
+                <div class="general-options" style="width: 40%; float: left;">
+                    <table class="pdc-product-config">
+                        <tr>
+                            <td><label><?php echo $this->__("Default Color") ?></label></td>
+                            <td>
+                                <?php 
+                                $defaultColor = Mage::getStoreConfig("pdp/design/default_object_color");
+                                if(isset($productConfigs['default_color']) && $productConfigs['default_color'] != "") {
+                                    $defaultColor = $productConfigs['default_color'];
+                                }
+                                if($defaultColor != "") {
+                                    $defaultColor = str_replace("#", "", $defaultColor);
+                                }
+                                ?>
+                                <input type="text" name="default_color" class="input-text" value="#<?php echo $defaultColor ?>" />
+                            </td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <td><label><?php echo $this->__("Default Font Size") ?></label></td>
+                            <td>
+                                <?php 
+                                $defaultFontSize = Mage::getStoreConfig("pdp/design/default_object_fontsize");
+                                if(isset($productConfigs['default_fontsize']) && $productConfigs['default_fontsize'] != "") {
+                                    $defaultFontSize = $productConfigs['default_fontsize'];
+                                }
+                                ?>
+                                <input type="text" name="default_fontsize" class="input-text" value="<?php echo $defaultFontSize ?>" />
+                            </td>
+                        </tr>-->
+                        <tr>
+                            <td><label><?php echo $this->__("Default Font Height") ?></label></td>
+                            <td>
+                                <?php 
+                                $defaultFontHeight = Mage::getStoreConfig("pdp/design/default_object_fontheight");
+                                if(isset($productConfigs['default_fontheight']) && $productConfigs['default_fontheight'] != "") {
+                                    $defaultFontHeight = $productConfigs['default_fontheight'];
+                                }
+                                ?>
+                                <input type="text" name="default_fontheight" class="input-text" value="<?php echo $defaultFontHeight ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><?php echo $this->__("Price of text layer") ?></label></td>
+                            <td>
+                                <input type="text" name="text_price" class="input-text" value="<?php echo (isset($productConfigs['text_price']) && $productConfigs['text_price'] != "") ? $productConfigs['text_price'] : '0'; ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><?php echo $this->__("Price of user's image layer (upload images, facebook photo, instagram photo)") ?></label></td>
+                            <td>
+                                <input type="text" name="clipart_price" class="input-text" value="<?php echo (isset($productConfigs['clipart_price']) && $productConfigs['clipart_price'] != "") ? $productConfigs['clipart_price'] : '0'; ?>" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="advanced-options" style="width: 30%; float: left;">
+                    <div class="entry-edit" pdc-data="on-off-tab">
+                        <div class="entry-edit-head">
+                            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Enable/Disable Tab, Buttons") ?></h4>
+                        </div>
+                        <div class="fieldset fieldset-wide">
+                            <table class="pdc-product-config">
+                                <?php 
+                                $tabs = array(
+                                    array('name' => 'enable_product_design_tab', 'title' => 'Enable Product Design Tab'),
+                                    array('name' => 'enable_elements_tab', 'title' => 'Enable Elements Tab'),
+                                    array('name' => 'enable_upload_tab', 'title' => 'Enable Upload Tab'),
+                                    array('name' => 'enable_text_tab', 'title' => 'Enable Text Tab'),
+                                    array('name' => 'enable_layer_tab', 'title' => 'Enable Layers Tab'),
+                                    array('name' => 'enable_info_tab', 'title' => 'Enable Info Tab'),
+                                    array('name' => 'enable_download_btn', 'title' => 'Enable Download Button'),
+                                    array('name' => 'enable_share_btn', 'title' => 'Enable Share Button - Need more config'),
+                                    array('name' => 'enable_reset_btn', 'title' => 'Enable Reset Button'),
+                                    array('name' => 'enable_zoom_btn', 'title' => 'Enable Zoom Buttons'),
+                                );
+                                ?>
+                                <?php foreach($tabs as $_plugin) : ?>
+                                <tr>
+                                    <td><label><?php echo $_plugin['title'] ?></label></td>
+                                    <td>
+                                        <?php 
+                                        $_isEnable = 1;
+                                        if(isset($productConfigs[$_plugin['name']]) && $productConfigs[$_plugin['name']] == "2" ) {
+                                            $_isEnable = 2;
+                                        }
+                                        ?>
+                                        <input type="radio" id="<?php echo $_plugin['name'] ?>_1" name="<?php echo $_plugin['name'] ?>" value="1" <?php echo ($_isEnable == "1") ? "checked" : ''; ?>>
+                                        <label for="<?php echo $_plugin['name'] ?>_1"><?php echo $this->__("Enabled") ?></label>
+                                        <input type="radio" id="<?php echo $_plugin['name'] ?>_2" name="<?php echo $_plugin['name'] ?>"value="2" <?php echo ($_isEnable == "2") ? "checked" : ''; ?>>
+                                        <label for="<?php echo $_plugin['name'] ?>_2"><?php echo $this->__("Disabled") ?></label>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="advanced-options" style="width: 30%; float: left;">
+                    <div class="entry-edit" pdc-data="on-off-plugin">
+                        <div class="entry-edit-head">
+                            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Enable/Disable Plugins") ?></h4>
+                        </div>
+                        <div class="fieldset fieldset-wide">
+                            <table class="pdc-product-config">
+                                <?php 
+                                $plugins = array(
+                                    array('name' => 'enable_image_plugin', 'title' => 'Enable Image Plugin'),
+                                    array('name' => 'enable_upload_plugin', 'title' => 'Enable Upload Plugin'),
+                                    array('name' => 'enable_clipart_plugin', 'title' => 'Enable Clipart Plugin'),
+                                    array('name' => 'enable_shape_plugin', 'title' => 'Enable Shape Pugin'),
+                                    array('name' => 'enable_facebook_plugin', 'title' => 'Enable Upload Facebook Photo'),
+                                    array('name' => 'enable_instagram_plugin', 'title' => 'Enable Upload Instagram Photo'),
+                                    array('name' => 'enable_frame_plugin', 'title' => 'Enable Frame Plugin'),
+                                    array('name' => 'enable_qrcode_plugin', 'title' => 'Enable QRCode Plugin'),
+                                    //array('name' => 'enable_curvedtext_plugin', 'title' => 'Enable Curved Text'),
+                                    array('name' => 'enable_colorpicker_plugin', 'title' => 'Enable Colorpicker'),
+                                );
+                                ?>
+                                <?php foreach($plugins as $_plugin) : ?>
+                                <tr>
+                                    <td><label><?php echo $_plugin['title'] ?></label></td>
+                                    <td>
+                                        <?php 
+                                        $_isEnable = 1;
+                                        if(isset($productConfigs[$_plugin['name']]) && $productConfigs[$_plugin['name']] == "2" ) {
+                                            $_isEnable = 2;
+                                        }
+                                        ?>
+                                        <input type="radio" id="<?php echo $_plugin['name'] ?>_1" name="<?php echo $_plugin['name'] ?>" value="1" <?php echo ($_isEnable == "1") ? "checked" : ''; ?>>
+                                        <label for="<?php echo $_plugin['name'] ?>_1"><?php echo $this->__("Enabled") ?></label>
+                                        <input type="radio" id="<?php echo $_plugin['name'] ?>_2" name="<?php echo $_plugin['name'] ?>"value="2" <?php echo ($_isEnable == "2") ? "checked" : ''; ?>>
+                                        <label for="<?php echo $_plugin['name'] ?>_2"><?php echo $this->__("Disabled") ?></label>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Selected Image Tab -->
+            <div class="pdc-tab-content" rel="pdc_image_tab" style="display: none;">
+                <div class="top-option-info" style="width: 100%; overflow: hidden;">
+                    <div class="top-option-note" style="float: left; font-style: italic; width: 80%;">
+                        <span><?php echo $this->__("Please click") ?> <b><?php echo $this->__('"Reset Filter"') ?></b> <?php echo $this->__("button to show all categories. Then remember to click") ?> <b><?php echo $this->__('"Save Selected Categories"') ?></b> <?php echo $this->__("button after your selection!") ?></span>
+                    </div>
+                    <div class="top-option-btn" style="width: 20%; float: left; text-align: right;">
+                        <button id="pdc-save-images" type="button" class="btn pdc-save-option"><?php echo $this->__("Save Selected Categories") ?></button>
+                    </div>
+                </div>
+                <div class="pdc-select-item-grid"></div>
+            </div>
+            <!-- Selected Color Tab -->
+            <div class="pdc-tab-content" rel="pdc_color_tab" style="display: none;">
+                <div class="top-option-info" style="width: 100%; overflow: hidden;">
+                    <div class="top-option-note" style="float: left; font-style: italic; width: 80%;">
+                        <span><?php echo $this->__("Please click") ?> <b><?php echo $this->__('"Reset Filter"') ?></b> <?php echo $this->__("button to show all colors. Then remember to click") ?> <b><?php echo $this->__('"Save Selected Colors"') ?></b> <?php echo $this->__("button after your selection!") ?></span>
+                    </div>
+                    <div class="top-option-btn" style="width: 20%; float: left; text-align: right;">
+                        <button id="pdc-save-colors" type="button" class="btn pdc-save-option"><?php echo $this->__("Save Selected Colors") ?></button>
+                    </div>
+                </div>
+                <div class="pdc-select-item-grid"></div>
+            </div>
+            <!-- Selected Font Tab -->
+            <div class="pdc-tab-content" rel="pdc_font_tab" style="display: none;">
+                <div class="top-option-info" style="width: 100%; overflow: hidden;">
+                    <div class="top-option-note" style="float: left; font-style: italic; width: 80%;">
+                        <span><?php echo $this->__("Please click") ?> <b><?php echo $this->__('"Reset Filter"') ?></b><?php echo $this->__(" button to show all fonts. Then remember to click ") ?><b><?php echo $this->__('"Save Selected Fonts"') ?> </b>button after your selection!<?php echo $this->__("Please") ?></span>
+                    </div>
+                    <div class="top-option-btn" style="width: 20%; float: left; text-align: right;">
+                        <button id="pdc-save-fonts" type="button" class="btn pdc-save-option"><?php echo $this->__("Save Selected Fonts") ?></button>
+                    </div>
+                </div>
+                <div class="pdc-select-item-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/jquery/jquery-1.10.2.min.js') ?>"></script>
+<script>
+var mstPdpDesign = jQuery.noConflict();
+mstPdpDesign(function($){
+	PdpSide = {
+		clickPdpTab : function() {
+			$("#product_info_tabs_pdpdesign").click(function() {
+				PdpSide.sendRequest("<?php echo $sideTableUrl . "productid/$productId/isAjax=true" ?>", PdpSide.showSideTable);
+			});
+		}(),
+		showSideTable : function(data) {
+			if (data !== "") {
+				$(".side-table-container").html(data);
+				$("#loading-mask").hide();
+			} else {
+				alert("Something went wrong! Can not get side table conent.");
+			}
+		},
+		allowDesign : function () {
+            $("input[name='enable_pdp_design']").click(function() {
+                if(this.value == 1) {
+                    $(".pdc-options").show();
+                } else {
+                    $(".pdc-options").hide();
+                }
+				PdpSide.updateProductConfig();
+			});
+		}(),
+		hidePricePanel : function () {
+			$("select[name='hide_price_panel']").change(function() {
+				PdpSide.updateProductConfig();
+			});
+		}(),
+		editTextPrice: function() {
+			$("input[name='text_price'], select[name='text_price_type']").change(function() {
+				PdpSide.updateProductConfig();
+			});
+		}(),
+		editClipartPrice: function() {
+			$("input[name='clipart_price'], select[name='clipart_price_type']").change(function() {
+				PdpSide.updateProductConfig();
+			});
+		}(),
+        editDefaultSettings: function() {
+			$("input[name='default_color'], input[name='default_fontsize'], input[name='default_fontheight']").change(function() {
+				PdpSide.updateProductConfig();
+			});
+		}(),
+        enablePlugin:function() {
+            $(".pdc-product-config input[type='radio']").click(function() {
+                PdpSide.updateProductConfig();
+                //console.info(this.name, this.value);
+            });
+        }(),
+		sendRequest : function(url, callback) {
+			$.ajax({
+				type:"GET",
+				url: url,
+				beforeSend:function(){
+					$("#loading-mask").attr("style","left: -2px; top: 0px; width: 1034px; height: 833px; z-index: 10000;");
+					$("#loading-mask").show();
+				},
+				success:function(response){
+					callback(response);
+					$("#loading-mask").hide();
+				}
+			});
+		},
+		updateProductConfig : function() {
+			var status = $("input[name='enable_pdp_design']:checked").val(),
+				showPrice = $("select[name='hide_price_panel']").val(),
+				textPrice = $("input[name='text_price']").val(),
+				clipartPrice = $("input[name='clipart_price']").val(),
+                defaultColor = $("input[name='default_color']").val(),
+                defaultFontSize = $("input[name='default_fontsize']").val(),
+                defaultFontHeight = $("input[name='default_fontheight']").val(),
+                autoReplacePattern = ($("#auto_replace_pattern").length && $("#auto_replace_pattern").is(":checked")) ? 1 : 2,
+                enableUploadPlugin = $("input[name='enable_upload_plugin']:checked").val(),
+                enableClipartPlugin = $("input[name='enable_clipart_plugin']:checked").val(),
+                enableShapePlugin = $("input[name='enable_shape_plugin']:checked").val(),
+                enableFramePlugin = $("input[name='enable_frame_plugin']:checked").val(),
+                enableFacebookPlugin = $("input[name='enable_facebook_plugin']:checked").val(),
+                enableInstagramPlugin = $("input[name='enable_instagram_plugin']:checked").val(),
+                enableQrcodePlugin = $("input[name='enable_qrcode_plugin']:checked").val(),
+                enableColorpickerPlugin = $("input[name='enable_colorpicker_plugin']:checked").val(),
+                enableCurvedtextPlugin = $("input[name='enable_curvedtext_plugin']:checked").val(),
+                enableImagePlugin = $("input[name='enable_image_plugin']:checked").val(),
+                enableProductDesignTab = $("input[name='enable_product_design_tab']:checked").val(),
+                enableElementsTab = $("input[name='enable_elements_tab']:checked").val(),
+                enableUploadTab = $("input[name='enable_upload_tab']:checked").val(),
+                enableTextTab = $("input[name='enable_text_tab']:checked").val(),
+                enableLayerTab = $("input[name='enable_layer_tab']:checked").val(),
+                enableInfoTab = $("input[name='enable_info_tab']:checked").val(),
+                enableDownloadBtn = $("input[name='enable_download_btn']:checked").val(),
+                enableShareBtn = $("input[name='enable_share_btn']:checked").val(),
+                enableResetBtn = $("input[name='enable_reset_btn']:checked").val(),
+                enableZoomBtn = $("input[name='enable_zoom_btn']:checked").val(),
+				productId = '<?php echo $productId ?>';
+			if (textPrice != "") {
+				if(isNaN(textPrice)) {
+					alert("Please enter a valid number!");
+					$("input[name='text_price']").val('');
+					$("input[name='text_price']").focus();
+					return false;
+				}
+			}
+			if (clipartPrice != "") {
+				if(isNaN(clipartPrice)) {
+					alert("Please enter a valid number!");
+					$("input[name='clipart_price']").val('');
+					$("input[name='clipart_price']").focus();
+					return false;
+				}
+			}
+			var note = {
+				show_price: showPrice,
+				text_price: textPrice,
+				clipart_price: clipartPrice,
+				//text_price_type: $("select[name='text_price_type']").val(),
+				//clipart_price_type: $("select[name='clipart_price_type']").val(),
+                default_color: defaultColor,
+                default_fontsize: defaultFontSize,
+                default_fontheight: defaultFontHeight,
+                auto_replace_pattern: autoReplacePattern,
+                //default_color: defaultColor,
+                enable_upload_plugin: enableUploadPlugin,
+                enable_clipart_plugin: enableClipartPlugin,
+                enable_shape_plugin: enableShapePlugin,
+                enable_frame_plugin: enableFramePlugin,
+                enable_facebook_plugin: enableFacebookPlugin,
+                enable_instagram_plugin: enableInstagramPlugin,
+                enable_qrcode_plugin: enableQrcodePlugin,
+                enable_colorpicker_plugin: enableColorpickerPlugin,
+                enable_curvedtext_plugin: enableCurvedtextPlugin,
+                enable_image_plugin: enableImagePlugin,
+                enable_product_design_tab: enableProductDesignTab,
+                enable_elements_tab: enableElementsTab,
+                enable_upload_tab: enableUploadTab,
+                enable_text_tab: enableTextTab,
+                enable_layer_tab: enableLayerTab,
+                enable_info_tab: enableInfoTab,
+                enable_download_btn: enableDownloadBtn,
+                enable_share_btn: enableShareBtn,
+                enable_reset_btn: enableResetBtn,
+                enable_zoom_btn: enableZoomBtn
+			}
+			$.ajax({
+				type:"POST",
+				data: {
+					product_id: productId,
+					status: status,
+					note: JSON.stringify(note),
+					form_key: '<?php echo $formKey ?>'
+				},
+				url: $("#pdc-product-config-form").attr("action") + '?isAjax=true',
+				beforeSend:function(){
+					$("#loading-mask").attr("style","left: -2px; top: 0px; width: 1034px; height: 833px; z-index: 10000;");
+					$("#loading-mask").show();
+				},
+				success:function(response){
+					if (response != "") {
+						alert("Something went wrong. Can not update product config!");
+					}
+					$("#loading-mask").hide();
+				}
+			});
+		},
+		addNewSide : function() {
+			$("#add_new_side").on("click", function() {
+				PDPPopup.openPopup("<?php echo $addNewSide ?>", "Add Product Side", PDPPopup.setupAreaHandler );
+			});
+		}(),
+        selectDefaultColor: function() {
+            $(document).on("click", ".product-colors li", function() {
+                $(".product-colors li").removeClass("active");
+                $(this).addClass("active");
+                PdpSide.updateProductConfig();
+            });
+        }()
+	}
+	<?php if($pdpTabActive) : ?>
+    $("#product_info_tabs_pdpdesign").click();
+    <?php endif; ?>
+    //Click tab: select image, select color, select font
+    $("#pdc_info_tabs .tab-item-link").click(function() {
+        var self = this;
+        $("#pdc_info_tabs .tab-item-link").removeClass("active");
+        $(".pdc-tab-content").hide();
+        $(this).addClass("active");
+        if(!$('[rel="'+ this.id +'"]').hasClass("loaded")) {
+            $("#loading-mask").show();
+            $.get($(this).attr("rel"), function(response) {
+                $('[rel="'+ self.id +'"] .pdc-select-item-grid').html(response);
+                $('[rel="'+ self.id +'"]').addClass("loaded").show();
+                $("#loading-mask").hide();
+            });
+        } else {
+            $('[rel="'+ self.id +'"]').show(); 
+        }
+    });
+    //Save selected image
+    $("#pdc-save-images").click(function() {
+        var selectedImages = $('[name="links[images]"]').val();
+        $.ajax({
+            type:"POST",
+            data: {
+                selected_items: selectedImages,
+                form_key: '<?php echo $formKey ?>'
+            },
+            url: '<?php echo $saveSelectedImage ?>' + '?isAjax=true',
+            beforeSend:function(){
+                $("#loading-mask").attr("style","left: -2px; top: 0px; width: 1034px; height: 833px; z-index: 10000;");
+                $("#loading-mask").show();
+            },
+            success:function(response){
+                var responseJson = JSON.parse(response);
+                if(responseJson.status == "success") {
+                    $('[rel="pdc_image_tab"]').removeClass("loaded");
+                    $('#pdc_image_tab').click();
+                } else {
+                    alert(responseJson.message)
+                }
+                $("#loading-mask").hide();
+            }
+        });
+    });
+    //Save selected color
+    $("#pdc-save-colors").click(function() {
+        var selectedColors = $('[name="links[colors]"]').val();
+        $.ajax({
+            type:"POST",
+            data: {
+                selected_items: selectedColors,
+                form_key: '<?php echo $formKey ?>'
+            },
+            url: '<?php echo $saveSelectedColor ?>' + '?isAjax=true',
+            beforeSend:function(){
+                $("#loading-mask").attr("style","left: -2px; top: 0px; width: 1034px; height: 833px; z-index: 10000;");
+                $("#loading-mask").show();
+            },
+            success:function(response){
+                var responseJson = JSON.parse(response);
+                if(responseJson.status == "success") {
+                    $('[rel="pdc_color_tab"]').removeClass("loaded");
+                    $('#pdc_color_tab').click();
+                } else {
+                    alert(responseJson.message)
+                }
+                $("#loading-mask").hide();
+            }
+        });
+    });
+    //Save selected font
+    $("#pdc-save-fonts").click(function() {
+        var selectedFonts = $('[name="links[fonts]"]').val();
+        $.ajax({
+            type:"POST",
+            data: {
+                selected_items: selectedFonts,
+                form_key: '<?php echo $formKey ?>'
+            },
+            url: '<?php echo $saveSelectedFont ?>' + '?isAjax=true',
+            beforeSend:function(){
+                $("#loading-mask").attr("style","left: -2px; top: 0px; width: 1034px; height: 833px; z-index: 10000;");
+                $("#loading-mask").show();
+            },
+            success:function(response){
+                var responseJson = JSON.parse(response);
+                if(responseJson.status == "success") {
+                    $('[rel="pdc_font_tab"]').removeClass("loaded");
+                    $('#pdc_font_tab').click();
+                } else {
+                    alert(responseJson.message)
+                }
+                $("#loading-mask").hide();
+            }
+        });
+    });
+    //More options button
+    $(".pdc-more-options").click(function() {
+        $(".advanced-options table").toggle();
+    });
+    //If product enabled, then show options tab
+    if($('input[name="enable_pdp_design"]:checked').val() == 1) {
+       $(".pdc-options").show();
+    }
+});
+
+</script>

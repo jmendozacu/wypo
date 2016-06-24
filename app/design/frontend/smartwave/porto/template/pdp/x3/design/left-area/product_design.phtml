@@ -1,0 +1,82 @@
+<?php 
+$jsUrl = $this->getX3JsUrl(); 
+$productConfigs = $this->getProductConfig();
+//Zend_Debug::dump($productConfigs);
+$productId = $this->getCurrentProductId();
+$isProductColorTabEnable = Mage::helper("pdp")->isProductColorTabEnable($productId);
+$bgActive = $productColorActive = $templateActive = "";
+if($isProductColorTabEnable) {
+    $productColorActive = "active";
+    if($this->isShowTemplateTab()) {
+        $productColorActive = "";
+        $templateActive = "active";
+    }
+} else {
+    $bgActive = "active";
+}
+?>
+<div id="p-design-tab">
+	<div class="panel-group panel-mst" id="accordion_design" role="tablist" aria-multiselectable="true">
+		<!-- Template -->
+		<?php if($this->isShowTemplateTab()) : ?>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#accordion_design" href="#templates" aria-expanded="true" aria-controls="templates" class="">
+							<i class="fa fa-trello"></i>
+							<span><?php echo $this->__("Templates") ?></span>
+						</a>
+					</h4>
+				</div>
+				<div id="templates" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body">
+						
+						<div class="pdc-show-content">
+							<?php echo $this->getChildHtml("pdc-templates"); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+		<!-- Background-->
+        <?php if(!$isProductColorTabEnable): ?>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingTwo">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_design" href="#background" aria-expanded="false" aria-controls="background">
+							<i class="fa fa-eyedropper"></i>
+							<span><?php echo $this->__("Background") ?></span>
+						</a>
+					</h4>
+				</div>
+				<div id="background" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					<div class="panel-body">
+						<div class="pdc-show-content">
+							<?php echo $this->getChildHtml("pdc-background"); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+		<!-- Product Color Tab-->
+		<?php if($isProductColorTabEnable): ?>	
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingThree">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_design" href="#productcolor" aria-expanded="false" aria-controls="productcolor">
+							<i class="fa fa-tachometer"></i>
+							<span><?php echo $this->__("Product Colors") ?></span>
+						</a>
+					</h4>
+				</div>
+				<div id="productcolor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					<div class="panel-body">
+						<div class="pdc-show-content">
+							<?php echo $this->getChildHtml("pdc-productcolor"); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>

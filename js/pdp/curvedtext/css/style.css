@@ -1,0 +1,42 @@
+#pdc_ctext_tool {
+  border: 0 solid #cccccc;
+  text-align: center;
+}
+#pdc_ctext_convert {
+  background: #00a0c6 none repeat scroll 0 0;
+  border: 0 solid #cccccc;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 40px;
+  padding: 0;
+  width: 100%;
+}
+#pdc_text_curved_control div {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+#pdc_text_curved_control {}
+#pdc_text_curved_control div label {
+  float: left;
+  line-height: 20px;
+  margin: 0 0 -1px;
+  padding: 0;
+  width: 70px;
+}
+#pdc_text_curved_control div input {
+    
+}
+#pdc_ctext_radius, #pdc_ctext_spacing {
+    width: 140px;
+    margin: 5px 0 0 0;
+}
+
+
+
+
+
+
+
+
+

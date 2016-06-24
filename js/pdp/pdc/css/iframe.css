@@ -1,0 +1,52 @@
+*{margin:0;padding:0;}
+ul {
+    list-style: none;
+}
+
+.loader {
+	background: none no-repeat scroll center center rgba(0, 0, 0, 0);
+	text-align: center;
+	margin-top: 26px;
+	padding: 15px;
+}
+/* Update CSS for Iframe */
+.pdc_design_panel {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 5px;
+  width: 100%;
+}
+.iframe-container #close_iframe {
+  background: none repeat scroll 0 0 #ffffff;
+  /* border-radius: 100%; */
+  color: #000000;
+  cursor: pointer;
+  font-size: 28px;
+  left: auto;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+  opacity:1;
+}
+.iframe-container {
+  
+}
+body {
+  display: block;
+  margin: 0;
+  border:0px;
+  padding: 0;
+  position: relative;
+  background:transparent;
+}
+.no-display {
+    display: none;
+}
+
+
+
+
+
+

@@ -1,0 +1,167 @@
+<?php 
+$jsUrl = $this->getX3JsUrl(); 
+$productConfigs = $this->getProductConfig();
+//Zend_Debug::dump($productConfigs);
+?>
+<div class="panel-group panel-mst" id="accordion_upload" role="tablist" aria-multiselectable="true">
+	<!-- Upload -->
+    <?php if(!isset($productConfigs['enable_upload_plugin']) || isset($productConfigs['enable_upload_plugin']) && $productConfigs['enable_upload_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#accordion_upload" href="#u-upload" aria-expanded="true" aria-controls="u-upload">
+						<i class="fa-cloud-upload fa"></i>
+						<span><?php echo $this->__("Upload") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="u-upload" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<input type="hidden" id="upload_accept_files" value="<?php echo Mage::helper("pdp/upload")->getFileAccept() ?>" />
+					<input type="hidden" id="pdc_upload_config" value="<?php echo htmlentities(Mage::helper("pdp/upload")->getConfig('JSON')) ?>"/>
+					<div class="pdc-show-content" pdc-data="image-list" pdc-image-type="upload_image">													
+						<p><?php echo $this->__("Have your own image, logo or artwork?") ?></p>
+						<?php $uploadedImages = Mage::getSingleton("core/session")->getCustomUploadImages(); ?>
+						<?php $alreadyShowFilename = array(); ?>
+						<?php $hasWarmingImage = false ?>
+						<ul class="items-list">
+						<?php if(is_array($uploadedImages) && !empty($uploadedImages)) : ?>
+							<?php foreach($uploadedImages as $_uploadImage) : ?>
+							<?php 
+							$filename = $_uploadImage['filename'];
+							$alreadyShowFilename[] = $filename;
+							$thumbnail = $filename;
+							if(isset($_uploadImage['thumbnail']) && $_uploadImage['thumbnail'] != "") {
+								$thumbnail = $_uploadImage['thumbnail'];
+							}
+							$price = 0;
+							$priceFormat = $this->__("Free");
+							if(isset($_uploadImage['price'])) {
+								$price = $_uploadImage['price'];
+							}
+							if(isset($_uploadImage['price_format'])) {
+								$priceFormat = $_uploadImage['price_format'];
+							}
+							$validImage = true;
+							$_checkStatus = $_uploadImage['check_status'];
+							//Check DPI
+							if(isset($_checkStatus['min_dpi_enable']) && $_checkStatus['min_dpi_enable']) {
+								if(isset($_checkStatus['valid_image']) && !$_checkStatus['valid_image']) {
+									$validImage = false;
+									$hasWarmingImage = true; //Will show warming message
+								}
+							}
+							//Check image dimensions
+							if(isset($_checkStatus['image_dimension']) && !$_checkStatus['image_dimension']['valid_image']) {
+								$validImage = false;
+								$hasWarmingImage = true; //Will show warming message
+							}
+							?>
+							<li class="<?php echo ($validImage) ? 'valid' : 'warming'; ?>">
+								<span class="price"><?php echo $priceFormat ?></span>
+								<div class="del-upload-image-btn"><span title="Delete">x</span></div>
+								<a class="uploaded-img"><img price="<?php echo $price ?>" src="<?php echo $thumbnail ?>" rel="<?php echo $filename ?>" object-type="upload_image"></a>
+							</li>
+							<?php endforeach; ?>
+						<?php endif; ?>
+						<?php 
+						//Show customer uploaded images here
+						$customerImages = Mage::getModel("pdp/customerupload")->getCustomerUploadImage();
+						$uploadBaseUrl = Mage::getBaseUrl("media") . "pdp/images/";
+						?>
+						<?php if($customerImages) : ?>
+							<?php foreach($customerImages as $_image) : ?>
+							<?php 
+							$_uploadThumbnail = $uploadBaseUrl . $_image->getFilename();
+							$_uploadFilename = $_uploadThumbnail;
+							if($_image->getThumbnail()) {
+								$_uploadThumbnail = $uploadBaseUrl . $_image->getThumbnail();
+							}
+							if(in_array($_uploadFilename, $alreadyShowFilename)) {
+								//This image already show, because it store in session
+								continue;
+							}
+							//Price, get from product config
+							$_customerUploadPrice = 0;
+							$_customerUploadPriceFormat = $this->__("Free");
+							if(isset($productConfigs['clipart_price']) && $productConfigs['clipart_price'] > 0) {
+								$_customerUploadPrice = floatval($productConfigs['clipart_price']);
+								$_customerUploadPriceFormat = Mage::helper('core')->currency($_customerUploadPrice, true, false);
+							}
+							?>
+							<li class="valid">
+								<span class="price"><?php echo $_customerUploadPriceFormat ?></span>
+								<div class="del-upload-image-btn"><span title="Delete">x</span></div>
+								<a class="uploaded-img"><img title="<?php echo $_image->getOriginalFilename() ?>" price="<?php echo $_customerUploadPrice ?>" src="<?php echo $_uploadThumbnail ?>" rel="<?php echo $_uploadFilename ?>" object-type="upload_image"></a>
+							</li>
+							<?php endforeach; ?>
+						<?php endif; ?>
+						</ul>
+						<div class="alert alert-warning alert-dismissible fade in" pdc-data="image-warming" role="alert" style="<?php echo ($hasWarmingImage) ? "display:block;" : "display: none;"; ?>"> 
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> 
+							<strong><?php echo $this->__("Warning") ?>!</strong>
+							<span><?php echo $this->__(Mage::getStoreConfig("pdp/custom_upload/upload_min_dpi_message")) ?></span> 
+						</div>
+						<div class="pdc-show-content-detail">
+							<div class="pdc-upload-area dropzone"></div>
+							<!--<button type="button" pdc-action="upload-image" class="pdc-btn upload-btn"><span><?php echo $this->__("Upload") ?></span></button>-->
+							<div class="upload-type">
+								<p><?php echo $this->__("Photo formats accept") ?>:</p>
+								<?php $supportedFormats = Mage::helper('pdp/upload')->getSupportedImages() ?>
+								<ul class="list-type-format">
+									<?php foreach($supportedFormats as $format) :  ?>
+									<li><?php echo strtoupper($format) ?></li>
+									<?php endforeach; ?>
+								</ul>														              
+							</div>
+							<p><em><?php echo $this->__("On uploading one or several images, you agree to the terms on using these images. Making use of third party images or infringing somebody else's rights is unlawful."); ?></em></p>
+						</div>				
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- Instagram -->
+    <?php if(!isset($productConfigs['enable_instagram_plugin']) || isset($productConfigs['enable_instagram_plugin']) && $productConfigs['enable_instagram_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingTwo">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_upload" href="#u-instagram" aria-expanded="false" aria-controls="u-instagram">
+						<i class="fa fa-instagram"></i>
+						<span><?php echo $this->__("Instagram") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="u-instagram" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				<div class="panel-body">
+					<div class="pdc-show-content">
+						<?php echo $this->getLayout()->createBlock("pdp/x3")->setTemplate("pdp/x3/design/left-area/instagram.phtml")->toHtml(); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- Facebook -->
+    <?php if(!isset($productConfigs['enable_facebook_plugin']) || isset($productConfigs['enable_facebook_plugin']) && $productConfigs['enable_facebook_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingThree">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_upload" href="#u-facebook" aria-expanded="false" aria-controls="u-facebook">
+						<i class="fa fa-facebook-square"></i>
+						<span><?php echo $this->__("Facebook") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="u-facebook" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				<div class="panel-body">
+					<div class="pdc-show-content">
+						<?php echo $this->getLayout()->createBlock("pdp/x3")->setTemplate("pdp/x3/design/left-area/facebook.phtml")->toHtml(); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+
+
+
+</div>

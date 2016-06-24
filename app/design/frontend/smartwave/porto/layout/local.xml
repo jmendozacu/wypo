@@ -1,0 +1,476 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="addBodyClass" ifconfig="porto_settings/general/boxed" condition="boxed"><classname>boxed</classname></action>
+            <action method="addBodyClass" ifconfig="porto_design/basic/dark_light" condition="dark"><classname>dark</classname></action>
+            <action method="addBodyClass" ifconfig="porto_settings/general/rtl"><classname>rtl</classname></action>
+            <action method="addBodyClass" ifconfig="porto_settings/header/type" condition="11"><classname>side-header</classname></action>
+            <action method="addBodyClass" ifconfig="porto_settings/general/layout" condition="full_width"><classname>full-width</classname></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>smartwave/jquery/jquery-1.11.3.min.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/jquery-migrate-1.2.1.min.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/jquery-noconflict.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/jquery-ui.min.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/jquery-ui.min.css</name></action>
+			<action method="addJs"><script>smartwave/jquery/plugins/fancybox/js/jquery.fancybox.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/plugins/fancybox/js/jquery.mousewheel-3.0.6.pack.js</script></action>
+			<action method="addCss"><stylesheet>fancybox/css/jquery.fancybox.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>js/wow.min.js</name></action>
+            <action method="addItem"><type>js</type><name>smartwave/jquery/plugins/selectbox/jquery.selectbox.js</name><params/></action>
+            <action method="addItem"><type>js</type><name>smartwave/jquery/plugins/parallax/jquery.stellar.min.js</name><params/></action>
+            <action method="addItem"><type>js</type><name>smartwave/jquery/plugins/parallax/jquery.parallax.js</name><params/></action>
+            <action method="addJs"><script>smartwave/jquery/jquery.cookie.js</script></action>
+            <action method="addItem"><type>js</type><name>smartwave/respond.min.js</name><params/><if>lt IE 9</if></action>
+            <action method="addItem" ifconfig="porto_settings/general/rtl" condition="0"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap.min.css</name></action>
+            <action method="addItem" ifconfig="porto_settings/general/rtl" condition="1"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap.rtl.min.css</name></action>
+            <action method="addItem" ifconfig="porto_settings/general/rtl" condition="0"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap-theme.min.css</name></action>
+            <action method="addItem" ifconfig="porto_settings/general/rtl" condition="1"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap-theme.rtl.min.css</name></action>
+            <action method="addJs" ifconfig="porto_settings/general/rtl" condition="0"><script>smartwave/jquery/plugins/owl-carousel/owl.carousel.min.js</script></action>
+            <action method="addJs" ifconfig="porto_settings/general/rtl" condition="1"><script>smartwave/jquery/plugins/owl-carousel/owl.carousel.rtl.min.js</script></action>
+            <action method="addItem" ifconfig="porto_settings/general/rtl" condition="0"><type>js_css</type><name>smartwave/jquery/plugins/owl-carousel/owl.carousel.css</name></action>
+            <action method="addItem" ifconfig="porto_settings/general/rtl" condition="1"><type>js_css</type><name>smartwave/jquery/plugins/owl-carousel/owl.carousel.rtl.css</name></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/owl-carousel/owl.theme.css</name></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/owl-carousel/owl.transitions.css</name></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/selectbox/selectbox.css</name></action>
+            <action method="addCss"><stylesheet>css/animate.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>js/porto.js</name></action>
+            <action method="addJs"><script>smartwave/bootstrap/js/bootstrap.min.js</script></action>
+            <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
+            
+            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action> 
+            <action method="addCss"><stylesheet>icons/css/porto.css</stylesheet></action>
+            <action method="addCss"><stylesheet>icons/css/animation.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/rtl" condition="0"><stylesheet>css/local.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/rtl" condition="1"><stylesheet>css/rtl.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/rtl" condition="0"><stylesheet>css/responsive.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/rtl" condition="1"><stylesheet>css/rtl-responsive.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/layout" condition="1024"><stylesheet>css/layout_1024.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/layout" condition="1280"><stylesheet>css/layout_1280.css</stylesheet></action>
+			<action method="removeItem" ifconfig="porto_settings/general/disable_responsive" condition="1"><type>skin_css</type><name>css/responsive.css</name></action>
+			<action method="addItem" ifconfig="porto_settings/general/disable_responsive" condition="1"><type>skin_js</type><name>js/non_responsive.js</name></action>
+            <action method="addCss" ifconfig="porto_design/basic/dark_light" condition="dark"><stylesheet>css/dark.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/border_radius"><stylesheet>css/disable_border_radius.css</stylesheet></action>
+			<action method="addCss"><stylesheet helper="porto/cssconfig/getDesignFile"/></action>
+            <action method="addCss"><stylesheet helper="porto/cssconfig/getSettingsFile"/></action>
+            <action method="addCss" ifconfig="porto_settings/general/rtl" condition="0"><stylesheet>css/custom.css</stylesheet></action>
+            <action method="addCss" ifconfig="porto_settings/general/rtl" condition="1"><stylesheet>css/rtl-custom.css</stylesheet></action>
+        </reference>
+        <reference name="header">
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="0"><template>page/html/header_type1.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="1"><template>page/html/header_type2.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="2"><template>page/html/header_type3.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="3"><template>page/html/header_type4.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="4"><template>page/html/header_type5.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="5"><template>page/html/header_type6.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="6"><template>page/html/header_type7.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="7"><template>page/html/header_type8.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="8"><template>page/html/header_type9.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="9"><template>page/html/header_type10.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="10"><template>page/html/header_type11.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="11"><template>page/html/header_type12.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="12"><template>page/html/header_type13.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="13"><template>page/html/header_type14.phtml</template></action>
+            <block type="directory/currency" name="store_currency" template="page/switch/currency.phtml"/>
+			<block type="catalog/product_compare_sidebar" name="compare_link">
+				<action method="setTemplate" ifconfig="porto_settings/product_compare/show_link"><template>catalog/product/compare/compare_link.phtml</template></action>
+			</block>
+            <block type="checkout/cart_sidebar" name="minicart">
+                <action method="setTemplate"><template>checkout/cart/minicart.phtml</template></action>
+                <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <block type="core/text_list" name="minicart.extra_actions" as="extra_actions" translate="label" module="checkout">
+                    <label>Shopping Cart Cartheader Extra Actions</label>
+                </block>
+                <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
+            </block>
+            <action method="unsetChild" ifconfig="porto_settings/header/type" condition="9"><name>mobile.nav</name></action>
+        </reference>
+        <reference name="top.links">
+            <remove name="checkout_cart_link"/>
+        </reference>
+        <reference name="top.menu">
+            <action method="unsetChild" ifconfig="porto_settings/header/type" condition="9"><name>catalog.topnav</name></action>
+            <block type="core/template" name="topnav.sidemenu">
+                <action method="setTemplate" ifconfig="porto_settings/header/type" condition="9"><template>smartwave/megamenu/html/topnav.sidemenu.phtml</template></action>
+            </block>
+            <block type="core/template" name="topnav.sidemobilemenu">
+                <action method="setTemplate" ifconfig="porto_settings/header/type" condition="9"><template>smartwave/megamenu/html/topnav.sidemobilemenu.phtml</template></action>
+            </block>
+            <action method="unsetChild" ifconfig="porto_settings/header/type" condition="11"><name>catalog.topnav</name></action>
+            <block type="core/template" name="sidemenu">
+                <action method="setTemplate" ifconfig="porto_settings/header/type" condition="11"><template>smartwave/megamenu/html/sidemenu.phtml</template></action>
+            </block>
+        </reference>
+        <reference name="mobile.nav">
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="11"><template>smartwave/megamenu/html/sidemobilemenu.phtml</template></action>
+        </reference>
+        <reference name="page.header">
+            <action method="setTemplate" ifconfig="porto_settings/header/type" condition="10"><template>page/html/page_header_bg.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <remove name="currency"/>
+            <remove name="left.newsletter"/>
+            <remove name="left.permanent.callout"/>
+        </reference>
+        <reference name="right">
+            <remove name="cart_sidebar"/>
+            <remove name="paypal.partner.right.logo"/>
+            <remove name="right.permanent.callout"/>
+        </reference>
+        <reference name="footer">
+            <block type="newsletter/subscribe" name="footer.newsletter" template="newsletter/footer_subscribe.phtml"/>
+        </reference>
+        <reference name="sticky.nav">
+            <block type="checkout/cart_sidebar" name="sticky.minicart">
+                <action method="setTemplate"><template>checkout/cart/minicart.phtml</template></action>
+                <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <block type="core/text_list" name="minicart.extra_actions" as="extra_actions" translate="label" module="checkout">
+                    <label>Shopping Cart Cartheader Extra Actions</label>
+                </block>
+                <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
+            </block>
+        </reference>
+        <reference name="before_body_end">
+            <block type="newsletter/subscribe" name="newsletter_popup">
+                <action method="setTemplate" ifconfig="porto_settings/newsletter_popup/enabled" condition="2"><template>newsletter/popup.phtml</template></action>
+            </block>
+        </reference>
+    </default>
+    <catalog_category_default>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="one_column"><template>page/1column.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="two_column_left"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="two_column_right"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="three_column"><template>page/3columns.phtml</template></action>
+        </reference>
+        <reference name="page.header">
+            <action method="setTemplate"><template>catalog/category/page_header.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <remove name="tags_popular"/>
+            <block type="cms/block" name="custom_side_block" after="-"><action method="setBlockId"><block_id>porto_left_side_category</block_id></action></block>
+        </reference>
+    </catalog_category_default>
+    
+    <catalog_category_layered>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="one_column"><template>page/1column.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="two_column_left"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="two_column_right"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="three_column"><template>page/3columns.phtml</template></action>
+        </reference>
+        <reference name="page.header">
+            <action method="setTemplate"><template>catalog/category/page_header.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <remove name="tags_popular"/>
+            <block type="catalog/navigation" name="catalog.category" before="-" template="catalog/category/category_nav.phtml"/>
+            <reference name="catalog.leftnav">
+                <action method="unsetChild"><child>category_filter</child></action>
+            </reference>
+            <block type="cms/block" name="custom_side_block" after="-"><action method="setBlockId"><block_id>porto_left_side_category</block_id></action></block>
+        </reference>
+    </catalog_category_layered>
+    <catalog_product_view>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="porto_settings/product_view/page_layout" condition="one_column"><template>page/1column.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/product_view/page_layout" condition="two_column_left"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/product_view/page_layout" condition="two_column_right"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate" ifconfig="porto_settings/product_view/page_layout" condition="three_column"><template>page/3columns.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>smartwave/jquery/plugins/etalage/jquery.etalage.min.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/plugins/etalage/jquery.zoom.min.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/etalage/etalage.css</name></action>
+        </reference>
+	
+        <reference name="product.info.additional">
+            <action method="unsetChild"><name>product_tag_list</name></action>
+            <block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs">
+                <action method="setTemplate" ><template>catalog/product/view/tabs.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ><alias>description_tabbed</alias><title>Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ><alias>additional_tabbed</alias><title>Additional</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
+                <action method="addTab" translate="title" module="tag" ><alias>tags_tabbed</alias><title>Tags</title><block>tag/product_list</block><template>tag/list.phtml</template></action>
+                <action method="addTab" translate="title" module="review" ><alias>review_tabbed</alias><title>Reviews</title><block>review/product_view_list</block><template>review/product_info_review.phtml</template></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="core/template" before="-" template="catalog/category/side_nav_with_title.phtml"/>
+            <remove name="tags_popular"/>
+            <block type="cms/block" name="product.left.custom1"><action method="setBlockId"><block_id>porto_product_right_side_1</block_id></action></block>
+            <block type="cms/block" name="product.left.custom2" after="product.right.custom1"><action method="setBlockId"><block_id>porto_product_right_side_2</block_id></action></block>
+        </reference>
+        <reference name="right">
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="right.permanent.callout"/>
+            <block type="catalog/product_view" name="product.info.right" template="catalog/product/info.phtml">
+                <!--
+                <action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/summary.phtml</template></action>
+                <action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary_short.phtml</template></action>
+                <action method="addReviewSummaryTemplate"><type>...</type><template>...</template></action>
+                -->
+                <block type="catalog/product_view_media" name="product.info.media.right" as="media.right" template="catalog/product/view/media.phtml"/>
+                <block type="core/text_list" name="alert.urls.right" as="alert_urls.right" translate="label">
+                    <label>Alert Urls</label>
+                </block>
+
+                <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
+
+                <block type="catalog/product_list_upsell" name="product.info.upsell.right" as="upsell_products.right" template="catalog/product/list/upsell.phtml">
+                    <action method="setColumnCount"><columns>4</columns></action>
+                    <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+                </block>
+
+                <block type="catalog/product_view_additional" name="product.info.additional.right" as="product_additional_data.right" />
+                <block type="catalog/product_view_description" name="product.description.right" as="description.right" template="catalog/product/view/description.phtml">
+                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                </block>
+                <block type="catalog/product_view_attributes" name="product.attributes.right" as="additional.right" template="catalog/product/view/attributes.phtml">
+                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                </block>
+                <block type="catalog/product_view" name="product.info.addto.right" as="addto.right" template="catalog/product/view/addto.phtml"/>
+                <block type="catalog/product_view" name="product.info.addtocart.right" as="addtocart.right" template="catalog/product/view/addtocart.phtml"/>
+
+                <block type="core/text_list" name="product.info.extrahint.right" as="extrahint.right" translate="label">
+                    <label>Product View Extra Hint</label>
+                </block>
+
+                <block type="catalog/product_view" name="product.info.options.wrapper.right" as="product_options_wrapper.right" template="catalog/product/view/options/wrapper.phtml" translate="label">
+                    <label>Info Column Options Wrapper</label>
+                    <block type="core/template" name="options_js.right" template="catalog/product/view/options/js.phtml"/>
+                    <block type="catalog/product_view_options" name="product.info.options.right" as="product_options.right" template="catalog/product/view/options.phtml">
+                        <action method="addOptionRenderer"><type>text</type><block>catalog/product_view_options_type_text</block><template>catalog/product/view/options/type/text.phtml</template></action>
+                        <action method="addOptionRenderer"><type>file</type><block>catalog/product_view_options_type_file</block><template>catalog/product/view/options/type/file.phtml</template></action>
+                        <action method="addOptionRenderer"><type>select</type><block>catalog/product_view_options_type_select</block><template>catalog/product/view/options/type/select.phtml</template></action>
+                        <action method="addOptionRenderer"><type>date</type><block>catalog/product_view_options_type_date</block><template>catalog/product/view/options/type/date.phtml</template></action>
+                </block>
+                        <block type="core/html_calendar" name="html_calendar.right" as="html_calendar.right" template="page/js/calendar.phtml"/>
+                    </block>
+                <block type="catalog/product_view" name="product.info.options.wrapper.bottom.right" as="product_options_wrapper_bottom.right" template="catalog/product/view/options/wrapper/bottom.phtml" translate="label">
+                    <label>Bottom Block Options Wrapper</label>
+                    <action method="insert"><block>product.tierprices</block></action>
+                    <block type="catalog/product_view" name="product.clone_prices.right" as="prices.right" template="catalog/product/view/price_clone.phtml"/>
+                    <action method="append"><block>product.info.addtocart</block></action>
+                    <action method="append"><block>product.info.addto</block></action>
+                </block>
+
+                <block type="core/template_facade" name="product.info.container1.right" as="container1.right">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>container1</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>product.info.options.wrapper</block></action>
+                    <action method="append"><block>product.info.options.wrapper.bottom</block></action>
+                </block>
+                <block type="core/template_facade" name="product.info.container2.right" as="container2.right">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>container2</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>product.info.options.wrapper</block></action>
+                    <action method="append"><block>product.info.options.wrapper.bottom</block></action>
+                </block>
+                <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+                <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+            </block>
+	    <!-- <action method="insert">
+            <block>product.info</block>
+	    </action> -->
+<!-- <block type="catalog/product_view" name="right_content" template="catalog/product/info.phtml"/> -->
+
+<!-- 
+<block type="catalog/product_view" name="right_content" template="catalog/product/view.phtml">
+
+	    <action method="insert">
+            <block>product.info.media</block>
+        </action>
+        <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
+        <action method="insert">
+            <block>product.info.upsell</block>
+        </action>
+        <action method="insert">
+            <block>product.info.additional</block>
+        </action>
+        <action method="insert">
+            <block>product.description</block>
+        </action>
+        <action method="insert">
+            <block>product.info.addto</block>
+        </action>
+	    <action method="insert">
+            <block>product.info.addtocart</block>
+	    </action>
+        <action method="insert">
+            <block>product.info.extrahint</block>
+        </action>
+        <action method="insert">
+            <block>product.info.options.wrapper</block>
+        </action>
+        <action method="insert">
+            <block>product.info.options.wrapper.bottom</block>
+        </action>
+        <action method="insert">
+            <block>product.info.container1</block>
+        </action>
+        <action method="insert">
+            <block>product.info.container2</block>
+        </action>
+
+</block>
+
+ -->
+	    <block type="core/template" name="content_right" as="content_right" template="catalog/product/view/info.phtml"/>
+            <block type="core/template" name="product_view_custom" template="catalog/product/view/brand.phtml"/>	
+            <block type="cms/block" name="product.right.custom1"><action method="setBlockId"><block_id>porto_product_right_side_1</block_id></action></block> 
+            <block type="cms/block" name="product.right.custom2" after="product.right.custom1"><action method="setBlockId"><block_id>porto_product_right_side_2</block_id></action></block>
+        </reference>
+        <reference name="product.info.upsell">
+            <action method="setColumnCount" ifconfig="porto_settings/general/layout" condition="1024"><columns>3</columns></action>
+            <action method="setItemLimit" ifconfig="porto_settings/general/layout" condition="1024"><type>upsell</type><limit>3</limit></action>
+        </reference>
+    </catalog_product_view>
+    <PRODUCT_TYPE_simple translate="label" module="catalog">
+        <reference name="product.info.right">
+            <block type="catalog/product_view_type_simple" name="product.info.simple.right" as="product_type_data.right" template="catalog/product/view/type/default.phtml">
+                <block type="core/text_list" name="product.info.simple.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_simple>
+    <PRODUCT_TYPE_configurable translate="label" module="catalog">
+        <reference name="product.info.right">
+            <block type="catalog/product_view_type_configurable" name="product.info.configurable.right" as="product_type_data.right" template="catalog/product/view/type/default.phtml">
+                <block type="core/text_list" name="product.info.configurable.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+        <reference name="product.info.options.wrapper.right">
+            <block type="catalog/product_view_type_configurable" name="product.info.options.configurable.right" as="options_configurable" before="-" template="catalog/product/view/type/options/configurable.phtml"/>
+        </reference>
+    </PRODUCT_TYPE_configurable>
+    <PRODUCT_TYPE_grouped translate="label" module="catalog">
+        <reference name="product.info.right">
+            <block type="catalog/product_view_type_grouped.right" name="product.info.grouped.right" as="product_type_data.right" template="catalog/product/view/type/grouped.phtml">
+                <block type="core/text_list" name="product.info.grouped.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_grouped>
+    <PRODUCT_TYPE_virtual translate="label" module="catalog">
+        <reference name="product.info.right">
+            <block type="catalog/product_view_type_virtual" name="product.info.virtual.right" as="product_type_data.right" template="catalog/product/view/type/default.phtml">
+                <block type="core/text_list" name="product.info.virtual.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_virtual>
+    <checkout_onepage_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+    </checkout_onepage_index>
+    <catalogsearch_result_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="custom_side_block" after="-"><action method="setBlockId"><block_id>porto_left_side_category</block_id></action></block>
+			<remove name="tags_popular"/>
+        </reference>
+    </catalogsearch_result_index>
+    <catalogsearch_advanced_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="custom_side_block" after="-"><action method="setBlockId"><block_id>porto_left_side_category</block_id></action></block>
+        </reference>
+    </catalogsearch_advanced_index>
+    <catalogsearch_advanced_result>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="custom_side_block" after="-"><action method="setBlockId"><block_id>porto_left_side_category</block_id></action></block>
+			<remove name="tags_popular"/>
+        </reference>
+    </catalogsearch_advanced_result>
+    <contacts_index_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="top.container">
+            <block type="core/template" name="google_map" template="contacts/googlemap.phtml"/>
+            <remove name="pageHeader"/>
+        </reference>
+    </contacts_index_index>
+    <catalog_product_compare_index translate="label">
+        <reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+    </catalog_product_compare_index>
+    <cms_index_index>
+        <update handle="MAP_popup"/>
+        <reference name="top.container">
+            <block type="core/template" name="home_slider">
+                <action method="setTemplate" ifconfig="homeslider/general/slider_type" condition="0"><template>homeslider/home_slider.phtml</template></action>
+            </block>
+            <remove name="pageHeader"/>
+        </reference>
+        <reference name="after_body_start">
+            <block type="core/template" name="home_slider">
+                <action method="setTemplate" ifconfig="homeslider/general/slider_type" condition="1"><template>homeslider/home_slider_top.phtml</template></action>
+            </block>
+        </reference>
+        <reference name="newsletter_popup">
+            <action method="setTemplate" ifconfig="porto_settings/newsletter_popup/enabled" condition="1"><template>newsletter/popup.phtml</template></action>
+        </reference>
+    </cms_index_index>
+    <reviews>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </reviews>
+    <review_product_list>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>smartwave/jquery/plugins/etalage/jquery.etalage.min.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/plugins/etalage/jquery.zoom.min.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/etalage/etalage.css</name></action>
+        </reference>
+        <reference name="product.info">
+            <action method="setTemplate"><template>review/product_view.phtml</template></action>
+            <remove name="product.info.media"/>
+            <block type="catalog/product_view_media" name="review.product.info.media" as="review_media" template="catalog/product/view/media.phtml"/>
+        </reference>
+    </review_product_list>
+    <review_product_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>smartwave/jquery/plugins/etalage/jquery.etalage.min.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/plugins/etalage/jquery.zoom.min.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/etalage/etalage.css</name></action>
+        </reference>
+    </review_product_view>
+
+    <sendfriend_product_send>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </sendfriend_product_send>
+
+</layout>

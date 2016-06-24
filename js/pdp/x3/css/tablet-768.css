@@ -1,0 +1,67 @@
+.fancybox-opened{min-width:60%;}
+.topbar-buttons li .tool-btn{padding:5px}
+.fancybox-opened{top:35px!important;}
+.pdc-background-color-list li a {border-width:2px; margin-right:2px;}
+.pdc-show-content .items-list li, .pdc-item-tool .pdc-color-list li a, .pdc-show-content .items-list li:hover {  border-width: 2px;  border-style:solid;} 
+
+.pdc-area-left .pdc-tabs > ul.nav li a, .pdc-area-left .tab-content .tab-pane > ul > li, .pdc-area-main, .pdc-area-left .pdc-tabs > .tab-content, a, .pdc-area-left .pdc-tabs > .tab-content > .tab-pane, .pdc-area-left .pdc-show-content, .pdc-scroll, .pdc-area-left .pdc-tabs > .tab-content{transition:none 0s ease 0s ;}
+
+.pdc-area-left .pdc-tabs > .tab-content {
+  width: 70%;
+}
+.pdc-area-main.expand-main {
+  width: 85%;
+}
+.pdc-area-main {
+  width: 59%;
+}
+.pdc-area-left {
+  width: 40%;
+}
+#productDesign ul.nav > li, #productDesign ul.nav > li, #upload ul.nav > li, #apps ul.nav > li {
+
+}
+#productDesign ul.nav > li a span {
+  word-wrap: normal;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  padding: 1px;
+}
+#toggle-app-button > img {
+  margin-top: 3px;
+  width: 15px;
+}
+.scroll-wrapper.scrollbar-map {
+  max-height: 85%;/*  530px; */
+  min-height:500px;
+}
+.pdc-main-bottom {
+  bottom: 0;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.sides-tab {
+  width: 100%;
+}
+#pdc_sides > h3 {
+  display: none;
+}
+.tab-sides li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.tab-sides li a {
+  padding: 3px 5px;
+}
+.pdc-design-view {
+  text-align: left;
+}
+.panel-mst .panel-default h4 a::after {
+  font-size: 12px;
+  line-height: 25px;
+}
+.panel-mst .panel-default h4 a {
+  font-size: 11px;
+  line-height: 20px;
+}

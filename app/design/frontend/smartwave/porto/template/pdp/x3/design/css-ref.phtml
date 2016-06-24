@@ -1,0 +1,19 @@
+<?php $jsUrl = $this->getX3JsUrl(); ?>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="<?php echo $jsUrl ?>bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo $jsUrl ?>bootstrap/css/bootstrap.vertical-tabs.css">
+<link rel="stylesheet" href="<?php echo $jsUrl ?>css/imagelistexpander.css" />
+<link rel="stylesheet" href="<?php echo $jsUrl ?>scrollbar/jquery.scrollbar.css" />
+<link rel="stylesheet" href="<?php echo $jsUrl ?>css/pdc-x3.css">
+
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 339px)" href="<?php echo $jsUrl ?>css/mobile-320.css" />
+<link rel="stylesheet" type="text/css" media="only screen and (min-width: 340px) and (max-width: 767px)" href="<?php echo $jsUrl ?>css/mobile-480.css" />
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px) and (max-width: 1023px)" href="<?php echo $jsUrl ?>css/tablet-768.css" />
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 1024px) and (max-width: 1260px)" href="<?php echo $jsUrl ?>css/laptop-1024.css" />
+<!-- Add fancyBox main JS and CSS files -->
+<link rel="stylesheet" type="text/css" href="<?php echo $jsUrl ?>fancybox/jquery.fancybox.css" media="screen" />
+<!-- Optional theme -->
+<link rel="stylesheet" href="<?php echo $jsUrl ?>bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<?php echo $jsUrl ?>font-awesome-4.4.0/css/font-awesome.min.css">
+<?php $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/'; ?>
+<link href="<?php echo $js_pdp; ?>pdc/css/pdc.layer.css" rel="stylesheet"/>

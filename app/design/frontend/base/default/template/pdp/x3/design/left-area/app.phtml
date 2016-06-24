@@ -1,0 +1,234 @@
+<?php 
+$jsUrl = $this->getX3JsUrl(); 
+$productConfigs = $this->getProductConfig();
+//Zend_Debug::dump($productConfigs);
+?>
+<div class="panel-group panel-mst" id="accordion_app" role="tablist" aria-multiselectable="true">
+	<!-- Images -->
+	<?php if(!isset($productConfigs['enable_image_plugin']) || isset($productConfigs['enable_image_plugin']) && $productConfigs['enable_image_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#accordion_app" href="#photo" aria-expanded="true" aria-controls="photo">
+						<i class="fa fa-photo"></i><span><?php echo $this->__("Image") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="photo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<div class="pdc-show-content"> <?php echo $this->getChildHtml("pdc-image"); ?></div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- Artwork/Cliparts -->
+    <?php if(!isset($productConfigs['enable_clipart_plugin']) || isset($productConfigs['enable_clipart_plugin']) && $productConfigs['enable_clipart_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingTwo">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_app" href="#clipart" aria-expanded="false" aria-controls="clipart">
+						<i class="fa fa-stumbleupon"></i><span><?php echo $this->__("Artwork") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="clipart" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				<div class="panel-body">
+					<div class="pdc-show-content" pdc-image-type="clipart">
+						<div class="loading-image" style="display: none;"><?php echo $this->__("Loading...") ?></div>
+						<div class="image-container" style="display: none;">
+							<div class="select-cont">
+								<select pdc-data="pdc-image-category">
+
+								</select>
+								<span class="fake-select"><i class="fa fa-caret-down"></i></span>
+							</div>
+							<div class="no-image-item" style="display: none;">
+								<?php echo $this->__("There is no item on this category!") ?>
+							</div>
+							<ul class="items-list" pdc-data="image-list">
+
+							</ul>
+							<div class="load-more-wrapper">
+								<button style="display: none;" class="btn btn-info btn-sm" pdc-data="load-more-image" type="button" ><?php echo $this->__("Load More")?></button>
+							</div>
+						</div>
+						<div class="no-item">
+							<?php echo $this->__("There is no item yet. Please use upload plugin instead!") ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- Shapes -->
+    <?php if(!isset($productConfigs['enable_shape_plugin']) || isset($productConfigs['enable_shape_plugin']) && $productConfigs['enable_shape_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingThree">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_app" href="#shapes" aria-expanded="false" aria-controls="shapes">
+						<i class="fa fa-heart-o"></i><span><?php echo $this->__("Shapes") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="shapes" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				<div class="panel-body">
+					<div class="pdc-show-content" pdc-image-type="shape">
+						<div class="loading-image" style="display: none;"><?php echo $this->__("Loading...") ?></div>
+						<div class="image-container" style="display: none;">
+							<div class="select-cont">
+								<select pdc-data="pdc-image-category">
+
+								</select>
+								<span class="fake-select"><i class="fa fa-caret-down"></i></span>
+							</div>
+							<div class="no-image-item" style="display: none;">
+								<?php echo $this->__("There is no item on this category!") ?>
+							</div>
+							<ul class="items-list" pdc-data="image-list">
+
+							</ul>
+							<div class="load-more-wrapper">
+								<button style="display: none;" class="btn btn-info btn-sm" pdc-data="load-more-image" type="button" ><?php echo $this->__("Load More")?></button>
+							</div>
+						</div>
+						<div class="no-item">
+							<?php echo $this->__("There is no item yet. Please use upload plugin instead!") ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- Frames -->
+	<?php if(!isset($productConfigs['enable_frame_plugin']) || isset($productConfigs['enable_frame_plugin']) && $productConfigs['enable_frame_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingFour">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_app" href="#frames" aria-expanded="false" aria-controls="frames">
+						<i class="fa fa-sun-o"></i><span><?php echo $this->__("Mask") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="frames" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+				<div class="panel-body">
+					<div class="pdc-show-content" pdc-image-type="frame">
+						<div class="loading-image" style="display: none;"><?php echo $this->__("Loading...") ?></div>
+						<div class="image-container" style="display: none;">
+							<div class="select-cont">
+								<select pdc-data="pdc-image-category">
+
+								</select>
+								<span class="fake-select"><i class="fa fa-caret-down"></i></span>
+							</div>
+							<div class="no-image-item" style="display: none;">
+								<?php echo $this->__("There is no item on this category!") ?>
+							</div>
+							<ul class="items-list" pdc-data="image-list">
+								<li rel="no-frame"><img src="<?php echo $jsUrl ?>images/no-frame.png" alt="No Frame" object-type="frame"/></li>
+							</ul>
+							<div class="load-more-wrapper">
+								<button style="display: none;" class="btn btn-info btn-sm" pdc-data="load-more-image" type="button" ><?php echo $this->__("Load More")?></button>
+							</div>
+						</div>
+						<div class="no-item">
+							<?php echo $this->__("There is no frame!") ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- QR COde -->
+    <?php if(!isset($productConfigs['enable_qrcode_plugin']) || isset($productConfigs['enable_qrcode_plugin']) && $productConfigs['enable_qrcode_plugin'] == 1): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingFive">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_app" href="#qrcode" aria-expanded="false" aria-controls="qrcode">
+						<i class="fa fa-qrcode"></i><span><?php echo $this->__("QR Code") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="qrcode" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+				<div class="panel-body">
+					<div class="pdc-show-content">
+						<!--div class="gallery-trigger-close close">x</div>													
+						<h3 class="title"><span><?php echo $this->__("Sign your design with a QR Code (?)") ?></span></h3-->
+						<div class="pdc-show-content-detail">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active">
+									<a href="#qrcode_url" aria-controls="qrcode_url" role="tab" data-toggle="tab"><i class="fa  fa-link"></i> <?php echo $this->__("URL") ?></a>
+								</li>
+								<li role="presentation">
+									<a href="#qrcode_text" aria-controls="qrcode_text" role="tab" data-toggle="tab"><i class="fa fa-paragraph"></i> <?php echo $this->__("Text") ?></a>
+								</li>
+								<li role="presentation">
+									<a href="#qrcode_email" aria-controls="qrcode_email" role="tab" data-toggle="tab"><i class="fa fa-envelope-square"></i> <?php echo $this->__("Email") ?></a>
+								</li>
+								<li role="presentation">
+									<a href="#qrcode_phone" aria-controls="qrcode_phone" role="tab" data-toggle="tab"><i class="fa fa-mobile"></i> <?php echo $this->__("Phone") ?></a>
+								</li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active qrcode-type" id="qrcode_url">
+									<div class="top-pane">
+										<input type="input" placeholder="<?php echo $this->__("Website (URL). Eg: http://www.example.com");?>"/>
+									</div>
+									<div class="main-pane">
+										<button class="pdc-btn gene-qrcode-btn" type="button"><span><?php echo $this->__("GENERATE QR CODE") ?></span></button>
+									</div>
+
+								</div>
+								<div role="tabpanel" class="tab-pane qrcode-type" id="qrcode_text">
+									<div class="top-pane">
+										<input type="input" placeholder="<?php echo $this->__("Enter your text");?>"/>
+									</div>
+									<div class="main-pane">
+										<button class="pdc-btn gene-qrcode-btn" type="button"><span><?php echo $this->__("GENERATE QR CODE") ?></span></button>
+									</div>
+								</div>
+								<div role="tabpanel" class="tab-pane qrcode-type" id="qrcode_email">
+									<div class="top-pane">
+										<input type="input" placeholder="<?php echo $this->__("Your email address");?>"/>
+									</div>
+									<div class="main-pane">
+										<button class="pdc-btn gene-qrcode-btn" type="button"><span><?php echo $this->__("GENERATE QR CODE") ?></span></button>
+									</div>
+								</div>
+								<div role="tabpanel" class="tab-pane qrcode-type" id="qrcode_phone">
+									<div class="top-pane">
+										<input type="input" placeholder="<?php echo $this->__("Enter phone number");?>"/>
+									</div>
+									<div class="main-pane">
+										<button class="pdc-btn gene-qrcode-btn" type="button"><span><?php echo $this->__("GENERATE QR CODE") ?></span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<!-- TextArt - Curved Text -->
+    <?php //if(!isset($productConfigs['enable_curvedtext_plugin']) || isset($productConfigs['enable_curvedtext_plugin']) && $productConfigs['enable_curvedtext_plugin'] == 1): ?>
+		<!--div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingSix">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_app" href="#curvedtext" aria-expanded="false" aria-controls="curvedtext">
+						<i class="fa fa-amazon"></i><span><?php echo $this->__("Curved Text") ?></span>
+					</a>
+				</h4>
+			</div>
+			<div id="curvedtext" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+				<div class="panel-body">
+					<div class="pdc-show-content">
+				
+					</div>
+				</div>
+			</div>
+		</div-->
+	<?php //endif; ?>
+</div>

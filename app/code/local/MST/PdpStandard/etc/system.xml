@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <mst translate="label" module="pdp">
+            <label>Products Designer Canvas</label>
+            <sort_order>201</sort_order>
+        </mst>
+    </tabs>
+	<sections>
+		<pdp translate="label" module="pdp">
+			<label>Settings (PDC Standard)</label>
+			<tab>mst</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>777</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<design translate="label">
+					<label>CUSTOM DESIGN AREA - User Interface Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>70</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+                        <!--
+						<skip_save_design translate="label">
+							<label>Skip Save Design Step</label>
+                            <comment><![CDATA[<p>Same as <b>Skip Preview Design</b> in basic version. After user click <b>Save</b>, the design frame will auto close and return to product page. User ready to add customized product to cart!</p>]]></comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>225</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</skip_save_design>-->
+					</fields>
+				</design>
+				<customer_action translate="label">
+					<label>Customer Actions Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>120</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<is_facebook translate="label">
+							<label>Allow Get Facebook Photo</label>
+							<comment><![CDATA[<p><strong>YES</strong> to allow user get photos from their Facebook account. (Available on <b>STANDARD</b>, <b>PRO</b> and <b>ENTERPRISE</b> version)</p>]]></comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>85</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</is_facebook>
+						<facebook_api translate="label">
+							<label>Facebook API</label>
+							<frontend_type>text</frontend_type>
+							<comment><![CDATA[<p>Enter facebook api. <a href="#" target="_blank">How to get Facebook API and Secret key</a></p>]]></comment>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<depends><is_facebook>1</is_facebook></depends>
+						</facebook_api>
+						<facebook_key translate="label">
+							<label>Facebook Secret Key</label>
+							<frontend_type>text</frontend_type>
+							<comment>Enter Secret Key.</comment>
+							<sort_order>95</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<depends><is_facebook>1</is_facebook></depends>
+						</facebook_key>
+					</fields>
+				</customer_action>
+			</groups>
+		</pdp>
+	</sections>
+</config>

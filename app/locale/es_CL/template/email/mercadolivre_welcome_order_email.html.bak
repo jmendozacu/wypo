@@ -1,0 +1,62 @@
+<!--@subject Peta.cl - Gracias por su Compra en MercadoLibre ! @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/peta.png\" _area='frontend'":"Logo",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <!-- [ header starts here] -->
+         
+                <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p><strong>Estimado(a) {{var name}}</strong>,<br /><br />
+                            Recibimos su pedido realizado en Mercadolibre.<br /><br />
+                            Para finalizar el proceso de compra debe transferir el monto a nuestra cuenta corriente:<br /><br />
+Banco: Banco Santander<br />
+Cuenta Nº: 67449223<br />
+RUT: 76124329-2<br />
+Beneficiario: Petacl SpA<br />
+Tipo de Cuenta: Cuenta Corriente<br /><br />
+Tenga en consideración que:<br /><br />
+
+
+<ul style="list-style-type:disc">
+  <li><strong>NO tenemos Tienda</strong> por lo que <strong>sólo</strong> despachamos a Domicilio vía TurBus <strong>Por Pagar</strong> (o Agencia de Chilexpress).</li>
+  <li>Realizaremos el despacho <strong>sólo cuando hayamos recibido la recepción de los fondos.</strong></li>
+  <li>No aceptamos pago en Efectivo, por favor no insista</li>
+</ul><br /><br />
+
+Una vez que haya realizado el pago, por favor envíenos el comprobante de pago a: <strong>pagos@peta.cl</strong> junto con los datos de despacho:<br /><br/>
+
+<strong>Nombre Destinatario:</strong><br />
+<strong>RUT:</strong><br />
+<strong>Dirección:</strong><br />
+<strong>Comuna:</strong><br /><br />
+
+Si desea <strong>factura</strong>, envíenos además los datos necesarios (RUT, Razón Social, Giro, Dirección).<br /><br />
+
+		    <p>Agradecemos su confianza.</p>
+<br /><br />
+<strong>El Equipo de Peta.cl</strong>
+<br />Fono: (+56)223627577
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+</div>

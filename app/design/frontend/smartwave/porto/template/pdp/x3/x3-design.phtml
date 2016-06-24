@@ -1,0 +1,104 @@
+<?php 
+if (Mage::getStoreConfig('pdp/setting/enable') == 0) {
+    echo "<h3>".$this->__('PDP module is disabled. Please enable PDP to use it\'s features!')."</h3>";
+    return false;
+}
+$jsUrl = $this->getX3JsUrl();
+$js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
+$jsonString = $this->getCurrentDesignJson();
+$sidesConfig = $this->getSidesConfig();
+?>
+<html>
+	<head>
+		<title><?php echo $this->__("PDC X3") ?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+		<?php if($this->isAdminUser()) : ?>
+        <?php echo $this->getChildHtml('css-ref'); ?>
+        <link href="<?php echo $jsUrl; ?>dropzone/dropzone.css" rel="stylesheet"/>
+        <?php endif; ?>
+	</head>
+	<body>
+		<div id="pdcwrapper" class="pdc-wrapper">
+            <?php echo $this->getChildHtml('load_fonts');// Load on design button .phtml ?>
+            <div class="pdc-config" style="display: none;">
+                <div class='design-btn' style="display: none">
+                    <?php echo $this->getLayout()->createBlock('pdp/designbutton')->setTemplate('pdp/product/design_button.phtml')->toHtml() ?>
+                </div>
+                <input name="pdp_design_string" type="hidden" value="<?php echo htmlentities($jsonString) ?>"/>
+                <?php if($sidesConfig) : ?>
+                <input id="sides_config" type="hidden" value="<?php echo htmlentities($sidesConfig) ?>"/>
+                <?php endif; ?>
+                <input type="hidden" value="<?php echo (isset($_REQUEST['fb'])) ? $_REQUEST['fb'] : "";  ?>" id="fb_get_id" />
+                <input type="hidden" value="<?php echo $this->getSkinUrl('pdp/') ?>" id="skin_url" />
+                <input type="hidden" id="base_dir" name="base_dir" value="<?php echo Mage::getBaseDir('base'); ?>" />
+                <input type="hidden" id="pdp_media_url" name="pdp_media_url" value="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'pdp/images/'; ?>" />
+            
+            </div>
+            <!--Loading Progess Bar-->
+            <div class="pdploading" style="display: none;"></div>
+			<!-- Topbar  -->
+			<?php echo $this->getChildHtml("topbar") ?>
+			<!-- End Topbar  -->
+			<div class="pdc-container">
+				<div class="pdc-center">
+					<div class="pdc_design_panel">
+						<div class="">
+							<div class="pdc-wrap-main">
+								<!-- Area Left  -->
+								<div class="pdc-area-left collapse-left">						
+									<?php echo $this->getChildHtml("left-area") ?>
+								</div>
+								<!-- End Area Left  -->
+								<!-- Area Main  -->
+								<div class="pdc-area-main expand-main">
+									<?php echo $this->getChildHtml("main-area") ?>
+								</div>
+								<!-- End Area Main  -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="popup">
+				<!--Object Controls-->
+                <?php echo $this->getChildHtml('object-controls') ?>
+				<!--Modals-->
+                <?php echo $this->getChildHtml('x3-modals') ?>
+			</div>
+		</div>
+        <div class='pdp_actions_backend'>
+            <?php if ($this->isAdminUser()) : ?>
+            <input type="hidden" id="is_backend" value="yes" />
+            <script src="<?php echo $js_pdp;?>jquery/jquery-1.10.2.min.js"></script>
+            <script src="<?php echo $js_pdp;?>fabricjs/fabric.js"></script>
+            <script type="text/javascript" src="<?php echo $jsUrl ?>bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="<?php echo $jsUrl ?>fancybox/jquery.fancybox.js"></script>
+            <script type="text/javascript" src="<?php echo $jsUrl ?>js/jquery.imagelistexpander.js"></script> 
+            <script type="text/javascript" src="<?php echo $jsUrl ?>scrollbar/jquery.scrollbar.js"></script>  
+            <!--<script type="text/javascript" src="<?php echo $jsUrl ?>iscroll/iscroll-zoom.js"></script>-->
+            <script src="<?php echo $jsUrl; ?>dropzone/dropzone.min.js"></script>
+            <link href="<?php echo $js_pdp;?>jquery/colorpicker/css/colorpicker.css" rel="stylesheet"/>
+	        <script src="<?php echo $js_pdp;?>jquery/colorpicker/colorpicker.js"></script>
+            <link href="<?php echo $js_pdp;?>pace/dataurl.css" rel="stylesheet"/>
+            <script src="<?php echo $js_pdp;?>pace/pace.min.js"></script>
+			<!-- Instagram JS/CSS -->
+			<?php if(Mage::getStoreConfig('pdp/customer_action/is_instagram')){ ?>
+			<script type="text/javascript" src="<?php echo $js_pdp;?>instagram/instagram_connect.js"></script>
+			<link href="<?php echo $js_pdp;?>instagram/css/ins.css" rel="stylesheet" type="text/css" />
+			<?php } ?>
+            <?php endif; ?>
+			<!-- Facebook JS/CSS -->
+			<?php if(Mage::getStoreConfig('pdp/customer_action/is_facebook')){ ?>
+			<script type="text/javascript" src="<?php echo $js_pdp;?>facebook/facebook_connect.js"></script>
+			<?php } ?>
+        </div>
+        <!-- X3 JS -->
+        <script type="text/javascript" src="<?php echo $jsUrl ?>js/custom.js"></script>
+        <!-- PDC JS -->
+        <script src="<?php echo $js_pdp;?>pdc/js/productsdesignercanvas-1.0.js"></script>
+        <script type="text/javascript" src="<?php echo $jsUrl ?>js/x3.js"></script>
+		<script type="text/javascript" src="<?php echo $js_pdp;?>pdc/js/pdc.layer.js"></script>
+        <script type="text/javascript" src="<?php echo $jsUrl ?>js/image.js"></script>
+        <script type="text/javascript" src="<?php echo $jsUrl ?>js/object_control.js"></script>
+	</body>
+</html>

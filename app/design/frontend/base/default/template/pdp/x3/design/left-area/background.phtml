@@ -1,0 +1,48 @@
+<?php 
+$colors = Mage::getModel('pdp/color')->getColors();
+$includeColors = $this->getProductIncludeColors();
+$productConfig = $this->getProductConfig();
+?>
+<div class="background-color-list">
+	 <label><?php echo $this->__("Choose background color");?></label>
+     <ul class="pdc-background-color-list" pdc-data="CHANGE_BG_COLOR">
+        <?php $i = 0; foreach($colors as $color)  :?>
+        <?php 
+        if(is_array($includeColors)) {
+            if(!in_array($color->getColorId(), $includeColors)) continue;  
+        } 
+        ?>
+        <li><a style="background-color:#<?php echo $color->getColor_code(); ?>; color:#<?php echo $color->getColor_code(); ?>;" title="<?php echo $color->getColor_name(); ?>"><!--span class="pdc-brightness-1"></span--></a></li>
+    <?php $i++; endforeach;  ?>
+        <?php if(isset($productConfig['enable_colorpicker_plugin']) && $productConfig['enable_colorpicker_plugin'] == "1") : ?>
+        <li>
+            <div pdc-data="color" id="pdc_background_color_picker">
+                <div class="result"></div>
+            </div>
+        </li>
+        <?php endif; ?>
+    </ul>
+</div>
+<div class="pdc-show-content" pdc-image-type="background">
+    <div class="loading-image" style="display: none;"><?php echo $this->__("Loading...") ?></div>
+    <div class="image-container" style="display: none;">
+        <div class="select-cont">
+            <select pdc-data="pdc-image-category">
+               
+            </select>
+            <span class="fake-select"><i class="fa fa-caret-down"></i></span>
+        </div>
+        <div class="no-image-item" style="display: none;">
+            <?php echo $this->__("There is no item on this category!") ?>
+        </div>
+        <ul class="items-list" pdc-data="image-list">
+            
+        </ul>
+        <div class="load-more-wrapper">
+            <button style="display: none;" class="btn btn-info btn-sm" pdc-data="load-more-image" type="button" ><?php echo $this->__("Load More")?></button>
+        </div>
+    </div>
+    <div class="no-item">
+        <?php echo $this->__("There is no item yet. Please use upload plugin instead!") ?>
+    </div>
+</div>

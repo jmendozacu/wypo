@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <mst translate="label" module="pdp">
+            <label>Products Designer Canvas</label>
+            <sort_order>201</sort_order>
+        </mst>
+    </tabs>
+	<sections>
+		<pdp translate="label" module="pdp">
+			<label>Settings (PDC X3)</label>
+			<tab>mst</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>779</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<!--
+                <design translate="label">
+					<label>CUSTOM DESIGN AREA - User Interface Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>70</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+						<is_notify translate="label">
+							<label>Show warning popup </label>
+							<comment><![CDATA[<p>Enable to show warning popup message when user use PDC on small devices.</p>]]></comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</is_notify>
+						<hide_thumbnail translate="label">
+							<label>Hide Side Thumbnail </label>
+							<frontend_type>select</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</hide_thumbnail>
+                        <default_area_setting translate="label">
+							<label><![CDATA[<h3>General Settings</h3><hr/>]]></label>
+							<frontend_type>label</frontend_type>
+							<sort_order>127</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</default_area_setting>
+                        <default_object_color translate='label'>
+							<label>Default Color</label>
+                            <comment>Default color of text or svg when add to design!</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>325</sort_order>
+							<show_in_default>1</show_in_default>
+						</default_object_color>
+                        <default_object_fontsize translate='label'>
+							<label>Default Font Size</label>
+                            <comment>Default font size of text when add to design!</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>425</sort_order>
+							<show_in_default>1</show_in_default>
+						</default_object_fontsize>
+                        <default_object_fontheight translate='label'>
+							<label>Default Font Height</label>
+                            <comment>Default font height of text when add to design!</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>525</sort_order>
+							<show_in_default>1</show_in_default>
+						</default_object_fontheight>
+					</fields>
+				</design>-->
+				<customer_action translate="label">
+					<label>Customer Actions Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>120</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<sharing translate="label">
+							<label>Enable Social Sharing</label>
+							<comment>Allow customer sharing their customized design to social network.</comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+						</sharing>
+						<!--<addthis_id translate="label">
+							<label>AddThis Profile id</label>
+							<comment><![CDATA[<p>Sign up free account on https://www.addthis.com and get your profile id to enable sharing option.<a href="https://www.addthis.com/settings/publisher" target="_blank">Check here</a></p>]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<depends><sharing>1</sharing></depends>
+						</addthis_id>-->
+						<is_instagram translate="label">
+							<label>Allow Get Instagram Photo</label>
+							<comment><![CDATA[<p><strong>YES</strong> to allow user get photos from their Instagram account. (Available on <b>Pro</b> and <b>ENTERPRISE</b> version)</p>]]></comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</is_instagram>
+						<instagram_api translate="label">
+							<label>Instagram API</label>
+							<frontend_type>text</frontend_type>
+							<comment><![CDATA[<p>Enter Instagram API. <a href="#" target="_blank">How to get Instagram API and Secret key</a></p>]]></comment>
+							<sort_order>105</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<depends><is_instagram>1</is_instagram></depends>
+						</instagram_api>
+						<instagram_key translate="label">
+							<label>Instagram Secret Key</label>
+							<frontend_type>text</frontend_type>
+							<comment>Enter Instagram Secret Key.</comment>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<depends><is_instagram>1</is_instagram></depends>
+						</instagram_key>
+					</fields>
+				</customer_action>
+                <watermark translate="label">
+					<label>Watermark</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>420</sort_order>
+					<show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+					<fields>
+                        <active translate="label">
+							<label>Enable Watermark</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+						</active>
+                        <image translate='label'>
+                    		<label>Watermark Image</label>
+                    		<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <comment><![CDATA[Please upload a .<b>PNG</b> image]]></comment>
+                            <upload_dir config="system/filesystem/media" scope_info="1">pdp/images</upload_dir>
+                            <base_url type="media" scope_info="1">pdp/images</base_url>
+                    		<sort_order>3000</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</image>
+                        <position translate='label'>
+                    		<label>Watermark Position</label>
+                    		<frontend_type>select</frontend_type>
+                            <source_model>pdp/config_watermarkposition</source_model>
+                    		<sort_order>4000</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</position>
+					</fields>
+				</watermark>
+			</groups>
+		</pdp>
+	</sections>
+</config>

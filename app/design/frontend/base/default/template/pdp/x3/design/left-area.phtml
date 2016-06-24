@@ -1,0 +1,106 @@
+<?php 
+$jsUrl = $this->getX3JsUrl();
+$limit = $this->_default_page_size;
+$categories = $this->getAllImageCategories();
+$productId = $this->getCurrentProductId();
+$isProductColorTabEnable = Mage::helper("pdp")->isProductColorTabEnable($productId);
+$productConfigs = $this->getProductConfig();
+?>
+<input type="hidden" value='<?php echo $limit;?>'  id="default_page_size" />
+<input type="hidden" value='<?php echo htmlentities($categories);?>' id="pdc-image-categories" />
+<div class="pdc-tabs">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs tabs-left">
+        <?php if(!isset($productConfigs['enable_product_design_tab']) || isset($productConfigs['enable_product_design_tab']) && $productConfigs['enable_product_design_tab'] == 1): ?>
+		<li><a class="a-product-design" href="#productDesign" data-toggle="tab"><i class="fa fa-dashcube"></i> <?php echo $this->__("Product Design") ?></a></li>
+		<?php endif; ?>
+        <?php if(!isset($productConfigs['enable_elements_tab']) || isset($productConfigs['enable_elements_tab']) && $productConfigs['enable_elements_tab'] == 1): ?>
+        <li><a class="a-apps" href="#apps" data-toggle="tab"><i class="fa-skyatlas fa"></i> <?php echo $this->__("Elements") ?></a></li>
+		<?php endif; ?>
+        <?php if(!isset($productConfigs['enable_upload_tab']) || isset($productConfigs['enable_upload_tab']) && $productConfigs['enable_upload_tab'] == 1): ?>
+        <li><a class="a-upload" href="#upload" data-toggle="tab"><i class="fa-cloud-upload fa"></i> <?php echo $this->__("Upload") ?></a></li>
+		<?php endif; ?>
+        <?php if(!isset($productConfigs['enable_text_tab']) || isset($productConfigs['enable_text_tab']) && $productConfigs['enable_text_tab'] == 1): ?>
+        <li><a class="a-text" href="#text" data-toggle="tab"><i class="fa fa-font"></i> <?php echo $this->__("Add Text") ?></a></li>
+		<?php endif; ?>
+        <?php if(!isset($productConfigs['enable_layer_tab']) || isset($productConfigs['enable_layer_tab']) && $productConfigs['enable_layer_tab'] == 1): ?>
+        <li><a class="a-layers" href="#layers" data-toggle="tab"><i class="fa fa-tasks"></i> <?php echo $this->__("Layers") ?></a></li>
+		<?php endif; ?>
+        <?php if(!isset($productConfigs['enable_info_tab']) || isset($productConfigs['enable_info_tab']) && $productConfigs['enable_info_tab'] == 1): ?>
+        <li><a class="a-info" href="#info" data-toggle="tab"><i class="fa fa-support"></i> <?php echo $this->__("Info") ?></a></li>
+        <?php endif; ?>
+        <?php if(!isset($productConfigs['enable_zoom_btn']) || isset($productConfigs['enable_zoom_btn']) && $productConfigs['enable_zoom_btn'] == 1): ?>
+		<li>
+			<div class="pdc-zoom hidden-md hidden-lg"><!--Mobile Zoom-->
+				<button type="button" class="btn-zoom btn-zoom-in"><span><i class="fa fa-search-plus"></i> <?php echo $this->__('Zoom In');?></span></button>
+				<input type="text" disabled="disabled" class="input-zoom" value="100%"/>
+				<button type="button" class="btn-zoom btn-zoom-out"><span><i class="fa fa-search-minus"></i> <?php echo $this->__('Zoom Out');?></span></button>
+				<button type="button" class="btn-zoom btn-zoom-reset"><span><i class="fa fa-compress"></i> <?php echo $this->__('Reset');?></span></button>
+			</div>
+		</li>
+        <?php endif; ?>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="toggle-cont">
+            <a id="toggle-app-button" class="left"><img src="<?php echo $jsUrl.'images/close.png';?>" alt="<?php echo $this->__("Close");?>" /></a>
+        </div>
+		<!-- Product Design tab content -->
+        <?php if(!isset($productConfigs['enable_product_design_tab']) || isset($productConfigs['enable_product_design_tab']) && $productConfigs['enable_product_design_tab'] == 1): ?>
+		<div class="tab-pane" id="productDesign">
+			<h3><?php echo $this->__('Product Design'); ?></h3>
+            <?php echo $this->getChildHtml("pdc-productdesign"); ?>																				
+        </div>
+        <?php endif; ?>
+		<!-- Elements tab content -->
+        <?php if(!isset($productConfigs['enable_elements_tab']) || isset($productConfigs['enable_elements_tab']) && $productConfigs['enable_elements_tab'] == 1): ?>
+		<div class="tab-pane" id="apps">
+			<h3><?php echo $this->__('Elements'); ?></h3>
+            <?php echo $this->getChildHtml("pdc-app"); ?>																				
+        </div>
+        <?php endif; ?>
+		<!-- Upload Tab  tab content -->
+        <?php if(!isset($productConfigs['enable_upload_tab']) || isset($productConfigs['enable_upload_tab']) && $productConfigs['enable_upload_tab'] == 1): ?>
+        <div class="tab-pane" id="upload">
+			<h3><?php echo $this->__('Upload'); ?></h3>
+            <?php echo $this->getChildHtml("pdc-upload"); ?>																				
+        </div>
+        <?php endif; ?>
+		<!-- Add Text  tab content -->
+        <?php if(!isset($productConfigs['enable_text_tab']) || isset($productConfigs['enable_text_tab']) && $productConfigs['enable_text_tab'] == 1): ?>
+		<div class="tab-pane" id="text">
+			<h3><?php echo $this->__('ADD TEXT'); ?></h3>
+            <div class="textControls">
+                <p><small><?php echo $this->__('Click to add text');?></small></p>
+                <ul>
+                    <li style="color: auto;">
+                        <a pdc-data="add-text" fontsize="72" style=" font-size: 240%; font-style: normal; font-weight: normal;" data-style="title" class="add-text"><?php echo $this->__('Add heading');?></a>
+                    </li>
+                    <li style="color: auto;">
+                        <a pdc-data="add-text" fontsize="36" style=" font-size: 160%; font-style: normal; font-weight: normal;" data-style="subtitle" class="add-text"><?php echo $this->__('Add subheading');?></a>
+                    </li>
+                    <li style="color: auto;">
+                        <a pdc-data="add-text" fontsize="24" style="font-size: 90%; font-style: normal; font-weight: normal;" data-style="body" class="add-text"><?php echo $this->__('Add a little bit of body text');?></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <?php endif; ?>
+		<!-- Layers tab content -->
+        <?php if(!isset($productConfigs['enable_layer_tab']) || isset($productConfigs['enable_layer_tab']) && $productConfigs['enable_layer_tab'] == 1): ?>
+		<div class="tab-pane" id="layers">
+			<h3><?php echo $this->__('LAYERS'); ?></h3>
+            <?php echo $this->getLayout()->createBlock("pdp/x3")->setTemplate("pdp/x3/design/layer.phtml")->toHtml(); ?>
+        </div>
+        <?php endif; ?>
+        <!-- Info Tab -->
+        <?php if(!isset($productConfigs['enable_info_tab']) || isset($productConfigs['enable_info_tab']) && $productConfigs['enable_info_tab'] == 1): ?>
+        <div class="tab-pane" id="info">
+			<h3><?php echo $this->__('HELP INFORMATION'); ?></h3>
+            <div class="pdc-show-content">
+                <?php echo Mage::getModel('catalog/product')->load($productId)->getShortDescription(); ?>
+            </div>
+		</div>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<?php if(Mage::getStoreConfig('pdp/customer_action/is_instagram')){ ?>
+<?php $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/'; ?>
+<?php if (!$this->isAdminUser()) { ?>
+<script type="text/javascript" src="<?php echo $js_pdp;?>instagram/instagram_connect.js"></script>
+<link href="<?php echo $js_pdp;?>instagram/css/ins.css" rel="stylesheet" type="text/css" />
+<?php } ?>
+<input type="hidden" id="pdc_ins_api" value="<?php echo Mage::getStoreConfig('pdp/customer_action/instagram_api') ?>" />
+<input type="hidden" id="pdc_ins_key" value="<?php echo Mage::getStoreConfig('pdp/customer_action/instagram_key') ?>" />
+<input type="hidden" id="pdc_ins_redirect_url" value="<?php echo $js_pdp ?>instagram/redirect.php" />
+<div class="pdc-show-content">
+    <div class="pdc_instagram_act">													
+        <div class="pdc-show-content-detail">
+            <p><?php echo $this->__("Login to select photos from your Instagram account.") ?> </p>
+            <button type="button" class="pdc-btn instagram-btn instagram-signin"><span><?php echo $this->__("Get Instagram photos") ?></span></button>
+        </div>
+    </div>
+    <div class="pdc_instagram content_instagram nodisplay">
+        <div id="pdc_instagram_list_img" class="no-display">
+            <div rel="pdc_ins_myphotos" pdc-ins="ins_block" id="pdc_ins_myphotos"></div>
+        </div>
+        <a class="pdp_ins_next no-display" data-nexturl=""><?php echo $this->__('Load More') ?></a>
+        <button class="upload_photo_btn fb_photo_btn instagram_btn instagram-signout no-display" type="button"><i class="pdc-instagram"></i><span class="pdc_ins_mes_button"><?php echo $this->__('Logout Instagram');?></span></button>
+    </div>
+</div>
+<?php } else { ?>
+<div class="instagram-note">
+    <span><?php echo $this->__("To use instagram photo. Please enable instagram app in:") ?></span>
+    <strong><?php echo $this->__("Products Designer -> PDC Configruaration -> Customer Actions Setting -> Allow Get Instagram Photo") ?></strong>
+</div>
+<?php } ?>

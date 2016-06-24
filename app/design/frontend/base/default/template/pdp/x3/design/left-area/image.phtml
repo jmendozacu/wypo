@@ -1,0 +1,23 @@
+<div class="pdc-show-content" pdc-image-type="image">
+    <div class="loading-image" style="display: none;"><?php echo $this->__("Loading...") ?></div>
+    <div class="image-container" style="display: none;">
+        <div class="select-cont">
+            <select pdc-data="pdc-image-category">
+               
+            </select>
+            <span class="fake-select"><i class="fa fa-caret-down"></i></span>
+        </div>
+        <div class="no-image-item" style="display: none;">
+            <?php echo $this->__("There is no item on this category!") ?>
+        </div>
+        <ul class="items-list" pdc-data="image-list">
+            
+        </ul>
+        <div class="load-more-wrapper">
+            <button style="display: none;" class="btn btn-info btn-sm" pdc-data="load-more-image" type="button" ><?php echo $this->__("Load More")?></button>
+        </div>
+    </div>
+    <div class="no-item">
+        <?php echo $this->__("There is no item yet. Please use upload plugin instead!") ?>
+    </div>
+</div>

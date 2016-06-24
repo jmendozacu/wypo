@@ -1,0 +1,44 @@
+<div class="pdc-show-content">
+    <!--div id="pdc_block_layer" pdc-block="layer">
+        <ul>
+            <li class="no-display" pdc-layer="0">
+        		<span pdc-layer-info="type">Layer</span>
+        		<span pdc-layer-info="price">Price</span>
+        		<span pdc-layer-info="size">Size</span>
+        		<span pdc-layer-info="lock" data-original-title="Lock|Delete layer"><i class="pdc-lock fa-lock"></i><i class="pdc-unlock-alt fa-unlock"></i> <span>Action</span></span>
+        		<span pdc-layer-info="del"><i class="pdc-clear fa-trash"></i> <span>Delete</span></span>		
+        	</li>
+        </ul>
+        <div pdc-block="layer-final" class="layer-final">
+    		<label><i class="pdc-add-shopping-cart fa-cart-arrow-down"></i> Total Layers Price :</label>
+    		<span class="price_layer">1.00</span>
+    	</div>
+    </div-->
+	
+	<!--HTML New style for Layer tab-->
+	<div id="pdc_block_layer" pdc-block="layer" class="table-responsive">
+		<table class="table table-striped">
+			<thead> 
+				<tr> 
+					<th><?php echo $this->__("Layer") ?></th> 
+					<th><?php echo $this->__("Price") ?></th> 
+					<th><?php echo $this->__("Action") ?></th> 
+					<th><?php echo $this->__("Delete") ?></th>  
+				</tr> 
+			</thead>
+			<tbody pdc-layer="content"> 
+				<tr class="no-display" pdc-layer="0"> 
+					<td pdc-layer-info="type" class="type"><?php echo $this->__("Type") ?></td> 
+					<td pdc-layer-info="price" class="price">$1.00</td> 
+					<td pdc-layer-info="lock" class="action"><i class="pdc-lock fa-lock"></i><i class="pdc-unlock-alt fa-unlock"></i></td> 
+					<td pdc-layer-info="del" class="del"><i class="pdc-clear fa-trash"></i></td> 
+				</tr> 				
+
+			</tbody>
+		</table>
+		<div pdc-block="layer-final" class="layer-final">
+    		<label><i class="pdc-add-shopping-cart fa-cart-arrow-down"></i> <?php echo $this->__("Total Layers Price :") ?></label>
+    		<span class="price_layer">1.00</span>
+    	</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<?php
+$helper = Mage::helper('pdp');
+$fonts = $helper->getFonts();
+$fontArr = array();
+?>
+<style type="text/css">
+    <?php foreach ( $fonts as $font) : ?>
+    <?php $fontArr[$font->getName()] = $font->getName() . '.' . $font->getExt(); ?>
+    @font-face {
+        font-family: '<?php echo $font->getName() ?>';
+        src: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>pdp/fonts/<?php echo $font->getName() ?>.<?php echo $font->getExt() ?>');
+    }
+    <?php endforeach; ?>
+</style> 
+<input type="hidden" value="<?php echo htmlentities(json_encode($fontArr)) ?>" id="pdc_font_list"/>
+<!--Make sure fonts are loaded-->
+<?php foreach ( $fonts as $font) : ?>
+    <span style="font-family: <?php echo $font->getName() ?>; visibility: hidden; position: absolute;"><?php echo $this->__("Sample Font") ?> </span>
+<?php endforeach; ?>

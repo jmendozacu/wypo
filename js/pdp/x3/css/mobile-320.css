@@ -1,0 +1,241 @@
+.pdc-area-left .pdc-tabs > ul.nav li a, .pdc-area-left .tab-content .tab-pane > ul > li, .pdc-area-main, .pdc-area-left .pdc-tabs > .tab-content, a, .pdc-area-left .pdc-tabs > .tab-content > .tab-pane, .pdc-area-left .pdc-show-content, .pdc-scroll, .pdc-area-left .pdc-tabs > .tab-content{transition:none 0s ease 0s ;}
+.scrollbar-map > .scroll-element_outer.scroll-scrollx_visible, .scrollbar-map > .scroll-element_outer.scroll-scrolly_visible{display:none;}
+
+
+.fancybox-wrap{width:90%!important;}
+
+.topbar-buttons li .tool-btn{
+	font-size:10px;
+}
+.topbar-buttons li .tool-btn{padding:5px 4px;}
+.fancybox-opened{top:35px!important;}
+.pdc-main-bottom{position:relative; height:auto; bottom:0;}
+.pdc-area-left{position:relative;}
+.pdc-wrapper{background:#fff;}
+.pdc-background-color-list li a {border-width:2px; margin-right:2px;}
+.pdc-show-content .items-list li, .pdc-item-tool .pdc-color-list li a, .pdc-show-content .items-list li:hover {  border-width: 2px; border-style:solid;}
+/* Ju */
+.pdc-area-left .pdc-tabs > ul.nav li a i {
+  font-size: 15px;
+}
+.pdc-area-left .pdc-tabs ul.tabs-left li.active > a::before {
+  border-width: 12px 5px;
+  top: 8px;
+}
+.pdc-area-left .pdc-tabs > ul.nav {
+  width: 50px;
+}
+.pdc-area-main.open {
+  margin-left: 0px;
+}
+#apps ul.nav > li a {
+  margin-bottom: 5px;
+  border-radius:0px;
+}
+.pdc-area-left .pdc-tabs > .tab-content > .tab-pane > h3 {
+  font-size:10px;
+  line-height:40px;
+}
+.pdc-area-left .pdc-tabs > .tab-content > .tab-pane {
+  left: -130%;
+}
+
+.pdc-background-color-list li a {
+  height: 10px;
+}
+.pdc-area-left label {
+  font-size: 12px;
+}
+div.result {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  height: 20px;
+  left: 3px;
+  position: absolute;
+  top: 3px;
+  width: 20px;
+}
+#pdc_background_color_picker {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  height: 25px;
+  position: relative;
+  width: 25px;
+}
+.pdc-btn {
+  font-size: 1rem;
+  margin: 0 auto;
+  padding: 5px 8px;
+  width: auto;
+  border-radius:0px;
+}
+.pdc-upload-area {
+  min-height: 50px;
+  padding: 10px !important;
+}
+#pdc_block_layer img {
+  width: 30px;
+}
+
+.pdc-area-left {
+  background: #ffffff none repeat scroll 0 0;
+  border-right: 1px solid #dddddd;
+  width: 50px;
+  z-index: 10;
+}
+.pdc-area-left.collapse-left .tab-content.expand-main {
+  display: none;
+}
+.pdc-area-left.collapse-left{min-width:50px;}
+ 
+#productDesign.active .tab-content .tab-pane.active, #upload.active .tab-content .tab-pane.active, #apps.active .tab-content .tab-pane.active {
+  height: auto;
+  opacity: 1;
+  padding-top: 5px;
+}
+#productDesign ul.nav > li a span {
+  word-wrap: normal;
+}
+
+.pdc-design-area {
+  margin: 5px 0 0 0;
+}
+.pdc-area-main {
+  float: left;
+  margin-left: 0;
+  width: 81%;
+}
+.pdc-area-main.expand-main {
+  width: 81%;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  padding: 1px;
+}
+ 
+body.small-popup .iframe-container {
+  padding: 5px 0 0 0;
+}
+ 
+.pdc-area-left .pdc-tabs > ul.nav {
+  min-width: 50px;
+  padding-bottom: 5px;
+  width: 50px;
+}
+
+#toggle-app-button > img {
+  margin-top: 3px;
+  width: 15px;
+}
+.pdc-main-bottom {
+  bottom: 0;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.sides-tab {
+  width:100%;
+  margin: 0;
+}
+#pdc_sides > h3 {
+  display: none;
+}
+.tab-sides li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.tab-sides li a {
+  padding: 3px;
+}
+.pdc-design-view {
+  text-align: left;
+}
+.pdc-area-left .pdc-tabs > ul.nav li a {
+  font-size: 9px;
+  padding: 8px 2px;
+}
+.pdc-zoom input {
+  margin-top: 5px;
+  width: 100%;
+}
+.pdc-zoom .btn-zoom {
+  margin-top: 5px;
+}
+.pdc-area-left .pdc-tabs > .tab-content {
+  background: #ffffff none repeat scroll 0 0;
+  border-right: 1px solid #cccccc;
+  display: block;
+  float: left;
+  height: 100%;
+  left: 50px;
+  position: absolute;
+  width: 140px;
+}
+#productDesign ul.nav > li a i, #upload ul.nav > li a i, #apps ul.nav > li a i {
+  font-size: 15px;
+  padding: 5px;
+}
+.pdc-area-left label {
+  font-size: 9px;
+}
+.pdc-background-color-list li a {
+  height: 10px;
+  width: 15px;
+}
+.pdc-show-content select {
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+}
+.pdc-show-content select option {
+  font-size: 10px;
+  height: 21px;
+  line-height: 25px;
+}
+.fake-select {
+  height: 25px;
+  line-height: 26px;
+}
+.fake-select i {
+  line-height: 25px;
+}
+#background .pdc-show-content .items-list li {
+  height: auto;
+}
+#background .pdc-show-content .items-list li a {
+  height: 35px;
+  width: 100%;
+}
+.pdc-btn {
+  font-size: 0.8rem;
+}
+.scroll-wrapper.scrollbar-map {
+  max-height: 85%;/* 400px; */
+  min-height:300px;
+}
+.pdc-main-bottom {
+  top: 0;
+}
+/* Share popup */
+.pdc-popup .share-info {
+  border: 1px solid #cdcdcd;
+  display: block;
+  margin: 0 auto 15px;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 5px;
+  text-align: center;
+}
+.share-info .cont-right {
+  display:none;
+}
+.pdc-item-tool .pdc-color-list li a {
+  height: 10px;
+  width: 15px;
+}
+#pdc_block_layer{max-height:365px;}
+.panel-mst .panel-default h4 a::after {
+  font-size: 12px;
+  line-height: 20px;
+}
+.panel-mst .panel-default h4 a {
+  font-size: 9px;
+  line-height: 15px;
+}

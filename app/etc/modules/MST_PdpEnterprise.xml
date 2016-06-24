@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MST_PdpEnterprise>
+            <active>true</active>
+            <codePool>local</codePool>
+			<depends>
+            	<MST_Pdp/>
+                <MST_PdpStandard/>
+                <MST_PdpPro/>
+            </depends>
+        </MST_PdpEnterprise>
+    </modules>
+</config> 

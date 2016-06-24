@@ -1,0 +1,800 @@
+StartFontMetrics 4.1
+FontName Aller-LightItalic
+FullName Aller Light Italic
+Notice 
+EncodingScheme FontSpecific
+FamilyName Aller Light
+Weight Italic
+Version Version 1.00
+Characters 219
+ItalicAngle -12.0
+Ascender 936
+Descender -247
+UnderlineThickness 50
+UnderlinePosition -75
+IsFixedPitch false
+FontBBox -114 -247 1352 936
+StartCharMetrics 256
+C 0 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 1 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 2 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 3 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 4 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 5 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 6 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 7 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 8 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 9 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 10 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 11 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 12 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 13 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 14 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 15 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 16 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 17 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 18 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 19 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 20 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 21 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 22 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 23 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 24 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 25 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 26 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 27 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 28 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 29 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 30 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 31 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 32 ; WX 237 ; N space ; B 96 -3 299 721 ;
+C 33 ; WX 269 ; N exclam ; B 96 -3 299 721 ;
+C 34 ; WX 361 ; N quotedbl ; B 124 448 431 721 ;
+C 35 ; WX 699 ; N numbersign ; B 84 28 735 693 ;
+C 36 ; WX 600 ; N dollar ; B 92 -121 588 808 ;
+C 37 ; WX 971 ; N percent ; B 116 -11 966 719 ;
+C 38 ; WX 708 ; N ampersand ; B 92 -12 778 731 ;
+C 39 ; WX 171 ; N quotesingle ; B 124 448 241 721 ;
+C 40 ; WX 303 ; N parenleft ; B 125 -168 408 778 ;
+C 41 ; WX 303 ; N parenright ; B -11 -169 272 777 ;
+C 42 ; WX 462 ; N asterisk ; B 135 361 508 721 ;
+C 43 ; WX 600 ; N plus ; B 144 131 565 570 ;
+C 44 ; WX 195 ; N comma ; B 6 -115 161 87 ;
+C 45 ; WX 335 ; N hyphen ; B 95 251 361 319 ;
+C 46 ; WX 195 ; N period ; B 55 -3 154 88 ;
+C 47 ; WX 349 ; N slash ; B 29 -3 455 722 ;
+C 48 ; WX 600 ; N zero ; B 100 -12 611 650 ;
+C 49 ; WX 600 ; N one ; B 130 0 529 648 ;
+C 50 ; WX 600 ; N two ; B 66 0 546 651 ;
+C 51 ; WX 600 ; N three ; B 61 -79 581 640 ;
+C 52 ; WX 600 ; N four ; B 73 -62 584 663 ;
+C 53 ; WX 600 ; N five ; B 75 -79 576 640 ;
+C 54 ; WX 600 ; N six ; B 120 -12 575 732 ;
+C 55 ; WX 600 ; N seven ; B 149 -75 629 640 ;
+C 56 ; WX 600 ; N eight ; B 96 -12 600 719 ;
+C 57 ; WX 600 ; N nine ; B 135 -97 590 647 ;
+C 58 ; WX 195 ; N colon ; B 55 -3 219 458 ;
+C 59 ; WX 195 ; N semicolon ; B -13 -115 230 458 ;
+C 60 ; WX 600 ; N less ; B 145 137 590 559 ;
+C 61 ; WX 600 ; N equal ; B 130 223 582 470 ;
+C 62 ; WX 600 ; N greater ; B 124 137 569 559 ;
+C 63 ; WX 461 ; N question ; B 155 -1 508 722 ;
+C 64 ; WX 966 ; N at ; B 95 -156 986 730 ;
+C 65 ; WX 573 ; N A ; B 43 -2 557 721 ;
+C 66 ; WX 576 ; N B ; B 103 -12 579 730 ;
+C 67 ; WX 580 ; N C ; B 121 -12 655 731 ;
+C 68 ; WX 682 ; N D ; B 103 -12 687 730 ;
+C 69 ; WX 519 ; N E ; B 103 0 599 719 ;
+C 70 ; WX 488 ; N F ; B 103 -2 568 719 ;
+C 71 ; WX 656 ; N G ; B 121 -12 655 731 ;
+C 72 ; WX 665 ; N H ; B 104 -2 688 721 ;
+C 73 ; WX 276 ; N I ; B 104 -2 299 721 ;
+C 74 ; WX 377 ; N J ; B 29 -12 405 719 ;
+C 75 ; WX 570 ; N K ; B 104 -2 657 721 ;
+C 76 ; WX 490 ; N L ; B 103 0 476 721 ;
+C 77 ; WX 793 ; N M ; B 83 -2 789 721 ;
+C 78 ; WX 672 ; N N ; B 103 -2 695 721 ;
+C 79 ; WX 704 ; N O ; B 121 -12 709 731 ;
+C 80 ; WX 555 ; N P ; B 103 -2 595 731 ;
+C 81 ; WX 704 ; N Q ; B 121 -134 709 731 ;
+C 82 ; WX 565 ; N R ; B 103 -2 581 731 ;
+C 83 ; WX 532 ; N S ; B 56 -12 574 731 ;
+C 84 ; WX 489 ; N T ; B 138 -2 586 719 ;
+C 85 ; WX 660 ; N U ; B 132 -12 691 721 ;
+C 86 ; WX 604 ; N V ; B 167 -2 683 721 ;
+C 87 ; WX 893 ; N W ; B 172 -2 967 721 ;
+C 88 ; WX 588 ; N X ; B 27 -2 666 721 ;
+C 89 ; WX 539 ; N Y ; B 145 -2 629 721 ;
+C 90 ; WX 527 ; N Z ; B 40 0 602 719 ;
+C 91 ; WX 336 ; N bracketleft ; B 65 -168 419 748 ;
+C 92 ; WX 348 ; N backslash ; B 146 -3 318 722 ;
+C 93 ; WX 318 ; N bracketright ; B -1 -168 353 748 ;
+C 94 ; WX 523 ; N asciicircum ; B 128 372 520 722 ;
+C 95 ; WX 481 ; N underscore ; B -12 -79 475 -24 ;
+C 96 ; WX 500 ; N grave ; B 271 590 457 725 ;
+C 97 ; WX 542 ; N a ; B 90 -12 546 522 ;
+C 98 ; WX 558 ; N b ; B 89 -12 550 737 ;
+C 99 ; WX 458 ; N c ; B 97 -12 501 522 ;
+C 100 ; WX 537 ; N d ; B 92 -12 575 737 ;
+C 101 ; WX 490 ; N e ; B 95 -12 513 522 ;
+C 102 ; WX 319 ; N f ; B -88 -244 464 743 ;
+C 103 ; WX 535 ; N g ; B 41 -244 546 522 ;
+C 104 ; WX 555 ; N h ; B 88 -2 540 737 ;
+C 105 ; WX 265 ; N i ; B 110 -2 287 721 ;
+C 106 ; WX 263 ; N j ; B -86 -244 287 721 ;
+C 107 ; WX 476 ; N k ; B 88 -3 504 737 ;
+C 108 ; WX 277 ; N l ; B 103 -9 271 737 ;
+C 109 ; WX 828 ; N m ; B 88 -2 813 522 ;
+C 110 ; WX 568 ; N n ; B 101 -2 553 522 ;
+C 111 ; WX 557 ; N o ; B 97 -12 557 522 ;
+C 112 ; WX 558 ; N p ; B 45 -238 550 522 ;
+C 113 ; WX 539 ; N q ; B 92 -238 549 522 ;
+C 114 ; WX 344 ; N r ; B 88 -2 419 514 ;
+C 115 ; WX 425 ; N s ; B 48 -12 445 522 ;
+C 116 ; WX 327 ; N t ; B 100 -11 389 655 ;
+C 117 ; WX 555 ; N u ; B 107 -12 559 512 ;
+C 118 ; WX 477 ; N v ; B 106 -3 531 513 ;
+C 119 ; WX 732 ; N w ; B 116 -3 776 513 ;
+C 120 ; WX 457 ; N x ; B 37 -3 507 513 ;
+C 121 ; WX 469 ; N y ; B 19 -247 519 513 ;
+C 122 ; WX 435 ; N z ; B 42 0 493 510 ;
+C 123 ; WX 376 ; N braceleft ; B 96 -168 460 751 ;
+C 124 ; WX 327 ; N bar ; B 104 -170 338 778 ;
+C 125 ; WX 376 ; N braceright ; B 16 -170 380 749 ;
+C 126 ; WX 454 ; N asciitilde ; B 91 352 504 457 ;
+C 127 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 128 ; WX 600 ; N Euro ; B 78 -12 669 718 ;
+C 129 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 130 ; WX 195 ; N quotesinglbase ; B 6 -115 161 87 ;
+C 131 ; WX 600 ; N florin ; B 54 -137 618 719 ;
+C 132 ; WX 365 ; N quotedblbase ; B 6 -115 331 87 ;
+C 133 ; WX 651 ; N ellipsis ; B 55 -3 610 88 ;
+C 134 ; WX 449 ; N dagger ; B 119 -170 475 721 ;
+C 135 ; WX 449 ; N daggerdbl ; B 63 -170 480 721 ;
+C 136 ; WX 500 ; N circumflex ; B 206 590 494 725 ;
+C 137 ; WX 1357 ; N perthousand ; B 116 -11 1352 719 ;
+C 138 ; WX 532 ; N Scaron ; B 56 -12 590 892 ;
+C 139 ; WX 322 ; N guilsinglleft ; B 85 43 378 491 ;
+C 140 ; WX 903 ; N OE ; B 121 -12 983 731 ;
+C 141 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 142 ; WX 527 ; N Zcaron ; B 40 0 602 892 ;
+C 143 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 144 ; WX 365 ; N quotedblbase ; B 6 -115 331 87 ;
+C 145 ; WX 200 ; N quoteleft ; B 145 519 270 721 ;
+C 146 ; WX 207 ; N quoteright ; B 139 518 294 720 ;
+C 147 ; WX 370 ; N quotedblleft ; B 145 519 440 721 ;
+C 148 ; WX 377 ; N quotedblright ; B 139 518 464 720 ;
+C 149 ; WX 375 ; N bullet ; B 128 220 353 445 ;
+C 150 ; WX 500 ; N endash ; B 43 251 555 318 ;
+C 151 ; WX 1000 ; N emdash ; B 43 251 1055 318 ;
+C 152 ; WX 500 ; N tilde ; B 191 604 507 699 ;
+C 153 ; WX 845 ; N trademark ; B 117 304 878 709 ;
+C 154 ; WX 425 ; N scaron ; B 48 -12 486 725 ;
+C 155 ; WX 352 ; N guilsinglright ; B 54 43 347 491 ;
+C 156 ; WX 861 ; N oe ; B 93 -12 884 522 ;
+C 157 ; WX 475 ; N .notdef ; B 96 -3 299 721 ;
+C 158 ; WX 435 ; N zcaron ; B 42 0 504 725 ;
+C 159 ; WX 539 ; N Ydieresis ; B 145 -2 629 870 ;
+C 160 ; WX 0 ; N uni00A0 ; B 0 0 0 0 ;
+C 161 ; WX 269 ; N exclamdown ; B 59 -202 262 522 ;
+C 162 ; WX 600 ; N cent ; B 164 -122 568 644 ;
+C 163 ; WX 600 ; N sterling ; B 110 0 626 720 ;
+C 164 ; WX 600 ; N currency ; B 103 100 611 608 ;
+C 165 ; WX 600 ; N yen ; B 93 -2 649 721 ;
+C 166 ; WX 157 ; N brokenbar ; B 15 -170 247 778 ;
+C 167 ; WX 527 ; N section ; B 98 -13 542 719 ;
+C 168 ; WX 500 ; N dieresis ; B 219 610 506 701 ;
+C 169 ; WX 864 ; N copyright ; B 118 -13 860 731 ;
+C 170 ; WX 500 ; N ordfeminine ; B 143 292 513 716 ;
+C 171 ; WX 537 ; N guillemotleft ; B 85 43 593 491 ;
+C 172 ; WX 600 ; N logicalnot ; B 140 90 552 364 ;
+C 173 ; WX 353 ; N uni00AD ; B 95 251 361 319 ;
+C 174 ; WX 864 ; N registered ; B 118 -13 860 731 ;
+C 175 ; WX 500 ; N macron ; B 200 624 483 685 ;
+C 176 ; WX 364 ; N degree ; B 118 442 404 726 ;
+C 177 ; WX 600 ; N plusminus ; B 105 1 565 570 ;
+C 178 ; WX 450 ; N twosuperior ; B 107 307 421 707 ;
+C 179 ; WX 450 ; N threesuperior ; B 119 295 437 707 ;
+C 180 ; WX 500 ; N acute ; B 278 590 464 725 ;
+C 181 ; WX 578 ; N mu ; B 38 -238 577 512 ;
+C 182 ; WX 544 ; N paragraph ; B 105 -6 579 726 ;
+C 183 ; WX 205 ; N periodcentered ; B 100 231 199 322 ;
+C 184 ; WX 500 ; N cedilla ; B 133 -241 348 22 ;
+C 185 ; WX 450 ; N onesuperior ; B 139 307 410 711 ;
+C 186 ; WX 500 ; N ordmasculine ; B 140 292 513 718 ;
+C 187 ; WX 567 ; N guillemotright ; B 54 43 562 491 ;
+C 188 ; WX 1050 ; N onequarter ; B 139 -2 939 711 ;
+C 189 ; WX 1050 ; N onehalf ; B 139 -2 950 711 ;
+C 190 ; WX 1050 ; N threequarters ; B 133 -2 932 709 ;
+C 191 ; WX 461 ; N questiondown ; B 95 -201 448 522 ;
+C 192 ; WX 573 ; N Agrave ; B 43 -2 557 892 ;
+C 193 ; WX 573 ; N Aacute ; B 43 -2 574 892 ;
+C 194 ; WX 573 ; N Acircumflex ; B 43 -2 557 892 ;
+C 195 ; WX 573 ; N Atilde ; B 43 -2 568 892 ;
+C 196 ; WX 573 ; N Adieresis ; B 43 -2 573 870 ;
+C 197 ; WX 573 ; N Aring ; B 43 -2 557 936 ;
+C 198 ; WX 849 ; N AE ; B 0 -3 929 719 ;
+C 199 ; WX 580 ; N Ccedilla ; B 121 -241 655 731 ;
+C 200 ; WX 519 ; N Egrave ; B 103 0 599 892 ;
+C 201 ; WX 519 ; N Eacute ; B 103 0 599 892 ;
+C 202 ; WX 519 ; N Ecircumflex ; B 103 0 599 892 ;
+C 203 ; WX 519 ; N Edieresis ; B 103 0 599 870 ;
+C 204 ; WX 276 ; N Igrave ; B 104 -2 326 892 ;
+C 205 ; WX 276 ; N Iacute ; B 104 -2 419 892 ;
+C 206 ; WX 276 ; N Icircumflex ; B 104 -2 415 892 ;
+C 207 ; WX 276 ; N Idieresis ; B 104 -2 428 870 ;
+C 208 ; WX 694 ; N Eth ; B 101 -12 701 730 ;
+C 209 ; WX 672 ; N Ntilde ; B 103 -2 695 892 ;
+C 210 ; WX 704 ; N Ograve ; B 121 -12 709 892 ;
+C 211 ; WX 704 ; N Oacute ; B 121 -12 709 892 ;
+C 212 ; WX 704 ; N Ocircumflex ; B 121 -12 709 892 ;
+C 213 ; WX 704 ; N Otilde ; B 121 -12 709 892 ;
+C 214 ; WX 704 ; N Odieresis ; B 121 -12 709 870 ;
+C 215 ; WX 600 ; N multiply ; B 149 183 549 539 ;
+C 216 ; WX 704 ; N Oslash ; B 90 -17 740 731 ;
+C 217 ; WX 660 ; N Ugrave ; B 132 -12 691 892 ;
+C 218 ; WX 660 ; N Uacute ; B 132 -12 691 892 ;
+C 219 ; WX 660 ; N Ucircumflex ; B 132 -12 691 892 ;
+C 220 ; WX 660 ; N Udieresis ; B 132 -12 691 870 ;
+C 221 ; WX 539 ; N Yacute ; B 145 -2 629 892 ;
+C 222 ; WX 563 ; N Thorn ; B 104 -2 573 721 ;
+C 223 ; WX 558 ; N germandbls ; B -114 -244 551 742 ;
+C 224 ; WX 542 ; N agrave ; B 90 -12 546 725 ;
+C 225 ; WX 542 ; N aacute ; B 90 -12 549 725 ;
+C 226 ; WX 542 ; N acircumflex ; B 90 -12 546 725 ;
+C 227 ; WX 542 ; N atilde ; B 90 -12 564 699 ;
+C 228 ; WX 542 ; N adieresis ; B 90 -12 553 701 ;
+C 229 ; WX 542 ; N aring ; B 90 -12 546 795 ;
+C 230 ; WX 817 ; N ae ; B 90 -12 840 522 ;
+C 231 ; WX 458 ; N ccedilla ; B 97 -241 501 522 ;
+C 232 ; WX 490 ; N egrave ; B 95 -12 513 725 ;
+C 233 ; WX 490 ; N eacute ; B 95 -12 513 725 ;
+C 234 ; WX 490 ; N ecircumflex ; B 95 -12 513 725 ;
+C 235 ; WX 490 ; N edieresis ; B 95 -12 514 701 ;
+C 236 ; WX 265 ; N igrave ; B 110 -2 297 725 ;
+C 237 ; WX 265 ; N iacute ; B 110 -2 345 725 ;
+C 238 ; WX 265 ; N icircumflex ; B 70 -2 358 725 ;
+C 239 ; WX 265 ; N idieresis ; B 83 -2 370 701 ;
+C 240 ; WX 560 ; N eth ; B 94 -12 598 738 ;
+C 241 ; WX 568 ; N ntilde ; B 101 -2 553 699 ;
+C 242 ; WX 557 ; N ograve ; B 97 -12 557 725 ;
+C 243 ; WX 557 ; N oacute ; B 97 -12 557 725 ;
+C 244 ; WX 557 ; N ocircumflex ; B 97 -12 557 725 ;
+C 245 ; WX 557 ; N otilde ; B 97 -12 557 699 ;
+C 246 ; WX 557 ; N odieresis ; B 97 -12 557 701 ;
+C 247 ; WX 600 ; N divide ; B 153 131 591 576 ;
+C 248 ; WX 557 ; N oslash ; B 63 -19 581 526 ;
+C 249 ; WX 555 ; N ugrave ; B 107 -12 559 725 ;
+C 250 ; WX 555 ; N uacute ; B 107 -12 559 725 ;
+C 251 ; WX 555 ; N ucircumflex ; B 107 -12 559 725 ;
+C 252 ; WX 555 ; N udieresis ; B 107 -12 559 701 ;
+C 253 ; WX 469 ; N yacute ; B 19 -247 519 725 ;
+C 254 ; WX 550 ; N thorn ; B 41 -238 546 737 ;
+C 255 ; WX 469 ; N ydieresis ; B 19 -247 519 701 ;
+EndCharMetrics
+StartKernData
+StartKernPairs 521
+KPX ampersand A -25
+KPX ampersand J -30
+KPX ampersand T -40
+KPX ampersand V -20
+KPX ampersand X -25
+KPX ampersand Y -30
+KPX ampersand Z -25
+KPX ampersand AE -30
+KPX parenleft f 60
+KPX parenleft j 60
+KPX asterisk A -56
+KPX asterisk a -20
+KPX asterisk AE -91
+KPX hyphen S -35
+KPX hyphen T -60
+KPX hyphen V -21
+KPX hyphen Y -49
+KPX hyphen Z -10
+KPX hyphen x -20
+KPX hyphen z -30
+KPX period C -20
+KPX period T -73
+KPX period U -20
+KPX period V -70
+KPX period W -50
+KPX period Y -80
+KPX period t -30
+KPX period v -60
+KPX period w -60
+KPX period y -50
+KPX slash A -49
+KPX slash a -40
+KPX slash c -50
+KPX slash m -30
+KPX slash s -30
+KPX slash u -40
+KPX slash x -25
+KPX slash z -30
+KPX slash AE -70
+KPX colon T -43
+KPX colon Y -30
+KPX at T -50
+KPX at V -30
+KPX at W -10
+KPX at X -20
+KPX at Y -40
+KPX at Z -20
+KPX at z -10
+KPX A asterisk -70
+KPX A hyphen -20
+KPX A C -20
+KPX A T -59
+KPX A U -30
+KPX A V -70
+KPX A W -48
+KPX A Y -60
+KPX A backslash -99
+KPX A t -30
+KPX A u -10
+KPX A v -35
+KPX A w -40
+KPX A y -20
+KPX A guillemotleft -20
+KPX A eth -10
+KPX A quoteleft -106
+KPX A quoteright -80
+KPX B S -15
+KPX B T -30
+KPX B V -40
+KPX B W -20
+KPX B Y -35
+KPX B backslash -42
+KPX B v -20
+KPX B w -20
+KPX B y -15
+KPX B z -5
+KPX B quoteleft -28
+KPX C C -40
+KPX C a -20
+KPX C c -20
+KPX C t -20
+KPX C u -20
+KPX C v -50
+KPX C w -50
+KPX C y -50
+KPX C guillemotleft -20
+KPX C AE 10
+KPX C eth -20
+KPX D A -10
+KPX D J -25
+KPX D S -30
+KPX D T -40
+KPX D V -30
+KPX D W -20
+KPX D X -10
+KPX D Y -40
+KPX D Z -20
+KPX D backslash -50
+KPX D z -20
+KPX D AE -10
+KPX D quoteleft -35
+KPX E at -20
+KPX E C -25
+KPX E a -20
+KPX E c -30
+KPX E l -15
+KPX E t -10
+KPX E u -30
+KPX E v -30
+KPX E w -30
+KPX E y -30
+KPX E eth -20
+KPX F period -57
+KPX F slash -49
+KPX F at -20
+KPX F A -60
+KPX F C -20
+KPX F J -30
+KPX F M -15
+KPX F S -15
+KPX F a -45
+KPX F c -45
+KPX F m -40
+KPX F s -40
+KPX F u -40
+KPX F v -30
+KPX F w -30
+KPX F x -50
+KPX F y -30
+KPX F z -50
+KPX F AE -92
+KPX F eth -40
+KPX G T -55
+KPX G U -10
+KPX G V -50
+KPX G W -45
+KPX G Y -55
+KPX G backslash -57
+KPX G v -20
+KPX G w -20
+KPX G y -15
+KPX G quoteleft -29
+KPX G quoteright -20
+KPX J A -20
+KPX J J -10
+KPX J Z -10
+KPX J s -10
+KPX J z -10
+KPX J AE -10
+KPX K hyphen -35
+KPX K at -20
+KPX K C -40
+KPX K U -20
+KPX K a -20
+KPX K c -30
+KPX K l -10
+KPX K t -10
+KPX K u -25
+KPX K v -45
+KPX K w -50
+KPX K y -40
+KPX K guillemotleft -30
+KPX K eth -30
+KPX L asterisk -80
+KPX L hyphen -49
+KPX L at -15
+KPX L C -65
+KPX L T -90
+KPX L U -40
+KPX L V -100
+KPX L W -60
+KPX L Y -100
+KPX L backslash -127
+KPX L a -10
+KPX L c -20
+KPX L t -40
+KPX L u -20
+KPX L v -70
+KPX L w -70
+KPX L y -50
+KPX L guillemotleft -40
+KPX L eth -20
+KPX L quoteleft -90
+KPX L quoteright -80
+KPX M T -30
+KPX M U -10
+KPX M V -40
+KPX M W -20
+KPX M Y -30
+KPX M backslash -28
+KPX O period -10
+KPX O A -25
+KPX O J -20
+KPX O S -20
+KPX O T -40
+KPX O V -30
+KPX O W -15
+KPX O X -20
+KPX O Y -35
+KPX O Z -20
+KPX O backslash -42
+KPX O s -5
+KPX O z -10
+KPX O AE -15
+KPX P period -91
+KPX P slash -42
+KPX P A -63
+KPX P J -50
+KPX P S -10
+KPX P T -20
+KPX P X -30
+KPX P Z -35
+KPX P a -35
+KPX P c -25
+KPX P s -10
+KPX P guillemotleft -20
+KPX P AE -92
+KPX P eth -35
+KPX R C -10
+KPX R T -25
+KPX R V -15
+KPX R W -5
+KPX R Y -20
+KPX R backslash -35
+KPX R a -20
+KPX R c -25
+KPX R u -20
+KPX R w -10
+KPX R guillemotleft -20
+KPX R eth -30
+KPX S C -10
+KPX S S -10
+KPX S T -20
+KPX S V -30
+KPX S W -16
+KPX S Y -10
+KPX S backslash -30
+KPX S t -10
+KPX S v -20
+KPX S w -25
+KPX S y -20
+KPX S z -10
+KPX T ampersand -20
+KPX T hyphen -70
+KPX T period -65
+KPX T slash -71
+KPX T colon -64
+KPX T at -60
+KPX T A -58
+KPX T C -50
+KPX T J -20
+KPX T M -25
+KPX T S -10
+KPX T a -100
+KPX T c -100
+KPX T m -80
+KPX T s -100
+KPX T u -90
+KPX T v -80
+KPX T w -80
+KPX T x -90
+KPX T y -80
+KPX T z -110
+KPX T guillemotleft -70
+KPX T guillemotright -50
+KPX T AE -85
+KPX T eth -70
+KPX T quoteleft 20
+KPX U slash -20
+KPX U A -25
+KPX U J -20
+KPX U Z -5
+KPX U s -10
+KPX U x -20
+KPX U z -15
+KPX U AE -20
+KPX V hyphen -28
+KPX V period -60
+KPX V slash -49
+KPX V at -30
+KPX V A -50
+KPX V C -5
+KPX V J -15
+KPX V M -15
+KPX V a -60
+KPX V c -50
+KPX V m -40
+KPX V s -40
+KPX V u -35
+KPX V w -25
+KPX V x -30
+KPX V y -10
+KPX V z -40
+KPX V guillemotleft -10
+KPX V guillemotright -10
+KPX V AE -79
+KPX V eth -50
+KPX V quoteleft 20
+KPX W period -40
+KPX W slash -50
+KPX W at -20
+KPX W A -50
+KPX W C -5
+KPX W J -20
+KPX W M -10
+KPX W a -40
+KPX W c -45
+KPX W m -20
+KPX W s -30
+KPX W u -20
+KPX W z -30
+KPX W guillemotleft -10
+KPX W guillemotright -10
+KPX W AE -59
+KPX X at -20
+KPX X C -35
+KPX X a -10
+KPX X c -20
+KPX X l -10
+KPX X t -10
+KPX X u -20
+KPX X v -30
+KPX X w -35
+KPX X y -35
+KPX X guillemotleft -10
+KPX X eth -20
+KPX Y hyphen -56
+KPX Y period -90
+KPX Y slash -64
+KPX Y colon -30
+KPX Y at -50
+KPX Y A -60
+KPX Y C -20
+KPX Y J -20
+KPX Y M -25
+KPX Y S -10
+KPX Y a -85
+KPX Y c -90
+KPX Y m -60
+KPX Y s -70
+KPX Y u -60
+KPX Y v -30
+KPX Y w -30
+KPX Y x -50
+KPX Y z -60
+KPX Y guillemotleft -60
+KPX Y guillemotright -30
+KPX Y AE -102
+KPX Y eth -80
+KPX Y quoteleft 30
+KPX Z hyphen -28
+KPX Z at -30
+KPX Z C -40
+KPX Z U -5
+KPX Z a -20
+KPX Z c -35
+KPX Z u -20
+KPX Z v -20
+KPX Z w -20
+KPX Z y -20
+KPX Z guillemotleft -30
+KPX Z eth -25
+KPX bracketleft f 60
+KPX bracketleft j 60
+KPX backslash C -30
+KPX backslash T -106
+KPX backslash U -35
+KPX backslash V -77
+KPX backslash W -63
+KPX backslash Y -92
+KPX backslash t -10
+KPX backslash v -30
+KPX backslash w -30
+KPX backslash y -30
+KPX a backslash -50
+KPX a quoteleft -60
+KPX b backslash -50
+KPX b w -5
+KPX b x -10
+KPX b z -25
+KPX b quoteleft -70
+KPX c ampersand -20
+KPX c hyphen -11
+KPX c at -10
+KPX c backslash -20
+KPX c a -15
+KPX c c -25
+KPX c u -10
+KPX c guillemotleft -20
+KPX c eth -20
+KPX e at -10
+KPX e backslash -30
+KPX e a -5
+KPX e y 15
+KPX e eth -5
+KPX e quoteleft -50
+KPX f ampersand 15
+KPX f parenright 35
+KPX f asterisk 30
+KPX f question 50
+KPX f backslash 64
+KPX f bracketright 42
+KPX f a -20
+KPX f c -10
+KPX f braceright 35
+KPX f quoteleft 49
+KPX f quoteright 28
+KPX g backslash -30
+KPX g s -5
+KPX g v -10
+KPX g z -10
+KPX g quoteleft -40
+KPX h asterisk -20
+KPX h backslash -50
+KPX h v -10
+KPX h w -20
+KPX h y -10
+KPX h quoteleft -63
+KPX k ampersand -20
+KPX k hyphen -20
+KPX k at -20
+KPX k backslash -35
+KPX k a -15
+KPX k c -20
+KPX k l -10
+KPX k u -10
+KPX k w -15
+KPX k guillemotleft -20
+KPX k eth -20
+KPX k quoteleft -40
+KPX l backslash -30
+KPX l l -10
+KPX l v -10
+KPX l w -10
+KPX l y -10
+KPX l quoteleft -20
+KPX o asterisk -20
+KPX o backslash -40
+KPX o v -10
+KPX o z -15
+KPX o quoteleft -84
+KPX o quoteright -20
+KPX q backslash -30
+KPX q quoteleft -40
+KPX r ampersand -10
+KPX r period -45
+KPX r a -15
+KPX r c -10
+KPX r eth -15
+KPX s backslash -30
+KPX s quoteleft -42
+KPX t backslash -10
+KPX t a -5
+KPX t c -10
+KPX t eth -10
+KPX u backslash -25
+KPX u quoteleft -45
+KPX v ampersand -10
+KPX v period -50
+KPX v slash -30
+KPX v backslash -10
+KPX v a -10
+KPX v c -5
+KPX v eth -10
+KPX w ampersand -10
+KPX w period -50
+KPX w slash -30
+KPX w backslash -15
+KPX w a -10
+KPX w eth -5
+KPX x hyphen -20
+KPX x quoteleft -30
+KPX y period -40
+KPX y slash -20
+KPX y a -10
+KPX y quoteleft -30
+KPX z ampersand -10
+KPX z hyphen -20
+KPX z at -10
+KPX z backslash -15
+KPX z a -20
+KPX z c -15
+KPX z u -15
+KPX z eth -10
+KPX z quoteleft -30
+KPX braceleft f 70
+KPX braceleft j 70
+KPX guillemotleft T -30
+KPX guillemotleft f 40
+KPX guillemotleft t 30
+KPX guillemotright S -20
+KPX guillemotright T -70
+KPX guillemotright V -40
+KPX guillemotright W -20
+KPX guillemotright Y -70
+KPX questiondown f 80
+KPX questiondown j 70
+KPX questiondown germandbls 90
+KPX Thorn A -30
+KPX Thorn J -40
+KPX Thorn S -30
+KPX Thorn T -70
+KPX Thorn V -40
+KPX Thorn W -15
+KPX Thorn X -40
+KPX Thorn Y -50
+KPX Thorn Z -50
+KPX Thorn AE -50
+KPX eth z -15
+KPX quoteleft A -50
+KPX quoteleft AE -90
+KPX quotesinglbase C -30
+KPX quotesinglbase T -99
+KPX quotesinglbase U -30
+KPX quotesinglbase V -99
+KPX quotesinglbase W -71
+KPX quotesinglbase Y -106
+KPX quotesinglbase t -10
+KPX quotesinglbase v -40
+KPX quotesinglbase w -40
+KPX quotesinglbase y -30
+EndKernPairs
+EndKernData
+EndFontMetrics

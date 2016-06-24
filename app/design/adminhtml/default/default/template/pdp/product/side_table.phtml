@@ -1,0 +1,126 @@
+<?php
+$productId = $this->getData('product_id');
+$sides = Mage::getModel('pdp/pdpside')->getDesignSides($productId);
+$deleteSideUrl = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/deleteside/");
+$editUrl = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/addNewSide/", array("productid" => $productId));
+$inlineUpdateUrl = Mage::helper("adminhtml")->getUrl("adminhtml/pdpadmin_designarea/inlineUpdate/");
+$productConfigs = Mage::helper("pdp")->getProductConfig($productId);
+?>
+<script src="<?php echo $this->getJsUrl('pdp/backend/js/pdpdesign.js') ?>"></script>
+<input type="hidden" name="inline_input_url" id="inline_input_url" value="<?php echo $inlineUpdateUrl ?>" />
+<?php if ($sides->count()) : ?>
+	<style type="text/css">
+		.design-area-table {width: 100%;border-collapse: collapse;}
+		.design-area-table td, .design-area-table th {
+            border: 1px solid #CCCCCC;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .design-area-table .delete_th{
+            width: 50px;
+        }
+        ul.product-colors li {
+            display: inline-block;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        ul.product-colors li:hover {
+            border: 1px solid #006699;
+        }
+        ul.product-colors li.active {
+            border: 1px solid #D33939;
+        }
+        ul.product-colors li span {
+            background: #db5151 none repeat scroll 0 0;
+            padding: 2px 9px;
+            width: 100%;
+        }
+	</style>
+	<table class="design-area-table">
+		<tr>
+			<th><?php echo $this->__('Side Name') ?></th>
+			<th><?php echo $this->__('Action') ?></th>
+			<!--<th>Design Colors</th>-->
+			<th><?php echo $this->__('Price') ?></th>
+			<th><?php echo $this->__('Position') ?></th>
+			<th class="delete_th">&nbsp;</th>
+			<th><?php echo $this->__('Product Colors') ?></th>
+			<th><?php echo $this->__('Template Library') ?></th>
+            <!--<th><?php echo $this->__('View All Samples') ?></th>-->
+		</tr>
+        <?php $rowCounter = 0; ?>
+		<?php foreach ($sides as $side) : ?>
+        <?php $rowCounter++; ?>
+		<tr>
+			<td><?php echo $this->__($side->getLabel()) ?></td>
+			<td><button class="edit_side" title="<?php echo $this->__("Edit '" .$side->getLabel() . "'" ) ?>" rel="<?php echo $editUrl . "side_id/" . $side->getId() ?>" type="button"><?php echo $this->__('Edit') ?></button></td>
+			<td>
+				<div class='design-area-input'>
+					<input type="text" class="input-text validate-number pdp-inline-input" value="<?php echo $side->getPrice() ?>" id="pdp_price_<?php echo $side->getId() ?>">
+				</div>
+			</td>
+            <td><input type="text" class="input-text validate-number pdp-inline-input" value="<?php echo $side->getPosition() ?>" id="pdp_position_<?php echo $side->getId() ?>"></td>
+            <td><button type="button" rel="<?php echo $deleteSideUrl . "side_id/" . $side->getId() ?>" class="side_delete_button"><?php echo $this->__('Delete') ?></button></td>
+            <?php if ($rowCounter == 1) : ?>
+			<td rowspan="<?php echo $sides->count() ?>">
+                <?php $isProductTabEnabled = Mage::helper("pdp")->isProductColorTabEnable($productId); ?>
+                <?php $productDesignColor = Mage::helper("pdp")->getProductDesignColors($productId); ?>
+				<?php if(isset($productDesignColor['product_color_sides']) && !empty($productDesignColor['product_color_sides']) && $isProductTabEnabled) : ?>
+                <?php echo $this->__('Avaiable Colors') ?>
+                <?php $defaultColor = (isset($productConfigs['default_color'])) ? $productConfigs['default_color'] : "default"; ?>
+                <ul class="product-colors">
+                    <?php //Original Side Color ?>
+                    <?php if($productDesignColor['default_side'][0]['color_code'] != "") : ?>
+                    <li rel="default" <?php echo ($defaultColor == "default") ? 'class="active"' : ''; ?> ><span style="background: #<?php echo $productDesignColor['default_side'][0]['color_code'] ?>" title="<?php echo $productDesignColor['default_side'][0]['color_name'] ?>"></span></li>
+                    <?php endif; ?>
+                    <?php foreach($productDesignColor['product_color_sides'] as $_productColor) :?>
+                    <?php //Zend_Debug::dump($_productColor->getData()); ?>
+                    <li rel="<?php echo $_productColor['id'] ?>" <?php echo ($defaultColor == $_productColor['id']) ? 'class="active"' : ''; ?> ><span style="background: #<?php echo $_productColor['color_code'] ?>" title="<?php echo $_productColor['color_name'] ?>"></span></li>
+                    <?php endforeach; ?>
+                </ul>
+                <br/>
+                <?php else: ?>
+                <p><i><?php echo $this->__("This option commonly used in design T-shirt"); ?></i></p>
+                <?php endif; ?>
+                <button id="addcolor_btn_<?php echo $side->getId() ?>" type="button" class="addcolor-btn"><?php echo $this->__('Add Product Color') ?></button><br/><br/>
+				<button id="viewcolor_btn_<?php echo $side->getId() ?>" type="button" class="viewcolor-btn"><?php echo $this->__('View Product Colors') ?></button>
+			</td>
+            <?php endif; ?>
+			<?php if ($rowCounter == 1) : ?>
+			<td rowspan="<?php echo $sides->count() ?>">
+				<!--<button id="sample_btn_<?php echo $side->getId() ?>" type="button" class="create-sample-btn"><?php echo $this->__('Design Template') ?></button>-->
+                <button type="button" class="view-design-btn"><?php echo $this->__('View Template Library') ?></button>
+                <?php $defaultTemplateData = Mage::getModel("pdp/admintemplate")->getDefaultDesignData($productId); ?>
+                <?php if(!empty($defaultTemplateData)) : ?>
+                <div class="auto-replace-pattern">
+                    <?php $_designThumbnail = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "pdp/images/thumbnail/" . $defaultTemplateData['template_thumbnail'] ?>
+                    <span><?php echo $this->__("Default Template") ?></span>
+                    <p><img width="150px" src="<?php echo $_designThumbnail ?>"/></p>
+                    <?php $checked = (isset($productConfigs['auto_replace_pattern']) && $productConfigs['auto_replace_pattern'] == 1) ? 'checked="checked"' : ''; ?>
+                    <p>
+                        <input <?php echo $checked ?> type="checkbox" id="auto_replace_pattern" />
+                        <?php echo $this->__("Auto replace product image and thumbnails by default template design") ?>
+                    </p>
+                    <strong><?php echo $this->__("NOTE") ?></strong>: <i><?php echo $this->__("This feature might not working properly with custom theme.") ?></i>
+                </div>
+                <script>
+                jQuery("#auto_replace_pattern").click(function() {
+                    PdpSide.updateProductConfig();
+                });
+                </script>
+                <?php endif; ?>
+			</td>
+            <?php endif; ?>
+            <?php if ($rowCounter == 1) : ?>
+                <!--<td rowspan="<?php echo $sides->count() ?>">
+                    <button type="button" class="view-design-btn"><?php echo $this->__('View Samples') ?></button>
+                </td>-->
+            <?php endif; ?>
+			<!--<td><button class="preview-item" id="preview_btn_<?php //echo $area->getId() ?>" type="button" class="">Preview</button></td>-->
+		</tr>
+		<?php endforeach; ?>
+	</table>
+<?php else : ?>
+	<p><?php echo $this->__("No side found. Let start by adding new side :)") ?></p>
+<?php endif; ?>

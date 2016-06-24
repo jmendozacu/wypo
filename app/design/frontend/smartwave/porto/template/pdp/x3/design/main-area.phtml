@@ -1,0 +1,45 @@
+<?php 
+/* Translation for loading popup */ ?>
+<style>
+.pdploading::before {
+  content: "<?php echo $this->__('Saving data, please wait...');?>";
+}
+.pace.pace-active::before {
+  content: "<?php echo $this->__('Please wait...');?>";
+}
+</style>
+<?php $jsUrl = $this->getX3JsUrl(); ?>
+<div class="pdc-scroll">
+    <div class="scrollbar-map">
+        <div class="scroll-element_outer">
+            <div class="scroll-element_size">
+                <div class="scroll-element_track"></div>
+                <div class="scroll-bar"></div>
+            </div>
+        </div>									
+        <div class="pdc-design-view">		 																				
+            <div class="pdc-design-area">											
+                <div id="product-image-wrap" class="pdc-product-image" pdc-data="main-canvas">														
+                    
+                </div>
+            </div>																													
+        </div>
+    </div>
+    <div class="pdc-main-bottom">
+        <?php $productConfigs = $this->getProductConfig(); ?>
+        <?php if(!isset($productConfigs['enable_zoom_btn']) || isset($productConfigs['enable_zoom_btn']) && $productConfigs['enable_zoom_btn'] == 1): ?>
+		<div class="pdc-zoom hidden-xs hidden-sm"><!--Desktop Zoom-->
+			<button type="button" class="btn-zoom btn-zoom-in" data-toggle="tooltip" data-placement="left" title="<?php echo $this->__("Zoom In") ?>"><span><i class="fa fa-search-plus"></i></span></button>
+			<input type="text" disabled="disabled" class="input-zoom" value="100%"/>
+			<button type="button" class="btn-zoom btn-zoom-out" data-toggle="tooltip" data-placement="left" title="<?php echo $this->__("Zoom Out") ?>"><span><i class="fa fa-search-minus"></i></span></button>
+			<button type="button" class="btn-zoom btn-zoom-reset" data-toggle="tooltip" data-placement="left" title="<?php echo $this->__("Reset Zoom") ?>"><span><i class="fa fa-compress"></i></span></button>
+		</div>
+        <?php endif; ?>
+        <div id="pdc_sides" class="sides-tab">
+			<h3><label><?php echo $this->__('Product Side');?></label> <span class="icon"><i class="fa fa-bars"></i></span></h3>
+            <ul class="tab-sides" pdc-data="side-list">
+                
+            </ul>
+        </div>	
+    </div>
+</div>

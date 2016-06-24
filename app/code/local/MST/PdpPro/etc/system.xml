@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <mst translate="label" module="pdp">
+            <label>Products Designer Canvas</label>
+            <sort_order>201</sort_order>
+        </mst>
+    </tabs>
+	<sections>
+		<pdp translate="label" module="pdp">
+			<label>Settings (PDC Pro)</label>
+			<tab>mst</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>778</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<customer_action translate="label">
+					<label>Customer Actions Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>120</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<is_instagram translate="label">
+							<label>Allow Get Instagram Photo</label>
+							<comment><![CDATA[<p><strong>YES</strong> to allow user get photos from their Instagram account. (Available on <b>Pro</b> and <b>ENTERPRISE</b> version)</p>]]></comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</is_instagram>
+						<instagram_api translate="label">
+							<label>Instagram API</label>
+							<frontend_type>text</frontend_type>
+							<comment><![CDATA[<p>Enter Instagram API. <a href="#" target="_blank">How to get Instagram API and Secret key</a></p>]]></comment>
+							<sort_order>105</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<depends><is_instagram>1</is_instagram></depends>
+						</instagram_api>
+						<instagram_key translate="label">
+							<label>Instagram Secret Key</label>
+							<frontend_type>text</frontend_type>
+							<comment>Enter Instagram Secret Key.</comment>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<depends><is_instagram>1</is_instagram></depends>
+						</instagram_key>
+					</fields>
+				</customer_action>
+			</groups>
+		</pdp>
+	</sections>
+</config>
