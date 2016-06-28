@@ -416,7 +416,7 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
             $t = $this->tablename('udropship_vendor');
              $uvendorid = $this->selectone("SELECT vendor_id FROM $t WHERE vendor_name=?", array($ivalue), "vendor_id");
          }
-         // bugfix for udropship_vendor, if not found set it to empty
+         // bugfix for udropship_vendor, if not found set it to emptya
         if (!isset($uvendorid)) {
              $uvendorid = '';
          }
