@@ -3885,20 +3885,3 @@ i.ajax-loader.medium{width:24px;height:24px;border-width:2px 3px 1px 0}
     .rating-box .rating{float:left;height:12px;position:absolute;left:0;top:0;overflow:hidden}
     .rating-box .rating:before{font-family:"porto";content:"\e852\20\e852\20\e852\20\e852\20\e852";width:65px;height:12px;color:#ffc600;display:inline;font-size:11px;line-height:12px;white-space:nowrap}
 }
-
-
-
-/*******   custom style   ********/
-.col-main .product-view .product-shop .product-info { display:none; }
-.col-main .product-view .product-shop .add-to-box { display:none; }
-.col-main .product-view .product-shop #product-options-wrapper { display:none; }
-.col-main .product-view .product-shop .product-options-bottom { display:none; }
-.col-right .product-view .product-collateral { display:none; }
-.col-right .product-view .product-essential .product-img-box { display:none; }
-.col-right .product-view .product-essential .product-shop { width:100%; padding-bottom:30px;}
-.col-right .product-view .product-essential .product-shop .product-name { display:none; }
-.col-right .product-view .product-essential .product-shop .no-rating { display:none; }
-.col-right .product-view .product-essential .product-info { margin-top:0; }
-.col-right .product-view .product-essential .add-to-box { padding: 20px 0; }
-.col-right .product-view .product-essential .add-to-box .btn-cart { margin-right:0; }
-

@@ -23,7 +23,7 @@
         <div class="col-sm-12 col-md-8 col-lg-9">
             <div class="cart-table-wrap">
                 <?php echo $this->getChildHtml('form_before') ?>
-                <form action="<?php echo $this->getFormActionUrl() ?>" method="post">
+                <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
                     <?php echo $this->getBlockHtml('formkey'); ?>
                     <fieldset>
                         <table id="shopping-cart-table" class="data-table cart-table">

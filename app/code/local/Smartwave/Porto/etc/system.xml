@@ -2,7 +2,7 @@
 <config>
     <tabs>
         <portotheme translate="label" module="porto">
-            <label>Porto(2.2.1)</label>
+            <label>Porto(2.3.0)</label>
             <sort_order>101</sort_order>
         </portotheme>
     </tabs>

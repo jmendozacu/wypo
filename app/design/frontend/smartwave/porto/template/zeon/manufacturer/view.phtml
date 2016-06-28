@@ -85,12 +85,12 @@ var i = 0;
                     <?php
                         if(Mage::getStoreConfig("porto_settings/category/alternative_image", $code)){
                     ?>
-                        <img id="product-collection-image-<?php echo $_product->getId(); ?>" class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                        <img class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
                         <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"/>
                     <?php
                         } else {
                     ?>
-                        <img id="product-collection-image-<?php echo $_product->getId(); ?>" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                        <img src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
                     <?php
                         }
                     ?>
@@ -190,15 +190,6 @@ var i = 0;
                     ?>
                     <?php endif; ?>
                     <?php endif; ?>
-					<?php
-						if ($this->getChild('name.after')) {
-							$_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
-							foreach ($_nameAfterChildren as $_nameAfterChildName) {
-								$_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);	$_nameAfterChild->setProduct($_product);
-								echo $_nameAfterChild->toHtml();
-							}
-						}
-					?>
                     <div class="short-desc">
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                     </div>
@@ -323,8 +314,8 @@ var i = 0;
                     <?php
                         if(Mage::getStoreConfig("porto_settings/category/alternative_image", $code)){
                     ?>
-                        <img id="product-collection-image-<?php echo $_product->getId(); ?>" class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
-                        <img id="product-collection-image-<?php echo $_product->getId(); ?>" class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"/>
+                        <img class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                        <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"/>
                     <?php
                         } else {
                     ?>
@@ -428,15 +419,6 @@ var i = 0;
                     ?>
                     <?php endif; ?>
                     <?php endif; ?>
-					<?php
-						if ($this->getChild('name.after')) {
-							$_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
-							foreach ($_nameAfterChildren as $_nameAfterChildName) {
-								$_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);	$_nameAfterChild->setProduct($_product);
-								echo $_nameAfterChild->toHtml();
-							}
-						}
-					?>
                     <?php if(Mage::getStoreConfig("porto_settings/category/product_price", $code)):?>
                     <?php echo $this->getPriceHtml($_product, true) ?>
                     <?php endif; ?>
@@ -514,15 +496,3 @@ var i = 0;
 <?php  endif; ?>
     </div>
 </div>
-<?php
-// Provides a block where additional page components may be attached, primarily good for in-page JavaScript
-if ($this->getChild('after')) {
-    $_afterChildren = $this->getChild('after')->getSortedChildren();
-    foreach ($_afterChildren as $_afterChildName) {
-        $_afterChild = $this->getChild('after')->getChild($_afterChildName);
-        //set product collection on after blocks
-        $_afterChild->setProductCollection($_productCollection);
-        echo $_afterChild->toHtml();
-    }
-}
-?>

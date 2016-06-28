@@ -37,7 +37,7 @@ var i = 0;
     <?php $_iterator = 0; ?>
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
-	<?php $product = Mage::getModel('catalog/product')->load($_product->getId()); ?>
+	<?php $product = $_product; //Mage::getModel('catalog/product')->load($_product->getId()); ?>
         <li class="item"><div class="item-area">
                 <div class="product-image-area">
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
@@ -93,15 +93,17 @@ var i = 0;
                         $specialprice = $product->getFinalPrice();
                         $orgprice = $product->getPrice();
                         // Get the Special Price FROM date
-                        $specialPriceFromDate = $product->getSpecialFromDate();
+                        $now = date("Y-m-d");
+                        $specialPriceFromDate = substr($product->getSpecialFromDate(),0,10);
                         // Get the Special Price TO date
-                        $specialPriceToDate = $product->getSpecialToDate();
+                        $specialPriceToDate = substr($product->getSpecialToDate(),0,10);
                         // Get Current date
                         $today =  time();
                      
                         if ($specialprice<$orgprice){
                             $save_percent = 100-round(($specialprice/$orgprice)*100);
-                            if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)){
+                            if ($specialPriceToDate != '' || $specialPriceFromDate != ''){
+                            if (($specialPriceToDate != '' && $specialPriceFromDate != '' && $now>=$specialPriceFromDate && $now<=$specialPriceToDate) || ($specialPriceToDate == '' && $now >=$specialPriceFromDate) || ($specialPriceFromDate == '' && $now<=$specialPriceToDate)){
                                 if(Mage::getStoreConfig("porto_settings/product_label/sale", $code)){
 									$sale_label = true;
                     ?>
@@ -109,6 +111,7 @@ var i = 0;
                     <?php       
                                 }
                             }
+                        }
                         }
                     ?>
                     <?php
@@ -149,15 +152,7 @@ var i = 0;
 					?>
                     <?php endif; ?>
                     <?php endif; ?>
-					<?php
-						if ($this->getChild('name.after')) {
-							$_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
-							foreach ($_nameAfterChildren as $_nameAfterChildName) {
-								$_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);	$_nameAfterChild->setProduct($_product);
-								echo $_nameAfterChild->toHtml();
-							}
-						}
-					?>
+
                     <div class="short-desc">
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                     </div>
@@ -251,7 +246,7 @@ var i = 0;
     <?php $_columnCount = Mage::getStoreConfig("porto_settings/category_grid/columns",$code); ?>
     <ul class="products-grid <?php if(Mage::getStoreConfig("porto_settings/category_grid/flex_grid",$code)):?>flex-grid<?php endif; ?> columns<?php echo $_columnCount; ?><?php if(!Mage::getStoreConfig("porto_settings/category_grid/show_addtolinks", $code)):?> hide-addtolinks<?php endif; ?><?php if(!Mage::getStoreConfig("porto_settings/category_grid/show_addtocart", $code)):?> hide-addtocart<?php endif; ?><?php if(Mage::getStoreConfig("porto_settings/category_grid/move_actions", $code)):?> move-action<?php endif; ?>">
     <?php $i=0; foreach ($_productCollection as $_product): ?>
-	<?php $product = Mage::getModel('catalog/product')->load($_product->getId()); ?>
+	<?php $product = $_product; //Mage::getModel('catalog/product')->load($_product->getId()); ?>
             <li class="item"><div class="item-area">
             <div class="product-image-area">
                     <div class="loader-container">
@@ -332,15 +327,17 @@ var i = 0;
                         $specialprice = $product->getFinalPrice();
                         $orgprice = $product->getPrice();
                         // Get the Special Price FROM date
-                        $specialPriceFromDate = $product->getSpecialFromDate();
+                        $now = date("Y-m-d");
+                        $specialPriceFromDate = substr($product->getSpecialFromDate(),0,10);
                         // Get the Special Price TO date
-                        $specialPriceToDate = $product->getSpecialToDate();
+                        $specialPriceToDate = substr($product->getSpecialToDate(),0,10);
                         // Get Current date
                         $today =  time();
                      
                         if ($specialprice<$orgprice){
                             $save_percent = 100-round(($specialprice/$orgprice)*100);
-                            if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)){
+                            if ($specialPriceToDate != '' || $specialPriceFromDate != ''){
+                            if (($specialPriceToDate != '' && $specialPriceFromDate != '' && $now>=$specialPriceFromDate && $now<=$specialPriceToDate) || ($specialPriceToDate == '' && $now >=$specialPriceFromDate) || ($specialPriceFromDate == '' && $now<=$specialPriceToDate)){
                                 if(Mage::getStoreConfig("porto_settings/product_label/sale", $code)){
                                     $sale_label = true;
                     ?>
@@ -348,6 +345,7 @@ var i = 0;
                     <?php       
                                 }
                             }
+                        }
                         }
                     ?>
                     <?php
@@ -388,19 +386,8 @@ var i = 0;
 					?>
                     <?php endif; ?>
                     <?php endif; ?>
-					<?php
-						if ($this->getChild('name.after')) {
-							$_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
-							foreach ($_nameAfterChildren as $_nameAfterChildName) {
-								$_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);	$_nameAfterChild->setProduct($_product);
-								echo $_nameAfterChild->toHtml();
-							}
-						}
-					?>
+					
                     <?php if(Mage::getStoreConfig("porto_settings/category/product_price", $code)):?>
-<?php $this->setProduct(Mage::getModel('catalog/product')->setStoreId(Mage::app()->getStore()->getId())->load($_product->getId()))
-?>
-<?php echo $this->getTierPriceHtml() ?>
                     <?php echo $this->getPriceHtml($_product, true) ?>
                     <?php endif; ?>
                     <?php if(Mage::getStoreConfig("porto_settings/category/actions", $code)):?>
@@ -476,17 +463,3 @@ var i = 0;
     </div>
 </div>
 <?php endif; ?>
-<div class="swatches-js">
-<?php
-// Provides a block where additional page components may be attached, primarily good for in-page JavaScript
-if ($this->getChild('after')) {
-    $_afterChildren = $this->getChild('after')->getSortedChildren();
-    foreach ($_afterChildren as $_afterChildName) {
-        $_afterChild = $this->getChild('after')->getChild($_afterChildName);
-        //set product collection on after blocks
-        $_afterChild->setProductCollection($_productCollection);
-        echo $_afterChild->toHtml();
-    }
-}
-?>
-</div>

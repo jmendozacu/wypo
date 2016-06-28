@@ -49,10 +49,7 @@
                         <?php echo $this->getChildHtml('global_messages') ?>
                         <?php echo $this->getChildHtml('content') ?>
                     </div>
-                    <div class="col-right sidebar col-sm-3">
-			<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/view/info.phtml')->toHtml(); ?>
-			<?php echo $this->getChildHtml('right') ?>
-		    </div>
+                    <div class="col-right sidebar col-sm-3"><?php echo $this->getChildHtml('right') ?></div>
                 </div>
             </div>
         </div>

@@ -5,7 +5,6 @@ $fb_result = $socialfeeds->getFBFans();
 if ($fb_result) : ?>
 <?php 
     $fb_fans = $fb_result['fans'];
-    $fb_limit = $fb_result['limit'];
 ?>
 
 
@@ -13,14 +12,13 @@ if ($fb_result) : ?>
         <div class="block-title">
             <strong>
                 <span><?php echo $this->__('Facebook') ?></span>
-                <a target="_blank" href="<?php echo $fb_result['link'] ?>" class="btn-like f-right" title="<?php echo $fb_result['name'] ?>">
+                <a target="_blank" href="<?php echo $fb_result['link'] ?>" class="btn-like f-right">
                     <?php echo $this->__('Like!') ?>
                 </a>
             </strong>
         </div>
 
         <div class="block-content">
-            <p><?php echo $fb_result['like'] ?></p>
             <div class="clearfix fb-persons">
                 <?php echo $fb_fans ?>
             </div>
