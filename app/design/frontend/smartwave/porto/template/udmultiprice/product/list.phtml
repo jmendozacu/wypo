@@ -303,7 +303,7 @@ var i = 0;
     <?php // Grid Mode ?>
 
     <?php $_collectionSize = $_productCollection->count() ?>
-    <?php $_columnCount = $this->getColumnCount(); ?>
+    <?php $_columnCount = Mage::getStoreConfig("porto_settings/category_grid/columns",$code); ?>
 	<ul class="products-grid <?php if(Mage::getStoreConfig("porto_settings/category_grid/flex_grid",$code)):?>flex-grid<?php endif; ?> columns<?php echo $_columnCount; ?><?php if(!Mage::getStoreConfig("porto_settings/category_grid/show_addtolinks", $code)):?> hide-addtolinks<?php endif; ?><?php if(!Mage::getStoreConfig("porto_settings/category_grid/show_addtocart", $code)):?> hide-addtocart<?php endif; ?><?php if(Mage::getStoreConfig("porto_settings/category_grid/move_actions", $code)):?> move-action<?php endif; ?>">
     <?php $i=0; foreach ($_productCollection as $_product):
         $priceCmp = $_product->getData('PriceComparisonByState');
