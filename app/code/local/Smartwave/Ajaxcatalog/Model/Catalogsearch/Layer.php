@@ -35,8 +35,13 @@ class Smartwave_Ajaxcatalog_Model_Catalogsearch_Layer extends Mage_CatalogSearch
             $where .= ' AND final_price <= "'.$max.'"';
         }
         $where ='('.$where.') OR (final_price is NULL)';
-        $collection->getSelect()->where($where);
-        
+        $fromPart = $collection->getSelect()->getPart(Zend_Db_Select::FROM);
+        if (isset($fromPart['price_index'])) {
+            $fromPart['price_index']['joinCondition'] .= ' AND '.$where;
+            $collection->getSelect()->setPart(Zend_Db_Select::FROM, $fromPart);
+        }
+        //$collection->getSelect()->where($where);
+
         return $collection;
     }
     
