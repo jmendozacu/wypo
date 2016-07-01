@@ -1,0 +1,49 @@
+===== 2.4.1 =====
+  * Fixed render elements in forms only once to eliminate error
+
+===== 2.4.0 =====
+  * CE 1.9.2.2 compatibility
+
+===== 2.1.0 =====
+  * Central translations file
+
+===== 2.0.0 =====
+  * Major release
+
+===== 1.1.8 =====
+  * Added support for out of stock search in vendor portal
+
+===== 1.1.7 =====
+  * Fixed display of configurable simples when vendor not associated with product via attribute
+
+===== 1.1.6 =====
+  * Added support for price comparison add-on vendor group and tier prices
+
+===== 1.1.5 =====
+  * Added ability to remove offer in configurable simple
+  * Added ability to add offer for out of stock simple
+
+===== 1.1.4 =====
+  * Changed layout
+
+===== 1.1.3 =====
+  * Added EE solr search compatibility
+
+===== 1.1.2 =====
+  * Use separate blocks for sell yours search
+
+===== 1.1.1 =====
+  * Fixed breadcrumbs in sell yours form page
+
+===== 1.1.0 =====
+  * Added "My Sell List" menu item
+  * Added downloadable, virtual to filters/options
+
+===== 1.0.2 =====
+  * Fixed wrong reference to microsite
+
+===== 1.0.1 =====
+  * Show "Select and Sell" menu item in vendor portal
+  * Fixed compatibility with IE9 dynamic rows js
+
+===== 1.0 - Initial release =====
