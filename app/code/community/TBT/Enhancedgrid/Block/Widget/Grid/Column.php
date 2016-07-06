@@ -1,6 +1,6 @@
 <?php
 /**
- * Magento
+ * Sweet Tooth.
  *
  * NOTICE OF LICENSE
  *
@@ -12,33 +12,39 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
- * @category   Mage
- * @package    TBT_MassRelater
- * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Sweet Tooth
+ *
+ * @copyright  Copyright (c) 2008-2011 Sweet Tooth (http://www.sweettoothrewards.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 /**
- * Grid column block
+ * Grid column block.
  *
- * @category   Mage
- * @package    TBT_MassRelater
- * @author      Magento Core Team <core@magentocommerce.com>
+ * @category   Sweet Tooth
+ * @author      Jay El-Kaake <jay@sweettoothhq.com>
  */
 class TBT_Enhancedgrid_Block_Widget_Grid_Column extends Mage_Adminhtml_Block_Widget_Grid_Column
 {
- 
-
     protected function _getRendererByType()
     {
         switch (strtolower($this->getType())) {
             case 'image':
                 $rendererClass = 'enhancedgrid/widget_grid_column_renderer_image';
                 break;
+            case 'category':
+                $rendererClass = 'enhancedgrid/widget_grid_column_renderer_category';
+                break;
             default:
                 $rendererClass = parent::_getRendererByType();
                 break;
         }
+
         return $rendererClass;
     }
 
@@ -52,7 +58,7 @@ class TBT_Enhancedgrid_Block_Widget_Grid_Column extends Mage_Adminhtml_Block_Wid
                 $filterClass = parent::_getFilterByType();
                 break;
         }
+
         return $filterClass;
     }
-
 }

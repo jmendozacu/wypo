@@ -24,11 +24,11 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 /**
- * Checkbox grid column filter.
+ * Store grid column filter.
  *
  * @category   Sweet Tooth
  * @author      Jay El-Kaake <jay@sweettoothhq.com>
  */
-class TBT_Enhancedgrid_Block_Widget_Grid_Column_Filter_Image extends Mage_Adminhtml_Block_Widget_Grid_Column_Filter_Text
+class TBT_Rewards_Block_Widget_Grid_Column_Filter_Category extends Mage_Adminhtml_Block_Widget_Grid_Column_Filter_Text
 {
 }

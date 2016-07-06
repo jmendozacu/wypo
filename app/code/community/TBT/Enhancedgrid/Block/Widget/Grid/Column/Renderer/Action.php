@@ -1,6 +1,6 @@
 <?php
 /**
- * Magento
+ * Sweet Tooth.
  *
  * NOTICE OF LICENSE
  *
@@ -12,66 +12,72 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
- * @category   Mage
- * @package    TBT_MassRelater
- * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Sweet Tooth
+ *
+ * @copyright  Copyright (c) 2008-2011 Sweet Tooth (http://www.sweettoothrewards.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
- * Grid column widget for rendering action grid cells
+ * Grid column widget for rendering action grid cells.
  *
- * @category   Mage
- * @package    TBT_MassRelater
- * @author      Magento Core Team <core@magentocommerce.com>
+ * @category   Sweet Tooth
+ * @author      Jay El-Kaake <jay@sweettoothhq.com>
  */
 class TBT_Enhancedgrid_Block_Widget_Grid_Column_Renderer_Action extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Action
 {
-
     /**
-     * Prepares action data for html render
+     * Prepares action data for html render.
      *
-     * @param array $action
-     * @param string $actionCaption
+     * @param array         $action
+     * @param string        $actionCaption
      * @param Varien_Object $row
+     *
      * @return Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Action
      */
     protected function _transformActionData(&$action, &$actionCaption, Varien_Object $row)
     {
-        foreach ( $action as $attibute => $value ) {
-            if(isset($action[$attibute]) && !is_array($action[$attibute])) {
+        foreach ($action as $attibute => $value) {
+            if (isset($action[$attibute]) && !is_array($action[$attibute])) {
                 $this->getColumn()->setFormat($action[$attibute]);
                 $action[$attibute] = parent::render($row);
             } else {
                 $this->getColumn()->setFormat(null);
             }
 
-    	    switch ($attibute) {
-            	case 'caption':
-            	    $actionCaption = $action['caption'];
-            	    unset($action['caption']);
-               		break;
+            switch ($attibute) {
+                case 'caption':
+                    $actionCaption = $action['caption'];
+                    unset($action['caption']);
+                       break;
 
-            	case 'url':
-            	    if(is_array($action['url'])) {
-            	        $params = array($action['field']=>$this->_getValue($row));
-            	        if(isset($action['url']['params'])) {
+                case 'url':
+                    if (is_array($action['url'])) {
+                        $params = array($action['field'] => $this->_getValue($row));
+                        if (isset($action['url']['params'])) {
                             $params = array_merge($action['url']['params'], $params);
-                	    }
-                	    $action['href'] = $this->getUrl($action['url']['base'], $params);
-                	    unset($action['field']);
-            	    } else {
-            	        $action['href'] = $action['url'];
-            	    }
-            	    unset($action['url']);
-               		break;
+                        }
+                        $action['href'] = $this->getUrl($action['url']['base'], $params);
+                        unset($action['field']);
+                    } else {
+                        $action['href'] = $action['url'];
+                    }
+                    unset($action['url']);
+                       break;
 
-            	case 'popup':
-            	    $action['onclick'] = 'popWin(this.href, \'windth=800,height=700,resizable=1,scrollbars=1\');return false;';
-            	    break;
+                case 'popup':
+                    $action['onclick'] = 'popWin(this.href, \'windth=800,height=700,resizable=1,scrollbars=1\');return false;';
+                    break;
 
             }
         }
+
         return $this;
     }
 }

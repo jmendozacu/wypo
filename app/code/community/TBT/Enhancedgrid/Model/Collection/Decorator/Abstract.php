@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sweet Tooth.
  *
@@ -23,12 +24,18 @@
  * @copyright  Copyright (c) 2008-2011 Sweet Tooth (http://www.sweettoothrewards.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-/**
- * Checkbox grid column filter.
- *
- * @category   Sweet Tooth
- * @author      Jay El-Kaake <jay@sweettoothhq.com>
- */
-class TBT_Enhancedgrid_Block_Widget_Grid_Column_Filter_Image extends Mage_Adminhtml_Block_Widget_Grid_Column_Filter_Text
+abstract class TBT_Enhancedgrid_Model_Collection_Decorator_Abstract extends Varien_Object
 {
+    protected $_collection = null;
+    public function setCollection(TBT_Enhancedgrid_Model_Resource_Eav_Mysql4_Product_Collection $collection)
+    {
+        $this->_collection = $collection;
+
+        return $this;
+    }
+
+    public function getCollection()
+    {
+        return $this->_collection;
+    }
 }

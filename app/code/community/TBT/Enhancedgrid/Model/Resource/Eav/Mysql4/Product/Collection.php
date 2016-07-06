@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sweet Tooth.
  *
@@ -24,11 +25,29 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 /**
- * Checkbox grid column filter.
+ * Enhanced grid Product collection.
  *
- * @category   Sweet Tooth
- * @author      Jay El-Kaake <jay@sweettoothhq.com>
+ * @nelkaake -a 15/12/10:
+ *
+ * @category   TBT
+ *
+ * @author      Sweet Tooth
  */
-class TBT_Enhancedgrid_Block_Widget_Grid_Column_Filter_Image extends Mage_Adminhtml_Block_Widget_Grid_Column_Filter_Text
+class TBT_Enhancedgrid_Model_Resource_Eav_Mysql4_Product_Collection
+    extends Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Collection
 {
+    /**
+     * Get SQL for get record count.
+     *
+     * @return Varien_Db_Select
+     */
+    public function getSelectCountSql()
+    {
+        $countSelect = parent::getSelectCountSql();
+
+        //@nelkaake -a 15/12/10: Reset the group selection. ( for categories grouping)
+        $countSelect->reset(Zend_Db_Select::GROUP);
+
+        return $countSelect;
+    }
 }

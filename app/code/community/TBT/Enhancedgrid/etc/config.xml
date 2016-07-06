@@ -1,52 +1,66 @@
 <?xml version="1.0"?>
-
 <config>
-  <modules>
-    <TBT_Enhancedgrid>
-      <version>1.0</version>
-    </TBT_Enhancedgrid>
-  </modules>
-  
-    <!-- 
-    If you want to overload an admin-controller this tag should be <admin> instead,
-    or <adminhtml> if youre overloading such stuff (?)
-    -->
+    <modules>
+        <TBT_Enhancedgrid>
+            <version>1.3.4.3</version>
+        </TBT_Enhancedgrid>
+    </modules>
     <admin>
         <routers>
-            <enhancedgrid>
-                <!-- should be set to "admin" when overloading admin stuff (?) -->
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>TBT_Enhancedgrid</module>
-                    <!-- This is used when "catching" the rewrite above -->
-                    <frontName>enhancedgrid</frontName>
+                    <modules>
+                        <TBT_Enhancedgrid before="Mage_Adminhtml">TBT_Enhancedgrid</TBT_Enhancedgrid>
+                    </modules>
                 </args>
-            </enhancedgrid>
+            </adminhtml>
         </routers>
     </admin>
-
-  <global>
-    <blocks>
-      <enhancedgrid>
-        <class>TBT_Enhancedgrid_Block</class>
-      </enhancedgrid>
-    </blocks>
-    <helpers>
-        <enhancedgrid>
-            <class>TBT_Enhancedgrid_Helper</class>
-        </enhancedgrid>
-    </helpers>
-    <blocks>
-      <adminhtml>
-        <rewrite>
-          <widget_grid_column>TBT_Enhancedgrid_Block_Widget_Grid_Column</widget_grid_column>
-        </rewrite>
-      </adminhtml>
-    </blocks>
-    
-    <!-- Relate Stuff -->
+    <global>
+        <blocks>
+            <enhancedgrid>
+                <class>TBT_Enhancedgrid_Block</class>
+            </enhancedgrid>
+        </blocks>
+        <helpers>
+            <enhancedgrid>
+                <class>TBT_Enhancedgrid_Helper</class>
+            </enhancedgrid>
+        </helpers>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <widget_grid_column>TBT_Enhancedgrid_Block_Widget_Grid_Column</widget_grid_column>
+                    <catalog_product>TBT_Enhancedgrid_Block_Catalog_Product</catalog_product>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <models>
+            <enhancedgrid>
+                <class>TBT_Enhancedgrid_Model</class>
+            </enhancedgrid>
+        </models>
+        <resources>
+            <enhancedgrid_setup>
+                <setup>
+                    <module>TBT_Enhancedgrid</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </enhancedgrid_setup>
+            <enhancedgrid_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </enhancedgrid_write>
+            <enhancedgrid_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </enhancedgrid_read>
+        </resources>
     </global>
-  
     <adminhtml>
         <layout>
             <updates>
@@ -55,27 +69,26 @@
                 </enhancedgrid>
             </updates>
         </layout>
-    	<menu>
-			<catalog module="enhancedgrid">
-        		<children>
-					<enhancedgrid module="enhancedgrid">
-						<title>Manage Products (Enhanced)</title>
-						<sort_order>0</sort_order>
-						<action>enhancedgrid/catalog_product</action>
-					</enhancedgrid>
-				</children>
-			</catalog>
-	   </menu>
+        <menu>
+            <catalog module="enhancedgrid">
+                <children>
+                    <products module="enhancedgrid" translate="title">
+                        <title>Manage Products*</title>
+                        <sort_order>0</sort_order>
+                        <action>adminhtml/catalog_product</action>
+                    </products>
+                </children>
+            </catalog>
+        </menu>
     </adminhtml>
-
     <default>
         <enhancedgrid>
             <general>
                 <isenabled>1</isenabled>
-                <truncatelongtextafter>60</truncatelongtextafter>
             </general>
             <columns>
-                <showcolumns>id,name,type_id,attribute_set_id,sku,price,qty,visibility,status,websites,image</showcolumns>
+                <showcolumns>id,name,type_id,sku,price,qty,visibility,status,websites,thumbnail</showcolumns>
+                <truncatelongtextafter>60</truncatelongtextafter>
             </columns>
             <images>
                 <showurl>0</showurl>
@@ -91,36 +104,35 @@
             </defaults>
         </enhancedgrid>
     </default>
-    
     <adminhtml>
         <acl>
-          <resources>
-			<all>
-				<title>Allow Everything</title>
-			</all>
-            <admin>
-              <children>
-            	  <catalog>
-            		<children>
-    					<enhancedgrid>
-                              <title>Enhanced Product Grid</title>
-    					</enhancedgrid>
-    				</children>
-            	  </catalog>
-                  <system>
-                      <children>
-                        <config>
-                          <children>
-                            <enhancedgrid>
-                              <title>Enhanced Grid Config</title>
-                            </enhancedgrid>
-                          </children>
-                        </config>
-                      </children>
-                  </system>
-              </children>
-            </admin>
-          </resources>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <enhancedgrid>
+                                    <title>Enhanced Product Grid</title>
+                                </enhancedgrid>
+                            </children>
+                        </catalog>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <enhancedgrid>
+                                            <title>Enhanced Grid Config</title>
+                                        </enhancedgrid>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
         </acl>
     </adminhtml>
-</config> 
+</config>
