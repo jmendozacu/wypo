@@ -1,0 +1,28 @@
+<fieldset class="generic-box" style="margin-top: 30px">
+    <div class="box-head"><h3>Upload *.CSV file for Massive Creation & Update</h3></div>	
+	<form id="upload_csv_form" action="<?php echo $this->getUrl('udprod/bulkupload/csv');?>" method="post" enctype="multipart/form-data" >
+		<div class="generic-box col2-set">
+			<div class="col-1">
+				<ul class="form-list">
+					<li><b>Step 1:</b> Select a file.</li>
+					<li><input type="file" name="upload_csv_file" id="upload_csv_file" class="required-entry validate_csv_file_only" /></li>
+				</ul>
+			</div>
+			<div class="col-2">
+				<ul class="form-list">
+					<li><b>Step 2:</b> Click the button below.</li>
+					<li><input type="submit" class="form-button" value="Upload file" /></li>
+					</li>
+				</ul>
+			</div>		
+		</div>
+	</form>
+</fieldset>
+<script type="text/javascript">
+    //< ![CDATA[
+        var customForm = new VarienForm('upload_csv_form');
+		Validation.add('validate_csv_file_only','Please select only CSV file.',function(v){			
+			if(v.toLowerCase().lastIndexOf(".csv")==-1){return false;}else{return true;}	
+		});
+    //]]>
+</script>

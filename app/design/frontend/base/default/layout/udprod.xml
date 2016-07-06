@@ -55,6 +55,7 @@
                     </block>
                 </block>
             </block>
+			<block type="core/template" name="bulk_file_upload" after="*" template="udprod/bulkupload/uploader.phtml" />
         </reference>
     </udprod_vendor_products>
     <_udprod_vendor_product_edit>
