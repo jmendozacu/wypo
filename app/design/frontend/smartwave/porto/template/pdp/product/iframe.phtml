@@ -1,5 +1,7 @@
 <?php 
 $request = $this->getRequest()->getParams();
+$productStatus = Mage::getModel('pdp/productstatus')->getProductStatus($request["product-id"]);
+if ($productStatus == 1) {
 $ajaxParams = "";
 if (isset($request['json']) && $request['json'] != "") {
 	$ajaxParams .= "json/" . $request['json'] . "/";
@@ -239,3 +241,4 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
 	});
 </script>
 </body>
+<?php } ?>
