@@ -1,1 +1,39 @@
-<?php echo $this->__("Curved text html content here") ?>
+<?php $ctextImageUrl = $this->getJsUrl("pdp/curvedtext/images/")  ?>
+<div class="text-effects">
+    <ul>
+        <li pdc-effect="curved"><img width="150px" src="<?php echo $ctextImageUrl ?>curved.png"/></li>
+        <!--<li pdc-effect="arc"><?php echo $this->__("Arc") ?></li>-->
+        <li pdc-effect="bulge"><img width="150px" src="<?php echo $ctextImageUrl ?>bulge.png"/></li>
+        <li pdc-effect="obulge"><img width="150px" src="<?php echo $ctextImageUrl ?>obulge.png"/></li>
+        <li pdc-effect="smallToLarge"><img width="150px" src="<?php echo $ctextImageUrl ?>smallToLarge.png"/></li>
+        <li pdc-effect="largeToSmallTop"><img width="150px" src="<?php echo $ctextImageUrl ?>largeToSmallTop.png"/></li>
+        <!--<li pdc-effect="largeToSmallBottom"><?php echo $this->__("largeToSmallBottom") ?></li>-->
+    </ul>
+    <div pdc-box="curved"  class="no-display" id="pdc_text_curved_control">
+        <h4><?php echo $this->__("Transform Text Effect") ?></h4>
+        <div><?php echo $this->__('Reverse :') ?><input type="checkbox" name="reverse" id="pdc_ctext_reverse" /></div>
+        <div>
+            <span><?php echo $this->__('Radius :') ?></span>
+            <input type="range"  name="radius" min="0" max="360" value="100" id="pdc_ctext_radius" />
+            <input type="number"  name="radius_number" min="0" max="360" value="100" id="pdc_ctext_radius_number" />
+        </div>
+        <div>
+            <span><?php echo $this->__('Spacing :') ?></span>
+            <input type="range" name="spacing"  min="1" max="50" value="15" id="pdc_ctext_spacing" />
+            <input type="number" name="spacing_number"  min="1" max="50" value="15" id="pdc_ctext_spacing_number" maxlength="3" size="3" />
+        </div>
+    </div>
+    <div pdc-box="small-large-font"  class="no-display">
+        <h4><?php echo $this->__("Transform Text Effect") ?></h4>
+        <div>
+            <span><?php echo $this->__('Small Font :') ?></span>
+            <input type="range"  name="text_small_font" min="5" max="144" value="20" id="text_small_font" />
+            <input type="number"  name="text_small_font_number" min="5" max="144" value="20" id="text_small_font_number" />
+        </div>
+        <div>
+            <span><?php echo $this->__('Large Font:') ?></span>
+            <input type="range"  name="text_large_font" min="5" max="144" value="50" id="text_large_font" />
+            <input type="number"  name="text_large_font_number" min="5" max="144" value="50" id="text_large_font_number" />
+        </div>
+    </div>
+</div>

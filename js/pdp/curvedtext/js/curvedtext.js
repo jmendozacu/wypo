@@ -1,8 +1,11 @@
 (function(global){
+
 	"use strict";
+
 	var fabric=global.fabric||(global.fabric={}),
 			extend=fabric.util.object.extend,
 			clone=fabric.util.object.clone;
+
 	if(fabric.CurvedText){
 		fabric.warn('fabric.CurvedText is already defined');
 		return;
@@ -10,10 +13,7 @@
 	var stateProperties=fabric.Text.prototype.stateProperties.concat();
 	stateProperties.push(
 			'radius',
-			'scaleX',
-			'scaleY',
 			'spacing',
-            'zoom',
 			'reverse',
 			'effect',
 			'range',
@@ -30,19 +30,19 @@
 	_dimensionAffectingProps['height']=true;
 	_dimensionAffectingProps['range']=true;
 	_dimensionAffectingProps['fontSize']=true;
-	_dimensionAffectingProps['zoom']=true;
 	_dimensionAffectingProps['shadow']=true;
 	_dimensionAffectingProps['largeFont']=true;
 	_dimensionAffectingProps['smallFont']=true;
+
+
 	var delegatedProperties=fabric.Group.prototype.delegatedProperties;
 	delegatedProperties['backgroundColor']=true;
 	delegatedProperties['textBackgroundColor']=true;
 	delegatedProperties['textDecoration']=true;
-	//delegatedProperties['scaleX']=true;
-	//delegatedProperties['scaleY']=true;
 	delegatedProperties['stroke']=true;
 	delegatedProperties['strokeWidth']=true;
 	delegatedProperties['shadow']=true;
+
 	/**
 	 * Group class
 	 * @class fabric.CurvedText
@@ -77,6 +77,7 @@
 		 */
 		spacing: 0,
 //		letters: null,
+
 		/**
 		 * Reversing the radius (position of the original point)
 		 * @type Boolead
@@ -165,12 +166,13 @@
 			this._isRendering=renderingCode;
 			if(this.letters){
 				var curAngle=0,
-						curAngleRotation = 0,
-						angleRadians=0,
-						align=0,
-						textWidth=0,
-						space = parseInt(this.spacing),
-						fixedLetterAngle=0;
+                    curAngleRotation = 0,
+                    angleRadians=0,
+                    align=0,
+                    textWidth=0,
+                    space = parseInt(this.spacing),
+                    fixedLetterAngle=0;
+				
 				//get text width
 				if (this.effect=='curved') {
 					for(var i=0, len=this.text.length; i<len; i++){
@@ -190,36 +192,42 @@
 					curAngle = -(((textWidth/2)/ this.radius) / (Math.PI/180));
 				}
 				if (this.reverse) curAngle = -curAngle;
+
 				var width=0,
 						multiplier=this.reverse?-1:1,
 						thisLetterAngle = 0,
 						lastLetterAngle = 0;
+
 				for(var i=0, len=this.text.length; i<len; i++){
 					if(renderingCode!==this._isRendering)
 						return;
+
 					for(var key in this.delegatedProperties){
 						this.letters.item(i).set(key, this.get(key));
 					}
+					
 					this.letters.item(i).set('left', (width));
 					this.letters.item(i).set('top', (0));
 					this.letters.item(i).setAngle(0);
 					this.letters.item(i).set('padding', 0);
+
 					if(this.effect==='curved'){
 						thisLetterAngle = ((this.letters.item(i).width + space) / this.radius) / (Math.PI/180);
 						curAngleRotation = multiplier * ((multiplier * curAngle) + lastLetterAngle + (thisLetterAngle/2));
 						curAngle = multiplier * ((multiplier * curAngle) + lastLetterAngle);
 						angleRadians=curAngle*(Math.PI/180);
 						lastLetterAngle = thisLetterAngle;
+
 						this.letters.item(i).setAngle(curAngleRotation);
 						this.letters.item(i).set('top', multiplier*-1*(Math.cos(angleRadians)*this.radius));
 						this.letters.item(i).set('left', multiplier*(Math.sin(angleRadians)*this.radius));
-						//this.letters.item(i).set('top', multiplier*-1*(Math.cos(angleRadians)*this.radius)*this.letters.item(i).scaleY);
-						//this.letters.item(i).set('left', multiplier*(Math.sin(angleRadians)*this.radius)*this.letters.item(i).scaleX);
 						this.letters.item(i).set('padding', 0);
 						this.letters.item(i).set('selectable', false);
+						
 					}else if(this.effect==='arc'){//arc
 						curAngle = multiplier * ((multiplier * curAngle) + fixedLetterAngle);
 						angleRadians=curAngle*(Math.PI/180);
+
 						this.letters.item(i).set('top', multiplier*-1*(Math.cos(angleRadians)*this.radius));
 						this.letters.item(i).set('left', multiplier*(Math.sin(angleRadians)*this.radius));
 						this.letters.item(i).set('padding', 0);
@@ -248,8 +256,11 @@
 						var center=Math.ceil(this.text.length/2);
 						var step=difference/(this.text.length);
 						var newfont=small+(i*step);
+
 						//var newfont=(i*this.smallFont)+15;
+
 						this.letters.item(i).set('fontSize', (newfont));
+
 						this.letters.item(i).set('left', (width));
 						width+=this.letters.item(i).get('width');
 						//this.letters.item(i).set('padding', 0);
@@ -264,6 +275,7 @@
 						this.letters.item(i).set('top', -1*this.letters.item(i).get('fontSize')+i);
 						//this.letters.width=width;
 						//this.letters.height=this.letters.item(i).get('height');
+
 					}else if(this.effect==='largeToSmallTop'){//largeToSmallTop
 						var small=parseInt(this.largeFont);
 						var large=parseInt(this.smallFont);
@@ -287,6 +299,7 @@
 						this.letters.item(i).set('padding', 0);
 						this.letters.item(i).set('selectable', false);
 						this.letters.item(i).top=-1*this.letters.item(i).get('fontSize')+(i/this.text.length);
+
 					}else if(this.effect==='largeToSmallBottom'){
 						var small=parseInt(this.largeFont);
 						var large=parseInt(this.smallFont);
@@ -311,6 +324,7 @@
 						this.letters.item(i).set('selectable', false);
 						//this.letters.item(i).top =-1* this.letters.item(i).get('fontSize')+newfont-((this.text.length-i))-((this.text.length-i));
 						this.letters.item(i).top=-1*this.letters.item(i).get('fontSize')-i;
+
 					}else if(this.effect==='bulge'){//bulge
 						var small=parseInt(this.smallFont);
 						var large=parseInt(this.largeFont);
@@ -324,19 +338,35 @@
 						else
 							var newfont=large-((i-center+1)*step);
 						this.letters.item(i).set('fontSize', (newfont));
+
 						this.letters.item(i).set('left', (width));
 						width+=this.letters.item(i).get('width');
+
 						this.letters.item(i).set('padding', 0);
 						this.letters.item(i).set('selectable', false);
+
 						this.letters.item(i).set('top', -1*this.letters.item(i).get('height')/2);
 					}
-                    this._clearCache();
 				}
-				// Update group coords
+				
+				var scaleX= this.letters.get('scaleX');
+		                var scaleY= this.letters.get('scaleY');
+		                var angle = this.letters.get('angle');
+						
+		                this.letters.set('scaleX', 1);
+		                this.letters.set('scaleY', 1);
+		                this.letters.set('angle', 0);
+		                
+                		// Update group coords
 				this.letters._calcBounds();
 				this.letters._updateObjectsCoords();
 				this.letters.saveCoords();
 				// this.letters.render(ctx);
+                
+		                this.letters.set('scaleX', scaleX);
+		                this.letters.set('scaleY', scaleY);
+		                this.letters.set('angle', angle);
+
 				this.width=this.letters.width;
 				this.height=this.letters.height;
 				this.letters.left=-(this.letters.width/2);
@@ -360,6 +390,7 @@
 					// Find coords of each letters (radians : angle*(Math.PI / 180)
 					curAngle=multiplier*(-i*parseInt(this.spacing, 10)+align);
 					angleRadians=curAngle*(Math.PI/180);
+
 					for(var key in this.delegatedProperties){
 						this.letters.item(i).set(key, this.get(key));
 					}
@@ -386,25 +417,34 @@
 				return;
 			if(!this.letters)
 				return;
+
 			//ctx.save();
 			this.transform(ctx);
+
 			var groupScaleFactor=Math.max(this.scaleX, this.scaleY);
+
 			this.clipTo&&fabric.util.clipContext(this, ctx);
+
 			//The array is now sorted in order of highest first, so start from end.
 			for(var i=0, len=this.letters.size(); i<len; i++){
 				var object=this.letters.item(i),
 						originalScaleFactor=object.borderScaleFactor,
 						originalHasRotatingPoint=object.hasRotatingPoint;
+
 				// do not render if object is not visible
 				if(!object.visible)
 					continue;
+
 //				object.borderScaleFactor=groupScaleFactor;
 //				object.hasRotatingPoint=false;
+
 				object.render(ctx);
+
 //				object.borderScaleFactor=originalScaleFactor;
 //				object.hasRotatingPoint=originalHasRotatingPoint;
 			}
 			this.clipTo&&ctx.restore();
+
 			//Those lines causes double borders.. not sure why
 //			if(!noTransform&&this.active){
 //				this.drawBorders(ctx);
@@ -438,13 +478,11 @@
 				radius: this.radius,
 				spacing: this.spacing,
 				reverse: this.reverse,
-				scaleX: this.scaleX,
-				scaleY: this.scaleY,
 				effect: this.effect,
 				range: this.range,
 				smallFont: this.smallFont,
 				largeFont: this.largeFont
-			 //letters: this.letters	//No need to pass this, the letters are recreated on the fly every time when initiated
+						//				letters: this.letters	//No need to pass this, the letters are recreated on the fly every time when initiated
 			});
 			if(!this.includeDefaultValues){
 				this._removeDefaultValues(object);
@@ -480,6 +518,7 @@
 		}
 		/* _TO_SVG_END_ */
 	});
+
 	/**
 	 * Returns {@link fabric.CurvedText} instance from an object representation
 	 * @static
@@ -491,7 +530,9 @@
 	fabric.CurvedText.fromObject=function(object){
 		return new fabric.CurvedText(object.text, clone(object));
 	};
+
 	fabric.util.createAccessors(fabric.CurvedText);
+
 	/**
 	 * Indicates that instances of this type are async
 	 * @static
@@ -500,4 +541,5 @@
 	 * @default
 	 */
 	fabric.CurvedText.async=false;
+
 })(typeof exports!=='undefined'?exports:this);

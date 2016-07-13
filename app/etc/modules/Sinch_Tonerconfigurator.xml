@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Sinch_Tonerconfigurator>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Sinch_Tonerconfigurator>
+     </modules>
+</config>

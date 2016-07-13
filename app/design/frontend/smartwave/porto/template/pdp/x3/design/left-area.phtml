@@ -69,7 +69,7 @@ $productConfigs = $this->getProductConfig();
 		<!-- Add Text  tab content -->
         <?php if(!isset($productConfigs['enable_text_tab']) || isset($productConfigs['enable_text_tab']) && $productConfigs['enable_text_tab'] == 1): ?>
 		<div class="tab-pane" id="text">
-			<h3><?php echo $this->__('ADD TEXT'); ?></h3>
+			<h3><?php echo $this->__('Agregar Texto'); ?></h3>
             <div class="textControls">
                 <p><small><?php echo $this->__('Click to add text');?></small></p>
                 <ul>
@@ -96,7 +96,7 @@ $productConfigs = $this->getProductConfig();
         <!-- Info Tab -->
         <?php if(!isset($productConfigs['enable_info_tab']) || isset($productConfigs['enable_info_tab']) && $productConfigs['enable_info_tab'] == 1): ?>
         <div class="tab-pane" id="info">
-			<h3><?php echo $this->__('HELP INFORMATION'); ?></h3>
+			<h3><?php echo $this->__('AYUDA'); ?></h3>
             <div class="pdc-show-content">
                 <?php echo Mage::getModel('catalog/product')->load($productId)->getShortDescription(); ?>
             </div>

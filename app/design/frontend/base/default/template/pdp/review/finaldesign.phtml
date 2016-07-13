@@ -57,6 +57,25 @@ $downloadTxtUrl = Mage::helper("pdp")->getPdpBaseUrl() . "pdp/index/downloadTxt/
         </style>
 	</head>
 	<body>
+		<?php /* Fix Download */ ?>
+		<?php  
+			$isNginx = 0;
+			$typeServer = $_SERVER["SERVER_SOFTWARE"];
+			if($typeServer != '')
+			{
+				$arTypeSever = explode('/',$typeServer);
+				if(isset($arTypeSever[0]) && strtolower($arTypeSever[0]) == 'nginx')
+				{
+					$isNginx = 1;
+				}
+			}
+		?>
+		<div id="pdc-show-link-down" class="pdc-popup" style="display:none;">
+		   <p><?php echo $this->__('Please click ') ?><a target="_brank" id="pdc-show-link-down-link" href="#"><?php echo __('Link') ?></a> <?php echo $this->__(' to donwload'); ?>
+		</div>
+		<input type="hidden" value="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>pdp/index/DownloadAfterCreate" id="link-download-after" name="link_download_after" />
+		<input type="hidden" value="<?php echo $isNginx; ?>" id="server-nginx" name="server_nginx" />
+		<?php /* end Fix Download */ ?>
 		<?php echo $this->getLayout()->createBlock("core/template")->setTemplate("pdp/x3/design/load_fonts.phtml")->toHtml();?>
 		<input type="hidden" value="<?php echo htmlentities($fileContent)?>" id="final_design_json"/>
         <input type="hidden" value="<?php echo $jsonFilename ?>" id="json_filename"/>
@@ -98,6 +117,7 @@ $downloadTxtUrl = Mage::helper("pdp")->getPdpBaseUrl() . "pdp/index/downloadTxt/
                                     </div>
                                     <a class="btn btn-primary" pdc-data="pdc-export-btn" pdc-action="DOWNLOAD_SVG"><?php echo $this->__("Download SVG") ?></a>
                                     <a class="btn btn-primary" pdc-data="pdc-export-btn" pdc-action="DOWNLOAD_PNG"><?php echo $this->__("Download PNG") ?></a>
+                                    <a class="btn btn-primary" pdc-data="pdc-export-btn" pdc-action="DOWNLOAD_JPG"><?php echo $this->__("Download JPG") ?></a>
                                     <a class="btn btn-primary" href="<?php echo $downloadTxtUrl ?>"><?php echo $this->__("Download TXT") ?></a>
                                     <a class="btn btn-success" pdc-data="pdc-export-btn" pdc-action="DOWNLOAD_ALL"><?php echo $this->__("Download All") ?></a>
                                 </div>
@@ -161,12 +181,18 @@ $downloadTxtUrl = Mage::helper("pdp")->getPdpBaseUrl() . "pdp/index/downloadTxt/
         </div>
 		<script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/jquery/jquery-1.10.2.min.js') ?>"></script>
         <script src="<?php echo $this->getJsUrl('pdp/x3/bootstrap/js/bootstrap.min.js') ?>"></script>
+		<?php if($isNginx == 1) : ?>
+			<script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/x3/fancybox/jquery.fancybox.js') ?>"></script>
+		<?php endif; ?>
         <script src="<?php echo $this->getJsUrl('pdp/pace/pace.min.js') ?>"></script>
         <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/fabricjs/fabric.js') ?>"></script>
         <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/pdc/js/productsdesignercanvas-1.0.js') ?>"></script>
         <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/curvedtext/js/curvedtext.js') ?>"></script>
         <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/curvedtext/js/pdc.text.action.js') ?>"></script>
         <script type="text/javascript" src="<?php echo $this->getJsUrl('pdp/pdc/js/final_design.js') ?>"></script>
+		<?php if($isNginx == 1) : ?>
+			<link href="<?php echo $this->getJsUrl('pdp/x3/fancybox/jquery.fancybox.css') ?>" rel="stylesheet"/>
+		<?php endif; ?>
         <div style="display: none;" class="pdploading"><span><?php echo $this->__("Please wait...") ?></span></div>
 	</body>
 </html>

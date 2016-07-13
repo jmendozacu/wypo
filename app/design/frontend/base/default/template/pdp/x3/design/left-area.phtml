@@ -7,7 +7,7 @@ $isProductColorTabEnable = Mage::helper("pdp")->isProductColorTabEnable($product
 $productConfigs = $this->getProductConfig();
 ?>
 <input type="hidden" value='<?php echo $limit;?>'  id="default_page_size" />
-<input type="hidden" value='<?php echo htmlentities($categories);?>' id="pdc-image-categories" />
+<input type="hidden" value="<?php echo htmlentities($categories);?>" id="pdc-image-categories" />
 <div class="pdc-tabs">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs tabs-left">
@@ -83,6 +83,10 @@ $productConfigs = $this->getProductConfig();
                         <a pdc-data="add-text" fontsize="24" style="font-size: 90%; font-style: normal; font-weight: normal;" data-style="body" class="add-text"><?php echo $this->__('Add a little bit of body text');?></a>
                     </li>
                 </ul>
+            </div>
+            <h3><?php echo $this->__("Text Effects") ?></h3>
+            <div class="curved-text-wrapper">
+                <?php echo $this->getLayout()->createBlock("core/template")->setTemplate("pdp/x3/design/left-area/curvedtext.phtml")->toHtml(); ?>
             </div>
         </div>
         <?php endif; ?>

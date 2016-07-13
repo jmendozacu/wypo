@@ -79,6 +79,9 @@
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5099b58f632bd3db"></script>
 </div>
 <!--	Save Details Popup		-->
+<div id="pdc-show-link-down" class="pdc-popup" style="display:none;">
+   <p><?php echo $this->__('Please click ') ?><a target="_brank" id="pdc-show-link-down-link" href="#"><?php echo __('Link') ?></a> <?php echo $this->__(' to donwload'); ?>
+</div>
 <?php if(Mage::getSingleton('customer/session')->isLoggedIn() && Mage::getStoreConfig("pdp/customer_action/design_details") == "1") : ?>
 <div id="pdc-save-design-details" class="pdc-popup" style="display:none;">
     <h3 class="title"><?php echo $this->__("Design Details") ?></h3>

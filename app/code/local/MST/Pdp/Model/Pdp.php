@@ -46,6 +46,7 @@ class MST_Pdp_Model_Pdp extends Mage_Core_Model_Abstract
 			//->addFieldToFilter('image_types', $imageType)
 			->setOrder('position', 'DESC')
 			->setOrder('image_id', 'DESC');
+            $images->addFieldToFilter("status", 1);
 		} else {
 			/* $category_fillter = array('like'=>'%'. $category .'%');
 			$images = Mage::getModel('pdp/images')->getCollection()
@@ -58,6 +59,7 @@ class MST_Pdp_Model_Pdp extends Mage_Core_Model_Abstract
 			->addFieldToFilter('category', $category)
 			->setOrder('position', 'DESC')
 			->setOrder('image_id', 'DESC');
+            $images->addFieldToFilter("status", 1);
 		}
 		
 		return $images;

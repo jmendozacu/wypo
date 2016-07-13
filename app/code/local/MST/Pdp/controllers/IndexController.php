@@ -492,8 +492,12 @@ class MST_Pdp_IndexController extends Mage_Core_Controller_Front_Action
     public function saveBase64ImageExportAction() {
         $data = $this->getRequest()->getPost();
         $orderInfo = array();
+        $_defaultExt = "png";
         if(isset($data['options']['order_info'])) {
             $orderInfo = $data['options']['order_info'];
+        }
+        if(isset($data['format']) && $data['format'] != "") {
+            $_defaultExt = $data['format'];
         }
         $response = array(
             'status' => 'error',
@@ -509,7 +513,7 @@ class MST_Pdp_IndexController extends Mage_Core_Controller_Front_Action
                     $isBackend = $data['options']['is_backend'];
                 }
                 
-                $response = $this->createImageFromString($pngString, $orderInfo, "png", $isBackend);
+                $response = $this->createImageFromString($pngString, $orderInfo, $_defaultExt, $isBackend);
             }
         }
         $this->getResponse()->setBody(json_encode($response));
@@ -619,7 +623,7 @@ class MST_Pdp_IndexController extends Mage_Core_Controller_Front_Action
         if (!file_exists($exportFolder)) {
             mkdir($exportFolder, 0777);
         }
-        $fileTypes = array("pdf", "png", "svg");
+        $fileTypes = array("pdf", "png", "svg", "jpg");
         foreach($fileTypes as $type) {
             $thumbnailDir = Mage::getBaseDir("media") . DS . "pdp" . DS . "export" . DS . $type . DS;
             if (!file_exists($thumbnailDir)) {
@@ -630,6 +634,7 @@ class MST_Pdp_IndexController extends Mage_Core_Controller_Front_Action
                 $htaccessInfo = "AddType application/octet-stream .pdf \n";
                 $htaccessInfo .= "AddType application/octet-stream .svg \n";
                 $htaccessInfo .= "AddType application/octet-stream .png \n";
+                $htaccessInfo .= "AddType application/octet-stream .jpg \n";
                 file_put_contents($thumbnailDir . ".htaccess", $htaccessInfo);
             }
         }
@@ -813,7 +818,7 @@ class MST_Pdp_IndexController extends Mage_Core_Controller_Front_Action
 					$clipartString[] = "$tab $itemNum. " . $jsonDecoded['objects'][$j]['src'];
 				} elseif ($objectType == "path-group") {
 					$clipartString[] = "$tab $itemNum. " . $jsonDecoded['objects'][$j]['isrc'];
-				} else {
+				} elseif($objectType == "text" || $objectType == "i-text" || $objectType == "curvedText") {
 					//Zend_Debug::dump($jsonDecoded['objects'][$j]);
 					$textString[] = "$tab ----------------------------------------";
 					$textString[] = "$tab + text: " . $jsonDecoded['objects'][$j]['text'];
@@ -902,4 +907,46 @@ class MST_Pdp_IndexController extends Mage_Core_Controller_Front_Action
         }
         echo json_encode($result);
     }
+	/* Download after create file */
+	function DownloadAfterCreateAction()
+	{
+		$fileName = $this->getRequest()->getParam('file-name','');
+		$type = $this->getRequest()->getParam('type','');
+		if($fileName == '' || $type == '')
+		{
+			return false;
+		}
+		$fileDowload = Mage::getBaseDir('media').'/pdp/export/'.$type.'/'.$fileName;
+		$path = Mage::getBaseDir('media').'/pdp/export/'.$type.'/';
+		if (file_exists($fileDowload)) {
+			if($type == 'svg')
+			{
+				header('Content-Description: File Transfer');
+				header('Content-Type: application/svg');
+				header('Content-Disposition: attachment; filename='. $filename);
+				header('Content-Transfer-Encoding: binary');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($fileDowload));
+				
+			}
+			else
+			{
+				header('Content-Description: File Transfer');
+				header('Content-Type: application/octet-stream');
+				header('Content-Disposition: attachment; filename='.basename($fileDowload));
+				header('Content-Transfer-Encoding: binary');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($fileDowload));
+			}
+			
+			ob_clean();
+			flush();
+			readfile($fileDowload);
+			exit;
+		}
+	}
 }

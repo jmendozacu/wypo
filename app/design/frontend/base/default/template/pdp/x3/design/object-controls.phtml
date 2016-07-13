@@ -87,17 +87,17 @@ $productConfig = $this->getProductConfig();
 			<i class="fa fa-caret-down"></i>
 		</a>
 		<ul class="pdc-list-tool">
-			<li class="text-bold pdc_edit_text_only"><a>Bold</a></li>
-			<li class="text-italic pdc_edit_text_only"><a>Italic</a></li>
-			<li class="text-underline pdc_edit_text_only"><a>Underline</a></li>
-			<li class="text-left text-align on pdc_edit_text_only"><a>Left -</a></li>
-			<li class="text-center text-align pdc_edit_text_only"><a>- Center -</a></li>
-			<li class="text-right text-align pdc_edit_text_only"><a>- Right</a></li>
+			<li class="text-bold pdc_edit_text_only"><a><?php echo $this->__("Bold") ?></a></li>
+			<li class="text-italic pdc_edit_text_only"><a><?php echo $this->__("Italic") ?></a></li>
+			<li class="text-underline pdc_edit_text_only"><a><?php echo $this->__("Underline") ?></a></li>
+			<li class="text-left text-align on pdc_edit_text_only"><a><?php echo $this->__("Left") ?> -</a></li>
+			<li class="text-center text-align pdc_edit_text_only"><a>- <?php echo $this->__("Center") ?> -</a></li>
+			<li class="text-right text-align pdc_edit_text_only"><a>- <?php echo $this->__("Right") ?></a></li>
 			<!--li class="dividerAbove text-spacing"><a>Text spacing</a></li-->
-			<li class="dividerAbove pdc-element-copy pdc-element-style"><a><i class="fa fa-files-o"></i>Duplicate</a></li>
-			<li class="pdc-element-transparency pdc-element-style"><a title="Transparency"><i class="fa fa-adjust"></i>Transparency</a></li>
-			<li class="pdc-element-forward pdc-element-style"><a><i class="fa fa-forward"></i>Move forward</a></li>
-			<li class="pdc-element-backward pdc-element-style"><a><i class="fa fa-backward"></i>Move back</a></li>
+			<li class="dividerAbove pdc-element-copy pdc-element-style"><a><i class="fa fa-files-o"></i><?php echo $this->__("Duplicate") ?></a></li>
+			<li class="pdc-element-transparency pdc-element-style"><a title="Transparency"><i class="fa fa-adjust"></i><?php echo $this->__("Transparency") ?></a></li>
+			<li class="pdc-element-forward pdc-element-style"><a><i class="fa fa-forward"></i><?php echo $this->__("Move forward") ?></a></li>
+			<li class="pdc-element-backward pdc-element-style"><a><i class="fa fa-backward"></i><?php echo $this->__("Move back") ?></a></li>
 		</ul>
         <div class="nodisplay pdc-transparency-slider">
             <label><?php echo $this->__('Transparency') ?></label>

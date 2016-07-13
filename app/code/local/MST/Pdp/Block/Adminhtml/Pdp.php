@@ -26,7 +26,7 @@ class MST_Pdp_Block_Adminhtml_Pdp extends Mage_Adminhtml_Block_Widget_Grid_Conta
         parent::__construct();
 		 $this->_addButton('importcliparts', array(
 			'label'     => $this->__('Import Images'),
-			'onclick'   => 'setLocation(\'' . $this->getUrl('*/adminhtml_importcliparts/edit').'\')',
+			'onclick'   => 'setLocation(\'' . $this->getUrl('*/pdpadmin_importcliparts/edit').'\')',
 			'class'     => 'importcliparts',
 		));
     }

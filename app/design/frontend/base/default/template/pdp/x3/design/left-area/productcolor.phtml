@@ -11,7 +11,11 @@ $defaultColor = (isset($productConfigs['default_color'])) ? $productConfigs['def
         <?php if($productDesignColor['default_side'][0]['color_code'] != "") : ?>
         <?php 
         $_defaultBgImage = array();
+        $_firstSideBgImg = '';
         foreach ($productDesignColor['default_side'] as $side) {
+            if($_firstSideBgImg == '' && $side['filename'] != '') {
+                $_firstSideBgImg = $side['filename'];
+            }
             $_defaultBgImage[$side['id']] = array(
                 'filename' => $side['filename'],
                 'overlay' => $side['overlay']
@@ -20,7 +24,11 @@ $defaultColor = (isset($productConfigs['default_color'])) ? $productConfigs['def
         $_defaultImages = htmlentities(json_encode($_defaultBgImage));
         ?>
         <li pdc-background-images="<?php echo $_defaultImages ?>" rel="default" <?php echo ($defaultColor == "default") ? 'class="active"' : ''; ?> >
-            <a style="background: #<?php echo $productDesignColor['default_side'][0]['color_code'] ?>;color: #<?php echo $productDesignColor['default_side'][0]['color_code'] ?>;" title="<?php echo $productDesignColor['default_side'][0]['color_name'] ?>">Color</a>
+            <a style="background: #<?php echo $productDesignColor['default_side'][0]['color_code'] ?>;color: #<?php echo $productDesignColor['default_side'][0]['color_code'] ?>;" title="<?php echo $productDesignColor['default_side'][0]['color_name'] ?>">
+                <?php if($_firstSideBgImg != '') : ?>
+                <span class="color-thumbnail default" style="display: none;"><img width="100%" alt="" src="<?php echo $mediaUrl . $_firstSideBgImg ?>"/></span>
+                <?php endif; ?>
+            </a>
         </li>
         <?php endif; ?>
         <?php foreach($productDesignColor['product_color_sides'] as $_productColor) :?>
@@ -41,7 +49,11 @@ $defaultColor = (isset($productConfigs['default_color'])) ? $productConfigs['def
         $_colorImages = htmlentities(json_encode($imageArr));
         ?>
         <li pdc-background-images="<?php echo $_colorImages ?>" rel="<?php echo $_productColor['id'] ?>" <?php echo ($defaultColor == $_productColor['id']) ? 'class="active"' : ''; ?> >
-            <a style="background: #<?php echo $_productColor['color_code'] ?>;color: #<?php echo $_productColor['color_code'] ?>;" title="<?php echo $_productColor['color_name'] ?>">Color</a>
+            <a style="background: #<?php echo $_productColor['color_code'] ?>;color: #<?php echo $_productColor['color_code'] ?>;" title="<?php echo $_productColor['color_name'] ?>">
+                <?php if($imageArr[$image->getSideId()]['filename_thumbnail'] != '') : ?>
+                <span class="color-thumbnail"><img width="100%" alt="" src="<?php echo $mediaUrl . $imageArr[$image->getSideId()]['filename_thumbnail'] ?>"/></span>
+                <?php endif; ?>
+            </a>
         </li>
         <?php endforeach; ?>
     </ul>

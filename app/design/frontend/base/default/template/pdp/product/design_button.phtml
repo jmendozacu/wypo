@@ -43,4 +43,6 @@ $baseUrl = Mage::helper("pdp")->getPdpBaseUrl();
 	<input type="hidden" id="product_price_config" value="<?php echo htmlentities($productViewObj->getJsonConfig()); ?>" />
 	<?php endif; ?>
 </div>
-    <button class="button create-sample-btn design-product" type="button" id="design_product_<?php echo $this->getProductId() ?>"><span><span><?php echo $this->__($this->getButtonLabel()); ?></span></span></button>
+<div class="design-btn">
+    <span class="button create-sample-btn design-product" id="design_product_<?php echo $this->getProductId() ?>"><span><span><?php echo $this->__($this->getButtonLabel()); ?></span></span></span>
+</div>

@@ -248,6 +248,9 @@ class MST_Pdp_UploadController extends Mage_Core_Controller_Front_Action
                         //Create thumbnail
                         $uploadHelper = Mage::helper("pdp/upload");
                         $basePath = Mage::getBaseDir('media') . DS . "pdp" . DS . "images" . DS . "upload" . DS . end($filenameTemp);
+                        if(!file_exists($basePath)) {
+                            mkdir($basePath, 0777);
+                        }
                         $thumbnailResult = $uploadHelper->resizeImage($basePath);
                         if($thumbnailResult) {
                             $uploadThumbnail = $thumbnailResult;
@@ -309,6 +312,9 @@ class MST_Pdp_UploadController extends Mage_Core_Controller_Front_Action
         $qr     = file_get_contents($qrUrl);
         // optimize PNG and save locally
         $baseDir = Mage::getBaseDir('media') . DS . "pdp" . DS . "images" . DS . "upload" . DS;
+        if(!file_exists($baseDir)) {
+			mkdir($baseDir, 0777);
+		}
         $filename = "qrcode-" . time() . ".png";
         $path = $baseDir . $filename;
         $imgIn  = imagecreatefromstring($qr);
@@ -338,6 +344,9 @@ class MST_Pdp_UploadController extends Mage_Core_Controller_Front_Action
         // put everything together
         $qrUrl  = "$protocol://$host/chart?chs={$width}x{$height}&cht=qr&chld=$error|$border&chl=$url";
 		$baseDir = Mage::getBaseDir('media') . DS . "pdp" . DS . "images" . DS . "upload" . DS;
+        if(!file_exists($baseDir)) {
+			mkdir($baseDir, 0777);
+		}
         $filename = "qrcode-" . time() . ".png";
 		$path = $baseDir . $filename;
 		$ch = curl_init($qrUrl);
@@ -379,6 +388,9 @@ class MST_Pdp_UploadController extends Mage_Core_Controller_Front_Action
         );
         if(isset($data['url']) && $data['url'] != "") {
             $baseDir = Mage::getBaseDir('media') . DS . "pdp" . DS . "images" . DS . "upload" . DS;
+            if(!file_exists($baseDir)) {
+                mkdir($baseDir, 0777);
+            }
 			$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "pdp/images/upload/";
 			$fileTemp = explode('.', $data['url']);
 			$fileExt = end($fileTemp);

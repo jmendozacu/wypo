@@ -265,7 +265,7 @@ class MST_Pdp_Helper_Upload extends Mage_Core_Helper_Abstract {
                     break;
                 case "eps" :
                     //convert white color to transparent
-                    exec("convert -colorspace rgb ". $filePath ." -transparent white " . $baseDir . $newFilename);
+                    exec("convert -density 300 -colorspace srgb ". $filePath ." -transparent white " . $baseDir . $newFilename);
                     //Keep white color, please use default case
                     break;
                 default:

@@ -19,7 +19,23 @@ $sidesConfig = $this->getSidesConfig();
 	</head>
 	<body>
 		<div id="pdcwrapper" class="pdc-wrapper">
-            <?php //echo $this->getChildHtml('load_fonts');  ?>
+		<?php /* Fix Download */ ?>
+		<?php  
+			$isNginx = 0;
+			$typeServer = $_SERVER["SERVER_SOFTWARE"];
+			if($typeServer != '')
+			{
+				$arTypeSever = explode('/',$typeServer);
+				if(isset($arTypeSever[0]) && strtolower($arTypeSever[0]) == 'nginx')
+				{
+					$isNginx = 1;
+				}
+			}
+		?>
+		<input type="hidden" value="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>pdp/index/DownloadAfterCreate" id="link-download-after" name="link_download_after" />
+		<input type="hidden" value="<?php echo $isNginx; ?>" id="server-nginx" name="server_nginx" />
+		<?php /* end Fix Download */ ?>
+		   <?php echo $this->getChildHtml('load_fonts');// Load on design button .phtml ?>
             <div class="pdc-config" style="display: none;">
                 <div class='design-btn' style="display: none">
                     <?php echo $this->getLayout()->createBlock('pdp/designbutton')->setTemplate('pdp/product/design_button.phtml')->toHtml() ?>
@@ -86,19 +102,24 @@ $sidesConfig = $this->getSidesConfig();
 			<script type="text/javascript" src="<?php echo $js_pdp;?>instagram/instagram_connect.js"></script>
 			<link href="<?php echo $js_pdp;?>instagram/css/ins.css" rel="stylesheet" type="text/css" />
 			<?php } ?>
-            <?php endif; ?>
-			<!-- Facebook JS/CSS -->
+            <!-- Facebook JS/CSS -->
 			<?php if(Mage::getStoreConfig('pdp/customer_action/is_facebook')){ ?>
 			<script type="text/javascript" src="<?php echo $js_pdp;?>facebook/facebook_connect.js"></script>
 			<?php } ?>
+            <?php endif; ?>
         </div>
         <!-- X3 JS -->
         <script type="text/javascript" src="<?php echo $jsUrl ?>js/custom.js"></script>
         <!-- PDC JS -->
+        <script type="text/javascript" src="<?php echo $js_pdp;?>curvedtext/js/curvedtext.js"></script>
         <script src="<?php echo $js_pdp;?>pdc/js/productsdesignercanvas-1.0.js"></script>
         <script type="text/javascript" src="<?php echo $jsUrl ?>js/x3.js"></script>
 		<script type="text/javascript" src="<?php echo $js_pdp;?>pdc/js/pdc.layer.js"></script>
         <script type="text/javascript" src="<?php echo $jsUrl ?>js/image.js"></script>
         <script type="text/javascript" src="<?php echo $jsUrl ?>js/object_control.js"></script>
+        <!-- Curved Text -->
+        <script type="text/javascript" src="<?php echo $js_pdp;?>curvedtext/js/pdc.text.action.js"></script>
+        <link href="<?php echo $js_pdp;?>curvedtext/css/style.css" rel="stylesheet" type="text/css" />
+        <!-- End Curved Text -->
 	</body>
 </html>

@@ -104,13 +104,13 @@ class MST_Pdp_Adminhtml_Pdpadmin_ImportClipartsController extends Mage_Adminhtml
 			{
 				$writeConnection->query($query);
 				Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('pdp')->__('Import data success'));
-                $this->_redirect('*/adminhtml_pdp/image');
+                $this->_redirect('*/pdpadmin_pdp/image');
                 return;
 			}
 			else
 			{
 				Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('pdp')->__('No data to import!'));
-                $this->_redirect('*/adminhtml_importcliparts/edit');
+                $this->_redirect('*/pdpadmin_importcliparts/edit');
                 return;
 			}
 			

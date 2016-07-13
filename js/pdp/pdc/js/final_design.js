@@ -5,6 +5,7 @@ mst(document).ready(function($) {
     var baseUrl = $("#base_url").val(),
         pdcMediaUrl = $("#pdp_media_url").val(),
 		defaultRenderTime = 1000;
+	var isServerNginx = ($("#server-nginx").length) ? $("#server-nginx").val() : 0,
 	PDCExport = {
         //Canvas background before exclude
         canvasOriginalBackground: {},
@@ -74,19 +75,20 @@ mst(document).ready(function($) {
             var self = this;
             var _canvas = self.getActiveCanvas();
             if(isInclude === "1") {
-                pdc.showLog("Include background request", "info");
-                if(self.canvasOriginalBackground.background_color) {
-                    _canvas.setBackgroundColor(self.canvasOriginalBackground.background_color, _canvas.renderAll.bind(_canvas));    
-                }
-                if(self.canvasOriginalBackground.background_image) {
-                    _canvas.setBackgroundImage(self.canvasOriginalBackground.background_image, _canvas.renderAll.bind(_canvas));    
-                }
+                _canvas.forEachObject(function(object){
+                    console.info(object);
+                    if(object.object_type && (object.object_type == "background" || object.object_type == "background_color")) {
+                        object.visible = true;
+                    }
+                });
+                _canvas.renderAll();
             } else {
-                pdc.showLog("Exclude background request", "info");
-                self.canvasOriginalBackground.background_color = _canvas.backgroundColor;
-                self.canvasOriginalBackground.background_image = _canvas.backgroundImage;
-                _canvas.setBackgroundImage(null, _canvas.renderAll.bind(_canvas));
-                _canvas.setBackgroundColor(null, _canvas.renderAll.bind(_canvas));
+                _canvas.forEachObject(function(object){
+                    if(object.object_type && (object.object_type == "background" || object.object_type == "background_color")) {
+                        object.visible = false;
+                    }
+                });
+                _canvas.renderAll();
             }
         },
         toggleIncludeOverlay: function(isInclude) {
@@ -110,6 +112,10 @@ mst(document).ready(function($) {
             if(isEditable === "1") {
                 pdc.showLog("Edit design request", "info");
                 _canvas.forEachObject(function(object){
+                    //Don't allow edit background layer
+                    if(object.object_type && (object.object_type == "background" || object.object_type == "background_color")) {
+                        return;
+                    }
                     object.set({
                         selectable: true
                     });
@@ -127,22 +133,44 @@ mst(document).ready(function($) {
             var _activeCanvasId = "canvas_" + $("#canvas_list li.active a").attr("aria-controls");
             return allCanvas[_activeCanvasId];
         },
-        downloadPng: function() {
+        downloadPng: function(format) {
             var self = this,
                 canvasDataURL = self.getActiveCanvas().toDataURL({
-                    format: 'png', 
+                    format: format || 'png', 
                     multiplier: 1,
                 }),
                 savePngUrl = baseUrl + 'pdp/index/saveBase64ImageExport';
             pdc.doRequest(savePngUrl, {
                 base_code_image: canvasDataURL,
-                order_info: self.getOrderInfo()
+                order_info: self.getOrderInfo(),
+                format: format || 'png'
             }, function(response) {
                 pdc.showLog("The png file response to download png event", "info");
                 var responseJson = JSON.parse(response);
                 if(responseJson.status === "success") {
                     pdc.hideLoadingBar();
-                    window.location = responseJson.thumbnail_path;
+                    // window.location = responseJson.thumbnail_path;
+					if(isServerNginx == '1')
+					{
+						var pdcFileName = responseJson.thumbnail_path;
+						var arPdfUrl = pdcFileName.split('/');
+						var lengthArPdfUrl = arPdfUrl.length;
+						lengthArPdfUrl = lengthArPdfUrl - 1;
+						pdcFileName = arPdfUrl.slice(-1)[0] ;
+						var baseDownloadAfter = $('#link-download-after').val();
+						console.log(format);
+						var typeImage = (format == 'jpg') ? format : 'png';
+						baseDownloadAfter += '/type/'+typeImage+'/file-name/'+pdcFileName;
+						$('a#pdc-show-link-down-link').attr('href',baseDownloadAfter);
+						$.fancybox({
+							href: '#pdc-show-link-down', 
+							modal: false,
+						});
+					}
+					else
+					{
+						window.location = responseJson.thumbnail_path;
+					}
                     return false;
                 }
                 alert(responseJson.message);
@@ -160,7 +188,26 @@ mst(document).ready(function($) {
                 var responseJson = JSON.parse(response);
                 if(responseJson.status === "success") {
                     pdc.hideLoadingBar();
-                    window.location = responseJson.thumbnail_path;
+                    // window.location = responseJson.thumbnail_path;
+					if(isServerNginx == '1')
+					{
+						var pdcFileName = responseJson.thumbnail_path;
+						var arPdfUrl = pdcFileName.split('/');
+						var lengthArPdfUrl = arPdfUrl.length;
+						lengthArPdfUrl = lengthArPdfUrl - 1;
+						pdcFileName = arPdfUrl.slice(-1)[0] ;
+						var baseDownloadAfter = $('#link-download-after').val();
+						baseDownloadAfter += '/type/svg/file-name/'+pdcFileName;
+						$('a#pdc-show-link-down-link').attr('href',baseDownloadAfter);
+						$.fancybox({
+							href: '#pdc-show-link-down', 
+							modal: false,
+						});
+					}
+					else
+					{
+						window.location = responseJson.thumbnail_path;
+					}
                     return false;
                 }
                 alert(responseJson.message);
@@ -178,7 +225,26 @@ mst(document).ready(function($) {
                 var responseJson = JSON.parse(response);
                 if(responseJson.status === "success") {
                     pdc.hideLoadingBar();
-                    window.location = responseJson.pdf_url;
+                    // window.location = responseJson.pdf_url;
+					if(isServerNginx == '1')
+					{
+						var pdcFileName = responseJson.pdf_url;
+						var arPdfUrl = pdcFileName.split('/');
+						var lengthArPdfUrl = arPdfUrl.length;
+						lengthArPdfUrl = lengthArPdfUrl - 1;
+						pdcFileName = arPdfUrl.slice(-1)[0] ;
+						var baseDownloadAfter = $('#link-download-after').val();
+						baseDownloadAfter += '/type/pdf/file-name/'+pdcFileName;
+						$('a#pdc-show-link-down-link').attr('href',baseDownloadAfter);
+						$.fancybox({
+							href: '#pdc-show-link-down', 
+							modal: false,
+						});
+					}
+					else
+					{
+						window.location = responseJson.pdf_url;
+					}
                     return false;
                 }
                 alert(responseJson.message);
@@ -198,7 +264,26 @@ mst(document).ready(function($) {
                 var responseJson = JSON.parse(response);
                 if(responseJson.status === "success") {
                     pdc.hideLoadingBar();
-                    window.location = responseJson.pdf_url;
+                    // window.location = responseJson.pdf_url;
+					if(isServerNginx == '1')
+					{
+						var pdcFileName = responseJson.pdf_url;
+						var arPdfUrl = pdcFileName.split('/');
+						var lengthArPdfUrl = arPdfUrl.length;
+						lengthArPdfUrl = lengthArPdfUrl - 1;
+						pdcFileName = arPdfUrl.slice(-1)[0] ;
+						var baseDownloadAfter = $('#link-download-after').val();
+						baseDownloadAfter += '/type/pdf/file-name/'+pdcFileName;
+						$('a#pdc-show-link-down-link').attr('href',baseDownloadAfter);
+						$.fancybox({
+							href: '#pdc-show-link-down', 
+							modal: false,
+						});
+					}
+					else
+					{
+						window.location = responseJson.pdf_url;
+					}
                     return false;
                 }
                 alert(responseJson.message);
@@ -275,7 +360,19 @@ mst(document).ready(function($) {
                                         var downloadAllRes = JSON.parse(response);
                                         if(downloadAllRes.status == "success") {
                                             $(".pdploading").hide();
-                                            window.location.href = downloadAllRes.zip_url;
+                                            // window.location.href = downloadAllRes.zip_url;
+											if(isServerNginx == '1')
+											{
+												$('a#pdc-show-link-down-link').attr('href',downloadAllRes.zip_url);
+												$.fancybox({
+													href: '#pdc-show-link-down', 
+													modal: false,
+												});
+											}
+											else
+											{
+												window.location.href = downloadAllRes.zip_url;
+											}
                                         } else {
                                             alert(downloadAllRes.message);
                                         }
@@ -311,6 +408,9 @@ mst(document).ready(function($) {
                     case 'DOWNLOAD_PNG' :
                         self.downloadPng();
                         break;
+                    case 'DOWNLOAD_JPG' :
+                        self.downloadPng('jpg');
+                        break;    
                     case 'DOWNLOAD_ALL' : 
                         self.downloadAll();
                         break;

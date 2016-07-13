@@ -136,7 +136,9 @@ class MST_Pdp_Block_Designbutton extends Mage_Core_Block_Template
             if(isset($side['sideSvg'])) {
                 $images[] = array(
                     'side_name' => $side['label'],
-                    'image_result' => $side['sideSvg']
+                    'image_result' => $side['sideSvg'],
+                    'side_width' => $side['canvaswidth'],
+                    'side_height' => $side['canvasheight']
                 );
             }
             

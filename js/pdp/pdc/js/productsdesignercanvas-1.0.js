@@ -20,6 +20,7 @@
         rerenderClass: "rerender",
         preview_thumbnail: 'jpg',
         productConfig: ($("#pdc_product_config").length) ? JSON.parse($("#pdc_product_config").val()) : '',
+		isServerNginx : ($("#server-nginx").length) ? $("#server-nginx").val() : 0,
     }
     var _sidesConfig = ($("#sides_config").length && $("#sides_config").val()) ? JSON.parse($("#sides_config").val()) : '';
     // prototype holds methods (to save memory space)
@@ -369,8 +370,26 @@
                     self.showLog("The png file response to download png event", "info");
                     var responseJson = JSON.parse(response);
                     if(responseJson.status === "success") {
-                        window.location = responseJson.thumbnail_path;
-                        self.hideLoadingBar();
+						if(config.isServerNginx == '1')
+						{
+							var pdcFileName = responseJson.thumbnail_path;
+							var arPdfUrl = pdcFileName.split('/');
+							var lengthArPdfUrl = arPdfUrl.length;
+							lengthArPdfUrl = lengthArPdfUrl - 1;
+							pdcFileName = arPdfUrl.slice(-1)[0] ;
+							var baseDownloadAfter = $('#link-download-after').val();
+							baseDownloadAfter += '/type/png/file-name/'+pdcFileName;
+							$('a#pdc-show-link-down-link').attr('href',baseDownloadAfter);
+							$.fancybox({
+								href: '#pdc-show-link-down', 
+								modal: false,
+							});
+						}
+						else
+						{
+							window.location = responseJson.thumbnail_path;
+						}
+						self.hideLoadingBar();
                         return false;
                     }
                     alert(responseJson.message);
@@ -392,7 +411,25 @@
                     self.showLog("The pdf file response to download png event", "info");
                     var responseJson = JSON.parse(response);
                     if(responseJson.status === "success") {
-                        window.location = responseJson.pdf_url;
+						if(config.isServerNginx == '1')
+						{
+							var pdcFileName = responseJson.pdf_url;
+							var arPdfUrl = pdcFileName.split('/');
+							var lengthArPdfUrl = arPdfUrl.length;
+							lengthArPdfUrl = lengthArPdfUrl - 1;
+							pdcFileName = arPdfUrl.slice(-1)[0] ;
+							var baseDownloadAfter = $('#link-download-after').val();
+							baseDownloadAfter += '/type/pdf/file-name/'+pdcFileName;
+							$('a#pdc-show-link-down-link').attr('href',baseDownloadAfter);
+							$.fancybox({
+								href: '#pdc-show-link-down', 
+								modal: false,
+							});
+						}
+						else
+						{
+							wwindow.location = responseJson.pdf_url;
+						}
                         self.hideLoadingBar();
                         return false;
                     }
@@ -718,7 +755,10 @@
         },
         prepareCanvas: function() {
             if(_sidesConfig) {
-                var sideListHtml = '',
+                var sideListHtml,
+                    sortedSideListHtml = '',
+                    unsortSideListArr = [],
+                    sortedSideListArr = [],
                     counter = 0,
                     self = this;
                 $.each(_sidesConfig, function(sideId, side) {
@@ -731,8 +771,8 @@
                         self.allCanvas[side.id].setHeight(side.canvasheight);
                         self.allCanvas[side.id].allowTouchScrolling = true;
                     }
-                    sideListHtml += '<li>';
-                    sideListHtml += '<a id="side-'+ side.id +'" pdc-action="SWITCH_SIDE" class="side-item '+ ((counter == 0) ? "active" : "") +'">';
+                    sideListHtml = '<li>';
+                    sideListHtml += '<a id="side-'+ side.id +'" pdc-action="SWITCH_SIDE" class="side-item">';
                     if(side.background_type == "image" && side.filename) {
                         sideListHtml += '<img width="70px" src="'+ config.media_url + (side.thumbnail || side.filename) +'"/>';
                     }        
@@ -740,9 +780,23 @@
                     sideListHtml += '</a>';
                     sideListHtml += '</li>';
                     //console.info(sideId, side);
+                    unsortSideListArr.push({
+                        id: side.id,
+                        pos: parseInt(side.position || 0),
+                        html: sideListHtml
+                    });
                     counter++;
-                });   
-                $('[pdc-data="side-list"]').html(sideListHtml);
+                });
+                //Sort side list follow position attribute
+                sortedSideListArr = unsortSideListArr.sort(function(a, b){
+                    return a.pos - b.pos
+                })
+                $.each(sortedSideListArr, function() {
+                    sortedSideListHtml += this.html;                                              
+                });
+                $('[pdc-data="side-list"]').html(sortedSideListHtml);
+                //Active first side
+                $('[pdc-data="side-list"] li:first .side-item').addClass("active");
                 if(counter == 1) {
                     $("#pdc_sides").hide();
                 }
@@ -1016,8 +1070,8 @@
             //test svg: http://localhost/github/x3/media/pdp/images/artworks/artworkimage11414811752.svg
             options = options || {};
             var _canvas = this.getCurrentCanvas();
-            fabric.loadSVGFromURL(src, function (objects, options) {
-                var loadedObject = fabric.util.groupSVGElements(objects, options),
+            fabric.loadSVGFromURL(src, function (objects, _svgOptions) {
+                var loadedObject = fabric.util.groupSVGElements(objects, _svgOptions),
                     zoom = _canvas.getZoom();
                 loadedObject.set({
                     //left: center.left,
@@ -1091,7 +1145,7 @@
                             //console.info("clone canvas scale " + cloneCanvas.scale);
                             cloneCanvas = self.pdcZoom.resetZoomBeforeSave(cloneCanvas);
                             //console.info(sideInfo.id, "Cloned canvas", cloneCanvas);
-                            if(cloneCanvas.getObjects().length) {
+                            if(self.hasDesignItem(cloneCanvas)) {
                                 //Skip if object is background_color and has color = fffff;
                                 if(cloneCanvas.getObjects().length == 1) {
                                     var firstObj = cloneCanvas.getObjects()[0] || false;
@@ -1110,6 +1164,11 @@
                                 sideInfo.final_price = _finalPrice.toFixed(2);
                             } else {
                                 sideInfo.final_price = 0;
+                                if(sideInfo.sideSvg || sideInfo.json) {
+                                    _sideSvg = self.modifiedSvg(cloneCanvas, sideInfo.canvaswidth, sideInfo.canvasheight);
+                                    sideInfo.sideSvg = _sideSvg;
+                                    sideInfo.json = cloneCanvas.toJSON(customAttrs); 
+                                }
                             }
                             _jsonUpdateCounter++;
                             if(_jsonUpdateCounter == self.sideLength) {
@@ -1239,6 +1298,7 @@
         closeIframe: function() {
             $.fancybox.close();
             $("#pdc_iframe", top.document).css({"top" : "-100000px"});
+            $('.main-container', top.document).show();
             $(".catalog-product-view", top.document).css({"overflow" : "inherit"});
         },
         showLoginModal: function() {
@@ -1527,6 +1587,26 @@
             var jsonContentDecoded = JSON.parse(jsonContent);
             _sidesConfig = jsonContentDecoded;
             this.restoreDesignFromJson();
+        },
+        hasDesignItem: function(canvas) {
+            var hasDesignItem = false;
+            //Check canvas has design or not, exclude background color and background 
+            if(canvas.getObjects()) {
+                var objects = canvas.getObjects();
+                objects.forEach(function(o) {
+                    if(o.object_type && (o.object_type == "background_color" || o.object_type == "background")) {
+                        if(o.object_type == "background") {
+                            var o_src = o.isrc || o.src;
+                            if(o_src && o_src.match("images/artworks/")) {
+                                hasDesignItem = true;
+                            }
+                        }
+                    } else {
+                        hasDesignItem = true;
+                    }
+                });   
+            }
+            return hasDesignItem;
         }
 	}
 	// the actual object is create here, allowing us to 'new' an object without calling new
@@ -1558,10 +1638,13 @@
             if(self.checkJSONReady.status == 1) {
                 var maxWidth = 200,
                     _canvas;
-                $.each(self.allCanvas, function(sideIndex, sideCavnas) {
-                    _canvas = sideCavnas;
-                    return false;
-                });
+                //Get first canvas from side list.
+                if($('[pdc-data="side-list"] li:first .side-item').length) {
+                    var firstSideId = $('[pdc-data="side-list"] li:first .side-item').attr("id").replace("side-", "");
+                    if(firstSideId) {
+                        _canvas = self.allCanvas[firstSideId];
+                    }
+                }
                 if(_canvas) {
                     _canvas.clone(function(_canvasTemp) {
                         if(_canvasTemp.width > maxWidth) {

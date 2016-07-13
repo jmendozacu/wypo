@@ -43,8 +43,10 @@ class MST_Pdp_Model_Pdpside extends Mage_Core_Model_Abstract {
 					break;
 				case "position" :
 					$sideInfo->setPosition($fieldInfo[1]);
+                    break;
                 case "price" :
-					$sideInfo->setPrice($fieldInfo[1]);    
+					$sideInfo->setPrice($fieldInfo[1]);
+                    break;    
 			}
 			$sideInfo->save();
 		}

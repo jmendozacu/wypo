@@ -52,12 +52,9 @@ x3Controls(function($) {
                 }
                 var text_font = obj.get('fontFamily');
                 //Prop selected font
-                $('.pdc-style-family [style="font-family:'+ text_font +';"]').attr("selected", true);
+                $('.pdc-style-family option').removeAttr("selected");
+                $('.pdc-style-family [style="font-family:'+ text_font +';"]').prop("selected", true);
                 $('.pdc-style-family').css("font-family", text_font);
-                if(text_font.length > 9){
-                    text_font = text_font.substring(0,9)+' ...';
-                }
-                $('.pdc-fonts-family span').html(text_font);
                 ObjEvents.init_color_item(obj);
             }
         },
@@ -76,8 +73,9 @@ x3Controls(function($) {
         objectSelected: function(){
             var canvas = pdc.getCurrentCanvas();
             var act = canvas.getActiveObject();
+            ObjEvents.showTextEffectControls(act);
             if(!act) return false;
-            if((act.type=='text')||(act.type=='i-text')){
+            if((act.type=='text')||(act.type=='i-text') || (act.type=='curvedText')){
                 $('#pdc_toolbar_options').removeClass('objimg');
                 $('#pdc_text_edit').show();
                 ObjEvents.init_text(act);
@@ -93,6 +91,40 @@ x3Controls(function($) {
             $('[pdc-block="layer"] .active').removeClass('active');
             $('[pdc-block="layer"] [name="'+name+'"]').addClass('active');
             $(".pdc-item-tool ul, .pdc-transparency-slider").hide();
+        },
+        showTextEffectControls: function(act) {
+            $('[pdc-box="curved"], [pdc-box="small-large-font"]').hide();
+            if(!act) return false;
+            if(act.type && act.type == "curvedText") {
+                //Object types: curved, arc, smallToLarge, largeToSmallTop, largeToSmallBottom, bulge, STRAIGHT
+                if(act.effect && (act.effect == 'arc' || act.effect == 'curved')) {
+                    //Update angle, space for controls
+                    if(act.radius) {
+                        $('[pdc-box="curved"] [name="radius"]').val(act.radius);
+                        $('[pdc-box="curved"] [name="radius_number"]').val(act.radius);
+                    }
+                    if(act.spacing) {
+                        $('[pdc-box="curved"] [name="spacing"]').val(act.spacing);    
+                        $('[pdc-box="curved"] [name="spacing_number"]').val(act.spacing);    
+                    }
+                    if(act.reverse) {
+                        $('[pdc-box="curved"] [name="reverse"]').prop("checked", true);
+                    } else {
+                        $('[pdc-box="curved"] [name="reverse"]').prop("checked", false);
+                    }
+                    $('[pdc-box="curved"]').show();
+                } else {
+                    if(act.smallFont) {
+                        $('[pdc-box="small-large-font"] [name="text_small_font"]').val(act.smallFont);
+                        $('[pdc-box="small-large-font"] [name="text_small_font_number"]').val(act.smallFont);
+                    }
+                    if(act.largeFont) {
+                        $('[pdc-box="small-large-font"] [name="text_large_font"]').val(act.largeFont);
+                        $('[pdc-box="small-large-font"] [name="text_large_font_number"]').val(act.largeFont);
+                    }
+                    $('[pdc-box="small-large-font"]').show();
+                }
+            } 
         },
         updateObjPos: function(){
             var canvas = pdc.getCurrentCanvas(),
@@ -169,24 +201,7 @@ x3Controls(function($) {
                          });
                 		canvas.renderAll();
                     }else{
-                         //active.set(act,val);
-                         if(active.type!='curvedText'){
-                            ObjEvents.setStyle(active, act, val);
-                         }else{
-                            var scaleXobj =  active.scaleX,
-                                scaleYobj = active.scaleY;
-                                active.set({
-                                    scaleX: 1,
-                                    scaleY: 1
-                                })
-                                active.set(act, val);
-                    		    canvas.renderAll();    
-                                active.set({
-                                    scaleX: scaleXobj,
-                                    scaleY: scaleYobj
-                             })
-                    		canvas.renderAll();
-                         }
+                        ObjEvents.setStyle(active, act, val);
                     }
                 }
                 canvas.renderAll();
@@ -338,19 +353,23 @@ x3Controls(function($) {
                     }else{ active.set('fill',ObjEvents.rgb2hex(value)); } 
                     }   break;
                 case 'opacity'  :   active.set('opacity',value);    break; 
-                case 'fontSize'  :   
+                case 'fontSize'  :
                     var scaleXobj =  active.scaleX,
                         scaleYobj = active.scaleY;
                         active.set({
                             scaleX: 1,
                             scaleY: 1
                         })
-            			active.set('fontSize',value); 
-            		      canvas.renderAll();    
+            			active.set({
+                            fontSize: value,
+                            smallFont: parseInt(value /2), //For some special effect
+                            largeFont: value
+                        }); 
+            		    canvas.renderAll();    
                         active.set({
                             scaleX: scaleXobj,
                             scaleY: scaleYobj
-                        })
+                        });
             			canvas.renderAll();
                     break; 
                 case 'move': 

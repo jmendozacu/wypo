@@ -250,16 +250,16 @@ $productConfigs = Mage::helper("pdp")->getProductConfig($productId);
                             <table class="pdc-product-config">
                                 <?php 
                                 $tabs = array(
-                                    array('name' => 'enable_product_design_tab', 'title' => 'Enable Product Design Tab'),
-                                    array('name' => 'enable_elements_tab', 'title' => 'Enable Elements Tab'),
-                                    array('name' => 'enable_upload_tab', 'title' => 'Enable Upload Tab'),
-                                    array('name' => 'enable_text_tab', 'title' => 'Enable Text Tab'),
-                                    array('name' => 'enable_layer_tab', 'title' => 'Enable Layers Tab'),
-                                    array('name' => 'enable_info_tab', 'title' => 'Enable Info Tab'),
-                                    array('name' => 'enable_download_btn', 'title' => 'Enable Download Button'),
-                                    array('name' => 'enable_share_btn', 'title' => 'Enable Share Button - Need more config'),
-                                    array('name' => 'enable_reset_btn', 'title' => 'Enable Reset Button'),
-                                    array('name' => 'enable_zoom_btn', 'title' => 'Enable Zoom Buttons'),
+                                    array('name' => 'enable_product_design_tab', 'title' => 'Enable Product Design Tab', 'enable' => 2),
+                                    array('name' => 'enable_elements_tab', 'title' => 'Enable Elements Tab', 'enable' => 1),
+                                    array('name' => 'enable_upload_tab', 'title' => 'Enable Upload Tab', 'enable' => 1),
+                                    array('name' => 'enable_text_tab', 'title' => 'Enable Text Tab', 'enable' => 1),
+                                    array('name' => 'enable_layer_tab', 'title' => 'Enable Layers Tab', 'enable' => 1),
+                                    array('name' => 'enable_info_tab', 'title' => 'Enable Info Tab', 'enable' => 1),
+                                    array('name' => 'enable_download_btn', 'title' => 'Enable Download Button', 'enable' => 1),
+                                    array('name' => 'enable_share_btn', 'title' => 'Enable Share Button - Need more config', 'enable' => 1),
+                                    array('name' => 'enable_reset_btn', 'title' => 'Enable Reset Button', 'enable' => 1),
+                                    array('name' => 'enable_zoom_btn', 'title' => 'Enable Zoom Buttons', 'enable' => 1),
                                 );
                                 ?>
                                 <?php foreach($tabs as $_plugin) : ?>
@@ -267,9 +267,9 @@ $productConfigs = Mage::helper("pdp")->getProductConfig($productId);
                                     <td><label><?php echo $_plugin['title'] ?></label></td>
                                     <td>
                                         <?php 
-                                        $_isEnable = 1;
-                                        if(isset($productConfigs[$_plugin['name']]) && $productConfigs[$_plugin['name']] == "2" ) {
-                                            $_isEnable = 2;
+                                        $_isEnable = $_plugin['enable'];
+                                        if(isset($productConfigs[$_plugin['name']]) && $productConfigs[$_plugin['name']]) {
+                                            $_isEnable = $productConfigs[$_plugin['name']];
                                         }
                                         ?>
                                         <input type="radio" id="<?php echo $_plugin['name'] ?>_1" name="<?php echo $_plugin['name'] ?>" value="1" <?php echo ($_isEnable == "1") ? "checked" : ''; ?>>
@@ -292,16 +292,17 @@ $productConfigs = Mage::helper("pdp")->getProductConfig($productId);
                             <table class="pdc-product-config">
                                 <?php 
                                 $plugins = array(
-                                    array('name' => 'enable_image_plugin', 'title' => 'Enable Image Plugin'),
-                                    array('name' => 'enable_upload_plugin', 'title' => 'Enable Upload Plugin'),
-                                    array('name' => 'enable_clipart_plugin', 'title' => 'Enable Clipart Plugin'),
-                                    array('name' => 'enable_shape_plugin', 'title' => 'Enable Shape Pugin'),
-                                    array('name' => 'enable_facebook_plugin', 'title' => 'Enable Upload Facebook Photo'),
-                                    array('name' => 'enable_instagram_plugin', 'title' => 'Enable Upload Instagram Photo'),
-                                    array('name' => 'enable_frame_plugin', 'title' => 'Enable Frame Plugin'),
-                                    array('name' => 'enable_qrcode_plugin', 'title' => 'Enable QRCode Plugin'),
-                                    //array('name' => 'enable_curvedtext_plugin', 'title' => 'Enable Curved Text'),
-                                    array('name' => 'enable_colorpicker_plugin', 'title' => 'Enable Colorpicker'),
+                                    array('name' => 'enable_background_plugin', 'title' => 'Enable Background Plugin', 'enable' => 2),
+                                    array('name' => 'enable_image_plugin', 'title' => 'Enable Image Plugin', 'enable' => 1),
+                                    array('name' => 'enable_upload_plugin', 'title' => 'Enable Upload Plugin', 'enable' => 1),
+                                    array('name' => 'enable_clipart_plugin', 'title' => 'Enable Clipart Plugin', 'enable' => 1),
+                                    array('name' => 'enable_shape_plugin', 'title' => 'Enable Shape Pugin', 'enable' => 1),
+                                    array('name' => 'enable_facebook_plugin', 'title' => 'Enable Upload Facebook Photo', 'enable' => 1),
+                                    array('name' => 'enable_instagram_plugin', 'title' => 'Enable Upload Instagram Photo', 'enable' => 1),
+                                    array('name' => 'enable_frame_plugin', 'title' => 'Enable Mask Plugin', 'enable' => 2),
+                                    array('name' => 'enable_qrcode_plugin', 'title' => 'Enable QRCode Plugin', 'enable' => 1),
+                                    //array('name' => 'enable_curvedtext_plugin', 'title' => 'Enable Curved Text', 'enable' => 1),
+                                    array('name' => 'enable_colorpicker_plugin', 'title' => 'Enable Colorpicker', 'enable' => 1),
                                 );
                                 ?>
                                 <?php foreach($plugins as $_plugin) : ?>
@@ -309,9 +310,9 @@ $productConfigs = Mage::helper("pdp")->getProductConfig($productId);
                                     <td><label><?php echo $_plugin['title'] ?></label></td>
                                     <td>
                                         <?php 
-                                        $_isEnable = 1;
-                                        if(isset($productConfigs[$_plugin['name']]) && $productConfigs[$_plugin['name']] == "2" ) {
-                                            $_isEnable = 2;
+                                        $_isEnable = $_plugin['enable'];
+                                        if(isset($productConfigs[$_plugin['name']])) {
+                                            $_isEnable = $productConfigs[$_plugin['name']];
                                         }
                                         ?>
                                         <input type="radio" id="<?php echo $_plugin['name'] ?>_1" name="<?php echo $_plugin['name'] ?>" value="1" <?php echo ($_isEnable == "1") ? "checked" : ''; ?>>
@@ -444,6 +445,7 @@ mstPdpDesign(function($){
                 autoReplacePattern = ($("#auto_replace_pattern").length && $("#auto_replace_pattern").is(":checked")) ? 1 : 2,
                 enableUploadPlugin = $("input[name='enable_upload_plugin']:checked").val(),
                 enableClipartPlugin = $("input[name='enable_clipart_plugin']:checked").val(),
+                enableBackgroundPlugin = $("input[name='enable_background_plugin']:checked").val(),
                 enableShapePlugin = $("input[name='enable_shape_plugin']:checked").val(),
                 enableFramePlugin = $("input[name='enable_frame_plugin']:checked").val(),
                 enableFacebookPlugin = $("input[name='enable_facebook_plugin']:checked").val(),
@@ -492,6 +494,7 @@ mstPdpDesign(function($){
                 //default_color: defaultColor,
                 enable_upload_plugin: enableUploadPlugin,
                 enable_clipart_plugin: enableClipartPlugin,
+                enable_background_plugin: enableBackgroundPlugin,
                 enable_shape_plugin: enableShapePlugin,
                 enable_frame_plugin: enableFramePlugin,
                 enable_facebook_plugin: enableFacebookPlugin,

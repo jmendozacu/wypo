@@ -1,7 +1,5 @@
 <?php
 $productId = $this->getProductId();
-$productStatus = Mage::getModel('pdp/productstatus')->getProductStatus($productId);
-if ($productStatus == 1) {
 $baseUrl = Mage::helper("pdp")->getPdpBaseUrl();
 $pdpDesignInfo = $this->getPdpDesignInfo(); 
 //If redesign request, pass the redesign id to iframe
@@ -33,4 +31,3 @@ $iframeUrl = $baseUrl . "pdp/view/getIframe/product-id/" . $productId . "/json/"
 		pdcIframe.contentDocument.getElementById('get_design_content').click();
 	});
 </script>
-<?php } ?>

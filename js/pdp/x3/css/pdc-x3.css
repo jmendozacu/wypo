@@ -3,11 +3,13 @@ body {
   background:transparent;
   display: block;
   overflow: hidden;
-  padding:0px;
+  padding:0px; 
 }
-body.pace-done .iframe-container, body.pace-running .iframe-container {
+@media only screen and (max-width: 1799px) {
+ body.pace-done .iframe-container, body.pace-running .iframe-container {
   background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0 !important;
-}
+}   
+} 
 body.small-popup .iframe-container {
   padding: 10px 3%;
 }
@@ -115,8 +117,8 @@ div.result {
 h3.item-title {
   color: #141823;
   float: left;
-  font-size: 12px;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: lighter;
   line-height: 35px;
   margin: 0;
   padding: 0;
@@ -188,7 +190,7 @@ h3.item-title {
   padding: 5px 10px;
   text-transform: capitalize;
 }
-.topbar-buttons li .tool-btn:hover, .topbar-buttons li:first-child .tool-btn {
+.topbar-buttons li .tool-btn:hover, .topbar-buttons li .continue-shopping {
   background: #44b4aa none repeat scroll 0 0;
   border-radius: 0;
   color: #ffffff;
@@ -222,7 +224,7 @@ h3.item-title {
 .form-gr-btm{border-top:1px solid #ddd; padding:10px 0 0;}
 .form-gr-btm a{margin-bottom:5px;}
 .form-gr-btm p{line-height:26px;}
-.fancybox-wrap{width:40%!important;top:10%!important;}
+.fancybox-wrap{width:40%!important;}
 .fancybox-inner{width:100%!important; padding:5px;}
 #pdc-reset-cont ul li {display:inline-block;}
 .pdc-popup ul.saving {
@@ -320,23 +322,26 @@ width: 100% !important;}
   /* color: #00bfa5 !important; */
 }
 .pdc-area-left .pdc-tabs > ul.nav li a {
-  border-color: rgba(255, 255, 255, 0.2) -moz-use-text-color -moz-use-text-color;
+  border-color: rgba(255, 255, 255, 0.2) -moz-use-text-color rgba(0, 0, 0, 0.1);
   border-radius: 0;
-  border-style: solid none none;
-  border-width: 0 medium medium 0;
-  color: #4e5665;
+  border-style: solid none dotted;
+  border-width: 0 medium 1px 0;
+  color: #555555;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.025em;
+  font-size: 16px;
+  font-weight: normal;
+  /* letter-spacing: 0.025em; */
   padding: 15px 2px;
   text-transform: capitalize;
-  /* transition: all 0.15s linear 0s, opacity 0s linear 0s; */
   word-wrap: break-word;
+}
+.pdc-area-left .pdc-tabs > ul.nav li a.a-layers {
+  border: medium none;
 }
 .pdc-area-left .pdc-tabs > ul.nav li a i {
   clear: both;
   font-size: 25px;
+  font-weight: bold;
   padding-bottom: 2px;
   width: 100%;
 }
@@ -977,12 +982,12 @@ z-index:0;
 .panel-group{margin:0px;}
 .panel-mst .panel-default > .panel-heading{padding:0px;}
 .panel-mst .panel-default h4 a {
-  background: #f3edd6 none repeat scroll 0 0;
-  color: #000000;
+  /* background: #f3edd6 none repeat scroll 0 0; */
+  color: #44b4aa;
   display: block;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 25px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 40px;
   padding: 5px 0;
 }
 .panel-mst .panel-default h4 a .fa {
@@ -996,19 +1001,19 @@ z-index:0;
   color: #44b4aa;
   content: "\f0d7";
   font-family: fontawesome;
-  font-size: 14px;
-  font-weight: lighter;
-  height: 20px;
-  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 40px;
   position: absolute;
-  right: 5px;
+  right: 15px;
   text-align: center;
-  width: 20px;
+  width: 35px;
 }
 .panel-mst .panel-default h4 a.collapsed::after {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border-color: #cccccc;
-  color: #cccccc;
+  color: #666666;
   content: "\f107";
 }
 .panel-mst .panel-default  h4 a.collapsed{color:#666; background:#f2f2f2;}
@@ -1513,9 +1518,15 @@ z-index:0;
 	color: #ffffff;
 	cursor: pointer;
 	height: 30px;
-	max-width: 100%;
+	width: 100%;
 }
-.pdc_edit_text_only select option{color:#000;}
+.pdc_edit_text_only select option{
+  background: #ffffff none repeat scroll 0 0;
+  font-size: 16px;
+  height: 30px;
+  width: 150px;
+  color:#000;
+}
 .pdc_edit_text_only .fake-select{
 	background: #3f4652 none repeat scroll 0 0;
 	border: medium none;
@@ -1665,10 +1676,11 @@ z-index:0;
   position: absolute;
   right: 0;
   text-align: center;
-  top: 15%;
+  top: 40%;
   width: 305px;
   z-index: 99999;
   box-shadow:3px 0px 3px rgba(0,0,0,.5);
+  border: 10px inset #006699;
 }
 .pdploading::before {
   color: #000000;
@@ -1693,7 +1705,10 @@ ul.product-colors {
 }
 ul.product-colors li {
     float: left;
-	margin:2px;
+}
+ul.product-colors li a { 
+    width: 30px;
+    height: 20px;
 }
 ul.product-colors li:hover a {
     border: 1px solid #006699;
@@ -1727,7 +1742,7 @@ ul.product-colors li.active a {
 .pdc-background-color-list li {
     float: left;
 }
-.pdc-background-color-list li a, #pdc_background_color_picker {
+.pdc-background-color-list li a, #pdc_background_color_picker, .product-colors li a {
   border: 0 solid #dddddd;
   box-shadow: 0 0 1px #cccccc;
   box-sizing: padding-box;
@@ -1769,6 +1784,79 @@ ul.product-colors li.active a {
 /* For very large screen size */
 @media only screen and (min-width: 1800px) {
 	body.small-popup {
+	  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0 !important;
 	  padding: 10px 5%;
 	}	
 } 
+/* Simple style for curved text plugin */
+.text-effects > ul {
+  display: block;
+}
+.text-effects > ul li img {
+  cursor: pointer;
+  max-height: 100%;
+  max-width: 100%;
+}
+.text-effects > ul li {
+  border: 1px dotted #cccccc;
+  display: inline-flex;
+  height: 46px;
+  margin: 0 0 5px;
+  width: 45%;
+}
+.text-effects > div {
+  clear: both;
+  display: block;
+  overflow: hidden;
+}
+.text-effects > div.no-display,.no-display{
+	display:none;
+}
+.text-effects > div > h4 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 30px;
+  margin: 15px 0;
+  padding-left: 10px;
+  text-align: left;
+}
+.text-effects div div {
+  border-top: 1px solid #cccccc;
+  clear: both;
+  display: block;
+  overflow: hidden;
+  padding: 5px;
+  text-align: left;
+  width: 100%;
+}
+.text-effects div div span {
+  display: inline-block;
+  float: left;
+  font-size: 12px;
+  line-height: 30px;
+  width: 80px;
+}
+.text-effects div div input[type="checkbox"] {
+  display: inline-block;
+  line-height: 25px;
+  margin-left: 10px;
+  margin-top: 0;
+}
+.text-effects div div input[type="range"] {
+  display: inline-block;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 !important;
+  width: 125px !important;
+}
+.text-effects div div input[type="number"] {
+  float: right;
+  line-height: 25px;
+  width: 50px;
+}
+#pdc-show-link-down p
+{
+	font-size: 1.5em;
+    text-align: center;
+}

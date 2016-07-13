@@ -12,7 +12,7 @@ if(empty($images)) {
 <dl class="item-options pdp_cart_item">
 <?php foreach ($images as $image) : ?>
 	<dt><?php echo $this->__($image['name']) ?></dt>
-	<dd><div class="pdc-preview-item" style="border: 1px solid #ccc;line-height: 0;width: 180px;"><?php echo $image['image'] ?></div></dd>
+	<dd style="font-style: normal;"><div class="pdc-preview-item" style="border: 1px solid #ccc;line-height: 0;width: 180px;"><?php echo $image['image'] ?></div></dd>
 <?php endforeach; ?>
 </dl>
 

@@ -1,7 +1,5 @@
 <?php 
 $request = $this->getRequest()->getParams();
-$productStatus = Mage::getModel('pdp/productstatus')->getProductStatus($request["product-id"]);
-if ($productStatus == 1) {
 $ajaxParams = "";
 if (isset($request['json']) && $request['json'] != "") {
 	$ajaxParams .= "json/" . $request['json'] . "/";
@@ -110,11 +108,13 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
 					"top" : "0",
 					"right" : "0"
 				});
+                $('.main-container', mainWindow).hide();
 				LoadDesign.readyToDesign();
 			},
 			closeIframe : function() {
 				$(document).on("click", '[pdc-action="close-iframe"]', function() {
-					$("#pdc_iframe", mainWindow).css({"top" : "-100000px"});
+					$("#pdc_iframe", mainWindow).css({"top" : "-100000px"}); console.log(232);
+                    $('.main-container', mainWindow).show();
 					$(".catalog-product-view", mainWindow).css({"overflow" : "inherit"});
 				});
 			}(),
@@ -130,13 +130,13 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
 					if (sampleImageStr) {
 						var sampleImageJson = JSON.parse(sampleImageStr),
                             mainImgBox = mainImgBox || '.product-img-box .product-image'; 
-						if (sampleImageJson[0].image_result) {
+						if (sampleImageJson[0] && sampleImageJson[0].image_result) {
                             //Check if result image is svg format or png
                             var thumbnail = sampleImageJson[0].image_result,
                                 thumbnailFormat = thumbnail.split(".").slice(-1)[0];
                             $(mainImgBox + ' img', mainWindow).hide();
                             $("#pdc-preview", mainWindow).remove();
-                            var svgPreviewObj = '<div id="pdc-preview" style="line-height: 0;">'+ sampleImageJson[0].image_result +'</div>';
+                            var svgPreviewObj = '<div id="pdc-preview" style="line-height: 100%;">'+ sampleImageJson[0].image_result +'</div>';
                             $(mainImgBox, mainWindow).prepend(svgPreviewObj);
                             //Disable default zoom of magento 1.9.1 - 1.9.2
                             try {
@@ -150,7 +150,7 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
 						//if ($('.more-views', mainWindow).length) {
                         $('.more-views', mainWindow).remove();
                         if($(mainImgBox + ' .pdp_more_view', mainWindow).length == 0){
-                            $(mainImgBox, mainWindow).append('<div class="more-views" style="clear: both; float: left;"><h2><?php echo $this->__('More Views');?></h2><ul class="pdp_more_view" style="line-height: 0;"></ul></div>');
+                            $(mainImgBox, mainWindow).append('<div class="more-views" style="clear: both; float: left;"><h2><?php echo $this->__('More Views');?></h2><ul class="pdp_more_view" style="line-height: 100%;"></ul></div>');
                         }else{
                             $('.pdp_more_view', mainWindow).html('');
                         }
@@ -208,6 +208,7 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
 						$("#pdc_iframe", mainWindow).css({
 							"top" : "0"
 						});
+                        $('.main-container', mainWindow).hide();
 						return false;
 					} else {
 						var _initIframeW = 300;
@@ -233,6 +234,10 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
             var pdcConfig = JSON.parse($("#pdc_product_config", mainWindow).val());
             var productConfig = JSON.parse(pdcConfig.note);
             var isAutoReplace = productConfig.auto_replace_pattern || 2;
+            if($("#cart_item_id", mainWindow).val()) {
+                isAutoReplace = 1;
+            }
+            //Edit action should replace base image
             if(isAutoReplace === 1) {
                 LoadDesign.showSampleImage();
             }
@@ -241,4 +246,3 @@ $js_pdp = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'pdp/';
 	});
 </script>
 </body>
-<?php } ?>

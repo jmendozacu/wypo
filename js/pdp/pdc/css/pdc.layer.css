@@ -143,6 +143,16 @@
   padding: 10px 5px;
   float: left;
 }
-.layer-final label {
+.design-cost {
+  border-top:1px solid #ccc;
+  border-left:1px solid #ccc;
+  border-right:1px solid #ccc;
+  clear: both;
+  display: block;
+  padding: 10px 5px;
+  float: left;
+}
+.layer-final label,
+.design-cost label {
     float: left; font-weight:normal;
 }

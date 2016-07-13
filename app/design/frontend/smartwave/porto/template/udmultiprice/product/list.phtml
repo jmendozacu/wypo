@@ -210,7 +210,7 @@ var i = 0;
                         $_price = $_taxHelper->getPrice($_product, $_store->roundPrice($_store->convertPrice(@$pCmp[0])));
                         ?>
                         <p class="<?php echo @$priceCmpStates[$pCmpState]['html_value']?>-price">
-                            <span class="price-label"><?php echo Mage::helper('udropship')->__('%s %s from', @$priceCmpCnt[$pCmpState]*1, @$priceCmpStates[$pCmpState]['html_label'])?></span>
+                            <span class="price-label"><?php echo Mage::helper('udropship')->__('%s %s desde', @$priceCmpCnt[$pCmpState]*1, @$priceCmpStates[$pCmpState]['html_label'])?></span>
                             <span class="price"><strong><?php echo $this->helper('core')->formatPrice($_price)?></strong></span>
                         </p>
                         <?php endforeach; ?>
@@ -460,7 +460,7 @@ var i = 0;
 							$_price = $_taxHelper->getPrice($_product, $_store->roundPrice($_store->convertPrice(@$pCmp[0])));
 						?>
 						<p class="<?php echo @$priceCmpStates[$pCmpState]['html_value']?>-price">
-							<span class="price-label"><?php echo Mage::helper('udropship')->__('%s %s from', @$priceCmpCnt[$pCmpState]*1, @$priceCmpStates[$pCmpState]['html_label'])?></span>
+							<span class="price-label"><?php echo Mage::helper('udropship')->__('%s %s desde', @$priceCmpCnt[$pCmpState]*1, @$priceCmpStates[$pCmpState]['html_label'])?></span>
 							<span class="price"><strong><?php echo $this->helper('core')->formatPrice($_price)?></strong></span>
 						</p>
 						<?php endforeach; ?>

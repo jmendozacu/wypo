@@ -18,6 +18,7 @@ pdc_layer(document).ready(function($){
                             if($(this).hasClass('mask')){
                                 canvas.setOverlayImage(null, canvas.renderAll.bind(canvas));
                             }
+                            canvas.deactivateAll()();
                         }else{
                             $('[pdc-block="layer"] .active').removeClass('active');
                             if(!$(this).parent().hasClass('pdc_layer_uncheck')){
@@ -63,7 +64,7 @@ pdc_layer(document).ready(function($){
                     var html = $('[pdc-block="layer"] pdc-layer="0"');
                     $('[pdc-block="layer"] [pdc-layer="content"]').append(html);
                     var html = '<li>';
-                    if((o.type=='text')||(o.type=='i-text')){
+                    if((o.type=='text')||(o.type=='i-text') || (o.type=='curvedText')){
                         html  +=   o.text;
                     }
                     if((o.type=='path-group')||(o.type=='image')){
@@ -120,23 +121,48 @@ pdc_layer(document).ready(function($){
             var canvas = pdc.getCurrentCanvas();
             var html = $('[pdc-block="layer"] [pdc-layer="0"]').html();
             $('[pdc-block="layer"] tbody').html('<tr style="display:none;" pdc-layer="0">'+html+'</tr>');
-            var objects = canvas.getObjects();
-            if(objects.length > 0) {
+            var objects = canvas.getObjects(),
+                hasDesignItem = false;
+            $(".layer-final").hide();
+            $(".design-cost").hide();
+            if(objects.length) {
+                //Make sure design has design item, skip background color, background_image
+                objects.forEach(function(o) {
+                    if(o.object_type && (o.object_type == "background_color" || o.object_type == "background")) {
+                        if(o.object_type == "background") {
+                            var o_src = o.isrc || o.src;
+                            if(o_src && o_src.match("images/artworks/")) {
+                                hasDesignItem = true;
+                            }
+                        }
+                    } else {
+                        hasDesignItem = true;
+                    }
+                });
+            }
+            //console.info(objects);
+            if(hasDesignItem) {
                 //PDC_layer.updatePosition();
                 var i = 0,price=0;
                 objects.forEach(function(o) {
                     if(o.object_type!='background_color'){ 
+                        var o_src = o.isrc || o.src;
+                        if(o.object_type=='background'){ 
+                            //Skip original background, show background or pattern from images only
+                            if(o_src && !o_src.match("images/artworks/")) {
+                                return;
+                            }
+                        }
                         i++; 
                         var name = 'item_'+i;
                         o.set({name:name}); canvas.renderAll();
                         if((o.price=='')||(o.price==undefined)){o.price=0;}
                         price+=parseFloat(o.price);
                         $('[pdc-block="layer"] tbody').append('<tr obj_type="'+o.object_type+'" pdc-layer="'+i+'" name="'+name+'">'+html+'</tr>');
-                        if((o.type=='text')||(o.type=='i-text')){
+                        if((o.type=='text')||(o.type=='i-text')||(o.type=='curvedText')){
                             $('[pdc-layer="'+i+'"] [pdc-layer-info="type"]').html(o.text.substring(0,10));
                         } 
-                        if((o.type=='image')||(o.type=='path-group')){
-                            var o_src = o.isrc || o.src;                             
+                        if((o.type=='image')||(o.type=='path-group')){                             
                             $('[pdc-layer="'+i+'"] [pdc-layer-info="type"]').html('<img src="'+o_src+'" />');
                         }
                         if(o.object_type=='background'){
@@ -154,24 +180,41 @@ pdc_layer(document).ready(function($){
                 if(canvas.overlayImage){
                     i++; 
                     var o = canvas.overlayImage,name = 'item_'+i;
-                    o.set({name:name}); canvas.renderAll();
-                    if((o.price=='')||(o.price==undefined)){o.price=0;}
-                    price+=parseFloat(o.price);
-                    $('[pdc-block="layer"] tbody').append('<tr class="pdc_layer_uncheck" pdc-layer="'+i+'" name="'+name+'">'+html+'</tr>');
-                    $('[pdc-layer="'+i+'"] [pdc-layer-info="price"]').html(currency_symbol+parseFloat(o.price).toFixed(2));
-                    $('[pdc-layer="'+i+'"] [pdc-layer-info="size"]').html(parseInt(o.width*o.scaleX) + 'X' + parseInt(o.height*o.scaleY));
-                    if(o.object_type=='mask'){
-                        var o_src = o.isrc || o.src;                             
-                        $('[pdc-layer="'+i+'"] [pdc-layer-info="type"]').html('<img src="'+o_src+'" />');
-                        $('[pdc-layer="'+i+'"] .action i').hide();
-                        $('[pdc-layer="'+i+'"] .del').addClass('mask');
+                    var o_src = o.isrc || o.src;
+                    //Show layer from artwork type = mask only. Not show original overlay layer
+                    if(o_src && o_src.match("images/artworks/")) {
+                        o.set({name:name}); canvas.renderAll();
+                        if((o.price=='')||(o.price==undefined)){o.price=0;}
+                        price+=parseFloat(o.price);
+                        $('[pdc-block="layer"] tbody').append('<tr class="pdc_layer_uncheck" pdc-layer="'+i+'" name="'+name+'">'+html+'</tr>');
+                        $('[pdc-layer="'+i+'"] [pdc-layer-info="price"]').html(currency_symbol+parseFloat(o.price).toFixed(2));
+                        $('[pdc-layer="'+i+'"] [pdc-layer-info="size"]').html(parseInt(o.width*o.scaleX) + 'X' + parseInt(o.height*o.scaleY));
+                        if(o.object_type=='mask'){                             
+                            $('[pdc-layer="'+i+'"] [pdc-layer-info="type"]').html('<img src="'+o_src+'" />');
+                            $('[pdc-layer="'+i+'"] .action i').hide();
+                            $('[pdc-layer="'+i+'"] .del').addClass('mask');
+                        }
+                        if($("#d-pcolors").length > 0){
+                            $('[pdc-layer="'+i+'"] .del, [pdc-layer="'+i+'"] .action').hide();
+                        }   
                     }
-                    if($("#d-pcolors").length > 0){
-                        $('[pdc-layer="'+i+'"] .del, [pdc-layer="'+i+'"] .action').hide();
+                }
+                //console.info("Show side cost", pdc.getSidesConfig());
+                //Show side's cost in layer
+                var _sideConfig = pdc.getSidesConfig(),
+                    _currentSideId = pdc.getActiveSide().id;
+                if(_sideConfig && _currentSideId && _sideConfig[_currentSideId]) {
+                    var _sideCost = _sideConfig[_currentSideId].price;
+                    if(parseFloat(_sideCost) > 0) {
+                        price += parseFloat(_sideCost);
+                        var _priceFormated = currency_symbol + parseFloat(_sideCost).toFixed(2);
+                        $(".design-cost .price_layer").html(_priceFormated);
+                        $(".design-cost").show();       
                     }
                 }
                 $('[obj_type="background"] img').css('background-color',$('#pdc_block_layer').attr('bg_color'));
                 $('[pdc-block="layer-final"] .price_layer').html(currency_symbol+parseFloat(price).toFixed(2));
+                $(".layer-final").show();
             }
             PDC_layer.modify_layer();
         },

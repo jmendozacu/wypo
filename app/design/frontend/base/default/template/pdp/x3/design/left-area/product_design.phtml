@@ -39,7 +39,7 @@ if($isProductColorTabEnable) {
 			</div>
 		<?php endif; ?>
 		<!-- Background-->
-        <?php if(!$isProductColorTabEnable): ?>
+        <?php if(!$isProductColorTabEnable && isset($productConfigs['enable_background_plugin']) && $productConfigs['enable_background_plugin'] == 1): ?>
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingTwo">
 					<h4 class="panel-title">
