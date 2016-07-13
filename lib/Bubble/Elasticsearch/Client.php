@@ -91,6 +91,8 @@ class Bubble_Elasticsearch_Client extends \Elastica\Client
      */
     public function getSearch(Bubble_Elasticsearch_Type $type, $q, $params = array())
     {
+        
+        
         if (empty($params)) {
             $params = array('limit' => 10000); // should be enough
         }
