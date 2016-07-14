@@ -14,9 +14,6 @@
         $price_properties = $helper_richsnippets->getPriceProperties($_product);
     }
 ?>
-<script type="text/javascript">
-    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
-</script>
 <div style="display:none;" class="product-view" <?php if($enabled_richsnippets): ?><?php echo $helper_richsnippets->getProductItemscope(); ?><?php endif; ?>>
     <div class="product-essential">
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
@@ -26,7 +23,7 @@
             <input type="hidden" name="related_product" id="related-products-field" value="" />
         </div>
         <div class="row">
-            <div class="product-shop col-sm-<?php echo 12-Mage::getStoreConfig("porto_settings/product_view/product_image_size", $code); ?>">
+            <div class="product-shop col-sm-12">
                 <div class="product-info">
                     <div <?php if($enabled_richsnippets) echo $helper_richsnippets->getOfferItemscope(); ?>>
                         <?php echo $this->getChildHtml('product_type_data'); ?>
@@ -55,7 +52,6 @@
                     <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
                 <?php endif;?>
                 <div class="clearer"></div>
-                <?php echo $this->getChildHtml('addthis_sharetool'); ?>
             </div>
         </div>
         <?php if ($_product->isSaleable() && $this->hasOptions()):?>

@@ -111,12 +111,13 @@ if($enable_addtocart_sticky){
 <?php
 }
 ?>
-        <div class="row">
-            <div class="product-img-box col-sm-<?php echo Mage::getStoreConfig("porto_settings/product_view/product_image_size", $code); ?> <?php echo Mage::getStoreConfig("porto_settings/product_view/thumbnail_image_type", $code); ?>">
+	<div class="row">
+		<div class="product-main col-sm-9">
+            <div class="product-img-box col-sm-6">
                 <?php echo $this->getChildHtml('media') ?>
             </div>
-            <div class="product-shop col-sm-<?php echo 12-Mage::getStoreConfig("porto_settings/product_view/product_image_size", $code); ?>">
-            <?php
+			<div class="product-shop col-sm-6">
+			<?php
                 if (Mage::getStoreConfig("porto_settings/product_view/prev_next",$code)){
             ?>
                 <div class="prev-next-products">
@@ -153,7 +154,7 @@ if($enable_addtocart_sticky){
             <?php
                 }
             ?>
-                <div class="product-name">
+			<div class="product-name">
                     <h1 <?php if($enabled_richsnippets): ?>itemprop="name"<?php endif; ?>><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                 </div>
                 <?php if($enabled_richsnippets): ?>
@@ -178,48 +179,59 @@ if($enable_addtocart_sticky){
                         <div class="std" <?php if($enabled_richsnippets): ?>itemprop="description"<?php endif; ?>><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
                     </div>
                 <?php endif;?>
-                <div class="product-info">
-                    <div <?php if($enabled_richsnippets) echo $helper_richsnippets->getOfferItemscope(); ?>>
-                        <?php echo $this->getChildHtml('product_type_data'); ?>
-                        <?php echo $this->getTierPriceHtml(); ?>
-                        <?php echo $price_properties; ?>
-                    </div>
-                    <?php echo $this->getChildHtml('extrahint') ?>
-                    <?php if ($this->canEmailToFriend()): ?>
-                        <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
-                    <?php endif; ?>
-                    <?php if($sku = $_product->getSku()): ?>
-                        <?php if($enabled_richsnippets): ?><meta itemprop="productID" content="sku:<?php echo $sku; ?>" /><?php endif; ?>
-                    <?php endif; ?>
-                    <?php echo $this->getChildHtml('alert_urls') ?>
-                    <?php echo $this->getChildHtml('other');?>
-                </div>
-                <?php if (!$this->hasOptions()):?>
-                    <div class="clearer"></div>
-                    <div class="add-to-box">
-                        <?php if($_product->isSaleable()): ?>
-                            <?php echo $this->getChildHtml('addtocart') ?>
-                            <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                        <?php echo $this->getChildHtml('addto') ?>
-                    </div>
-                    <?php echo $this->getChildHtml('extra_buttons') ?>
-                <?php elseif (!$_product->isSaleable()): ?>
-                    <div class="clearer"></div>
-                    <div class="add-to-box">
-                        <?php echo $this->getChildHtml('addto') ?>
-                    </div>
-                <?php endif; ?>
+			</div>
+			<div class="product-collateral" style="clear: both;">
+			<?php echo $this->getChildHtml('product_additional_data'); ?>
+			</div>
+			<?php echo $this->getChildHtml('upsell_products'); ?>
+		</div>
+		<div class="col-right sidebar rightaddtocart col-sm-3">
+				<div class="product-shop">
+					<div class="product-info">
+						<div <?php if($enabled_richsnippets) echo $helper_richsnippets->getOfferItemscope(); ?>>
+							<?php echo $this->getChildHtml('product_type_data'); ?>
+							<?php echo $this->getTierPriceHtml(); ?>
+							<?php echo $price_properties; ?>
+						</div>
+						<?php echo $this->getChildHtml('extrahint') ?>
+						<?php if ($this->canEmailToFriend()): ?>
+							<p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+						<?php endif; ?>
+						<?php if($sku = $_product->getSku()): ?>
+							<?php if($enabled_richsnippets): ?><meta itemprop="productID" content="sku:<?php echo $sku; ?>" /><?php endif; ?>
+						<?php endif; ?>
+						<?php echo $this->getChildHtml('alert_urls') ?>
+						<?php echo $this->getChildHtml('other');?>
+					</div>
+					<?php if (!$this->hasOptions()):?>
+						<div class="clearer"></div>
+						<div class="add-to-box">
+							<?php if($_product->isSaleable()): ?>
+								<?php echo $this->getChildHtml('addtocart') ?>
+								<?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+								<?php endif; ?>
+							<?php endif; ?>
+							<?php echo $this->getChildHtml('addto') ?>
+						</div>
+						<?php echo $this->getChildHtml('extra_buttons') ?>
+					<?php elseif (!$_product->isSaleable()): ?>
+						<div class="clearer"></div>
+						<div class="add-to-box">
+							<?php echo $this->getChildHtml('addto') ?>
+						</div>
+					<?php endif; ?>
 
-                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                <?php endif;?>
-                <div class="clearer"></div>
-                <?php echo $this->getChildHtml('addthis_sharetool'); ?>
-            </div>
-
-        </div>
+					<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+						<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+					<?php endif;?>
+					<div class="clearer"></div>
+					<?php echo $this->getChildHtml('addthis_sharetool'); ?>
+				</div>
+				<?php echo $this->getChildHtml('product.left.custom1'); ?>
+				<?php echo $this->getChildHtml('product.left.custom2'); ?>
+				<?php echo $this->getChildHtml('catalog.product.related'); ?>
+			</div>
+	</div>
         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
             <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
         <?php endif;?>
@@ -411,11 +423,6 @@ if($enable_addtocart_sticky){
         }.bind(productAddToCartForm);
     </script>
     </div>
-
-    <div class="product-collateral">
-        <?php echo $this->getChildHtml('product_additional_data'); ?>
-    </div>
-    <?php echo $this->getChildHtml('upsell_products'); ?>
 </div>
 <script type="text/javascript">
     jQuery(function($){
