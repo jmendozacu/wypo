@@ -1744,7 +1744,7 @@ Notifications,Notifications
 Columns,Columns
 "Stock Data","Stock Data"
 "Vendor SKU ""%s"" is already used","Vendor SKU ""%s"" is already used"
-"In Stock","In Stock"
+"In Stock","En stock"
 "Out of Stock","Out of Stock"
 "Stock Item Fields","Stock Item Fields"
 Categories,Categories
@@ -2278,7 +2278,7 @@ Condition,Condition
 "Add to Wishlist","Add to Wishlist"
 "Add to Compare","Add to Compare"
 "Learn More","Learn More"
-"Select Vendor","Select Vendor"
+"Select Vendor","Proveedores"
 "<strong>%s-%s</strong> of %s offers","<strong>%s-%s</strong> of %s offers"
 "Sort By","Sort By"
 "Price + Shipping","Price + Shipping"
