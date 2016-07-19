@@ -384,6 +384,59 @@ class Unirgy_DropshipMultiPrice_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return Mage::helper('core')->jsonEncode($result);
     }
+	
+	public function getDropshipTierPriceJson($prodBlock)
+    {
+        $product = $prodBlock->getProduct();
+        $product = !$product ? Mage::registry('current_product') : $product;
+        $product = !$product ? Mage::registry('product') : $product;
+        $result = array();
+        $udmHlp = Mage::helper('udmulti');
+        $simpleProducts = array();
+        if ($product->getTypeId()=='configurable') {
+            $simpleProducts = $product->getTypeInstance(true)->getUsedProducts(null, $product);
+        }
+        array_unshift($simpleProducts, $product);
+        $udmHlp->attachMultivendorData($simpleProducts, true);
+        foreach ($simpleProducts as $simpleProduct) {
+            $mvData = $simpleProduct->getMultiVendorData();
+            $cfgMvData = $product->getMultiVendorData();
+            if (!empty($mvData) && is_array($mvData) && !empty($cfgMvData) && is_array($cfgMvData)) {
+                foreach ($mvData as &$_v) {
+                    $_foundCfg = false;
+                    foreach ($cfgMvData as $_vCfg) {
+                        if ($_vCfg['vendor_id']==$_v['vendor_id']) {
+                            $_foundCfg = true;
+                            if (!$this->isConfigurableSimplePrice()) {
+                                $_v['__price_product'] = $product;
+                                $_v['__price_data'] = $_vCfg;
+                            } else {
+                                $_v['__price_product'] = $simpleProduct;
+                                $_v['__price_data'] = $_v;
+                            }
+                        }
+                    }
+                    if (!$_foundCfg && !$this->isConfigurableSimplePrice()) {
+                        $_v['__price_product'] = $product;
+                        $_v['__price_data'] = array();
+                    }
+                }
+                unset($_v);
+                $simpleProduct->setMultiVendorData($mvData);
+            }
+            $_result = $this->prepareMultiVendorHtmlData($prodBlock, $simpleProduct);
+            if ($_result) {
+                foreach ($_result['mvData'] as &$__mvd) {
+                    unset($__mvd['__price_product']);
+                    unset($__mvd['__price_data']);
+                }
+                unset($__mvd);
+                $result[$simpleProduct->getId()] = $_result;
+            }
+        }
+        return Mage::helper('core')->jsonEncode($result);
+    }
+	
     public function prepareMultiVendorHtmlData($prodBlock, $product)
     {
         Varien_Profiler::start('udmulti_prepareMultiVendorHtmlData');
@@ -475,6 +528,22 @@ class Unirgy_DropshipMultiPrice_Helper_Data extends Mage_Core_Helper_Abstract
         Varien_Profiler::stop('udmulti_prepareMultiVendorHtmlData');
         return $_result;
     }
+	
+	public function getDropShippingVendorsTierPriceHtml($_productblock){
+		$dataDeJson = Mage::helper('core')->jsonDecode($this->getDropshipTierPriceJson($_productblock));
+		foreach($dataDeJson as $keys => $extract){
+			foreach($extract['mvData'] as $tierhtml){
+				$tireprice = '';
+				$tireprice = $tierhtml['tier_price_html'];
+				//if(strlen($tireprice)>10){
+					return $tireprice;
+					break;
+				//}
+			}
+		}
+		return;
+	}
+	
     public function hasFreeshipping($product)
     {
         Mage::helper('udmulti')->attachMultivendorData(array($product), true);
