@@ -3883,6 +3883,7 @@ i.ajax-loader.medium{width:24px;height:24px;border-width:2px 3px 1px 0}
 .product-view .rightaddtocart .product-shop .add-to-links{ padding-left: 5px;}
 .product-view .rightaddtocart .product-shop .product-options-bottom{margin-bottom: 30px; padding: 0 0 8px;}
 .product-view .rightaddtocart .product-shop .product-options-bottom .add-to-links{margin: 15px 0;}
+.product-view .rightaddtocart .product-shop .product-info .tier-prices{margin-left: 30px;}
 
 @media screen and(-ms-high-contrast: active),(-ms-high-contrast: none){
     .rating-box{width:65px;height:12px;font-size:0;line-height:0;text-indent:-999em;overflow:hidden;position:relative}
