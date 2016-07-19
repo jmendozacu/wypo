@@ -1089,7 +1089,7 @@ Home,Home
 "Vendor Registrations","Vendor Registrations"
 "Please select registration(s)","Please select registration(s)"
 "Thank you for application. Instructions were sent to your email to confirm it","Thank you for application. Instructions were sent to your email to confirm it"
-"Thank you for application. As soon as your registration has been verified, you will receive an email confirmation","Thank you for application. As soon as your registration has been verified, you will receive an email confirmation"
+"Thank you for application. As soon as your registration has been verified, you will receive an email confirmation","Gracias por Registrarse. Su cuenta será evaluada y le notificaremos cuando esté habilitado."
 "Incorrect CAPTCHA.","Incorrect CAPTCHA."
 Microsite,Microsite
 "Subdomain Level","Subdomain Level"
@@ -2700,3 +2700,14 @@ Promotions,Promotions
 "Forgot Password","¿Olvidó su contraseña?"
 "%s product was updated","%s productos fueron actualizados."
 "Short Description","Descripción Corta"
+"Register New Account","¿No está inscrito? Regístrese acá."
+"Shop Name","Nombre Tienda"
+"Phone Number","Fono"
+"Preferred Shipping Carrier","Operador Logístico por Defecto"
+"Preferred subdomain name","Subdominio para Micro-Sitio"
+"Comments","Comentarios"
+"Logo Image","Logo"
+"Vendor Registration","Registro de Proveedores"
+"Become a Vendor","Inscríbase como Proveedor de Wypo"
+"Return to log in","Volver al Inicio"
+
