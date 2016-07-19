@@ -1,5 +1,6 @@
 <?php
     $_helper = $this->helper('catalog/output');
+	$_hlp = Mage::helper('udmultiprice');
     $helper_richsnippets = $this->helper('porto/richsnippets');
     $store = Mage::app()->getStore();
     $code  = $store->getCode();
@@ -190,7 +191,8 @@ if($enable_addtocart_sticky){
 					<div class="product-info">
 						<div <?php if($enabled_richsnippets) echo $helper_richsnippets->getOfferItemscope(); ?>>
 							<?php echo $this->getChildHtml('product_type_data'); ?>
-							<?php echo $this->getTierPriceHtml(); ?>
+							<?php //echo $this->getTierPriceHtml(); ?>
+							<?php echo $_hlp->getDropShippingVendorsTierPriceHtml($this->getParentBlock()); ?>
 							<?php echo $price_properties; ?>
 						</div>
 						<?php echo $this->getChildHtml('extrahint') ?>
