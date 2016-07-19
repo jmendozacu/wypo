@@ -22,7 +22,7 @@
 	<div class="box-head col2-set" style="margin-bottom: 0px ! important; margin-top: 18px;">
 		<?php 
 		$session = Mage::getSingleton('udropship/session');
-		$_csv_file_name = $session->getVendor()->getData("vendor_id")."-".$session->getVendor()->getData("vendor_name").".csv";
+		$_csv_file_name = $session->getVendor()->getData("vendor_id")."_".$session->getVendor()->getData("vendor_name").".csv";
 		$uploaded_filename = Mage::getBaseDir().'/up/magmi/import/'.$_csv_file_name;
 		$processed_filename = Mage::getBaseDir().'/up/magmi/import/processed/'.$_csv_file_name;
 		if (file_exists($uploaded_filename)) { ?>
@@ -38,7 +38,7 @@
 			</ul>
 		<?php } else { ?>
 			<ul class="col-1">
-				<li>No file uploaded yet.</li>
+				<li>No se ha subido ningún archivo.</li>
 			</ul>	
 		<?php } ?>	
 	</div>

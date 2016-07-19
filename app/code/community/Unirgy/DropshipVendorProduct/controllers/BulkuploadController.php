@@ -22,7 +22,7 @@ class Unirgy_DropshipVendorProduct_BulkuploadController extends Mage_Core_Contro
 	  $uploader->setFilesDispersion(false);
 	  try{
 		$_vendor_id = $session->getVendor()->getData("vendor_id");	
-		$uploader->save($path,$_vendor_id."-".$session->getVendor()->getData("vendor_name").".csv");
+		$uploader->save($path,$_vendor_id."_".$session->getVendor()->getData("vendor_name").".csv");
 		$session->addSuccess("Your CSV file uploaded successfully.");
 		$vendor_obj = Mage::getModel('udropship/vendor')->load($_vendor_id);		
 		$vendor_obj->setData("file_upload_datetime",date("Y-m-d H:i:s"));
