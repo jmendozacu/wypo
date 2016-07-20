@@ -288,8 +288,7 @@ class Unirgy_DropshipMicrosite_Helper_Data extends Mage_Core_Helper_Abstract
 
             foreach (explode(',', $to) as $toEmail) {
                 Mage::getModel('core/email')
-                  //  ->setFromEmail($registration->getEmail())
-                     ->setFromEmail('contacto@wypo.cl')
+                    ->setFromEmail($registration->getEmail())
                     ->setFromName($registration->getVendorName())
                     ->setToEmail($toEmail)
                     ->setToName('')

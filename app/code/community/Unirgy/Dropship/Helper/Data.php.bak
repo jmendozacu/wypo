@@ -552,8 +552,7 @@ class Unirgy_Dropship_Helper_Data extends Mage_Core_Helper_Abstract
             }
 
             $mail = Mage::getModel('core/email')
-                //->setFromEmail($vendor->getEmail())
-                ->setFromEmail('contacto@wypo.cl')
+                ->setFromEmail($vendor->getEmail())
                 ->setFromName($vendor->getVendorName())
                 ->setToEmail($toEmail)
                 ->setToName($toName)

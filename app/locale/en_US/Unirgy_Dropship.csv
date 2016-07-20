@@ -2,7 +2,7 @@
 ID,ID
 "Created At","Created At"
 Title,Title
-Vendor,Vendor
+Vendor,Proveedor
 "Label Type","Label Type"
 "# of Shipments","# of Shipments"
 Action,Action
@@ -144,7 +144,7 @@ Yes,Yes
 "URL friendly identifier","URL friendly identifier"
 "Please select state...","Please select state..."
 "Shipping Origin Address","Dirección de Origen de Envío"
-"Attention To","Nombre Persona"
+"Attention To","Nombre Contacto"
 Street,Calle
 City,City
 "Zip / Postal code","Zip / Postal code"
@@ -166,7 +166,7 @@ SKU,SKU
 Price,Precio (Neto)
 "Vendor Cost","Vendor Cost"
 "Vendor Price","Vendor Price"
-"Vendor Title","Vendor Title"
+"Vendor Title","Título del Producto"
 State/Condition,State/Condition
 Backorders,Backorders
 "Vendor Stock Qty","Vendor Stock Qty"
@@ -292,7 +292,7 @@ Report,Report
 "This shipment no longer exists.","This shipment no longer exists."
 "Comment text field cannot be empty.","Comment text field cannot be empty."
 "Canceled shipment cannot be reverted","Canceled shipment cannot be reverted"
-"%s\n\n[%s has changed the shipment status to %s]","%s\n\n[%s has changed the shipment status to %s]"
+"%s\n\n[%s has changed the shipment status to %s]","%s\n\n[%s ha cambiado el estado del despacho a %s]"
 "%s\n\n[%s tried to change the shipment status to %s]","%s\n\n[%s tried to change the shipment status to %s]"
 "Cannot add new comment.","Cannot add new comment."
 "%s notifications sent.","%s notifications sent."
@@ -333,11 +333,11 @@ Statements,Statements
 "No updates were made","No updates were made"
 "%s printed label ID %s","%s printed label ID %s"
 "No items are available for shipment","No items are available for shipment"
-"%s added tracking ID %s","%s added tracking ID %s"
-"Tracking ID has been added","Tracking ID has been added"
+"%s added tracking ID %s","%s agregó ID de seguimiento %s"
+"Tracking ID has been added","El ID de Seguimiento fue agregado exitosamente."
 "%s has changed the shipment status to %s","%s has changed the shipment status to %s"
 "%s tried to change the shipment status to %s","%s tried to change the shipment status to %s"
-"Shipment status has been changed","Shipment status has been changed"
+"Shipment status has been changed","El estado de pedido fue modificiado."
 "%s x [%s] %s","%s x [%s] %s"
 "Your comment has been sent to store administrator","Your comment has been sent to store administrator"
 "%s voided tracking ID %s","%s voided tracking ID %s"
@@ -639,7 +639,7 @@ Unknown,Unknown
 "Error connecting to API: %s","Error connecting to API: %s"
 "Tracking ID %s was picked up from %s","Tracking ID %s was picked up from %s"
 "Tracking ID %s was delivered to customer","Tracking ID %s was delivered to customer"
-"Shipment has been complete","Shipment has been complete"
+"Shipment has been complete","Se ha completado el Despacho"
 "PO #%s [%s]","PO #%s [%s]"
 "%s (qty: x%s) [status: %s]","%s (qty: x%s) [status: %s]"
 "%s (qty: %s)","%s (qty: %s)"
@@ -676,7 +676,7 @@ Products,Products
 "Payment Method","Payment Method"
 "Shipping Method:","Shipping Method:"
 "Total Shipping Charges","Total Shipping Charges"
-Carrier,Carrier
+Carrier,Empresa de Transporte
 Number,Number
 N/A,N/A
 "No orders found for this period.","No orders found for this period."
@@ -734,10 +734,10 @@ Backorder,Backorder
 "Ready to Ship","Ready to Ship"
 "Pending Pickup","Pending Pickup"
 "Label(s) printed","Label(s) printed"
-Shipped,Shipped
-Delivered,Delivered
-Canceled,Canceled
-Returned,Returned
+Shipped,Enviado
+Delivered,Entregado
+Canceled,Anulado
+Returned,Devuleto
 "* Default (global setting)","* Default (global setting)"
 "* Use Vendor Email","* Use Vendor Email"
 "When all items are shipped","When all items are shipped"
@@ -881,9 +881,9 @@ Location,Location
 Error,Error
 "Updated At","Updated At"
 Sku,Sku
-"Stock Qty","Stock Qty"
+"Stock Qty","Cant. Stock"
 "Stock Qty Add","Stock Qty Add"
-"Vendor Sku","Vendor Sku"
+"Vendor Sku","SKU Proveedor"
 "Item SKU","Item SKU"
 "Batch Info","Batch Info"
 "Use Template","Use Template"
@@ -1088,9 +1088,9 @@ Home,Home
 "Go to Home Page","Go to Home Page"
 "Vendor Registrations","Vendor Registrations"
 "Please select registration(s)","Please select registration(s)"
-"Thank you for application. Instructions were sent to your email to confirm it","Thank you for application. Instructions were sent to your email to confirm it"
+"Thank you for application. Instructions were sent to your email to confirm it","Gracias por registrarse en Wypo !. Le hemos enviado las instrucciones para poder ingresar al Portal de Proveedores."
 "Thank you for application. As soon as your registration has been verified, you will receive an email confirmation","Gracias por Registrarse. Su cuenta será evaluada y le notificaremos cuando esté habilitado."
-"Incorrect CAPTCHA.","Incorrect CAPTCHA."
+"Incorrect CAPTCHA.","Reingrese el CAPTCHA por favor."
 Microsite,Microsite
 "Subdomain Level","Subdomain Level"
 "Update Store Base URL","Update Store Base URL"
@@ -1145,7 +1145,7 @@ Microsite,Microsite
 "Bad request.","Bad request."
 "Wrong confirmation key.","Wrong confirmation key."
 "Failed to confirm vendor account.","Failed to confirm vendor account."
-"Wrong vendor account specified.","Wrong vendor account specified."
+"Wrong vendor account specified.","Error en la cuenta de Proveedor especificado."
 "CMS Landing Page","CMS Landing Page"
 "Shop Description","Descripción Corta"
 "I agree <a href=""{{url}}"">Terms and Conditions</a>","I agree <a href=""{{url}}"">Terms and Conditions</a>"
@@ -1202,10 +1202,10 @@ Available,Available
 "Use Avail State/Date to Allow Qty Below 0 and Notify Customer","Use Avail State/Date to Allow Qty Below 0 and Notify Customer"
 "Default Product Promo Title","Default Product Promo Title"
 Used,Used
-"Used: As new","Used: As new"
-"Used: Very Good","Used: Very Good"
-"Used: Good","Used: Good"
-"Used: Just OK","Used: Just OK"
+"Used: As new","Usado: Como Nuevo"
+"Used: Very Good","Usado: Usado sin Detalles"
+"Used: Good","Usado: Usado Normal"
+"Used: Just OK","Usado: Usado con Detalles"
 "A product type is not defined for the indexer.","A product type is not defined for the indexer."
 "Po ID","Po ID"
 "Payout Info","Payout Info"
@@ -1429,7 +1429,7 @@ Shipments,Shipments
 "My Sell List","My Sell List"
 "Sell Yours","Vende el tuyo !"
 Relevance,Relevance
-"You already selling this item","You already selling this item"
+"You already selling this item","Usted ya está vendiendo este producto."
 "The request to sell this product need to be approved by admin","The request to sell this product need to be approved by admin"
 "Your sell request was succesfully submitted","Your sell request was succesfully submitted"
 "Empty sell request form data","Empty sell request form data"
@@ -1757,25 +1757,25 @@ Categories,Categories
 "Vendor Cost ","Vendor Cost "
 "Vendor Status ","Vendor Status "
 "Vendor Backorders ","Vendor Backorders "
-"Vendor Price ","Vendor Price "
+"Vendor Price ","Precio Proveedor "
 "Vendor Group Price ","Vendor Group Price "
 "Vendor Tier Price ","Vendor Tier Price "
-"Vendor Special Price ","Vendor Special Price "
-"Vendor Special From Date ","Vendor Special From Date "
-"Vendor Special To Date ","Vendor Special To Date "
+"Vendor Special Price ","Precio Especial Proveedor "
+"Vendor Special From Date ","Precio Especial DESDE "
+"Vendor Special To Date ","Precio Especial HASTA "
 "Vendor Free Shipping ","Vendor Free Shipping "
 "Vendor Shipping Price ","Vendor Shipping Price "
 "Vendor State(Condition) ","Vendor State(Condition) "
 "Vendor State Description ","Vendor State Description "
 "Vendor Title ","Vendor Title "
-"State (Condition)","State (Condition)"
-"State description","State description"
+"State (Condition)","Estado (Condición)"
+"State description","Descripción del estado del producto"
 "Group Price","Group Price"
 "Tier Price","Precio al por Mayor"
-"Vendor Special Price","Vendor Special Price"
-"Vendor Special From Date","Vendor Special From Date"
-"Vendor Special To Date","Vendor Special To Date"
-"Is Free Shipping","Is Free Shipping"
+"Vendor Special Price","Precio Especial Proveedor"
+"Vendor Special From Date","Precio Especial DESDE"
+"Vendor Special To Date","Precio Especial HASTA"
+"Is Free Shipping","Despacho Gratis"
 "Vendor Backorders","Vendor Backorders"
 "SKU ""%s"" is already used","SKU ""%s"" is already used"
 "Removed Image(s)","Removed Image(s)"
@@ -2452,17 +2452,17 @@ RSS,RSS
 "Log out","Salir"
 Welcome!,Welcome!
 "Switch To Sell Yours","Switch To Sell Yours"
-"Switch To My Sell List","Switch To My Sell List"
-Find,Find
+"Switch To My Sell List","Cambiar a Mi Lista de Productos"
+Find,Buscar
 Go,Go
-"Didn't find what you're looking for? <span>Create your product</span>","Didn't find what you're looking for? <span>Create your product</span>"
+"Didn't find what you're looking for? <span>Create your product</span>","¿No encontró lo que buscaba? <span>Crear el Producto</span>"
 "Search Results for ""%s"" in category ""%s","Search Results for ""%s"" in category ""%s"
 "Browsing category ""%s","Browsing category ""%s"
 "Search Results for ""%s","Search Results for ""%s"
 "Edit My Offer","Edit My Offer"
 "<span>Or,</span> Browse by Category","<span>O,</span> Buscar por Categor&iacute;a"
 "Didn't find what you're looking for?","&iquest;No encontraste lo que buscabas?"
-"Create your product","Create your product"
+"Create your product","Crear el Producto"
 "Tracking Information","Tracking Information"
 "Close Window","Close Window"
 "RMA #","RMA #"
@@ -2499,19 +2499,19 @@ Reason,Reason
 "This action will print PDF for all filtered purchase orders.","This action will print PDF for all filtered purchase orders."
 "Please select a status.","Please select a status."
 "This action will update status for all filtered RMAs.","This action will update status for all filtered RMAs."
-"Qty Available","Qty Available"
+"Qty Available","Cant. Disponible"
 "Proceed with tracking ID deletion?","Proceed with tracking ID deletion?"
 "Tracking IDs","Tracking IDs"
-"Delete tracking number","Delete tracking number"
+"Delete tracking number","Borrar ID de Seguimiento"
 "RMA Items","RMA Items"
-"Carrier Title","Carrier Title"
-"Add Tracking ID","Add Tracking ID"
-"Add Comment","Add Comment"
+"Carrier Title","Nombre Transportista"
+"Add Tracking ID","ID de Seguimiento"
+"Add Comment","Agregar Comentario"
 "Visible to Customer","Visible to Customer"
-"Change Status","Change Status"
+"Change Status","Cambiar Estado"
 "Resolution Notes","Resolution Notes"
 "Add RMA Comment","Add RMA Comment"
-"Comments history","Comments history"
+"Comments history","Historial de Comentarios"
 "My Orders","My Orders"
 "Ship To","Ship To"
 "View Order","View Order"
@@ -2576,7 +2576,7 @@ Settings,Settings
 "Import Stock","Import Stock"
 "Manage Stock And Price","Manage Stock And Price"
 "Products Edit","Products Edit"
-"Select &amp; Sell","Select &amp; Sell"
+"Select &amp; Sell","Seleccionar &amp; Vender"
 "Shipments Report","Shipments Report"
 "Advanced PO Report","Advanced PO Report"
 "System View","System View"
@@ -2595,7 +2595,7 @@ Login,Login
 "Update Shipments Status","Actualizar estado de envíos"
 "Available On","Available On"
 Download,Download
-"Packing Slip","Packing Slip"
+"Packing Slip","Etiqueta"
 "Please wait, loading shipment information...","Please wait, loading shipment information..."
 "This action will create shipping labels for all filtered shipments and mark them as shipped.","This action will create shipping labels for all filtered shipments and mark them as shipped."
 "This action will print packing slips for all filtered shipments and mark them as ready to ship.","This action will print packing slips for all filtered shipments and mark them as ready to ship."
@@ -2604,17 +2604,17 @@ Download,Download
 "Left / Ship","Left / Ship"
 "Print label","Print label"
 "Delete tracking number and void/refund label if possible","Delete tracking number and void/refund label if possible"
-"Partial Availability: ","Partial Availability: "
-"* Select action","* Select action"
-"Inform retailer","Inform retailer"
+"Partial Availability: ","Disponibilidad Parcial: "
+"* Select action","* Seleccione"
+"Inform retailer","Informar a Wypo"
 "Ship partial","Ship partial"
-"Order Items","Order Items"
+"Order Items","Productos Solicitados"
 "Show/Hide Gift Message for the item above","Show/Hide Gift Message for the item above"
 "From: %s","From: %s"
 "To: %s","To: %s"
 "Order Gift Message:","Order Gift Message:"
 "Show Extra Params","Show Extra Params"
-"Add Comment<br/>(for retailer)","Add Comment<br/>(for retailer)"
+"Add Comment<br/>(for retailer)","Agegar Comentario<br/>(para Wypo)"
 "Mark as Shipped","Mark as Shipped"
 Pkg#,Pkg#
 "Shipment Info/Pkg. Dimensions","Shipment Info/Pkg. Dimensions"
@@ -2671,13 +2671,13 @@ Page:,Page:
 "Next Page","Next Page"
 Previous,Previous
 Next,Next
-Orders,Orders
+Orders,Pedidos
 "Import Tracking","Import Tracking"
 "Stock And Price","Stock And Price"
 Stock,Stock
 "Product Manager","Gestión de Productos"
 "Manual Labels","Manual Labels"
-Promotions,Promotions
+Promotions,Promociones
 "Edit Offer","Edit Offer"
 "Filter Orders","Filtrar Pedidos"
 "Apply Filter","Aplicar filtro"
@@ -2710,4 +2710,4 @@ Promotions,Promotions
 "Vendor Registration","Registro de Proveedores"
 "Become a Vendor","Inscríbase como Proveedor de Wypo"
 "Return to log in","Volver al Inicio"
-
+"You've successfully confirmed your account. Please check your mailbox for email with your account information in order to login.","Hemos confirmado su cuenta. Le hemos enviado un email con la información de acceso al Portal de Proveedores"

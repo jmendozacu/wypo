@@ -2,7 +2,7 @@
 MAGMI_PATH="/home/www.wypo.cl/html/up/magmi/cli/magmi.cli.php"
 IMOPRT_DIRECTORY="/home/www.wypo.cl/html/up/magmi/import"
 PROCESSED_DIRECTORY="/home/www.wypo.cl/html/up/magmi/import/processed/"
-for file in $IMOPRT_DIRECTORY/*_*.csv; 
+for file in $IMOPRT_DIRECTORY/1_*.csv; 
 do	
 	file_name=$(basename $file)	
 	magmi_profile=$(echo "$file_name" | grep -Po '(?<=(_)).*(?=.csv)')
@@ -15,7 +15,7 @@ do
 		then
 			echo "Nothing to do - File:$file_name already processed"
 		else	
-			php $MAGMI_PATH -profile=$magmi_profile -mode=update -CSV:filename="$file" -udropship_vendor=$udropship_vendor			
+			php $MAGMI_PATH -profile=$magmi_profile -mode=update -CSV:filename="$file" -udropship_vendor=$udropship_vendor
 			cp -R $file $PROCESSED_DIRECTORY$file_name
 		fi
 	else			

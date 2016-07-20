@@ -1,44 +1,41 @@
-<!--@subject New Shipment Request for Order # {{var order.increment_id}} from {{var store_name}} @-->
+<!--@subject Nuevo Pedido # {{var order.increment_id}} desde {{var store_name}}  @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
 
-<style type="text/css">
-    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
-</style>
+<!--@styles
+@-->
 
-<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
-<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
-<tr>
-    <td align="center" valign="top">
-        <!-- [ header starts here] -->
-        <table cellspacing="0" cellpadding="0" border="0" width="650">
-            <tr>
-                <td valign="top"><a href="{{store url=''}}"><img src="{{skin url='images/logo_email.gif' _area='frontend'}}" alt=""  style="margin-bottom:10px;" border="0"/></a></td>
-            </tr>
-        </table>
-        <!-- [ middle starts here] -->
-        <table cellspacing="0" cellpadding="0" border="0" width="650">
-            <tr>
-                <td valign="top">
-                    <p><strong>Dear {{var vendor_name}},</strong></p>
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
 
-                    <p>Please fulfill this new order # {{var order_id}} for:</p>
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <h1>Estimado Proveedor {{var vendor_name}},</h1>
+<p>Por favor despachar el pedido # {{var order_id}} A:</p>            
+<p class="highlighted-text">
+{{var customer_info}}
 
-                    <p><strong>{{var customer_info}}</strong></p>
+{{layout handle="udropship_email_po_items" shipment=$shipment order=$order}}
+            </p>
+                    <p>Debe despachar vía <strong>{{var shipping_method}}</strong>. Si no puede despachar, por favor avísenos.</p>
 
-                    {{layout handle="udropship_email_po_items" shipment=$shipment order=$order}}
+                    <p>Acá podrá <a href="{{var packingslip_url}}">la etiqueta del envío en formato PDF.</a></p>
 
-                    <p>Please ship via <strong>{{var shipping_method}}</strong>. If that is not available, please notify us before shipping.</p>
+                    <p>Recuerde que debe ingresar el ID de seguimiento <a href="{{var shipment_url}}">en su panel de control</a> una vez que haya realizado el envío dle paquete.</p>
 
-                    <p>You can <a href="{{var packingslip_url}}">download packing slip PDF here</a></p>
+                    <p>Muchas Gracias !</p>
 
-                    <p><a href="{{var shipment_url}}">Click here to logon to your shipping control panel</a> once you are ready to notify us of the shipment and input tracking numbers.</p>
-
-                    <p>Thank you for your partnership.</p>
-
-                    <p><a href="{{store url=''}}">{{var store_name}}</a></p>
-               </td>
-           </tr>
-       </table>
-   </td>
-</tr>
+                    <p><strong>El equipo de <a href="{{store url=''}}">{{var store_name}}</a></strong></p>
+            </p>
+        </td>
+    </tr>
 </table>
-</div>
+
+{{template config_path="design/email/footer"}}

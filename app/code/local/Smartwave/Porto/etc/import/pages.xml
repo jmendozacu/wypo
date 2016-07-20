@@ -111,7 +111,7 @@
          <title>404 Not Found 2</title>
          <identifier>no-route-2</identifier>
          <content><![CDATA[<h1 style="text-align:center;margin: 20px 0; font-size: 70px;margin-top:70px">404<i class="icon-doc"></i></h1>
-<p style="text-align:center; font-size: 15px;">You might want to check that URL again or head over to our <a href="{{config path="web/unsecure/base_url"}}">homepage.</a></p>]]></content>
+<p style="text-align:center; font-size: 15px;">La página que busca no existe. Le sugerimos volver al <a href="{{config path="web/unsecure/base_url"}}">homepage.</a></p>]]></content>
          <is_active>1</is_active>
          <stores><item>0</item></stores>
          <root_template>one_column</root_template>

@@ -34,7 +34,7 @@ $_isLoggedIn = $_session->isLoggedIn();
     <div class="utility-nav">
         <?php if ($_session->isLoggedIn()): ?>
         <strong><?php echo $this->htmlEscape(Mage::helper('udropship')->__('Logged in as %s', $_session->getVendor()->getVendorName())) ?></strong><span class="pipe">|</span>
-        <a href="http://unirgy.com/products/udropship/help.php" onclick="this.target='_blank'"><?php echo Mage::helper('udropship')->__('Help')?></a><span class="pipe">|</span>
+        <a href="http://wiki.wypo.cl" onclick="this.target='_blank'"><?php echo Mage::helper('udropship')->__('Help')?></a><span class="pipe">|</span>
         <a href="<?php echo $this->getUrl('udropship/vendor/logout')?>"><?php echo Mage::helper('udropship')->__('Log out')?></a>
         <?php else: ?>
         <?php echo Mage::helper('udropship')->__('Welcome to Dropship Vendor Interface') ?>
