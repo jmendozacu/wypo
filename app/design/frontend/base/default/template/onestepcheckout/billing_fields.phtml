@@ -4,7 +4,7 @@ $formErrors = (!empty($formErrors['billing_errors'])) ? $formErrors['billing_err
 
 $helper = Mage::helper('onestepcheckout/checkout');
 $dataHelper = Mage::helper('onestepcheckout');
-
+?> <h3 class="onestepcheckout-title">Datos de Contacto</h3> <?php
     $billingFields['firstname'] = '
         <div class="osc-short input-box input-firstname'.((in_array('firstname', $formErrors)) ? ' input-error' : '').'">
             <label for="billing:firstname">'.$this->__('First Name').' <span class="required">*</span></label><br />
@@ -34,13 +34,52 @@ $dataHelper = Mage::helper('onestepcheckout');
     ?>
 <?php endif; ?>
 
-
 <?php if(!$this->settings['exclude_telephone']):?>
     <?php $billingFields['telephone'] = '
         <div class="osc-short input-box input-telephone'.((in_array('telephone', $formErrors)) ? ' input-error' : '').'">
             <label for="billing:telephone">'.$this->__('Telephone').' <span class="required">*</span></label><br/>
             <input type="tel" name="billing[telephone]" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getTelephone()).'" title="'.$this->__('Telephone').'" class="required-entry input-text" id="billing:telephone" />
-        </div>';
+        </div>
+<h3 class="onestepcheckout-title">Datos Empresa</h3>
+';
+    ?>
+<?php endif; ?>
+<?php if(!$this->isCustomerLoggedIn() && $helper->showCreateAccount()): ?>
+    <?php $billingFields['create_account'] = '
+        <div class="input-box">
+            <input id="id_create_account" type="checkbox" name="create_account" value="1" '.((isset($_POST['create_account']) && $_POST['create_account'] == '1') ? ' checked="checked"' : '').' />
+            <label for="id_create_account">'.$this->__('Create an account for later use').'</label>
+        </div>
+
+        <script>
+        document.observe("dom:loaded", function() {
+            $("id_create_account").observe("click", function(e) {
+                var element = e.element();
+                if(element.checked) {
+                    $("onestepcheckout-li-password").show();
+                }
+                else    {
+                    $("onestepcheckout-li-password").hide();
+                }
+            });
+        });
+        </script>';
+    ?>
+<?php endif; ?>
+<?php if($helper->showPasswords() && !$this->isCustomerLoggedIn()): ?>
+    <?php
+        //id="onestepcheckout-li-password"
+        $billingFields['password'] = '
+        <li id="onestepcheckout-li-password" '.(($helper->hidePasswords()) ? 'style="display: none;"':'').'>
+            <div class="osc-short input-box input-password'.((in_array('password', $formErrors)) ? ' input-error' : '').'">
+                <label for="billing:customer_password">'.$this->__('Password').'</label><br/>
+                <input type="password" class="input-text required-entry validate-password" value="'.((isset($_POST['billing']['customer_password'])) ? Mage::helper('core')->escapeHtml($_POST['billing']['customer_password']) : '').'" title="Password" id="billing:customer_password" name="billing[customer_password]"/>
+            </div>
+            <div class="osc-short input-box input-password'.((in_array('confirm_password', $formErrors)) ? ' input-error' : '').'">
+                <label for="billing:confirm_password">'.$this->__('Confirm password').'</label><br/>
+                <input type="password" class="input-text required-entry validate-cpassword" value="'.((isset($_POST['billing']['confirm_password'])) ? Mage::helper('core')->escapeHtml($_POST['billing']['confirm_password']) : '').'" id="billing:confirm_password" title="Confirm Password" name="billing[confirm_password]"/>
+            </div>
+        </li>';
     ?>
 <?php endif; ?>
 
@@ -72,7 +111,6 @@ $dataHelper = Mage::helper('onestepcheckout');
         ?>
     <?php endif; ?>
 <?php endif; ?>
-
 <?php if(!$this->settings['exclude_country_id']):?>
 <?php
 $billingFields['country_id'] = '
@@ -191,45 +229,6 @@ $billingFields['country_id'] = '
         </div>';
     ?>
 <?php endif ?>
-<?php if(!$this->isCustomerLoggedIn() && $helper->showCreateAccount()): ?>
-    <?php $billingFields['create_account'] = '
-        <div class="input-box">
-            <input id="id_create_account" type="checkbox" name="create_account" value="1" '.((isset($_POST['create_account']) && $_POST['create_account'] == '1') ? ' checked="checked"' : '').' />
-            <label for="id_create_account">'.$this->__('Create an account for later use').'</label>
-        </div>
-
-        <script>
-        document.observe("dom:loaded", function() {
-            $("id_create_account").observe("click", function(e) {
-                var element = e.element();
-                if(element.checked) {
-                    $("onestepcheckout-li-password").show();
-                }
-                else    {
-                    $("onestepcheckout-li-password").hide();
-                }
-            });
-        });
-        </script>';
-    ?>
-<?php endif; ?>
-<?php if($helper->showPasswords() && !$this->isCustomerLoggedIn()): ?>
-    <?php
-        //id="onestepcheckout-li-password"
-        $billingFields['password'] = '
-        <li id="onestepcheckout-li-password" '.(($helper->hidePasswords()) ? 'style="display: none;"':'').'>
-            <div class="osc-short input-box input-password'.((in_array('password', $formErrors)) ? ' input-error' : '').'">
-                <label for="billing:customer_password">'.$this->__('Password').'</label><br/>
-                <input type="password" class="input-text required-entry validate-password" value="'.((isset($_POST['billing']['customer_password'])) ? Mage::helper('core')->escapeHtml($_POST['billing']['customer_password']) : '').'" title="Password" id="billing:customer_password" name="billing[customer_password]"/>
-            </div>
-            <div class="osc-short input-box input-password'.((in_array('confirm_password', $formErrors)) ? ' input-error' : '').'">
-                <label for="billing:confirm_password">'.$this->__('Confirm password').'</label><br/>
-                <input type="password" class="input-text required-entry validate-cpassword" value="'.((isset($_POST['billing']['confirm_password'])) ? Mage::helper('core')->escapeHtml($_POST['billing']['confirm_password']) : '').'" id="billing:confirm_password" title="Confirm Password" name="billing[confirm_password]"/>
-            </div>
-        </li>';
-    ?>
-<?php endif; ?>
-
 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
     <?php $billingFields['save_in_address_book'] = '
         <li class="control">
@@ -246,7 +245,7 @@ $billingFields['country_id'] = '
 
 <?php $billingFields = $this->getBillingFieldsOrder($billingFields);?>
 <?php foreach($billingFields as $key => $value):?>
-    <?php if(!empty($value['has_li'])):?>
+    <?php if(!empty($value['has_po'])):?>
         <?php echo implode('',$value['fields']);?>
     <?php else:?>
         <li class="clearfix"><?php echo implode('',$value['fields']);?></li>
