@@ -17,18 +17,18 @@
 <table cellpadding="0" cellspacing="0" border="0">
     <tr>
         <td class="action-content">
-            <h1>>Estimado {{var vendor.vendor_name}},</h1>
+            <h1>Estimado {{var vendor.vendor_name}},</h1>
 
 <p>Felicitaciones !. Su registro ha sido aprobado.</p>
 
-                    <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0 0 16px 0; padding:13px 18px; background:#f9f9f9;">
+                    <p>
                         Utilice la siguiente información para acceder al Portal de Proveedores:<br/></p>
 
             <p class="highlighted-text">
 			<strong>E-mail:</strong> {{var vendor.email}}<br/>
                         <strong>Contraseña:</strong> {{htmlescape var=$vendor.password}}<p>
             </p>
-<p>Que tenga un buen día ! Atentamente, <br/>El equipo de <a href="{{store url=''}}">{{var store_name}}</a></p>
+<p>Que tenga un buen día ! </p>
         </td>
     </tr>
 </table>

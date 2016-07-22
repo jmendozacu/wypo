@@ -133,6 +133,9 @@ New customer registration
                 </block>
             </block>
         </reference>
+<reference name="customer_form_register">
+        <action method="setData"><key>show_address_fields</key><value>1</value></action>
+    </reference>
     </customer_account_create>
 
     <customer_account_forgotpassword translate="label">

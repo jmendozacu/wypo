@@ -28,7 +28,6 @@ $helper = Mage::helper('onestepcheckout/checkout');
 <?php if($this->settings['checkout_description']): ?>
     <p class="onestepcheckout-description"><?php echo $this->settings['checkout_description']; ?></p>
 <?php endif; ?>
-
 <?php if(!$this->isCustomerLoggedIn() && $helper->showLoginLink()): ?>
     <p class="onestepcheckout-login-link">
         <a id="onestepcheckout-login-link" href="javascript:;"><?php echo $this->__('Already registered? Click here to login.'); ?></a>

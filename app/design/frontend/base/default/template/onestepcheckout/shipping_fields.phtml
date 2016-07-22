@@ -4,16 +4,16 @@ $formErrors = (!empty($formErrors['shipping_errors'])) ? $formErrors['shipping_e
 
 $helper = Mage::helper('onestepcheckout/checkout');
 $dataHelper = Mage::helper('onestepcheckout');
-    $shippingFields['firstname'] = '
-        <div class="osc-short input-box input-firstname'.((in_array('firstname', $formErrors)) ? ' input-error' : '').'">
-            <label for="shipping:firstname">'.$this->__('First Name').' <span class="required">*</span></label><br />
-            <input class="required-entry input-text" type="text" name="shipping[firstname]" id="shipping:firstname" value="'.$dataHelper->clearDash($this->getQuote()->getShippingAddress()->getFirstname()).'" />
-        </div>';
-    $shippingFields['lastname'] = '
-        <div class="osc-short input-box input-lastname'.((in_array('lastname', $formErrors)) ? ' input-error' : '').'">
-            <label for="shipping:lastname">'.$this->__('Last Name').' <span class="required">*</span></label><br />
-            <input class="required-entry input-text" type="text" name="shipping[lastname]" id="shipping:lastname" value="'.$dataHelper->clearDash($this->getQuote()->getShippingAddress()->getLastname()).'" />
-        </div>';
+//    $shippingFields['firstname'] = '
+//        <div class="osc-short input-box input-firstname'.((in_array('firstname', $formErrors)) ? ' input-error' : '').'">
+//            <label for="shipping:firstname">'.$this->__('First Name').' <span class="required">*</span></label><br />
+//            <input class="required-entry input-text" type="text" name="shipping[firstname]" id="shipping:firstname" value="'.$dataHelper->clearDash($this->getQuote()->getShippingAddress()->getFirstname()).'" />
+//        </div>';
+//    $shippingFields['lastname'] = '
+//        <div class="osc-short input-box input-lastname'.((in_array('lastname', $formErrors)) ? ' input-error' : '').'">
+//            <label for="shipping:lastname">'.$this->__('Last Name').' <span class="required">*</span></label><br />
+//            <input class="required-entry input-text" type="text" name="shipping[lastname]" id="shipping:lastname" value="'.$dataHelper->clearDash($this->getQuote()->getShippingAddress()->getLastname()).'" />
+//        </div>';
     ?>
 
 <?php if(!$this->settings['exclude_address']):?>
