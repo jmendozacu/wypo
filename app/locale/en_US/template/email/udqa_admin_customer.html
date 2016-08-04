@@ -1,0 +1,27 @@
+<!--@subject Question replied by vendor@-->
+
+Question to {{var question.vendor_name}} {{if question.shipment_id}}regarding shipment #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}regarding product {{var question.product_name}}{{/if}} has been answered
+<br/><br/>
+Please see details below:
+<br/>
+<br/>
+<b>Customer Name:</b>  {{var question.customer_name}}
+<br/>
+<b>Customer E-mail:</b>  {{var question.customer_email}}
+<br/>
+<b>Vendor Name:</b>  {{var question.vendor_name}}
+<br/>
+<b>Vendor E-mail:</b>  {{var question.vendor_email}}
+<br/>
+<br/>
+Question Text:
+<pre>{{var question.question_text}}</pre>
+<br/>
+<br/>
+Answer Text:
+<pre>{{var question.answer_text}}</pre>
+
+<br/>
+<br/>
+
+You can view details in <a href="{{var question.getAdminUrl()}}">admin area</a>

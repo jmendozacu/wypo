@@ -339,7 +339,7 @@ Statements,Statements
 "%s tried to change the shipment status to %s","%s tried to change the shipment status to %s"
 "Shipment status has been changed","El estado de pedido fue modificiado."
 "%s x [%s] %s","%s x [%s] %s"
-"Your comment has been sent to store administrator","Your comment has been sent to store administrator"
+"Your comment has been sent to store administrator","Su comentario ha sido enviado al encargado de Wypo. Gracias !"
 "%s voided tracking ID %s","%s voided tracking ID %s"
 "Track %s was voided","Track %s was voided"
 "%s attempted to void tracking ID %s: %s","%s attempted to void tracking ID %s: %s"
@@ -2306,7 +2306,7 @@ Answer,Answer
 "Your Name","Your Name"
 "Reply question #%s from %s","Reply question #%s from %s"
 "* Indicated Required Fields","* Campos Obligatorios"
-"Please wait, submitting...","Please wait, submitting..."
+"Please wait, submitting...","Por favor espere, estamos procesando ..."
 Save,Save
 "Save And Email","Save And Email"
 "Return to questions list","Return to questions list"
@@ -2466,7 +2466,7 @@ Go,Go
 "Tracking Information","Tracking Information"
 "Close Window","Close Window"
 "RMA #","RMA #"
-"Tracking Number:","Tracking Number:"
+"Tracking Number:","Número de Seguimiento:"
 Carrier:,Carrier:
 Error:,Error:
 "Tracking information is currently not available. Please ","Tracking information is currently not available. Please "

@@ -1,6 +1,6 @@
 /**
  * WARNING: Do not change this file. Your changes will be lost.
- * 2016-07-20 17:56:01 */
+ * 2016-08-02 19:52:24 */
 
 .product-image-area {
     position: relative;
@@ -39,14 +39,6 @@
     margin-bottom: 0px;
 }
 
-.product-collateral {
-    position: relative;
-    margin-top: 0px;
-}
-
-.product-view .product-img-box {
-    margin-bottom: 100px;
-}
 
 .price-excluding-tax .price {
     font-size: 33px;

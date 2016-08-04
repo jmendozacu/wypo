@@ -437,6 +437,26 @@ class Unirgy_DropshipMultiPrice_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::helper('core')->jsonEncode($result);
     }
 	
+	public function getDropshipTierPriceJsonForLising($prodBlock, $product)
+    {
+        $result = array();
+        $udmHlp = Mage::helper('udmulti');
+        $simpleProducts = array();
+        if ($product->getTypeId()=='configurable') {
+            $simpleProducts = $product->getTypeInstance(true)->getUsedProducts(null, $product);
+        }
+        array_unshift($simpleProducts, $product);
+        $udmHlp->attachMultivendorData($simpleProducts, true);
+        foreach ($simpleProducts as $simpleProduct) {
+            $mvData = $simpleProduct->getMultiVendorData();
+            $_result = $this->prepareMultiVendorHtmlData($prodBlock, $simpleProduct);
+            if ($_result) {
+               $result[$simpleProduct->getId()] = $_result;
+            }
+        }
+        return Mage::helper('core')->jsonEncode($result);
+    }
+	
     public function prepareMultiVendorHtmlData($prodBlock, $product)
     {
         Varien_Profiler::start('udmulti_prepareMultiVendorHtmlData');
@@ -539,6 +559,19 @@ class Unirgy_DropshipMultiPrice_Helper_Data extends Mage_Core_Helper_Abstract
 					return $tireprice;
 					break;
 				//}
+			}
+		}
+		return;
+	}
+	
+	public function getDropShippingVendorsTierPriceHtmlForListing($_productblock, $product){
+		$dataDeJson = Mage::helper('core')->jsonDecode($this->getDropshipTierPriceJsonForLising($_productblock, $product));
+		foreach($dataDeJson as $keys => $extract){
+			foreach($extract['mvData'] as $tierhtml){
+				$tireprice = '';
+				$tireprice = $tierhtml['tier_price_html'];
+					return $tireprice;
+					break;
 			}
 		}
 		return;

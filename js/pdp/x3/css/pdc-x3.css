@@ -224,7 +224,7 @@ h3.item-title {
 .form-gr-btm{border-top:1px solid #ddd; padding:10px 0 0;}
 .form-gr-btm a{margin-bottom:5px;}
 .form-gr-btm p{line-height:26px;}
-.fancybox-wrap{width:40%!important;}
+.fancybox-wrap{width:40%!important;top:10%!important;}
 .fancybox-inner{width:100%!important; padding:5px;}
 #pdc-reset-cont ul li {display:inline-block;}
 .pdc-popup ul.saving {

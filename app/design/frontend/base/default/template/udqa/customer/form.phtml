@@ -1,0 +1,72 @@
+<?php
+$shipments = $this->getShipments();
+$vendors = $this->getVendors();
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-title">
+    <h1><?php echo Mage::helper('udropship')->__('Ask A Question') ?></h1>
+</div>
+<form action="<?php echo $this->getFormAction(); ?>" id="question-form" method="post">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo Mage::helper('udropship')->__('Question Details') ?></h2>
+        <ul class="form-list">
+            <?php if ($shipments->getSize()): ?>
+            <li>
+                <label for="shipment" class="required"><em>*</em><?php echo Mage::helper('udropship')->__('SHIPMENT') ?></label>
+                <div class="input-box">
+                    <select id="shipment" name="question[shipment_id]" style="width: 350px" class="required-entry">
+                        <option value=""><?php echo Mage::helper('udropship')->__('* Please select') ?></option>
+                        <?php foreach ($shipments as $shipment): ?>
+                        <option value="<?php echo $shipment->getShipmentId()?>"><?php echo Mage::helper('udropship')->__('Shipment #%s for order #%s', $shipment->getShipmentIncrementId(), $shipment->getOrderIncrementId())?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </li>
+            <?php endif ?>
+            <li>
+                <label for="vendor" class="required"><em>*</em><?php echo Mage::helper('udropship')->__('VENDOR') ?></label>
+                <div class="input-box">
+                    <select id="vendor" name="question[vendor_id]" class="required-entry">
+                        <option value=""><?php echo Mage::helper('udropship')->__('* Please select') ?></option>
+                        <?php foreach ($vendors as $vId=>$vName): ?>
+                        <option value="<?php echo $vId?>"><?php echo $vName?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </li>
+            <li class="wide">
+                <label for="question_text" class="required"><em>*</em><?php echo Mage::helper('udropship')->__('Question Text') ?></label>
+                <div class="input-box">
+                    <textarea name="question[question_text]" id="question_text" title="<?php echo Mage::helper('udropship')->__('Question Text') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo Mage::helper('udropship')->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo Mage::helper('udropship')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('udropship')->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+    var questionForm = new VarienForm('question-form', true);
+    $('shipment').observe('change', function(){
+        if ($('shipment').value) {
+            $('vendor').disable();
+            $('vendor').up('li').hide();
+        } else {
+            $('vendor').enable();
+            $('vendor').up('li').show();
+        }
+    });
+    $('vendor').observe('change', function(){
+        if ($('vendor').value) {
+            $('shipment') && $('shipment').disable();
+            $('shipment') && $('shipment').up('li').hide();
+        } else {
+            $('shipment') && $('shipment').enable();
+            $('shipment') && $('shipment').up('li').show();
+        }
+    });
+    //]]>
+</script>

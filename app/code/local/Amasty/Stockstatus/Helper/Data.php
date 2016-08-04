@@ -73,11 +73,10 @@ class Amasty_Stockstatus_Helper_Data extends Mage_Core_Helper_Abstract
         if ( !Mage::getStoreConfig('amstockstatus/general/displayforoutonly') || !$product->isSaleable())
         {
             if ($status = Mage::helper('amstockstatus')->getCustomStockStatusText($product))
-            {                                                      // leave empty space here
-                                                                      //            v
-                $status = Mage::getStoreConfig('amstockstatus/general/icononly') ? ' ' : $status;
-
-                $status = $this->getStatusIconImage($product) . '<span class="amstockstatus amsts_' . $this->getCustomStockStatusId() . '">' . $status . '</span>';
+            {                                                      
+				
+				$status = Mage::getStoreConfig('amstockstatus/general/icononly') ? ' ' : $status;
+				$status = $this->getStatusIconImage($product) . '<span class="amstockstatus amsts_' . $this->getCustomStockStatusId() . '">' . $status . '</span>';
                 $tag  ='<p class="availability';
                 if(strpos($html, $tag) && !strpos($html, $status)){
                     $pattern = "@($tag)(.*?<span)(.*?)</span>@";
@@ -106,13 +105,6 @@ class Amasty_Stockstatus_Helper_Data extends Mage_Core_Helper_Abstract
                         $html = preg_replace("@($inStock|$outStock|$inStock1|$outStock1)[\s]*<@", '$1 ' . $status  . '<', $html);
                     }
                 }
-                /*
-                if(!strpos($html, $status) && strpos($html, '<div class="product-name">')){
-                     $pattern = '@<div class="product-name">(.*?)</div>@';
-                    // $html = preg_replace($pattern, '$0' . $status, $html);
-
-                }
-                */
             }
         }
         return $html;

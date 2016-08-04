@@ -1,0 +1,42 @@
+  * Added validation of vendor answer post
+
+===== 2.4.0 =====
+  * CE 1.9.2.2 compatibility
+  * Fixed questions is replied filter in CE 1.9.2
+
+===== 2.1.0 =====
+  * Central translations file
+
+===== 2.0.0 =====
+  * Major release
+  * Fixed captcha not displayed when set config 'after number of failed attempts'
+
+===== 1.1.4 =====
+  * Fixed captcha image refresh
+
+===== 1.1.3 =====
+  * Added captcha support on product page form
+  * Added visibility editable in admin area and vendor portal
+
+===== 1.1.2 =====
+  * Fixed is_reply=no filter in vendor portal
+
+===== 1.1.1 =====
+  * Fixed question form focus problem on product page
+  * Fixed admin custom permissions check
+  * Fixed pagination on frontend
+
+===== 1.1.0 =====
+  * Added compatibility for CE 1.4.1 and upper
+
+===== 1.0.3 =====
+  * Fixed redirect to admin login page on some pages when "Add Store Code to Urls"="Yes"
+
+===== 1.0.2 =====
+  * Added secure url for udqa/vendor
+
+===== 1.0.1 =====
+  * Added support for product view page with tabbed layout
+    "Is product view info use tabbed layout" - global config option
+
+===== 1.0 - Initial release =====

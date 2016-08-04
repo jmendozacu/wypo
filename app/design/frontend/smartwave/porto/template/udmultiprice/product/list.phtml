@@ -37,6 +37,7 @@
     $_store = Mage::app()->getStore($_storeId);
     $_taxHelper = $this->helper('tax');
     $_helper = $this->helper('catalog/output');
+	$_hlp = Mage::helper('udmultiprice');
     Mage::helper('udmultiprice')->attachPriceComparisonByState($_productCollection);
 ?>
 <!-- HP start -->
@@ -456,7 +457,7 @@ var i = 0;
                     <?php endif; */ ?>
                
 					<div class="price-box">
-						<?php if (is_array($priceCmp) && !empty($priceCmp)): foreach ($priceCmp as $pCmpState=>$pCmp):
+						<?php /* if (is_array($priceCmp) && !empty($priceCmp)): foreach ($priceCmp as $pCmpState=>$pCmp):
 							$_price = $_taxHelper->getPrice($_product, $_store->roundPrice($_store->convertPrice(@$pCmp[0])));
 						?>
 						<p class="<?php echo @$priceCmpStates[$pCmpState]['html_value']?>-price">
@@ -464,9 +465,10 @@ var i = 0;
 							<span class="price"><strong><?php echo $this->helper('core')->formatPrice($_price)?></strong></span>
 						</p>
 						<?php endforeach; ?>
-						<?php else: ?>
+						<?php else: */ ?>
 						<?php echo $this->getPriceHtml($_product, true) ?>
-						<?php endif; ?>
+						<?php //endif; ?>
+						<?php echo $_hlp->getDropShippingVendorsTierPriceHtmlForListing($this->getParentBlock(),$_product); ?>
 					</div>
 					 <?php if(Mage::getStoreConfig("porto_settings/category/actions", $code)):?>
                     <div class="actions">
@@ -498,7 +500,7 @@ var i = 0;
                         <?php endif; ?>
                         <?php if($product->isSaleable()): ?>
                             <?php  if ( !($product->getTypeInstance(true)->hasOptions($product)/*$_product->getData('has_options')*/ || $product->isGrouped()) ) :  ?>
-                                <a href="<?php if(!Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code) && !Mage::getStoreConfig("porto_settings/category/qty_field", $code)): ?><?php echo $this->getAddToCartUrl($_product) ?><?php else: ?>javascript:void(0)<?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>" <?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>onclick="setLocationAjax(this,'<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId(); ?>')"<?php elseif(Mage::getStoreConfig("porto_settings/category/qty_field", $code)): ?>onclick="document.getElementById('addtocart_form_<?php echo $_product->getId(); ?>').submit()"<?php endif; ?>><i class="icon-cart"></i><span>&nbsp;<?php echo $this->__('Add to Cart') ?></span></a>
+                                <a href="<?php if(!Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code) && !Mage::getStoreConfig("porto_settings/category/qty_field", $code)): ?><?php echo $this->getAddToCartUrl($_product) ?><?php else: ?>javascript:void(0)<?php endif; ?>" class="addtocart" titjkgle="<?php echo $this->__('Add to Cart') ?>" <?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>onclick="setLocationAjax(this,'<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId(); ?>')"<?php elseif(Mage::getStoreConfig("porto_settings/category/qty_field", $code)): ?>onclick="document.getElementById('addtocart_form_<?php echo $_product->getId(); ?>').submit()"<?php endif; ?>><i class="icon-cart"></i><span>&nbsp;<?php echo $this->__('Add to Cart') ?></span></a>
                             <?php else : ?>
                                 <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>javascript:showOptions('<?php echo $_product->getId()?>')<?php else: ?><?php echo $this->getAddToCartUrl($_product) ?><?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>"><i class="icon-cart"></i><span>&nbsp;<?php echo $this->__('Add to Cart') ?></span></a>
                                 <a href='<?php echo $this->getUrl('ajaxcart/index/options',array('product_id'=>$_product->getId()));?>' class='fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Options</a>

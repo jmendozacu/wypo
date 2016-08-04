@@ -75,17 +75,17 @@
                 </rewrite>
             </cms_mysql4>
 -->
-      <!--      <catalog>
+            <catalog>
                 <rewrite>
                     <layer>Unirgy_DropshipMicrosite_Model_Catalog_Layer</layer>
                     <product_url>Unirgy_DropshipMicrosite_Model_ProductUrl</product_url>
                 </rewrite>
-            </catalog> -->
-      <!--      <catalogsearch>
+            </catalog> 
+            <catalogsearch>
                 <rewrite>
                     <layer>Unirgy_DropshipMicrosite_Model_Catalog_SearchLayer</layer>
                 </rewrite>
-            </catalogsearch> -->
+            </catalogsearch> 
             <core>
                 <rewrite>
                     <store>Unirgy_DropshipMicrosite_Model_Store</store>

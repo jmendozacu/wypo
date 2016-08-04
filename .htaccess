@@ -24,7 +24,7 @@
 ############################################
 ## default index file
 
-    DirectoryIndex index.php
+    DirectoryIndex index.php index.html
 
 <IfModule mod_php5.c>
 

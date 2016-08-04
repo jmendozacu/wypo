@@ -13,6 +13,8 @@ a.tooltip-icon{border:1px solid #fff;color:#fff;border-radius:50%;display:block;
 .tooltip-popup em{font-size:10px}
 a.tooltip-close{position:absolute;right:10px;top:10px;color:#fff}
 .footer-middle>.container{position:relative}
+.category-products .product-pricing, .category-products .tier-prices {display: table; margin: 5px 0 5px 30px; padding: 0 5px 3px 3px;}
+.product-view .col-right .product-shop .product-info .availability {padding-left: 0;}
 
 /* tooltip for demo */
 @-webkit-keyframes tooltip-animation {

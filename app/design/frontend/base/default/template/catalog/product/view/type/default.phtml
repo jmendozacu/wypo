@@ -29,9 +29,11 @@
 
 <?php if ($this->displayProductStockStatus()): ?>
     <?php if ($_product->isAvailable()): ?>
-        <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
+        <?php $html = '<p class="availability in-stock"><span>'.$this->__('In stock').'</span></p>';
+		echo Mage::helper('amstockstatus')->processViewStockStatus($_product, $html); ?>
     <?php else: ?>
-        <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+       <?php $html ='<p class="availability out-of-stock"><span>'.$this->__('Out of stock').'</span></p>';
+		echo Mage::helper('amstockstatus')->processViewStockStatus($_product, $html); ?>
     <?php endif; ?>
 <?php endif; ?>
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
