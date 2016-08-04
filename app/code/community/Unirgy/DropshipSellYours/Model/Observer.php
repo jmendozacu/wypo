@@ -62,13 +62,13 @@ class Unirgy_DropshipSellYours_Model_Observer
             if (
             Mage::helper('udropship')->compareMageVer('1.9.0.1', '1.14.0.0')
             ) {
-                Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext', 'Unirgy_DropshipSellYours_Model_Rewrite1901_CatalogSearch_Resource_Fulltext');
+                //Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext', 'Unirgy_DropshipSellYours_Model_Rewrite1901_CatalogSearch_Resource_Fulltext');
             } else {
-                Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext', 'Unirgy_DropshipSellYours_Model_Rewrite1700_CatalogSearch_Resource_Fulltext');
+                //Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext', 'Unirgy_DropshipSellYours_Model_Rewrite1700_CatalogSearch_Resource_Fulltext');
             }
 
-            Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext_engine', 'Unirgy_DropshipSellYours_Model_Rewrite1700_CatalogSearch_Resource_Fulltext_Engine');
-            Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext_collection', 'Unirgy_DropshipSellYours_Model_Rewrite1700_CatalogSearch_Resource_Fulltext_Collection');
+            //Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext_engine', 'Unirgy_DropshipSellYours_Model_Rewrite1700_CatalogSearch_Resource_Fulltext_Engine');
+            //Mage::getConfig()->setNode('global/models/catalogsearch_resource/rewrite/fulltext_collection', 'Unirgy_DropshipSellYours_Model_Rewrite1700_CatalogSearch_Resource_Fulltext_Collection');
         }
     }
 }
