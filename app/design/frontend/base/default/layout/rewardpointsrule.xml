@@ -63,7 +63,7 @@
             </action>
         </reference>
         <reference name="checkout.cart">
-            <block type="rewardpointsrule/cart_item_renderer" name="additional.product.info" template="rewardpointsrule/cart/item/default.phtml" />
+            <block type="rewardpointsrule/cart_item_renderer" name="additional.product.info.rewardpoint" template="rewardpointsrule/cart/item/default.phtml" />
         </reference>
     </checkout_cart_index>
     
