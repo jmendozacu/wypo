@@ -39,7 +39,7 @@ class Unirgy_DropshipVendorAskQuestion_VendorController extends Unirgy_Dropship_
 
         if ($data = $this->getRequest()->getPost('question')) {
             $id = $this->getRequest()->getParam('id');
-            $updateData = array_intersect($data, array_flip(array('answer_text','visibility')));
+            $updateData = array_intersect_key($data, array_flip(array('answer_text','visibility')));
 
             try {
                 $question = Mage::getModel('udqa/question')->load($id);
