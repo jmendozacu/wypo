@@ -28,8 +28,7 @@
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view <?php if($move_product_tab): ?>moved-tab<?php endif;?>" <?php if($enabled_richsnippets): ?><?php echo $helper_richsnippets->getProductItemscope(); ?><?php endif; ?>>
     <div class="product-essential">
-    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-        <?php echo $this->getBlockHtml('formkey') ?>
+
         <div class="no-display">
             <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
             <input type="hidden" name="related_product" id="related-products-field" value="" />
@@ -190,6 +189,8 @@ if($enable_addtocart_sticky){
 			<?php echo $this->getChildHtml('upsell_products'); ?>
 		</div>
 		<div class="col-right sidebar rightaddtocart col-sm-3">
+				<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+				<?php echo $this->getBlockHtml('formkey') ?>
 				<div class="product-shop">
 					<div class="product-info">
 						<div <?php if($enabled_richsnippets) echo $helper_richsnippets->getOfferItemscope(); ?>>
@@ -229,18 +230,20 @@ if($enable_addtocart_sticky){
 					<?php if ($_product->isSaleable() && $this->hasOptions()):?>
 						<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
 					<?php endif;?>
+					<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+						<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+					<?php endif;?>
 					<div class="clearer"></div>
 					<?php echo $this->getChildHtml('addthis_sharetool'); ?>
 				</div>
 				<?php echo $this->getChildHtml('product.left.custom1'); ?>
 				<?php echo $this->getChildHtml('product.left.custom2'); ?>
 				<?php echo $this->getChildHtml('catalog.product.related'); ?>
+				 </form>
 			</div>
 	</div>
-        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-        <?php endif;?>
-    </form>
+
+   
 <?php if(Mage::getStoreConfig('ajaxcart/addtocart/enableproduct') && (Mage::app()->getFrontController()->getRequest()->getModuleName() == "catalog") || (Mage::app()->getFrontController()->getRequest()->getModuleName() == "quickview")): ?>
     <script type="text/javascript">
     //<![CDATA[
