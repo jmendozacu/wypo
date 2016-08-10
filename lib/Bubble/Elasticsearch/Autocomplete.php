@@ -58,9 +58,9 @@ class Bubble_Elasticsearch_Autocomplete
                     $ids = array_merge($ids, $result->_parent_ids);
                 }
             }
-
+			
+			$this->getVendorProductIds($q,$ids);
             $ids = array_values(array_unique($ids));
-
             if (!empty($ids)) {
                 $response = $type->request('_mget', \Elastica\Request::POST, array('ids' => $ids))
                     ->getData();
@@ -86,4 +86,48 @@ class Bubble_Elasticsearch_Autocomplete
 
         return $autocomplete->toHtml();
     }
+	
+	function get_string_between($string, $start, $end){
+		$string = ' ' . $string;
+		$ini = strpos($string, $start);
+		if ($ini == 0) return '';
+		$ini += strlen($start);
+		$len = strpos($string, $end, $ini) - $ini;
+		return substr($string, $ini, $len);
+	}
+	
+	function getVendorProductIds($_query,&$ids){
+		$_magento_root = $_SERVER['DOCUMENT_ROOT'];
+		$magento_config_file = file_get_contents($_magento_root.'/app/etc/local.xml', true);
+		
+		$host = $this->get_string_between($magento_config_file, "<host><![CDATA[", "]]></host>");
+		$username = $this->get_string_between($magento_config_file, "<username><![CDATA[", "]]></username>");
+		$password = $this->get_string_between($magento_config_file, "<password><![CDATA[", "]]></password>");
+		$dbname = $this->get_string_between($magento_config_file, "<dbname><![CDATA[", "]]></dbname>");		
+		$table_prefix = $this->get_string_between($magento_config_file, "<table_prefix><![CDATA[", "]]></table_prefix>");
+		
+		$udropship_vendor_product_table ='udropship_vendor_product';
+		
+		if($table_prefix!=''){
+			$udropship_vendor_product_table =$table_prefix.'.'.$udropship_vendor_product_table;
+		}
+		
+		$magento_db_connection = new mysqli($host, $username, $password, $dbname);
+		if ($magento_db_connection->connect_error) {
+			return ;
+		} 
+		$vendor_product_ids_select_sql = 'SELECT product_id FROM '.$udropship_vendor_product_table.' WHERE vendor_sku like "%'.$_query.'%"';
+		$result = $magento_db_connection->query($vendor_product_ids_select_sql);
+
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				$ids[] = $row["product_id"];
+			}
+		} else {
+			$magento_db_connection->close();
+			return;
+		}
+		
+		$magento_db_connection->close();
+	}
 }
