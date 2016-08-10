@@ -27,7 +27,7 @@
 ?>
 <?php if ($this->enableDisplay()): ?>
 <?php if ($this->getEarningPoints() > 0): ?>
-<div class="divider"></div>
+<div class="clearer"></div>
 <div class="rewardpoints-product-view-earning">
     <?php echo $this->getImageHtml(true) ?>
     <?php echo $this->__('You will earn %s for purchasing this product.', Mage::helper('rewardpoints/point')->format($this->getEarningPoints())) ?>

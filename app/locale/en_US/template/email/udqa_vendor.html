@@ -1,27 +1,55 @@
-<!--@subject New Question {{if question.shipment_id}}for Shipment #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}for Product {{var question.product_name}}{{/if}}@-->
+<!--@subject Nueva Pregunta {{if question.shipment_id}}por Envío #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}por Producto {{var question.product_name}}{{/if}}@-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
 
-New Question for {{if question.shipment_id}}Shipment #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}Product {{var question.product_name}}{{/if}} have been asked. 
-<br/>
-Please see details below:
-<br/>
-<br/>
-<b>Name:</b>  {{var question.customer_name}}
-<br/>
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <h1>Estimado(a) {{var vendor.vendor_name}},</h1>
+            <p>Un cliente ha realizado la siguiente pregunta por {{if question.shipment_id}}el Envío #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}el Producto {{var question.product_name}}{{/if}}.</p>
+            <p>
+Para favor responder a la brevedad.
+            </p>
+<p class="highlighted-text">
 {{if show_customer_info}}
 <b>E-mail:</b>  {{var question.customer_email}}
 <br/>
 {{/if}}
 {{if question.shipment_id}}
-<b>Shipment:</b>  {{var question.shipment_increment_id}}
+<b>Envío:</b>  {{var question.shipment_increment_id}}
 <br/>
 {{/if}}
 {{if question.product_id}}
-<b>Product:</b>  {{var question.product_name}}
+<b>Producto:</b>  {{var question.product_name}}
 <br/>
 {{/if}}
-<b>Question:</b> <pre>{{var question.question_text}}</pre>
+<b>Pregunta:</b> 
+<br/><br/>
+<strong>{{var question.question_text}}</strong>
+</p>
+ <table cellspacing="0" cellpadding="0" class="action-button" >
+                <tr>
+                    <td>
+                        <a href="{{var question.getVendorUrl()}}"><span>Responder Aquí</span></a>
+                    </td>
+                </tr>
+            </table>
+ <p>Muchas Gracias !,<br/>El Equipo de <a href="{{store url=''}}">{{var store_name}}</a></p>
+        </td>
+    </tr>
+</table>
 
-<br/>
-<br/>
+{{template config_path="design/email/footer"}}
 
-You can reply from the <a href="{{var question.getVendorUrl()}}">vendor portal</a>

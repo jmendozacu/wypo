@@ -1,6 +1,6 @@
 /**
  * WARNING: Do not change this file. Your changes will be lost.
- * 2016-08-02 19:52:24 */
+ * 2016-08-09 18:45:37 */
 
 .product-image-area {
     position: relative;
@@ -10,6 +10,22 @@
     border-radius: 7px;
     padding: 3px;
     z-index: 0;
+}
+
+.header-container.type3 .main-nav ul.menu>li.fl-right, .header-container.type4 .main-nav ul.menu>li.fl-right {
+    margin-right: 0;
+    margin-left: 3px;
+    float: right!important;
+    background: yellow;
+   color: black;
+}
+
+.rewardpoints-product-view-earning {
+    margin-bottom: 20px;
+    clear: both;
+    padding-left: 40px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
 }
 
 .main-container {

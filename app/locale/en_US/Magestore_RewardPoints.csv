@@ -88,7 +88,7 @@
 "Transaction Manager","Transaction Manager"
 "My Account","My Account"
 "Use points on spend","Use points on spend"
-"Spend Points","Spend Points"
+"Spend Points","Puntos Usados"
 "Customer must be existed.","Customer must be existed."
 "Action code %s not found on config.","Action code %s not found on config."
 "Action model need implements from %s","Action model need implements from %s"
@@ -293,3 +293,4 @@
 "OR","OR"
 "Quick Overview","Quick Overview"
 "E.g: 10.2 points generated from an order can be rounded up to 11 points or down to 10 points. If you edit this field, let's reindex Catalog Earning Rules","E.g: 10.2 points generated from an order can be rounded up to 11 points or down to 10 points. If you edit this field, let's reindex Catalog Earning Rules"
+"Earning Rules","Reglas de Puntos"

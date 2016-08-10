@@ -1,15 +1,35 @@
-<!--@subject Question replied by vendor@-->
-Dear {{var question.customer_name}},
-<br/>
-<br/>
-Your question to {{var question.vendor_name}} {{if show_vendor_info}}({{var question.vendor_email}}){{/if}} {{if question.shipment_id}}regarding shipment #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}regarding product {{var question.product_name}}{{/if}} has been answered
-<br/><br/>
-Your question:
-<pre>{{var question.question_text}}</pre>
-<br/>
-<br/>
-Their answer is:
-<pre>{{var question.answer_text}}</pre>
+<!--@subject Respuesta a Pregunta en Wypo.cl @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
 
+<!--@styles
+@-->
 
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <h1>Estimado(a) {{var question.customer_name}},</h1>
+		    <p>Su pregunta al Proveedor {{var question.vendor_name}} {{if show_vendor_info}}({{var question.vendor_email}}){{/if}} {{if question.shipment_id}} por el envío #{{var question.shipment_increment_id}}{{/if}} {{if question.product_id}}por el producto <b>{{var question.product_name}}</b>{{/if}} ha sido contestada.</p>
+            <p>
+Su pregunta fue: <b>{{var question.question_text}}</b>.
+            </p>
+<p class="highlighted-text">
+Respuesta:<br/><br/>
+<b>{{var question.answer_text}}</b>
+</p>
+ <p>Muchas Gracias !,<br/>El Equipo de <a href="{{store url=''}}">{{var store_name}}</a></p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}
 
