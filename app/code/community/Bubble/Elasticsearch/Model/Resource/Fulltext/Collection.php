@@ -121,9 +121,9 @@ class Bubble_Elasticsearch_Model_Resource_Fulltext_Collection
 		$resource = Mage::getSingleton('core/resource');
 		$readConnection = $resource->getConnection('core_read');
 		$udropship_vendor_product_table = $resource->getTableName('udropship_vendor_product');
-		$vendor_product_ids = $readConnection->fetchCol('SELECT product_id FROM '.$udropship_vendor_product_table.' WHERE vendor_sku like "%'.$query.'%"');
+		$vendor_product_ids = $readConnection->fetchCol('SELECT product_id FROM '.$udropship_vendor_product_table.' WHERE vendor_sku like "%'.addslashes($query).'%"');
 		if(count($vendor_product_ids)>0){		
-			$ids = array_merge($ids, $vendor_product_ids);
+			$ids = array_merge($vendor_product_ids,$ids);
 			$ids = array_values(array_unique($ids));
 		}
 

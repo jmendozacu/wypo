@@ -50,6 +50,7 @@ class Bubble_Elasticsearch_Autocomplete
             /** @var Bubble_Elasticsearch_Client $client */
             $client = $index->getClient();
             $ids = array();
+			$this->getVendorProductIds($q,$ids);
             $search = $client->getSearch($type, $q)->search();
             foreach ($search->getResults() as $result) {
                 /** @var \Elastica\Result $result */
@@ -58,8 +59,7 @@ class Bubble_Elasticsearch_Autocomplete
                     $ids = array_merge($ids, $result->_parent_ids);
                 }
             }
-			
-			$this->getVendorProductIds($q,$ids);
+						
             $ids = array_values(array_unique($ids));
             if (!empty($ids)) {
                 $response = $type->request('_mget', \Elastica\Request::POST, array('ids' => $ids))
@@ -116,7 +116,7 @@ class Bubble_Elasticsearch_Autocomplete
 		if ($magento_db_connection->connect_error) {
 			return ;
 		} 
-		$vendor_product_ids_select_sql = 'SELECT product_id FROM '.$udropship_vendor_product_table.' WHERE vendor_sku like "%'.$_query.'%"';
+		$vendor_product_ids_select_sql = 'SELECT product_id FROM '.$udropship_vendor_product_table.' WHERE vendor_sku like "%'.addslashes($_query).'%"';
 		$result = $magento_db_connection->query($vendor_product_ids_select_sql);
 
 		if ($result->num_rows > 0) {
