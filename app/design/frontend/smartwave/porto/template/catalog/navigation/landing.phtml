@@ -1,0 +1,37 @@
+<?php $_categoryId  = Mage::getModel('catalog/layer')->getCurrentCategory()->getId();
+$_categories = Mage::getModel('catalog/category')->load($_categoryId)->getChildren();
+?>
+<div class="category-products subcategory-grid">
+    <ul class="products-grid  columns4">
+<?php $i=0; foreach (explode(',',$_categories) as $subCatid):
+$_category = Mage::getModel('catalog/category')->load($subCatid);
+/* echo "<pre>";
+print_r($_category);
+exit; */
+
+ ?>
+	<li class="item">
+		<div class="item-area">
+        <?php $_img = $_category->getImageUrl() ?>
+            <div class="product-image-area">
+                <a href="<?php echo $_category->getURL(); ?>" class="product-image">
+				<?php if($_img): ?>
+                    <img src="<?php echo $_img ?>" title="<?php echo $_category->getName() ?>"/>
+				<?php else: ?>
+					<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'catalog/category/thumbnail.jpg'; ?>" title="<?php echo $_category->getName() ?>"/>
+				<?php endif; ?>
+                </a>
+            </div>
+        <div class="details-area">
+            <h2 class="product-name"><a href="<?php echo $_category->getURL() ?>" title="<?php echo $this->htmlEscape($_category->getName()) ?>">
+            <?php echo $this->htmlEscape($_category->getName()) ?>
+            </a></h2>
+        </div>
+		</div>
+	</li>
+<?php
+    $i++;
+    endforeach;
+?>
+    </ul>
+</div>
