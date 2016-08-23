@@ -39,9 +39,7 @@ $dataHelper = Mage::helper('onestepcheckout');
         <div class="osc-short input-box input-telephone'.((in_array('telephone', $formErrors)) ? ' input-error' : '').'">
             <label for="billing:telephone">'.$this->__('Telephone').' <span class="required">*</span></label><br/>
             <input type="tel" name="billing[telephone]" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getTelephone()).'" title="'.$this->__('Telephone').'" class="required-entry input-text" id="billing:telephone" />
-        </div>
-<h3 class="onestepcheckout-title">Datos Empresa</h3>
-';
+        </div>';
     ?>
 <?php endif; ?>
 <?php if(!$this->isCustomerLoggedIn() && $helper->showCreateAccount()): ?>
@@ -192,8 +190,9 @@ $billingFields['country_id'] = '
                 ->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml();
     ?>
 <?php endif; ?>
+
 <?php if (method_exists(Mage::helper('customer/address'), 'isVatAttributeVisible') && Mage::helper('customer/address')->isVatAttributeVisible()) : ?>
-    <?php $billingFields['taxvat'] = '
+    <?php $billingFields['taxvat'] = '<h3 class="onestepcheckout-title">Datos Empresa</h3>
             <label for="billing:vat_id">'.$this->__('VAT Number').'</label>
             <div class="input-box input-vat">
                 <input type="text" id="billing:vat_id" name="billing[vat_id]" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getVatId()).'" title="'.$this->__('VAT Number').'" class="input-text '.Mage::helper('customer/address')->getAttributeValidationClass('vat_id').'" />
