@@ -43,6 +43,23 @@
         </fieldset>
     </div>
 </div>
+
+<div class="box-right">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-shipping-method"><?php echo $this->helper('sales')->__('Donwload Invoice') ?></h4>
+        </div>
+        <fieldset>
+			<?php if(file_exists(Mage::getBaseDir('media').'/invoices/'.$_invoice->getIncrementId().'.pdf')){
+				$pdf = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'invoices/'.$_invoice->getIncrementId().'.pdf'; ?>
+				<div><a target="_blank" href="<?php echo $pdf; ?>">Download Invoice PDF</a></div>
+			<?php }else{
+				echo "<div style='color:red;'>Invoice PDF not generated.</div>";
+			} ?>
+        </fieldset>
+    </div>
+</div>
+
 <?php if (!$_order->getIsVirtual()): ?>
 <div class="box-right">
     <!--Shipping Address-->

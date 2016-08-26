@@ -31,6 +31,8 @@
  * @package    Mage_Adminhtml
  * @author      Magento Core Team <core@magentocommerce.com>
  */
+$apiPath = $_SERVER['DOCUMENT_ROOT'].'/SuperFacturaAPI.php';
+require_once($apiPath);
 class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Controller_Sales_Invoice
 {
     /**
@@ -54,7 +56,7 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
      */
     protected function _initInvoice($update = false)
     {
-        $this->_title($this->__('Sales'))->_title($this->__('Invoices'));
+		$this->_title($this->__('Sales'))->_title($this->__('Invoices'));
 
         $invoice = false;
         $itemsToInvoice = 0;
@@ -91,6 +93,115 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
 
         Mage::register('current_invoice', $invoice);
         return $invoice;
+    }
+	
+	
+	protected function _initFactura($update = false)
+    {
+        $this->_title($this->__('Sales'))->_title($this->__('Invoices'));
+
+        $invoice = false;
+        $itemsToInvoice = 0;
+        $invoiceId = $this->getRequest()->getParam('invoice_id');
+        $orderId = $this->getRequest()->getParam('order_id');
+        if ($invoiceId) {
+            $invoice = Mage::getModel('sales/order_invoice')->load($invoiceId);
+            if (!$invoice->getId()) {
+                $this->_getSession()->addError($this->__('The invoice no longer exists.'));
+                return false;
+            }
+        } elseif ($orderId) {
+            $order = Mage::getModel('sales/order')->load($orderId);
+            /**
+             * Check order existing
+             */
+            if (!$order->getId()) {
+                $this->_getSession()->addError($this->__('The order no longer exists.'));
+                return false;
+            }
+            /**
+             * Check invoice create availability
+             */
+            if (!$order->canInvoice()) {
+                $this->_getSession()->addError($this->__('The order does not allow creating an invoice.'));
+                return false;
+            }
+            $savedQtys = $this->_getItemQtys();
+            //$invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice($savedQtys);
+			
+				$billingAddress = $order->getBillingAddress();
+				$shippingAddress = $order->getShippingAddress();
+				$b=0;
+				foreach ($invoice->getAllItems() as $item){
+					if ($item->getOrderItem()->getParentItem()) {
+						continue;
+					}
+					$invoiceOpt='';
+					$options = $item->getOrderItem()->getProductOptions();
+					if(isset($options['additional_options'])){
+						 foreach ($options['additional_options'] as $option) {
+							$invoiceOpt .= '<b>'.$option['label'].':</b> '.$option['value'].'<br />';
+						}
+					}
+					$product_data[$b]= array(
+						'NmbItem' => $item->getName(),
+						'DscItem' => $invoiceOpt,
+						'QtyItem' => (int)$item->getQty(),
+						'PrcItem' => $item->getPrice(),
+					);
+					$b++;
+				}
+				if($invoice->getShippingAmount() && $invoice->getShippingAmount()>0){
+					$product_data[$b+1]= array(
+						'NmbItem' => $order->getShippingDescription(),
+						'DscItem' => '',
+						'QtyItem' => 1,
+						'PrcItem' => $invoice->getShippingAmount(),
+					);
+				}
+				$datos = array(
+					'Encabezado' => array(
+						'IdDoc' => array(
+						'TipoDTE' => 33,
+						'FchEmis' => date('Y-m-d', strtotime($order->getCreatedAt())),
+						),
+						'Emisor' => array(
+						'RUTEmisor' => '76622517-9',
+						),
+						'Receptor' => array(
+						'RUTRecep' => $billingAddress->getVatId(),
+						'RznSocRecep' => $billingAddress->getCompany(),
+						'GiroRecep' => $billingAddress->getFax(),
+						'DirRecep' => $billingAddress->getStreet1().', '.$billingAddress->getStreet2().', '.$billingAddress->getStreet3(),
+						'CmnaRecep' => $billingAddress->getRegion(),
+						'CiudadRecep' => $billingAddress->getCity(),
+						),
+					),
+					'Detalles' => $product_data,
+				);
+			$api = new SuperFacturaAPI('nm@wypo.cl', 'K94679nM');
+			$resultado = $api->SendDTE(
+			$datos,
+			'cer',
+			array('getPDF' => true)
+			);
+			
+            if (!$invoice->getTotalQty()) {
+                Mage::throwException($this->__('Cannot create an invoice without products.'));
+            }
+        }
+		if($resultado['ok']){
+			if($resultado['folio']){
+				$pdf = $resultado['pdf'];
+				//$this->_sendUploadResponse($invoice->getIncrementId().'.pdf', $pdf);
+				return;
+			}else {
+				die('Error1');
+			}		
+		}else {
+			die('Error');
+		}
+        return;
     }
 
     /**
@@ -226,7 +337,7 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
      */
     public function saveAction()
     {
-        $data = $this->getRequest()->getPost('invoice');
+		$data = $this->getRequest()->getPost('invoice');
         $orderId = $this->getRequest()->getParam('order_id');
 
         if (!empty($data['comment_text'])) {
@@ -285,6 +396,71 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
                     $comment = $data['comment_text'];
                 }
                 try {
+					/* PDF from API */
+					$order = $invoice->getOrder();
+					$billingAddress = $order->getBillingAddress();
+					$shippingAddress = $order->getShippingAddress();
+					$b=0;
+					foreach ($invoice->getAllItems() as $item){
+						if ($item->getOrderItem()->getParentItem()) {
+							continue;
+						}
+						$invoiceOpt='';
+						$options = $item->getOrderItem()->getProductOptions();
+						if(isset($options['additional_options'])){
+							foreach ($options['additional_options'] as $option) {
+							$invoiceOpt .= '<b>'.$option['label'].':</b> '.$option['value'].'<br />';
+							}
+						}
+						$product_data[$b]= array(
+						'NmbItem' => $item->getName(),
+						'DscItem' => $invoiceOpt,
+						'QtyItem' => (int)$item->getQty(),
+						'PrcItem' => $item->getPrice(),
+						);
+						$b++;
+					}
+					if($invoice->getShippingAmount() && $invoice->getShippingAmount()>0){
+						$product_data[$b+1]= array(
+						'NmbItem' => $order->getShippingDescription(),
+						'DscItem' => '',
+						'QtyItem' => 1,
+						'PrcItem' => $invoice->getShippingAmount(),
+						);
+					}
+						$datos = array(
+						'Encabezado' => array(
+						'IdDoc' => array(
+						'TipoDTE' => 33,
+						'FchEmis' => date('Y-m-d', strtotime($order->getCreatedAt())),
+						),
+						'Emisor' => array(
+						'RUTEmisor' => '76622517-9',
+						),
+						'Receptor' => array(
+						'RUTRecep' => $billingAddress->getVatId(),
+						'RznSocRecep' => $billingAddress->getCompany(),
+						'GiroRecep' => $billingAddress->getFax(),
+						'DirRecep' => $billingAddress->getStreet1().', '.$billingAddress->getStreet2().', '.$billingAddress->getStreet3(),
+						'CmnaRecep' => $billingAddress->getRegion(),
+						'CiudadRecep' => $billingAddress->getCity(),
+						),
+						),
+						'Detalles' => $product_data,
+						);
+					$api = new SuperFacturaAPI('nm@wypo.cl', 'K94679nM');
+					$resultado = $api->SendDTE(
+					$datos,
+					'cer',
+					array('getPDF' => true)
+					);
+					if($resultado['ok']){
+						if($resultado['folio']){
+							$pdf = $resultado['pdf'];
+							file_put_contents(Mage::getBaseDir('media').'/invoices/'.$invoice->getIncrementId().'.pdf', $pdf);
+						}		
+					}
+					/* API PDF END */
                     $invoice->sendEmail(!empty($data['send_email']), $comment);
                 } catch (Exception $e) {
                     Mage::logException($e);
@@ -299,6 +475,16 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
                     }
                 }
                 Mage::getSingleton('adminhtml/session')->getCommentText(true);
+				/* if($resultado['folio']){
+					$resource = Mage::getSingleton('core/resource');
+					$writeConnection = $resource->getConnection('core_write');
+					$query = 'UPDATE sales_flat_invoice SET increment_id='.$resultado['folio'].' WHERE entity_id='.$invoice->getId();
+					try{
+					$writeConnection->query($query);  
+					}catch(Exception $e){
+						$this->_getSession()->addError($e->getMessage());
+					}
+				} */
                 $this->_redirect('*/sales_order/view', array('order_id' => $orderId));
             } else {
                 $this->_redirect('*/*/new', array('order_id' => $orderId));
@@ -486,7 +672,23 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
     public function printAction()
     {
         $this->_initInvoice();
+		//$this->_initFactura();
         parent::printAction();
+    }
+	
+	protected function _sendUploadResponse($fileName, $content, $contentType='application/octet-stream'){
+        $response = $this->getResponse();
+        $response->setHeader('HTTP/1.1 200 OK','');
+        $response->setHeader('Pragma', 'public', true);
+        $response->setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true);
+        $response->setHeader('Content-Disposition', 'attachment; filename='.$fileName);
+        $response->setHeader('Last-Modified', date('r'));
+        $response->setHeader('Accept-Ranges', 'bytes');
+        $response->setHeader('Content-Length', strlen($content));
+        $response->setHeader('Content-type', $contentType);
+        $response->setBody($content);
+        $response->sendResponse();
+        die;
     }
 
 }

@@ -1,37 +1,4 @@
 <?php
-/**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magento.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magento.com for more information.
- *
- * @category    Mage
- * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-
-
-/**
- * Sales Controller
- *
- * @category    Mage
- * @package     Mage_Sales
- * @author      Magento Core Team <core@magentocommerce.com>
- */
 abstract class Mage_Sales_Controller_Abstract extends Mage_Core_Controller_Front_Action
 {
     /**
@@ -196,13 +163,18 @@ abstract class Mage_Sales_Controller_Abstract extends Mage_Core_Controller_Front
             $order = Mage::getModel('sales/order')->load($orderId);
         }
 
-        if ($this->_canViewOrder($order)) {
+        if ($this->_canViewOrder($order)){
             Mage::register('current_order', $order);
             if (isset($invoice)) {
-                Mage::register('current_invoice', $invoice);
-            }
-            $this->loadLayout('print');
-            $this->renderLayout();
+				Mage::register('current_invoice', $invoice);
+				if(file_exists(Mage::getBaseDir('media').'/invoices/'.$invoice->getIncrementId().'.pdf')){
+					$pdf = file_get_contents(Mage::getBaseDir('media').'/invoices/'.$invoice->getIncrementId().'.pdf');
+					$this->_sendUploadResponse($invoice->getIncrementId().'.pdf', $pdf);
+					return;
+				}
+			}
+			//$this->loadLayout('print');
+            //$this->renderLayout();
         } else {
             if (Mage::getSingleton('customer/session')->isLoggedIn()) {
                 $this->_redirect('*/*/history');
@@ -259,9 +231,14 @@ abstract class Mage_Sales_Controller_Abstract extends Mage_Core_Controller_Front
             Mage::register('current_order', $order);
             if (isset($creditmemo)) {
                 Mage::register('current_creditmemo', $creditmemo);
+				if(file_exists(Mage::getBaseDir('media').'/creditmemos/'.$creditmemo->getIncrementId().'.pdf')){
+					$pdf = file_get_contents(Mage::getBaseDir('media').'/creditmemos/'.$creditmemo->getIncrementId().'.pdf');
+					$this->_sendUploadResponse($creditmemo->getIncrementId().'.pdf', $pdf);
+					return;
+				}
             }
-            $this->loadLayout('print');
-            $this->renderLayout();
+            //$this->loadLayout('print');
+            //$this->renderLayout();
         } else {
             if (Mage::getSingleton('customer/session')->isLoggedIn()) {
                 $this->_redirect('*/*/history');
@@ -269,5 +246,21 @@ abstract class Mage_Sales_Controller_Abstract extends Mage_Core_Controller_Front
                 $this->_redirect('sales/guest/form');
             }
         }
+    }
+	
+	protected function _sendUploadResponse($fileName, $content, $contentType='application/octet-stream')
+    {
+        $response = $this->getResponse();
+        $response->setHeader('HTTP/1.1 200 OK','');
+        $response->setHeader('Pragma', 'public', true);
+        $response->setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true);
+        $response->setHeader('Content-Disposition', 'attachment; filename='.$fileName);
+        $response->setHeader('Last-Modified', date('r'));
+        $response->setHeader('Accept-Ranges', 'bytes');
+        $response->setHeader('Content-Length', strlen($content));
+        $response->setHeader('Content-type', $contentType);
+        $response->setBody($content);
+        $response->sendResponse();
+        die;
     }
 }
