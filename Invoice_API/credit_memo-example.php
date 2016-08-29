@@ -10,14 +10,14 @@ $datos = array(
 	'Encabezado' => array(
 		'IdDoc' => array(
 			'TipoDTE' => 61,
-			'FchEmis' => '2015-01-01', //Order Date
+			'FchEmis' => '2016-08-23', //Order Date
 		),
 		'Emisor' => array(
 			'RUTEmisor' => '76622517-9',
 			
 		),
 		'Receptor' => array(
-			'RUTRecep' => '1-9', 					//VAT from Billing Address
+			'RUTRecep' => '10268889-9', 					//VAT from Billing Address
 			'RznSocRecep' => 'Test',				//Company Name from Billing Address
 			'GiroRecep' => 'Giro',					//Fax from Billing Address
 			'DirRecep' => 'Dirección',				//Address lines 1,2 & 3 from Billing Address
@@ -69,6 +69,7 @@ $resultado = $api->SendDTE(
 if($resultado['ok']) {
 	// Get content of PDF document
 	$pdf = $resultado['pdf'];
+	file_put_contents('/home/www.wypo.cl/html/Invoice_API/memo001.pdf', $pdf);
 	$pdfCedible = $resultado['pdfCedible'];
 	
 	echo "Folio: {$resultado['folio']}<br>"; // "folio" is the Invoice Number of the generated PDF document. Can you set this Invoice Number (folio) instead of the Standard Magento Invoice Number ?

@@ -15,15 +15,15 @@ $datos = array(
 	'Encabezado' => array(
 		'IdDoc' => array(
 			'TipoDTE' => 33,
-			'FchEmis' => '2015-01-01', //Order Date
+			'FchEmis' => '2016-08-23', //Order Date
 		),
 		'Emisor' => array(
 			'RUTEmisor' => '76622517-9',
 			
 		),
 		'Receptor' => array(
-			'RUTRecep' => '1-9', 					//VAT from Billing Address
-			'RznSocRecep' => 'Test',				//Company Name from Billing Address
+			'RUTRecep' => '10268889-9', 					//VAT from Billing Address
+			'RznSocRecep' => 'Particular',				//Company Name from Billing Address
 			'GiroRecep' => 'Giro',					//Fax from Billing Address
 			'DirRecep' => 'Dirección',				//Address lines 1,2 & 3 from Billing Address
 			'CmnaRecep' => 'Comuna',				//State from Billing Address

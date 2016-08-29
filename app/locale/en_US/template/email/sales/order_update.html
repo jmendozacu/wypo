@@ -1,4 +1,4 @@
-<!--@subject {{var store.getFrontendName()}}: Order # {{var order.increment_id}} update @-->
+<!--@subject {{var store.getFrontendName()}}: Pedido # {{var order.increment_id}} Actualización @-->
 <!--@vars
 {"store url=\"\"":"Store Url",
 "var logo_url":"Email Logo Image Url",
@@ -23,7 +23,7 @@
                 <tr>
                     <td class="action-content">
                         <h1>{{htmlescape var=$order.getCustomerName()}},</h1>
-                        <p>Your order <span class="no-link">#{{var order.increment_id}}</span> has been updated to: <strong>{{var order.getStatusLabel()}}</strong></p>
+                        <p>Su pedido  <span class="no-link">#{{var order.increment_id}}</span> ha sido actualizado a: <strong>{{var order.getStatusLabel()}}</strong></p>
                         {{if comment}}
                         <table cellspacing="0" cellpadding="0" class="message-container">
                             <tr>
@@ -31,9 +31,9 @@
                             </tr>
                         </table>
                         {{/if}}
-                        <p>You can check the status of your order by <a href="{{store url="customer/account/"}}">logging into your account</a>.</p>
+                        <p>Usted puede chequear el estado de su pedido <a href="{{store url="customer/account/"}}">ingresando a su cuenta</a>.</p>
                         <p>
-                            If you have any questions, please feel free to contact us at
+                            Si tiene alguna consulta, no dude en contactarnos a
                             <a href="mailto:{{var store_email}}">{{var store_email}}</a>
                             {{depend store_phone}} or by phone at <a href="tel:{{var phone}}">{{var store_phone}}</a>{{/depend}}.
                         </p>

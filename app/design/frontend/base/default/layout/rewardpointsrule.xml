@@ -105,9 +105,10 @@
     </catalogsearch_result_index>
     <!--end Thin 14/8-->
 
-    <checkout_cart_index>
+<!--    <checkout_cart_index>
     	<reference name="checkout.cart.form.before">
     		<block type="rewardpointsrule/cart_info" name="rewardpoint.rules.info" after="-" template="rewardpointsrule/cart/default.phtml" />
     	</reference>
-    </checkout_cart_index>
+    </checkout_cart_index>    
+-->
 </layout>
