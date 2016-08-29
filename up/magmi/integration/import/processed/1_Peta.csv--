@@ -1,0 +1,67 @@
+sku,description,vendor_price,price,name,qty,image,tax_class_id,weight,thumbnail,manufacturer,visibility,small_image,udropship_vendor,partnumber,short_description,categoryname,stock_qty,status
+test888,"<p>Caracter&iacute;sticas:</p>
+<ul>
+<li>Procesador: Intel Core i3 5005U (2000 MHz)</li>
+<li>RAM: 4 GB DDR3L (1600 MHz)</li>
+<li>Pantalla: LED 14.0"" (1366x768)</li>
+<li>Bater&iacute;a: 4 celdas (41000 mWh)</li>
+<li>Almacenamiento: HDD 500GB (5400 rpm)</li>
+<li>Tarjeta de video:Intel GMA HD Graphics 5500 (Integrada)</li>
+</ul>
+<p>&nbsp;</p>
+<p>Especificaciones secundarias</p>
+<p>&nbsp;</p>
+<ul>
+<li>Peso: 1900 g.</li>
+<li>Dimensiones: 345 x 241 x 24 mm.</li>
+<li>Sistema Operativo: Microsoft Windows 10</li>
+<li>Unidad &oacute;ptica: DVD&plusmn;RW</li>
+<li>Puertos de video: HDMI | VGA</li>
+</ul>
+<p>&nbsp;</p>
+<p>Accesorios</p>
+<p>&nbsp;</p>
+<ul>
+<li>WiFi: Gen&eacute;rica (802.11 b/g/n)</li>
+<li>Puertos USB: 3</li>
+<li>Webcam: 1,0 MP</li>
+<li>LAN: 10 / 100 Mbps</li>
+<li>Adaptador de energ&iacute;a: 45 W</li>
+<li>Lector de tarjetas: 3-en-1</li>
+<li>&iquest;RAM de doble canal?: No</li>
+<li>&iquest;Bluetooth?: S&iacute;</li>
+<li>&iquest;Lector de huellas digitales?: No</li>
+</ul>",1111,101010,test888,1010,,IVA,5.0000,,,4,,1,,,Notebooks,111,1
+test888,"<p>Caracter&iacute;sticas:</p>
+<ul>
+<li>Procesador: Intel Core i3 5005U (2000 MHz)</li>
+<li>RAM: 4 GB DDR3L (1600 MHz)</li>
+<li>Pantalla: LED 14.0"" (1366x768)</li>
+<li>Bater&iacute;a: 4 celdas (41000 mWh)</li>
+<li>Almacenamiento: HDD 500GB (5400 rpm)</li>
+<li>Tarjeta de video:Intel GMA HD Graphics 5500 (Integrada)</li>
+</ul>
+<p>&nbsp;</p>
+<p>Especificaciones secundarias</p>
+<p>&nbsp;</p>
+<ul>
+<li>Peso: 1900 g.</li>
+<li>Dimensiones: 345 x 241 x 24 mm.</li>
+<li>Sistema Operativo: Microsoft Windows 10</li>
+<li>Unidad &oacute;ptica: DVD&plusmn;RW</li>
+<li>Puertos de video: HDMI | VGA</li>
+</ul>
+<p>&nbsp;</p>
+<p>Accesorios</p>
+<p>&nbsp;</p>
+<ul>
+<li>WiFi: Gen&eacute;rica (802.11 b/g/n)</li>
+<li>Puertos USB: 3</li>
+<li>Webcam: 1,0 MP</li>
+<li>LAN: 10 / 100 Mbps</li>
+<li>Adaptador de energ&iacute;a: 45 W</li>
+<li>Lector de tarjetas: 3-en-1</li>
+<li>&iquest;RAM de doble canal?: No</li>
+<li>&iquest;Bluetooth?: S&iacute;</li>
+<li>&iquest;Lector de huellas digitales?: No</li>
+</ul>",4444,101010,test888,1010,,IVA,5.0000,,,4,,2,,,Notebooks,444,1
