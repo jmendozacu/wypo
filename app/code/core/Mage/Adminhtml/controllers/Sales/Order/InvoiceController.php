@@ -457,7 +457,8 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
 					if($resultado['ok']){
 						if($resultado['folio']){
 							$pdf = $resultado['pdf'];
-							file_put_contents(Mage::getBaseDir('media').'/invoices/'.$invoice->getIncrementId().'.pdf', $pdf);
+							file_put_contents(Mage::getBaseDir('media').'/invoices/'.$resultado['folio'].'.pdf', $pdf);
+							$invoice->setIncrementId($resultado['folio']);
 						}		
 					}
 					/* API PDF END */
@@ -475,16 +476,18 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
                     }
                 }
                 Mage::getSingleton('adminhtml/session')->getCommentText(true);
-				/* if($resultado['folio']){
+				if($resultado['folio']){
 					$resource = Mage::getSingleton('core/resource');
 					$writeConnection = $resource->getConnection('core_write');
 					$query = 'UPDATE sales_flat_invoice SET increment_id='.$resultado['folio'].' WHERE entity_id='.$invoice->getId();
+					$queryone = 'UPDATE sales_flat_invoice_grid SET increment_id='.$resultado['folio'].' WHERE entity_id='.$invoice->getId();
 					try{
-					$writeConnection->query($query);  
+						$writeConnection->query($query);
+						$writeConnection->query($queryone);
 					}catch(Exception $e){
 						$this->_getSession()->addError($e->getMessage());
 					}
-				} */
+				}
                 $this->_redirect('*/sales_order/view', array('order_id' => $orderId));
             } else {
                 $this->_redirect('*/*/new', array('order_id' => $orderId));
