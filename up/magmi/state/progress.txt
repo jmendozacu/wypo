@@ -1,6 +1,6 @@
 title:MAGMI by dweeves - version:0.7.22
 startup:Running Magmi Product Import Engine v1.9.1 by dweeves
-startup:Import Profile:quintec
+startup:Import Profile:tecnoglobal
 startup:Import Mode:update
 step:step:1%
 startup:Attributeset update is enabled.
@@ -19,189 +19,582 @@ plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Already optmized!
 plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Adding index MAGMI_EA_CODE_OPTIMIZATION_IDX on eav_attribute
 plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Already optmized!
 startup:Performing Datasource Lookup...
-lookup:166:0.03390908241272
-startup:Found 166 records, took 0.03390908241272 sec
+lookup:1499:0.24295997619629
+startup:Found 1499 records, took 0.24295997619629 sec
 info:Initialized attribute_set_infos!
-columns:22
-startup:Ajusted processed columns:22
+columns:21
+startup:Ajusted processed columns:21
 warning:Potential assignment problem, specific model found for select attribute => udropship_vendor(Unirgy_Dropship_Model_Vendor_Source)
-itime:2 - 0.014815092086792 - 0.014815092086792
-dbtime:35 - 0.011615991592407 - 0.011615991592407 - 35
-itime:4 - 0.042093992233276 - 0.027215003967285
-dbtime:88 - 0.031641244888306 - 0.020025253295898 - 53
-itime:6 - 0.062927007675171 - 0.020768880844116
-dbtime:140 - 0.047096729278564 - 0.015455484390259 - 52
-itime:8 - 0.083660125732422 - 0.020668983459473
-dbtime:192 - 0.062215089797974 - 0.015118360519409 - 52
-itime:10 - 0.1043860912323 - 0.020663022994995
-dbtime:244 - 0.077470302581787 - 0.015255212783813 - 52
-itime:12 - 0.12505316734314 - 0.020605087280273
-dbtime:296 - 0.092673778533936 - 0.015203475952148 - 52
-itime:14 - 0.14685106277466 - 0.021730899810791
-dbtime:348 - 0.1085193157196 - 0.015845537185669 - 52
-itime:16 - 0.16903614997864 - 0.022101163864136
-dbtime:400 - 0.12430286407471 - 0.015783548355103 - 52
-itime:18 - 0.1896960735321 - 0.020592927932739
-dbtime:452 - 0.13943195343018 - 0.015129089355469 - 52
-itime:20 - 0.21134114265442 - 0.021589040756226
-dbtime:504 - 0.15521121025085 - 0.015779256820679 - 52
-itime:22 - 0.23304104804993 - 0.021636962890625
-dbtime:556 - 0.17110872268677 - 0.015897512435913 - 52
-itime:24 - 0.25485301017761 - 0.021744966506958
-dbtime:609 - 0.1866500377655 - 0.015541315078735 - 53
-itime:26 - 0.27715802192688 - 0.022241830825806
-dbtime:661 - 0.2027063369751 - 0.016056299209595 - 52
-itime:28 - 0.29929804801941 - 0.022074937820435
-dbtime:713 - 0.21844744682312 - 0.015741109848022 - 52
-itime:30 - 0.32167506217957 - 0.02231502532959
-dbtime:765 - 0.2344663143158 - 0.016018867492676 - 52
-itime:32 - 0.34397006034851 - 0.022233963012695
-dbtime:817 - 0.25027084350586 - 0.015804529190063 - 52
-itime:34 - 0.36631298065186 - 0.022276878356934
-dbtime:869 - 0.26626539230347 - 0.015994548797607 - 52
-itime:36 - 0.38920497894287 - 0.022830009460449
-dbtime:921 - 0.28246474266052 - 0.016199350357056 - 52
-itime:38 - 0.41113996505737 - 0.021864891052246
-dbtime:973 - 0.29821538925171 - 0.015750646591187 - 52
-itime:40 - 0.43287301063538 - 0.021669864654541
-dbtime:1025 - 0.31381106376648 - 0.015595674514771 - 52
-itime:42 - 0.45381116867065 - 0.0208740234375
-dbtime:1077 - 0.32886958122253 - 0.015058517456055 - 52
-itime:44 - 0.47411513328552 - 0.020236968994141
-dbtime:1130 - 0.34356093406677 - 0.014691352844238 - 53
-itime:46 - 0.49534511566162 - 0.021175146102905
-dbtime:1182 - 0.35825371742249 - 0.014692783355713 - 52
-itime:48 - 0.51614618301392 - 0.020727157592773
-dbtime:1234 - 0.37284851074219 - 0.014594793319702 - 52
-itime:50 - 0.53647613525391 - 0.020251989364624
-dbtime:1286 - 0.38723754882812 - 0.014389038085938 - 52
-itime:52 - 0.5564329624176 - 0.019889831542969
-dbtime:1338 - 0.40143013000488 - 0.014192581176758 - 52
-itime:54 - 0.57647800445557 - 0.019979953765869
-dbtime:1390 - 0.41568946838379 - 0.014259338378906 - 52
-itime:56 - 0.59615516662598 - 0.019608020782471
-dbtime:1442 - 0.42972421646118 - 0.014034748077393 - 52
-itime:58 - 0.61638307571411 - 0.020164966583252
-dbtime:1494 - 0.444176197052 - 0.01445198059082 - 52
-itime:60 - 0.63658618927002 - 0.020137071609497
-dbtime:1546 - 0.45863199234009 - 0.014455795288086 - 52
-itime:62 - 0.65600299835205 - 0.019254922866821
-dbtime:1598 - 0.47236108779907 - 0.013729095458984 - 52
-itime:64 - 0.67432308197021 - 0.018258094787598
-dbtime:1650 - 0.48522043228149 - 0.012859344482422 - 52
-itime:66 - 0.69275808334351 - 0.018372058868408
-dbtime:1702 - 0.49810528755188 - 0.012884855270386 - 52
-itime:68 - 0.71093916893005 - 0.018119096755981
-dbtime:1754 - 0.51088118553162 - 0.012775897979736 - 52
-itime:70 - 0.73022699356079 - 0.019225835800171
-dbtime:1806 - 0.52440023422241 - 0.013519048690796 - 52
-itime:72 - 0.75007104873657 - 0.019782066345215
-dbtime:1858 - 0.53881478309631 - 0.014414548873901 - 52
-itime:74 - 0.76740312576294 - 0.017266035079956
-dbtime:1910 - 0.55121874809265 - 0.012403964996338 - 52
-itime:76 - 0.78500008583069 - 0.017530918121338
-dbtime:1962 - 0.56387853622437 - 0.012659788131714 - 52
-itime:78 - 0.80376100540161 - 0.018695831298828
-dbtime:2014 - 0.57758975028992 - 0.013711214065552 - 52
-itime:80 - 0.8232901096344 - 0.019467115402222
-dbtime:2066 - 0.59145736694336 - 0.013867616653442 - 52
-skip:skipping unknown sku:MD592CI/A - update mode set
-itime:82 - 0.83374214172363 - 0.010390043258667
-dbtime:2093 - 0.59873390197754 - 0.0072765350341797 - 27
-itime:84 - 0.85285401344299 - 0.019049882888794
-dbtime:2145 - 0.61280608177185 - 0.014072179794312 - 52
-itime:86 - 0.87216019630432 - 0.019241094589233
-dbtime:2197 - 0.62689399719238 - 0.014087915420532 - 52
-itime:88 - 0.89139318466187 - 0.019170999526978
-dbtime:2250 - 0.64112854003906 - 0.01423454284668 - 53
-itime:90 - 0.91073703765869 - 0.019276857376099
-dbtime:2302 - 0.65534162521362 - 0.014213085174561 - 52
-skip:skipping unknown sku:MD827ZM/A - update mode set
-itime:92 - 0.92143797874451 - 0.010633945465088
-dbtime:2329 - 0.66281795501709 - 0.0074763298034668 - 27
-itime:94 - 0.94046998023987 - 0.018973827362061
-dbtime:2381 - 0.67656350135803 - 0.013745546340942 - 52
-itime:96 - 0.95994901657104 - 0.01941704750061
-dbtime:2433 - 0.69069957733154 - 0.014136075973511 - 52
-skip:skipping unknown sku:MD825ZM/A - update mode set
-itime:98 - 0.97063612937927 - 0.010622978210449
-dbtime:2460 - 0.69802188873291 - 0.0073223114013672 - 27
-skip:skipping unknown sku:ME182CI/A - update mode set
-itime:100 - 0.98165798187256 - 0.010957002639771
-dbtime:2487 - 0.7055037021637 - 0.0074818134307861 - 27
-skip:skipping unknown sku:MB570BE/B - update mode set
-itime:102 - 0.9921441078186 - 0.010430097579956
-dbtime:2514 - 0.71284890174866 - 0.0073451995849609 - 27
-itime:104 - 1.0133671760559 - 0.021160125732422
-dbtime:2567 - 0.72756505012512 - 0.014716148376465 - 53
-itime:106 - 1.0353410243988 - 0.021911859512329
-dbtime:2619 - 0.74302792549133 - 0.015462875366211 - 52
-itime:108 - 1.0557520389557 - 0.020344018936157
-dbtime:2671 - 0.75749707221985 - 0.014469146728516 - 52
-itime:110 - 1.0741260051727 - 0.01830792427063
-dbtime:2723 - 0.77048373222351 - 0.012986660003662 - 52
-itime:112 - 1.0928750038147 - 0.018683910369873
-dbtime:2776 - 0.78390407562256 - 0.013420343399048 - 53
-itime:114 - 1.1131751537323 - 0.020238161087036
-dbtime:2828 - 0.79854035377502 - 0.014636278152466 - 52
-itime:116 - 1.1330590248108 - 0.019819021224976
-dbtime:2880 - 0.8127429485321 - 0.01420259475708 - 52
-itime:118 - 1.1531929969788 - 0.020059823989868
-dbtime:2932 - 0.82751131057739 - 0.014768362045288 - 52
-itime:120 - 1.1728279590607 - 0.01956582069397
-dbtime:2984 - 0.84195351600647 - 0.014442205429077 - 52
-itime:122 - 1.192232131958 - 0.019338130950928
-dbtime:3037 - 0.85634231567383 - 0.014388799667358 - 53
-itime:124 - 1.2113420963287 - 0.019043922424316
-dbtime:3089 - 0.87021684646606 - 0.013874530792236 - 52
-itime:126 - 1.2316761016846 - 0.020272016525269
-dbtime:3141 - 0.88535237312317 - 0.015135526657104 - 52
-itime:128 - 1.2515091896057 - 0.019769191741943
-dbtime:3194 - 0.90008878707886 - 0.014736413955688 - 53
-itime:130 - 1.2710399627686 - 0.019467830657959
-dbtime:3247 - 0.914231300354 - 0.014142513275146 - 53
-itime:132 - 1.2906391620636 - 0.019531965255737
-dbtime:3301 - 0.92854142189026 - 0.014310121536255 - 54
-itime:134 - 1.3103351593018 - 0.019631147384644
-dbtime:3354 - 0.94276189804077 - 0.014220476150513 - 53
-itime:136 - 1.3303689956665 - 0.01997184753418
-dbtime:3406 - 0.95732641220093 - 0.014564514160156 - 52
-itime:138 - 1.3503601551056 - 0.019927978515625
-dbtime:3459 - 0.97171998023987 - 0.01439356803894 - 53
-itime:140 - 1.3705151081085 - 0.020092964172363
-dbtime:3511 - 0.98605680465698 - 0.014336824417114 - 52
-itime:142 - 1.3908870220184 - 0.020306825637817
-dbtime:3563 - 1.0007147789001 - 0.014657974243164 - 52
-itime:144 - 1.4110460281372 - 0.020094871520996
-dbtime:3615 - 1.0151717662811 - 0.014456987380981 - 52
-itime:146 - 1.4307730197906 - 0.01966404914856
-dbtime:3668 - 1.0295135974884 - 0.014341831207275 - 53
-itime:148 - 1.4511971473694 - 0.020362138748169
-dbtime:3720 - 1.0441544055939 - 0.014640808105469 - 52
-itime:150 - 1.4713151454926 - 0.02005410194397
-dbtime:3772 - 1.0584692955017 - 0.014314889907837 - 52
-itime:152 - 1.491553068161 - 0.020173072814941
-dbtime:3824 - 1.0729455947876 - 0.014476299285889 - 52
-itime:154 - 1.5114281177521 - 0.019811153411865
-dbtime:3877 - 1.0873589515686 - 0.014413356781006 - 53
-itime:156 - 1.5316400527954 - 0.020149946212769
-dbtime:3929 - 1.1018712520599 - 0.014512300491333 - 52
-itime:158 - 1.5518021583557 - 0.020097017288208
-dbtime:3981 - 1.1163449287415 - 0.014473676681519 - 52
-itime:160 - 1.5712549686432 - 0.01938796043396
-dbtime:4033 - 1.1305584907532 - 0.014213562011719 - 52
-skip:skipping unknown sku:MK0D2ZM/A - update mode set
-skip:skipping unknown sku:MK0E2ZM/A - update mode set
-itime:162 - 1.5727591514587 - 0.0014419555664062
-dbtime:4035 - 1.1310522556305 - 0.00049376487731934 - 2
-itime:164 - 1.5921120643616 - 0.019298076629639
-dbtime:4089 - 1.1451854705811 - 0.014133214950562 - 54
-skip:skipping unknown sku:MM292AM/A - update mode set
-skip:skipping unknown sku:MM2C2AM/A - update mode set
-itime:166 - 1.5936169624329 - 0.0014419555664062
-dbtime:4091 - 1.1456871032715 - 0.00050163269042969 - 2
-itime:166 - 1.6036269664764 - 0.0099549293518066
-dbtime:4119 - 1.1531944274902 - 0.00750732421875 - 28
-info:Skus imported OK:157/166
-warning:SKU MM2L2AM/A - Skus imported KO:9/166
+skip:skipping unknown sku:V13H010L25 - update mode set
+skip:skipping unknown sku:26389 - K56152 - update mode set
+itime:15 - 0.12378001213074 - 0.12378001213074
+dbtime:335 - 0.089228391647339 - 0.089228391647339 - 335
+itime:30 - 0.26336693763733 - 0.13951802253723
+dbtime:740 - 0.19061136245728 - 0.10138297080994 - 405
+skip:skipping unknown sku:S041069 - update mode set
+skip:skipping unknown sku:Q5949A - update mode set
+skip:skipping unknown sku:CB436A - update mode set
+skip:skipping unknown sku:CB435A - update mode set
+skip:skipping unknown sku:106R01372 - update mode set
+itime:45 - 0.36852097511292 - 0.10508513450623
+dbtime:1014 - 0.26671838760376 - 0.076107025146484 - 274
+itime:60 - 0.51652002334595 - 0.14794206619263
+dbtime:1422 - 0.37529611587524 - 0.10857772827148 - 408
+skip:skipping unknown sku:C544X1MG - update mode set
+itime:75 - 0.65079283714294 - 0.1342089176178
+dbtime:1800 - 0.47400069236755 - 0.09870457649231 - 378
+itime:90 - 0.79459381103516 - 0.14373397827148
+dbtime:2208 - 0.58021593093872 - 0.10621523857117 - 408
+skip:skipping unknown sku:C9393AL - update mode set
+skip:skipping unknown sku:18856 - update mode set
+skip:skipping unknown sku:20783 - P6406 - update mode set
+skip:skipping unknown sku:32420 - update mode set
+itime:105 - 0.91215395927429 - 0.11749505996704
+dbtime:2510 - 0.66557645797729 - 0.085360527038574 - 302
+skip:skipping unknown sku:CE251A - update mode set
+skip:skipping unknown sku:CE322A - update mode set
+itime:120 - 1.0455098152161 - 0.13329195976257
+dbtime:2864 - 0.76356101036072 - 0.097984552383423 - 354
+skip:skipping unknown sku:106R01415 - update mode set
+skip:skipping unknown sku:113R00736 - update mode set
+skip:skipping unknown sku:106R01603 - update mode set
+skip:skipping unknown sku:T046120 - update mode set
+itime:135 - 1.1618459224701 - 0.11627388000488
+dbtime:3163 - 0.84764432907104 - 0.084083318710327 - 299
+itime:150 - 1.3127720355988 - 0.15084314346313
+dbtime:3566 - 0.95885348320007 - 0.11120915412903 - 403
+skip:skipping unknown sku:T103220 - update mode set
+skip:skipping unknown sku:T103420 - update mode set
+itime:165 - 1.4448330402374 - 0.13199806213379
+dbtime:3919 - 1.0552573204041 - 0.096403837203979 - 353
+skip:skipping unknown sku:CE252A - update mode set
+skip:skipping unknown sku:CE253A - update mode set
+skip:skipping unknown sku:T103320 - update mode set
+skip:skipping unknown sku:T603100 - update mode set
+itime:180 - 1.5620498657227 - 0.11713600158691
+dbtime:4220 - 1.1402552127838 - 0.084997892379761 - 301
+skip:skipping unknown sku:C9352CL - update mode set
+skip:skipping unknown sku:006R01179 - update mode set
+itime:195 - 1.6965138912201 - 0.13439798355103
+dbtime:4574 - 1.2390828132629 - 0.098827600479126 - 354
+skip:skipping unknown sku:CE255A - update mode set
+skip:skipping unknown sku:109R00732 - update mode set
+itime:210 - 1.8308749198914 - 0.13429594039917
+dbtime:4926 - 1.3376219272614 - 0.098539113998413 - 352
+skip:skipping unknown sku:T159720 - update mode set
+itime:225 - 1.9723048210144 - 0.14136695861816
+dbtime:5304 - 1.4409916400909 - 0.10336971282959 - 378
+itime:240 - 2.1255338191986 - 0.15316486358643
+dbtime:5706 - 1.5539138317108 - 0.11292219161987 - 402
+skip:skipping unknown sku:CE411A - update mode set
+itime:255 - 2.2612810134888 - 0.13568115234375
+dbtime:6077 - 1.6537568569183 - 0.09984302520752 - 371
+skip:skipping unknown sku:CQ893A - update mode set
+skip:skipping unknown sku:CQ891A - update mode set
+itime:270 - 2.3986949920654 - 0.13733005523682
+dbtime:6429 - 1.7532577514648 - 0.099500894546509 - 352
+skip:skipping unknown sku:CZ103AL - update mode set
+skip:skipping unknown sku:CZ104AL - update mode set
+skip:skipping unknown sku:52D4X00 - update mode set
+skip:skipping unknown sku:C950X73G - update mode set
+itime:285 - 2.5210108757019 - 0.12224888801575
+dbtime:6729 - 1.840883731842 - 0.087625980377197 - 300
+skip:skipping unknown sku:35S5726 - update mode set
+skip:skipping unknown sku:35S5728 - update mode set
+itime:300 - 2.658910036087 - 0.13783502578735
+dbtime:7082 - 1.940646648407 - 0.099762916564941 - 353
+skip:skipping unknown sku:DT100G3/64GB - update mode set
+itime:315 - 2.8027930259705 - 0.14381909370422
+dbtime:7454 - 2.0461809635162 - 0.10553431510925 - 372
+itime:330 - 2.9598989486694 - 0.15704298019409
+dbtime:7855 - 2.1608333587646 - 0.11465239524841 - 401
+skip:skipping unknown sku:20780 - update mode set
+skip:skipping unknown sku:6528B001 - update mode set
+skip:skipping unknown sku:CN056AL - update mode set
+skip:skipping unknown sku:CN054AL - update mode set
+skip:skipping unknown sku:CN055AL - update mode set
+skip:skipping unknown sku:DTSE9H/64GB - update mode set
+itime:345 - 3.0608479976654 - 0.10088205337524
+dbtime:8100 - 2.2317345142365 - 0.070901155471802 - 245
+skip:skipping unknown sku:T694300 - update mode set
+skip:skipping unknown sku:T694500 - update mode set
+skip:skipping unknown sku:T269220 - update mode set
+skip:skipping unknown sku:T269420 - update mode set
+skip:skipping unknown sku:S015631 - update mode set
+skip:skipping unknown sku:8595B003 - update mode set
+skip:skipping unknown sku:DTIG4/16GB - update mode set
+itime:360 - 3.147598028183 - 0.086687088012695
+dbtime:8321 - 2.2923016548157 - 0.060567140579224 - 221
+skip:skipping unknown sku:8331B023 - update mode set
+skip:skipping unknown sku:SUVTP40KH4B4S - update mode set
+skip:skipping unknown sku:H81M-C - update mode set
+itime:375 - 3.2760579586029 - 0.12839293479919
+dbtime:8642 - 2.3838889598846 - 0.09158730506897 - 321
+skip:skipping unknown sku:DGS-3120-48TC-SI - update mode set
+skip:skipping unknown sku:DES-1024D - update mode set
+skip:skipping unknown sku:DWA-182 - update mode set
+skip:skipping unknown sku:CE390X - update mode set
+itime:390 - 3.4043140411377 - 0.11307621002197
+dbtime:8933 - 2.4637863636017 - 0.079897403717041 - 291
+skip:skipping unknown sku:DGS-1210-28 - update mode set
+skip:skipping unknown sku:DWA-525 - update mode set
+itime:405 - 3.5370118618011 - 0.13263297080994
+dbtime:9280 - 2.5591864585876 - 0.095400094985962 - 347
+skip:skipping unknown sku:HL-3150CDN - update mode set
+skip:skipping unknown sku:DTIG4/64GB - update mode set
+itime:420 - 3.6669278144836 - 0.12984180450439
+dbtime:9622 - 2.65189909935 - 0.092712640762329 - 342
+skip:skipping unknown sku:PT9700PC - update mode set
+skip:skipping unknown sku:SDA3/64GB - update mode set
+skip:skipping unknown sku:DAP-1360 - update mode set
+skip:skipping unknown sku:DCS-7010L - update mode set
+itime:435 - 3.7860498428345 - 0.11904883384705
+dbtime:9912 - 2.732675075531 - 0.08077597618103 - 290
+skip:skipping unknown sku:QL-710W - update mode set
+itime:450 - 3.9286420345306 - 0.14250516891479
+dbtime:10277 - 2.834023475647 - 0.10134840011597 - 365
+skip:skipping unknown sku:31710184102 - update mode set
+skip:skipping unknown sku:DGS-1210-28P - update mode set
+itime:465 - 4.0541749000549 - 0.12547492980957
+dbtime:10618 - 2.9237077236176 - 0.089684247970581 - 341
+skip:skipping unknown sku:LC60BK - update mode set
+itime:480 - 4.1887419223785 - 0.1345009803772
+dbtime:10984 - 3.023419380188 - 0.099711656570435 - 366
+skip:skipping unknown sku:MFC-H8850CDW - update mode set
+skip:skipping unknown sku:TN210Y - update mode set
+skip:skipping unknown sku:TN221BK - update mode set
+itime:495 - 4.3110728263855 - 0.12227296829224
+dbtime:11299 - 3.110324382782 - 0.086905002593994 - 315
+skip:skipping unknown sku:TN225M - update mode set
+itime:510 - 4.4443168640137 - 0.13318705558777
+dbtime:11669 - 3.2074255943298 - 0.097101211547852 - 370
+skip:skipping unknown sku:LC103Y - update mode set
+skip:skipping unknown sku:LC107BK - update mode set
+skip:skipping unknown sku:LC109BK - update mode set
+itime:525 - 4.5625 - 0.11811900138855
+dbtime:11992 - 3.2919661998749 - 0.084540605545044 - 323
+skip:skipping unknown sku:DIR-615 - update mode set
+skip:skipping unknown sku:CF330X - update mode set
+skip:skipping unknown sku:LGS108P - update mode set
+skip:skipping unknown sku:LGS116P - update mode set
+skip:skipping unknown sku:LGS124P - update mode set
+skip:skipping unknown sku:LGS308P - update mode set
+itime:540 - 4.6576228141785 - 0.095059871673584
+dbtime:12234 - 3.3577764034271 - 0.065810203552246 - 242
+skip:skipping unknown sku:LGS318P - update mode set
+skip:skipping unknown sku:LAPN300 - update mode set
+skip:skipping unknown sku:DTDUO3/16GB - update mode set
+skip:skipping unknown sku:DWA-171 - update mode set
+itime:555 - 4.7711219787598 - 0.11344408988953
+dbtime:12525 - 3.4372007846832 - 0.079424381256104 - 291
+skip:skipping unknown sku:LC103BK - update mode set
+skip:skipping unknown sku:G8A94LA - update mode set
+itime:570 - 4.9094259738922 - 0.13823914527893
+dbtime:12866 - 3.5325176715851 - 0.095316886901855 - 341
+skip:skipping unknown sku:B85M-G R2.0 - update mode set
+skip:skipping unknown sku:H6F23AA - update mode set
+itime:585 - 5.0511739253998 - 0.14168500900269
+dbtime:13212 - 3.6331841945648 - 0.10066652297974 - 346
+skip:skipping unknown sku:497K09960 - update mode set
+itime:600 - 5.2036600112915 - 0.15241098403931
+dbtime:13580 - 3.7423350811005 - 0.10915088653564 - 368
+skip:skipping unknown sku:100-W1-0430-KR - update mode set
+skip:skipping unknown sku:9622B003AA - update mode set
+skip:skipping unknown sku:X99-A/USB3.1 - update mode set
+skip:skipping unknown sku:J2D73AA - update mode set
+itime:615 - 5.3223378658295 - 0.11861205101013
+dbtime:13872 - 3.8266389369965 - 0.084303855895996 - 292
+skip:skipping unknown sku:HL-1202 - update mode set
+skip:skipping unknown sku:DTSE9G2/32GB - update mode set
+skip:skipping unknown sku:KHX-HSCP-RD - update mode set
+skip:skipping unknown sku:8469B016 - update mode set
+itime:630 - 5.4417519569397 - 0.11934494972229
+dbtime:14163 - 3.9105894565582 - 0.083950519561768 - 291
+skip:skipping unknown sku:MO-TLB-WDOOBK-01 - update mode set
+skip:skipping unknown sku:MO-TLN-WDOOBK-01 - update mode set
+skip:skipping unknown sku:KB-CHM-MBBLSP-01 - update mode set
+skip:skipping unknown sku:20BW000DCL - update mode set
+itime:645 - 5.5708389282227 - 0.12902307510376
+dbtime:14455 - 3.9984021186829 - 0.087812662124634 - 292
+skip:skipping unknown sku:K7P32LA - update mode set
+skip:skipping unknown sku:29UM68 - update mode set
+itime:660 - 5.703941822052 - 0.13304591178894
+dbtime:14797 - 4.0941631793976 - 0.095761060714722 - 342
+skip:skipping unknown sku:K7T3V/332-1842 - update mode set
+skip:skipping unknown sku:WS-C2960+24LC-S - update mode set
+skip:skipping unknown sku:WS-C2960+48TC-S - update mode set
+skip:skipping unknown sku:B5L25A - update mode set
+skip:skipping unknown sku:DR-2340 - update mode set
+itime:675 - 5.8142738342285 - 0.1102659702301
+dbtime:15066 - 4.1708500385284 - 0.076686859130859 - 269
+skip:skipping unknown sku:31710151103 - update mode set
+skip:skipping unknown sku:HDTC810XK3A1 - update mode set
+skip:skipping unknown sku:KTH-PL421/8G - update mode set
+skip:skipping unknown sku:KB-CMC-PLBLSP-01 - update mode set
+skip:skipping unknown sku:TN110BK - update mode set
+skip:skipping unknown sku:TN110C - update mode set
+skip:skipping unknown sku:TN110M - update mode set
+skip:skipping unknown sku:TN110Y - update mode set
+skip:skipping unknown sku:VF6000BNS - update mode set
+skip:skipping unknown sku:PW800G - update mode set
+itime:690 - 5.8808739185333 - 0.066543102264404
+dbtime:15208 - 4.2113058567047 - 0.04045581817627 - 142
+skip:skipping unknown sku:H81M-A - update mode set
+skip:skipping unknown sku:SM-P550NZAACHO - update mode set
+skip:skipping unknown sku:DAP-2330 - update mode set
+skip:skipping unknown sku:DCP-T300 - update mode set
+itime:705 - 6.0008208751678 - 0.1198890209198
+dbtime:15499 - 4.2924172878265 - 0.081111431121826 - 291
+skip:skipping unknown sku:DAP-3662 - update mode set
+skip:skipping unknown sku:B3Q11A - update mode set
+itime:720 - 6.130331993103 - 0.12945413589478
+dbtime:15843 - 4.384162902832 - 0.091745615005493 - 344
+skip:skipping unknown sku:SG300-10PP-K9-NA - update mode set
+itime:735 - 6.2725930213928 - 0.14219403266907
+dbtime:16216 - 4.4845719337463 - 0.10040903091431 - 373
+skip:skipping unknown sku:BT6001KB - update mode set
+itime:750 - 6.4129009246826 - 0.14024209976196
+dbtime:16593 - 4.5858182907104 - 0.10124635696411 - 377
+skip:skipping unknown sku:31731017100 - update mode set
+skip:skipping unknown sku:TK-172 - update mode set
+itime:765 - 6.5494248867035 - 0.13645601272583
+dbtime:16938 - 4.6821730136871 - 0.096354722976685 - 345
+skip:skipping unknown sku:SDC10G2/128GB - update mode set
+skip:skipping unknown sku:P7Q30LA - update mode set
+skip:skipping unknown sku:8274B001 - update mode set
+skip:skipping unknown sku:DTMC3/32GB - update mode set
+itime:780 - 6.6688449382782 - 0.11935997009277
+dbtime:17232 - 4.7671415805817 - 0.084968566894531 - 294
+skip:skipping unknown sku:DTDUO/8GB - update mode set
+itime:795 - 6.8114058971405 - 0.14250206947327
+dbtime:17602 - 4.8720898628235 - 0.10494828224182 - 370
+skip:skipping unknown sku:CF379A - update mode set
+skip:skipping unknown sku:5463D2U - update mode set
+itime:810 - 6.942703962326 - 0.13123202323914
+dbtime:17947 - 4.9685487747192 - 0.096458911895752 - 345
+skip:skipping unknown sku:L2Y25A - update mode set
+skip:skipping unknown sku:T6F03LT - update mode set
+itime:825 - 7.0774099826813 - 0.1346390247345
+dbtime:18295 - 5.0660374164581 - 0.097488641738892 - 348
+skip:skipping unknown sku:8469B009 - update mode set
+skip:skipping unknown sku:F9A29A - update mode set
+itime:840 - 7.2096319198608 - 0.13215804100037
+dbtime:18637 - 5.1608490943909 - 0.094811677932739 - 342
+skip:skipping unknown sku:25UM58-P - update mode set
+itime:855 - 7.3487389087677 - 0.13903999328613
+dbtime:19003 - 5.2602555751801 - 0.099406480789185 - 366
+skip:skipping unknown sku:HX424C15FB/8 - update mode set
+skip:skipping unknown sku:T4L64LT - update mode set
+skip:skipping unknown sku:KCP421SS8/4 - update mode set
+skip:skipping unknown sku:KVR21R15S4/8 - update mode set
+skip:skipping unknown sku:B5L46A - update mode set
+skip:skipping unknown sku:C9364WL - update mode set
+itime:870 - 7.4434649944305 - 0.094660997390747
+dbtime:19249 - 5.32612657547 - 0.065871000289917 - 246
+skip:skipping unknown sku:WS-C3850-24T-S - update mode set
+skip:skipping unknown sku:KW14V / 320-9791 - update mode set
+skip:skipping unknown sku:T596400 - update mode set
+itime:885 - 7.5613918304443 - 0.11786794662476
+dbtime:19569 - 5.4103753566742 - 0.084248781204224 - 320
+skip:skipping unknown sku:T596800 - update mode set
+skip:skipping unknown sku:106R01444 - update mode set
+skip:skipping unknown sku:006R01518 - update mode set
+itime:900 - 7.6785109043121 - 0.11705708503723
+dbtime:19895 - 5.4955916404724 - 0.085216283798218 - 326
+skip:skipping unknown sku:SNA-BR2/35 - update mode set
+itime:915 - 7.816547870636 - 0.13797187805176
+dbtime:20272 - 5.5955145359039 - 0.099922895431519 - 377
+itime:930 - 7.9665009975433 - 0.14988613128662
+dbtime:20677 - 5.7052271366119 - 0.10971260070801 - 405
+skip:skipping unknown sku:DT100G3/16GB - update mode set
+itime:945 - 8.1113488674164 - 0.14476704597473
+dbtime:21052 - 5.8119189739227 - 0.10669183731079 - 375
+skip:skipping unknown sku:6531B001 - update mode set
+skip:skipping unknown sku:C540X75G - update mode set
+itime:960 - 8.2405788898468 - 0.12915301322937
+dbtime:21403 - 5.9056158065796 - 0.09369683265686 - 351
+skip:skipping unknown sku:LC203BK - update mode set
+skip:skipping unknown sku:26885- K62591AM - update mode set
+itime:975 - 8.3648319244385 - 0.12418293952942
+dbtime:21755 - 5.9981083869934 - 0.092492580413818 - 352
+itime:990 - 8.4981160163879 - 0.13323307037354
+dbtime:22158 - 6.1010227203369 - 0.10291433334351 - 403
+skip:skipping unknown sku:M2J71A4 - update mode set
+skip:skipping unknown sku:E900-LA - update mode set
+skip:skipping unknown sku:9506B003 - update mode set
+skip:skipping unknown sku:DTSE9H/8GBZ - update mode set
+itime:1005 - 8.5986738204956 - 0.10048794746399
+dbtime:22452 - 6.1761205196381 - 0.075097799301147 - 294
+itime:1020 - 8.7376348972321 - 0.13888597488403
+dbtime:22851 - 6.2814493179321 - 0.10532879829407 - 399
+skip:skipping unknown sku:9577B005 - update mode set
+skip:skipping unknown sku:26400 - K62563US - update mode set
+skip:skipping unknown sku:26397 - K62562US - update mode set
+skip:skipping unknown sku:MO-LTM009DT - update mode set
+skip:skipping unknown sku:AE2500-LA - update mode set
+itime:1035 - 8.83216381073 - 0.094457864761353
+dbtime:23118 - 6.3502388000488 - 0.068789482116699 - 267
+skip:skipping unknown sku:31300710101 - update mode set
+itime:1050 - 8.9611058235168 - 0.12886095046997
+dbtime:23493 - 6.4461207389832 - 0.095881938934326 - 375
+skip:skipping unknown sku:31310474101 - update mode set
+skip:skipping unknown sku:90NB08B1-M04750 - update mode set
+skip:skipping unknown sku:KCP316SS8/4 - update mode set
+skip:skipping unknown sku:B150 PRO GAMING D3 - update mode set
+skip:skipping unknown sku:31010116100 - update mode set
+skip:skipping unknown sku:SM-T285MZKACHO - update mode set
+itime:1065 - 9.0495309829712 - 0.088363170623779
+dbtime:23740 - 6.5086348056793 - 0.062514066696167 - 247
+skip:skipping unknown sku:28E0062 - update mode set
+itime:1080 - 9.1885228157043 - 0.13892984390259
+dbtime:24111 - 6.6096394062042 - 0.1010046005249 - 371
+skip:skipping unknown sku:C11CE91303 - update mode set
+skip:skipping unknown sku:DES-1210-08P - update mode set
+itime:1095 - 9.3148329257965 - 0.12624406814575
+dbtime:24459 - 6.7019729614258 - 0.092333555221558 - 348
+skip:skipping unknown sku:WRT54GL - update mode set
+skip:skipping unknown sku:L9K54LA - update mode set
+skip:skipping unknown sku:24MP58VQ - update mode set
+skip:skipping unknown sku:P5V22LT - update mode set
+skip:skipping unknown sku:V2W79LA - update mode set
+skip:skipping unknown sku:W0R47LA - update mode set
+itime:1110 - 9.4040818214417 - 0.089201927185059
+dbtime:24707 - 6.7654285430908 - 0.063455581665039 - 248
+skip:skipping unknown sku:32505 - update mode set
+skip:skipping unknown sku:32421 - update mode set
+itime:1125 - 9.5310029983521 - 0.12684917449951
+dbtime:25058 - 6.8575608730316 - 0.092132329940796 - 351
+skip:skipping unknown sku:T603200 - update mode set
+skip:skipping unknown sku:31731067100 - update mode set
+itime:1140 - 9.6652648448944 - 0.13419389724731
+dbtime:25405 - 6.951503276825 - 0.093942403793335 - 347
+skip:skipping unknown sku:TN3499 - update mode set
+skip:skipping unknown sku:F2A76A - update mode set
+itime:1155 - 9.7965519428253 - 0.13122010231018
+dbtime:25754 - 7.0448439121246 - 0.093340635299683 - 349
+skip:skipping unknown sku:49UH6100 - update mode set
+skip:skipping unknown sku:CA-1E7-00M1WN-00 - update mode set
+skip:skipping unknown sku:PS-TRX-0850MPCBUS-1 - update mode set
+skip:skipping unknown sku:TR-700CNUS - update mode set
+skip:skipping unknown sku:PS-SPD-0500NPCWUS-W - update mode set
+skip:skipping unknown sku:Z170-K - update mode set
+itime:1170 - 9.8910229206085 - 0.094403982162476
+dbtime:26000 - 7.1101026535034 - 0.065258741378784 - 246
+skip:skipping unknown sku:31731066100 - update mode set
+skip:skipping unknown sku:SHFS37A/480 - update mode set
+skip:skipping unknown sku:V3459i5Ss81TW7P1W - update mode set
+skip:skipping unknown sku:CC522A - update mode set
+skip:skipping unknown sku:CC364A - update mode set
+skip:skipping unknown sku:CE400A - update mode set
+skip:skipping unknown sku:106R01412 - update mode set
+itime:1185 - 9.9753768444061 - 0.084287881851196
+dbtime:26219 - 7.1688332557678 - 0.058730602264404 - 219
+skip:skipping unknown sku:CE390A - update mode set
+skip:skipping unknown sku:TK-1147 - update mode set
+itime:1200 - 10.10432100296 - 0.1288800239563
+dbtime:26561 - 7.2605781555176 - 0.091744899749756 - 342
+itime:1215 - 10.250897884369 - 0.14651894569397
+dbtime:26961 - 7.3660311698914 - 0.10545301437378 - 400
+skip:skipping unknown sku:T7B77AA - update mode set
+skip:skipping unknown sku:90NB09R2-M01360 - update mode set
+skip:skipping unknown sku:EA2700-LA - update mode set
+itime:1230 - 10.368222951889 - 0.11725497245789
+dbtime:27286 - 7.4503664970398 - 0.084335327148438 - 325
+skip:skipping unknown sku:FCR-HS4 - update mode set
+itime:1245 - 10.509886980057 - 0.14159107208252
+dbtime:27656 - 7.5519890785217 - 0.10162258148193 - 370
+skip:skipping unknown sku:10GSA05FCS - update mode set
+itime:1260 - 10.650104999542 - 0.14015197753906
+dbtime:28030 - 7.6517207622528 - 0.099731683731079 - 374
+skip:skipping unknown sku:VCQK1200DVI-ESPPB - update mode set
+skip:skipping unknown sku:DR110CL - update mode set
+itime:1275 - 10.781592845917 - 0.13142490386963
+dbtime:28377 - 7.745682477951 - 0.093961715698242 - 347
+skip:skipping unknown sku:H110M-D - update mode set
+skip:skipping unknown sku:08G-P4-6170-KR - update mode set
+itime:1290 - 10.912312030792 - 0.13065099716187
+dbtime:28724 - 7.838933467865 - 0.09325098991394 - 347
+skip:skipping unknown sku:DGS-1100-16 - update mode set
+skip:skipping unknown sku:9946B005 - update mode set
+skip:skipping unknown sku:9947B014AA - update mode set
+skip:skipping unknown sku:6264B001 - update mode set
+skip:skipping unknown sku:1072C001 - update mode set
+skip:skipping unknown sku:1070C001 - update mode set
+itime:1305 - 11.005822896957 - 0.093445062637329
+dbtime:28975 - 7.9032607078552 - 0.064327239990234 - 251
+skip:skipping unknown sku:0113C001 - update mode set
+skip:skipping unknown sku:T4N62LA - update mode set
+skip:skipping unknown sku:X9350_i5812SW10s_3 - update mode set
+skip:skipping unknown sku:L547i7Ss81TW7P3W - update mode set
+skip:skipping unknown sku:L747i5Ss825W7P3W - update mode set
+skip:skipping unknown sku:CL-W063-CA00BL-A - update mode set
+skip:skipping unknown sku:T0E52AA - update mode set
+skip:skipping unknown sku:SLM248GT-NA - update mode set
+skip:skipping unknown sku:TS10-B017D - update mode set
+skip:skipping unknown sku:T580700 - update mode set
+skip:skipping unknown sku:C9388AL - update mode set
+skip:skipping unknown sku:KB-CCM-PLBLSP-01 - update mode set
+skip:skipping unknown sku:CN048AL - update mode set
+skip:skipping unknown sku:DGS-1016A - update mode set
+itime:1320 - 11.02702999115 - 0.0211501121521
+dbtime:29016 - 7.9137132167816 - 0.010452508926392 - 41
+skip:skipping unknown sku:49SM5B-B - update mode set
+skip:skipping unknown sku:R9NANO-4G - update mode set
+skip:skipping unknown sku:08G-P4-6180-KR - update mode set
+skip:skipping unknown sku:E1670SWU - update mode set
+skip:skipping unknown sku:C11CD15201 - update mode set
+skip:skipping unknown sku:C11CD14201 - update mode set
+skip:skipping unknown sku:C11CE27201 - update mode set
+skip:skipping unknown sku:W6C02LT - update mode set
+skip:skipping unknown sku:SUV400S37/240 - update mode set
+skip:skipping unknown sku:KTH-PL316ELV/4G - update mode set
+skip:skipping unknown sku:6140B002 - update mode set
+skip:skipping unknown sku:C11CD49201 - update mode set
+skip:skipping unknown sku:27103 - update mode set
+itime:1335 - 11.058777809143 - 0.031697988510132
+dbtime:29082 - 7.9313440322876 - 0.017630815505981 - 66
+skip:skipping unknown sku:20FMA059CL - update mode set
+skip:skipping unknown sku:20F5A0FDCL - update mode set
+skip:skipping unknown sku:20F5A0FCCL - update mode set
+skip:skipping unknown sku:T748XXL120-AL - update mode set
+skip:skipping unknown sku:T748XXL220-AL - update mode set
+skip:skipping unknown sku:T748XXL320-AL - update mode set
+skip:skipping unknown sku:T748XXL420-AL - update mode set
+skip:skipping unknown sku:T788XXL220-AL - update mode set
+skip:skipping unknown sku:T788XXL320-AL - update mode set
+skip:skipping unknown sku:T788XXL420-AL - update mode set
+skip:skipping unknown sku:V1D59AA - update mode set
+skip:skipping unknown sku:1159C005 - update mode set
+skip:skipping unknown sku:DTSE9G2/8GB - update mode set
+skip:skipping unknown sku:DTSE9G2/16GB - update mode set
+itime:1350 - 11.079834938049 - 0.021002054214478
+dbtime:29122 - 7.942129611969 - 0.010785579681396 - 40
+skip:skipping unknown sku:HXS3/64GB - update mode set
+skip:skipping unknown sku:HXS3/128GB - update mode set
+skip:skipping unknown sku:10J0A072CS - update mode set
+skip:skipping unknown sku:34UM88-P.AWH - update mode set
+skip:skipping unknown sku:34UC98-W - update mode set
+skip:skipping unknown sku:27MP68VQ-P - update mode set
+skip:skipping unknown sku:C9396AL - update mode set
+skip:skipping unknown sku:C4844A - update mode set
+skip:skipping unknown sku:C9351CL - update mode set
+skip:skipping unknown sku:80F600D2LM - update mode set
+skip:skipping unknown sku:20ET000YCL - update mode set
+skip:skipping unknown sku:20FVA00HCL - update mode set
+skip:skipping unknown sku:KC-U4616-3GB - update mode set
+itime:1365 - 11.11213183403 - 0.032240867614746
+dbtime:29189 - 7.9596982002258 - 0.017568588256836 - 67
+skip:skipping unknown sku:457888 - update mode set
+skip:skipping unknown sku:G1K22AA - update mode set
+skip:skipping unknown sku:CF333A - update mode set
+skip:skipping unknown sku:10HB0030CS - update mode set
+skip:skipping unknown sku:10HB000VCS - update mode set
+skip:skipping unknown sku:6260B001 - update mode set
+skip:skipping unknown sku:6261B001 - update mode set
+skip:skipping unknown sku:SM-T810NZKECHO - update mode set
+skip:skipping unknown sku:SM-T813NZKECHO - update mode set
+skip:skipping unknown sku:CF332A - update mode set
+skip:skipping unknown sku:CF401A - update mode set
+skip:skipping unknown sku:CF402A - update mode set
+itime:1380 - 11.149768829346 - 0.037581920623779
+dbtime:29282 - 7.9836466312408 - 0.023948431015015 - 93
+skip:skipping unknown sku:90NB0B01-M01780 - update mode set
+skip:skipping unknown sku:31011461100 - update mode set
+skip:skipping unknown sku:DSR-1000AC - update mode set
+skip:skipping unknown sku:31710193100 - update mode set
+skip:skipping unknown sku:D9L63A - update mode set
+skip:skipping unknown sku:28E0507 - update mode set
+skip:skipping unknown sku:748920-B21 - update mode set
+skip:skipping unknown sku:27178 - K72405EU - update mode set
+itime:1395 - 11.224864006042 - 0.075040102005005
+dbtime:29478 - 8.0362966060638 - 0.052649974822998 - 196
+skip:skipping unknown sku:CH563HL - update mode set
+skip:skipping unknown sku:DGS-1100-24P - update mode set
+skip:skipping unknown sku:DT101G2/32GB - update mode set
+skip:skipping unknown sku:K7C00A4 - update mode set
+skip:skipping unknown sku:T0B52A - update mode set
+skip:skipping unknown sku:10K40009CB - update mode set
+skip:skipping unknown sku:10K4000ACL - update mode set
+skip:skipping unknown sku:WAP131-A-K9-NA - update mode set
+skip:skipping unknown sku:G2460PQU - update mode set
+skip:skipping unknown sku:AU656AA - update mode set
+skip:skipping unknown sku:WS-C3750X-12S-S - update mode set
+itime:1410 - 11.274580955505 - 0.049653053283691
+dbtime:29594 - 8.0682151317596 - 0.031918525695801 - 116
+skip:skipping unknown sku:C2960X-STACK - update mode set
+skip:skipping unknown sku:AIR-CAP1532I-A-K9 - update mode set
+skip:skipping unknown sku:20FRA02UCL - update mode set
+skip:skipping unknown sku:HDWD110UZSVA - update mode set
+skip:skipping unknown sku:HDWD120UZSVA - update mode set
+skip:skipping unknown sku:HDTS848XZSTA - update mode set
+skip:skipping unknown sku:PFU016U-1BLK - update mode set
+skip:skipping unknown sku:PFU016U-1BLR - update mode set
+skip:skipping unknown sku:PFU032U-1BLR - update mode set
+itime:1425 - 11.339350938797 - 0.064714908599854
+dbtime:29760 - 8.1122443675995 - 0.044029235839844 - 166
+skip:skipping unknown sku:T0B51A - update mode set
+skip:skipping unknown sku:1159C009 - update mode set
+skip:skipping unknown sku:L9K55LA - update mode set
+skip:skipping unknown sku:V1H49LT - update mode set
+skip:skipping unknown sku:I3458_i361TBW10s_3 - update mode set
+skip:skipping unknown sku:1WKXX - update mode set
+skip:skipping unknown sku:I5459_i541TSW10s_3 - update mode set
+skip:skipping unknown sku:Y2D5D - update mode set
+itime:1440 - 11.415591955185 - 0.076184034347534
+dbtime:29950 - 8.1637713909149 - 0.05152702331543 - 190
+skip:skipping unknown sku:L547i5Ss41TW7P3W - update mode set
+skip:skipping unknown sku:SE50S37/240G - update mode set
+skip:skipping unknown sku:VCQM4000-ESPPB - update mode set
+skip:skipping unknown sku:14Z960-G.AH58B3 - update mode set
+skip:skipping unknown sku:V11H764020 - update mode set
+skip:skipping unknown sku:V12H005M09 - update mode set
+skip:skipping unknown sku:90NB0AQA-M02060 - update mode set
+skip:skipping unknown sku:SDA3/64GB - update mode set
+itime:1455 - 11.490232944489 - 0.074582099914551
+dbtime:30142 - 8.2157123088837 - 0.05194091796875 - 192
+skip:skipping unknown sku:SDA3/128GB - update mode set
+skip:skipping unknown sku:KTH-PL421E/4G - update mode set
+skip:skipping unknown sku:C31CE95012 - update mode set
+skip:skipping unknown sku:C31CE95022 - update mode set
+skip:skipping unknown sku:P4K74LT - update mode set
+skip:skipping unknown sku:W5X70LT - update mode set
+skip:skipping unknown sku:V1G80LA - update mode set
+skip:skipping unknown sku:20FAA06ACL - update mode set
+skip:skipping unknown sku:AIR-AP1572EAC-A-K9 - update mode set
+skip:skipping unknown sku:DTDUO/16GB - update mode set
+skip:skipping unknown sku:19M38H-B - update mode set
+skip:skipping unknown sku:C31C636069_ - update mode set
+skip:skipping unknown sku:0A34061 - update mode set
+itime:1470 - 11.518481969833 - 0.028188943862915
+dbtime:30208 - 8.2326364517212 - 0.016924142837524 - 66
+skip:skipping unknown sku:LC101BK - update mode set
+skip:skipping unknown sku:CF410X - update mode set
+skip:skipping unknown sku:CN053AL - update mode set
+skip:skipping unknown sku:DWJ48 - update mode set
+skip:skipping unknown sku:10EYA00UCS - update mode set
+skip:skipping unknown sku:20781 - P0206 - update mode set
+skip:skipping unknown sku:L727i7Ss825W7P3W - update mode set
+skip:skipping unknown sku:W6C04LT - update mode set
+skip:skipping unknown sku:C11CE21203 - update mode set
+skip:skipping unknown sku:3320V_DNEC - update mode set
+skip:skipping unknown sku:R56DV - update mode set
+itime:1485 - 11.566797018051 - 0.048259973526001
+dbtime:30331 - 8.2644355297089 - 0.031799077987671 - 123
+skip:skipping unknown sku:15Z960-GAH78B3 - update mode set
+skip:skipping unknown sku:V11H718021 - update mode set
+skip:skipping unknown sku:20324 - update mode set
+skip:skipping unknown sku:20853 - update mode set
+skip:skipping unknown sku:20687 - update mode set
+skip:skipping unknown sku:21090 - update mode set
+skip:skipping unknown sku:21044 - update mode set
+skip:skipping unknown sku:19509 - update mode set
+skip:skipping unknown sku:18916 - update mode set
+skip:skipping unknown sku:21119 - update mode set
+skip:skipping unknown sku:20865 - update mode set
+skip:skipping unknown sku:20864 - update mode set
+skip:skipping unknown sku:P4K60LT - update mode set
+itime:1499 - 11.595086812973 - 0.028234958648682
+dbtime:30397 - 8.2820072174072 - 0.017571687698364 - 66
+info:Skus imported OK:1129/1499
+warning:SKU P4K60LT - Skus imported KO:370/1499
 end:Import Ended
