@@ -31,7 +31,7 @@
  * @package    Mage_Adminhtml
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-$apiPath = $_SERVER['DOCUMENT_ROOT'].'/SuperFacturaAPI.php';
+$apiPath = Mage::getBaseDir('lib').DS.'SuperFacturaAPI'.DS.'api.php';
 require_once($apiPath);
 class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Controller_Sales_Invoice
 {

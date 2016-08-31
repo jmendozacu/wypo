@@ -31,13 +31,10 @@
  * @package    Mage_Adminhtml
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-$apiPath = $_SERVER['DOCUMENT_ROOT'].'/SuperFacturaAPI.php';
+$apiPath = Mage::getBaseDir('lib').DS.'SuperFacturaAPI'.DS.'api.php';
 require_once($apiPath);
 class Mage_Adminhtml_Sales_Order_CreditmemoController extends Mage_Adminhtml_Controller_Sales_Creditmemo
 {
-    /**
-     * Get requested items qtys and return to stock flags
-     */
     protected function _getItemData()
     {
         $data = $this->getRequest()->getParam('creditmemo');
@@ -403,7 +400,8 @@ class Mage_Adminhtml_Sales_Order_CreditmemoController extends Mage_Adminhtml_Con
 				if($resultado['ok']){
 					if($resultado['folio']){
 						$pdf = $resultado['pdf'];
-						file_put_contents(Mage::getBaseDir('media').'/creditmemos/'.$creditmemo->getIncrementId().'.pdf', $pdf);
+						file_put_contents(Mage::getBaseDir('media').'/creditmemos/'.$resultado['folio'].'.pdf', $pdf);
+						$creditmemo->setIncrementId($resultado['folio']);
 					}		
 				}
 				/* MEMO PDF API END */
@@ -411,6 +409,18 @@ class Mage_Adminhtml_Sales_Order_CreditmemoController extends Mage_Adminhtml_Con
                 $creditmemo->sendEmail(!empty($data['send_email']), $comment);
                 $this->_getSession()->addSuccess($this->__('The credit memo has been created.'));
                 Mage::getSingleton('adminhtml/session')->getCommentText(true);
+				if($resultado['folio']){
+					$resource = Mage::getSingleton('core/resource');
+					$writeConnection = $resource->getConnection('core_write');
+					$query = 'UPDATE sales_flat_creditmemo SET increment_id='.$resultado['folio'].' WHERE entity_id='.$creditmemo->getId();
+					$queryone = 'UPDATE sales_flat_creditmemo_grid SET increment_id='.$resultado['folio'].' WHERE entity_id='.$creditmemo->getId();
+					try{
+						$writeConnection->query($query);
+						$writeConnection->query($queryone);
+					}catch(Exception $e){
+						$this->_getSession()->addError($e->getMessage());
+					}
+				}
                 $this->_redirect('*/sales_order/view', array('order_id' => $creditmemo->getOrderId()));
                 return;
             } else {
