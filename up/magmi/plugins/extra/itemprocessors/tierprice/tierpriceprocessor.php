@@ -62,24 +62,42 @@ class tierpriceprocessor extends Magmi_ItemProcessor
                 }
             }
 
-            // if we have specific customer groups
-            if (count($cgids) > 0) {
-                // delete only for thos customer groups
-                $instr = $this->arr2values($cgids);
+			if($item['udropship_vendor']==''){
+				// if we have specific customer groups
+				if (count($cgids) > 0) {
+					// delete only for thos customer groups
+					$instr = $this->arr2values($cgids);
 
-                // clear tier prices for selected tier price columns
-                $sql = "DELETE FROM $tpn WHERE entity_id=? AND customer_group_id IN ($instr) AND website_id IN ($wsstr)";
-                $this->delete($sql, array_merge(array($pid), $cgids, $wsids));
-            } else {
-                // delete for all customer groups
-                $sql = "DELETE FROM $tpn WHERE entity_id=? AND website_id IN ($wsstr)";
-                $this->delete($sql, array_merge(array($pid), $wsids));
-            }
+					// clear tier prices for selected tier price columns
+					$sql = "DELETE FROM $tpn WHERE entity_id=? AND customer_group_id IN ($instr) AND website_id IN ($wsstr)";
+					$this->delete($sql, array_merge(array($pid), $cgids, $wsids));
+				} else {
+					// delete for all customer groups
+					$sql = "DELETE FROM $tpn WHERE entity_id=? AND website_id IN ($wsstr)";
+					$this->delete($sql, array_merge(array($pid), $wsids));
+				}
+			}else{
+				$_custom_vendor_tier_price_table = "udmulti_tier_price";
+				
+				// if we have specific customer groups
+				if (count($cgids) > 0) {
+					// delete only for thos customer groups
+					$instr = $this->arr2values($cgids);
+
+					// VENDOR:  clear tier prices for selected tier price columns
+					$sql = "DELETE FROM $_custom_vendor_tier_price_table WHERE product_id=? AND customer_group_id IN ($instr) AND website_id IN ($wsstr) AND vendor_id=".$item['udropship_vendor'];						
+					$this->delete($sql, array_merge(array($pid), $cgids, $wsids));
+				} else {
+					// VENDOR: delete for all customer groups
+					$sql = "DELETE FROM $_custom_vendor_tier_price_table WHERE product_id=? AND website_id IN ($wsstr) AND vendor_id=".$item['udropship_vendor'];
+					$this->delete($sql, array_merge(array($pid), $wsids));
+				} 
+			}			
+			
         }
 		
 		if($item['udropship_vendor']==''){
 			foreach ($tpcol as $k) {
-
 				// get tier price column info
 				$tpinf = $this->_tpcol[$k];
 				// now we've got a customer group id
@@ -93,9 +111,11 @@ class tierpriceprocessor extends Magmi_ItemProcessor
 				if ($item[$k] == "") {
 					continue;
 				}
-				$tpvals = explode(";", $item[$k]);
 
+				$tpvals = explode(";", $item[$k]);
+				if($tpvals[0]==":" && count($tpvals)==1){ continue; }
 				foreach ($wsids as $wsid) {
+					
 					// for each tier price value definition
 					foreach ($tpvals as $tpval) {
 						// split on ":"
@@ -167,7 +187,7 @@ class tierpriceprocessor extends Magmi_ItemProcessor
 					continue;
 				}
 				$tpvals = explode(";", $item[$k]);
-
+				if($tpvals[0]==":" && count($tpvals)==1){ continue; }
 				foreach ($wsids as $wsid) {
 					// for each tier price value definition
 					foreach ($tpvals as $tpval) {
