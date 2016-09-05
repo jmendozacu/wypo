@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ecom_Sales>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Ecom_Sales>
+    </modules>
+</config>

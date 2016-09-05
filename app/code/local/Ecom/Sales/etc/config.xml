@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config>
+<modules>
+    <Ecom_Sales>
+        <version>1.0</version>
+    </Ecom_Sales>
+</modules>
+<admin>
+    <routers>
+        <adminhtml>
+            <args>
+                <modules>
+                    <Ecom_Sales before="Mage_Adminhtml">Ecom_Sales_Adminhtml</Ecom_Sales>
+                </modules>
+            </args>
+        </adminhtml>
+    </routers>
+</admin>
+</config>
