@@ -35,8 +35,8 @@ binmode(STDOUT, ":utf8");
 $precio1=ceil($precio1);
 $precio2=ceil($precio2);
 $precio3=ceil($precio3); 
-#print "$row->[0],$row->[0],$costo,$row->[2],$row->[2],$qty,$qty,\"$row->[3]\",2,1,$row->[7],$row->[9],$row->[9],$row->[9],$row->[5],1,IVA,4,\"$row->[3]\",\"$row->[3]\",:,Despacho en 24 hrs.,1\n";
-print "$row->[0],$row->[0],$costo,$row->[2],$row->[2],$qty,$qty,\"$row->[3]\",2,1,$row->[7],$row->[9],$row->[9],$row->[9],$row->[5],1,IVA,4,\"$row->[3]\",\"$row->[3]\",\"$cant1:-5%;$cant2:-10%;$cant3:-15%\",Despacho en 24 hrs.,1\n";
+print "$row->[0],$row->[0],$costo,$row->[2],$row->[2],$qty,$qty,\"$row->[3]\",2,1,$row->[7],$row->[9],$row->[9],$row->[9],$row->[5],1,IVA,4,\"$row->[3]\",\"$row->[3]\",:,Despacho en 24 hrs.,1\n";
+#print "$row->[0],$row->[0],$costo,$row->[2],$row->[2],$qty,$qty,\"$row->[3]\",2,1,$row->[7],$row->[9],$row->[9],$row->[9],$row->[5],1,IVA,4,\"$row->[3]\",\"$row->[3]\",\"$cant1:-5%;$cant2:-10%;$cant3:-15%\",Despacho en 24 hrs.,1\n";
 #print "$row->[0],$row->[0],$costo,$row->[2],$row->[2],$qty,$qty,\"$row->[3]\",2,1,$row->[7],$row->[9],$row->[9],$row->[9],$row->[5],1,IVA,4,\"$row->[3]\",\"$row->[3]\",\"$cant1:__MAGMI_DELETE__;$cant2:__MAGMI_DELETE__;$cant3:__MAGMI_DELETE__\",Despacho en 24 hrs.,1\n";
 									     }
                                                        }    
